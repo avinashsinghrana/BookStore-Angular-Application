@@ -4,13 +4,13 @@ import {
   Validators
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar} from '@angular/material/snack-bar';
 import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   response: any;
@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
   toggle: boolean;
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    public snackbar: MatSnackBar
   ) {}
   
   ngOnInit(): void {
@@ -71,7 +72,7 @@ validate(){
         },
         err => {
           console.log("err", err);
-         //this.snackBar.open("Login Failed", "Ok", { duration: 5000 });
+       //  this.snackbar.open("Login Failed", "Ok", { duration: 5000 });
           this.failedMsg = err.error;
           // "Logged in failed!!";
         }

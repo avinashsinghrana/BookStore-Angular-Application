@@ -13,14 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { AppMaterial } from "./app.material.module";
 import { AsyncPipe } from '../../node_modules/@angular/common';
-import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -28,7 +24,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     LoginComponent,
   ],
   imports: [
-   // DragDropModule,
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
@@ -42,10 +37,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatSelectModule,
     FlexLayoutModule,
     HttpClientModule,
-    //MatSidenavModule,
-    //MatToolbarModule,
     MatMenuModule,
-    //MatTooltipModule,
     MatSnackBarModule,
     AppMaterial,
     BrowserModule,

@@ -5,10 +5,6 @@ import { CdkTreeModule } from '@angular/cdk/tree';
 import { A11yModule } from '@angular/cdk/a11y';
 import { NgModule } from '@angular/core';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { PortalModule } from '@angular/cdk/portal';
-import { CdkStepperModule } from '@angular/cdk/stepper';
-
- //import {MatMenuModule} from '@angular/material/menu';
 
 import {
   MatAutocompleteModule,
@@ -20,7 +16,6 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
-  //MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
@@ -50,7 +45,6 @@ import {
 from '@angular/material';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { ContenteditableModule } from '@ng-stack/contenteditable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout'
 @NgModule({
@@ -81,7 +75,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     MatChipsModule,
     MatStepperModule,
     MatDatepickerModule,
-   // MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
     MatGridListModule,
@@ -107,7 +100,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     MatTreeModule,
     ScrollingModule,
     TextFieldModule
-  // ContenteditableModule
   ],
   exports: [
     MatInputModule,
@@ -120,7 +112,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     MatSidenavModule,
     MatIconModule,
     MatMenuModule,
-   // MatDialogModule,
     ReactiveFormsModule,
     MatDividerModule,
     A11yModule,
@@ -163,7 +154,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
     MatTreeModule,
     ScrollingModule,
     TextFieldModule,
-    // ContenteditableModule
   ]
 })
 
