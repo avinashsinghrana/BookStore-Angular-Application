@@ -1,0 +1,119 @@
+//@import "../../scss/colour.scss";
+.icons{
+  color: gray;
+}
+#bookstore_logo{
+  border-radius: 2cm;
+}
+.err{
+  text-align: center;
+  font-family: "Times New Roman";
+  font-size: large;
+  font: bold;
+  color: red;
+  height: 10%;
+  width: auto;
+  background-color:navajowhite;
+}
+
+.card {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  border-radius: 02%;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.459);
+}
+.row {
+  height: 33.3vh;
+}
+.fundoo {
+  text-align: center;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  margin-bottom: 02%;
+  font-size: 200%;
+}
+.f {
+  color: blue;
+  font-weight: bold;
+  font-family: "Times New Roman";
+  text-align: center;
+}
+.u {
+  color: red;
+}
+.n {
+  color: yellow;
+}
+.d {
+  color: blue;
+}
+.o {
+  color: green;
+}
+.oo {
+  color: red;
+}
+
+#register {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 18%;
+  margin-right: 15%;
+}
+.header {
+  text-align: center;
+  margin-left: 25%;
+  font-size: 180%;
+}
+.mat-card-title {
+  text-align: center;
+}
+.mat-card-subtitle {
+  font-size: 90%;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.sign {
+  font-weight: 100;
+  margin-left: 0%;
+  font-family: sans-serif;
+}
+
+.email {
+  width: 80%;
+  align-content: center;
+}
+.password {
+  margin-top: 1%;
+  width: 80%;
+  align-content: center;
+}
+
+.link {
+  color: blue;
+  margin-left: 5%;
+  margin-bottom: 10%;
+}
+.pass-link {
+  color: blue;
+  margin-left: -20%;
+  background: white;
+}
+#sigi-button {
+  margin-left: 70%;
+  font-weight: bold;
+  color: white;
+ // border: 2px solid black;
+}
+.gray{
+  background-color: gray;
+}
+.blue{
+  background-color: blue;
+}
+#forget {
+  color: green;
+}
