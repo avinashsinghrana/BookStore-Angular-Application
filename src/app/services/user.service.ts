@@ -11,4 +11,7 @@ export class UserService {
   login(body: any) {
     return this.service.postUser(body, environment.loginPath);
   }
+  register(body: any) {
+    return this.service.postUser(body, environment.registrationPath);
+  }
 }

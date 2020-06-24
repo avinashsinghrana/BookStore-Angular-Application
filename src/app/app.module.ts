@@ -21,11 +21,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppMaterial } from "./app.material.module";
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
    // DragDropModule,

@@ -1,0 +1,123 @@
+
+.icons{
+    color: gray;
+  }
+  
+  #bookstore_logo{
+    margin-top: 2%;
+    margin-left: 38%;
+    border-radius: 1cm;
+    width: 75px;
+    height: 75px;
+  }
+  
+  .err{
+    text-align: center;
+    font-family: "Times New Roman";
+    font-size: large;
+    font: bold;
+    color: red;
+    height: 30%;
+    width: auto;
+    background-color:navajowhite;
+  }
+  
+  .card {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6%;
+    margin-bottom: 10%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.459);
+    border-radius: 2%;
+  }
+  
+  .Bookstore{
+    text-align: center;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    margin-bottom: 02%;
+    font-size: 200%;
+    color: black;
+  }
+  /*.S {
+    color: #A03037;
+  }
+  .i {
+    color: #A03037;
+  }
+  .g {
+    color: #A03037;
+  }
+  .n {
+    color: #A03037;
+  }
+  .U {
+    color: #A03037;
+  }
+  .p {
+    color: #A03037;
+  }
+  */
+  #fullName {
+    width: 90%;
+  }
+  
+  #lastname {
+    width: 90%;
+  }
+  .mobile {
+    width: 90%;
+    margin-top: 1%;
+  }
+  .email {
+    width: 90%;
+    margin-top: 1%;
+  }
+  .password {
+    width: 90%;
+    margin-top: 1%;
+  }
+  .confirm {
+    width: 90%;
+    margin-top: 1%;
+  }
+  .acc-type {
+    width: 30%;
+    margin-top: 4%;
+    margin-left: 5%;
+  }
+  .signup-in {
+    display: flex;
+  }
+  
+  #suffix {
+    margin-left: 0%;
+    margin-top: 5%;
+  }
+  #signbutton {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 80%;
+    font-weight: bold;
+    //background-color: #A03037;
+    color: white;
+  }
+  .gray{
+    background-color:#A03037;
+  }
+  .blue{
+    background-color: #6d0e0e;
+  }
+  
+  #secleted {
+    margin-left: 5%;
+    color: lightblue;
+    font-family: sans-serif;
+  }
+  #psec {
+    margin-left: 12%;
+    font-family: sans-serif;
+    color: #7b1fa2;
+  }
+  
