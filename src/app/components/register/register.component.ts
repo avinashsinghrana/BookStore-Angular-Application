@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   mobileNumber = new FormControl("", [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]);
   emailId = new FormControl("", [ Validators.required, Validators.email]);
   password = new FormControl("", [Validators.required,Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
-  confirmPassword = new FormControl("", [Validators.required]);
+ // confirmPassword = new FormControl("", [Validators.required]);
  
   //To display firstname error message.
   getFullnameErrorMessage() {
@@ -75,15 +75,15 @@ getMobileErrorMessage() {
       ? "Please enter a valid password"
       : " ";
   }
-  //To display confirmPassword error message.
-  getConfirmPasswordErrorMessage() {
+ //To display confirmPassword error message.
+ /* getConfirmPasswordErrorMessage() {
     return this.confirmPassword.hasError("required")
     ? "Confirm password is required"
       : " ";
-  }
+  }*/
   validate(){
     if(this.emailId.valid && this.password.valid && this.fullName.valid &&
-       this.mobileNumber.valid && this.confirmPassword.valid){
+       this.mobileNumber.valid ){
         this.toggle = false;
     return "false";
     }

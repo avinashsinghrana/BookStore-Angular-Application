@@ -26,7 +26,9 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 6%;
-    margin-bottom: 10%;
+    margin-bottom: 6%;
+    //width: 28%;
+    //height: 100%;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.459);
     border-radius: 2%;
   }
@@ -88,6 +90,7 @@
   }
   .signup-in {
     display: flex;
+    width: 90%;
   }
   
   #suffix {
@@ -95,11 +98,12 @@
     margin-top: 5%;
   }
   #signbutton {
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-    height: 80%;
+    margin-left: 25%;
+    //margin-right: 15%;
+    width: 90%;
+    //height: 120%;
     font-weight: bold;
+    font-size: 120%;
     //background-color: #A03037;
     color: white;
   }
@@ -107,7 +111,7 @@
     background-color:grey;
   }
   .blue{
-    background-color: #6d0e0e;
+    background-color: #A03037;
   }
   
   #secleted {
