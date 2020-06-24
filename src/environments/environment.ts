@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   baseUrl: "http://localhost:8081",
   loginPath: "/user/login",
-  registrationPath: "/user/registration",
+  registrationPath: "/user/register",
 };
 
 /*

@@ -1,9 +1,29 @@
-//@import "../../scss/colour.scss";
+
 .icons{
   color: gray;
 }
 #bookstore_logo{
-  border-radius: 2cm;
+  margin-top: 2%;
+  margin-left: 38%;
+  border-radius: 1cm;
+  width: 75px;
+  height: 75px;
+}
+#login_title{
+  margin-top: 5%;
+  margin-left: 10%;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  margin-bottom: 02%;
+  font-size: 175%;
+}
+#signup_title{
+  margin-top: 5%;
+  margin-left: 8%;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  margin-bottom: 02%;
+  font-size: 175%;
 }
 .err{
   text-align: center;
@@ -27,40 +47,10 @@
 .row {
   height: 33.3vh;
 }
-.fundoo {
-  text-align: center;
-  font-family: "Times New Roman";
-  font-weight: bold;
-  margin-bottom: 02%;
-  font-size: 200%;
-}
-.f {
-  color: blue;
-  font-weight: bold;
-  font-family: "Times New Roman";
-  text-align: center;
-}
-.u {
-  color: red;
-}
-.n {
-  color: yellow;
-}
-.d {
-  color: blue;
-}
-.o {
-  color: green;
-}
-.oo {
-  color: red;
-}
 
 #register {
   display: flex;
   justify-content: space-between;
-  margin-left: 18%;
-  margin-right: 15%;
 }
 .header {
   text-align: center;
@@ -83,36 +73,34 @@
 }
 
 .email {
-  width: 80%;
+  width: 85%;
   align-content: center;
 }
 .password {
   margin-top: 1%;
-  width: 80%;
+  width: 85%;
   align-content: center;
+  margin-bottom: 0%;
 }
 
-.link {
-  color: blue;
-  margin-left: 5%;
-  margin-bottom: 10%;
-}
 .pass-link {
-  color: blue;
-  margin-left: -20%;
-  background: white;
+  color: gray;
+  margin-bottom: 7.5%;
+  margin-left: 30%;
 }
 #sigi-button {
-  margin-left: 70%;
+  margin-top: 3%;
+  margin-left: 7.5%;
   font-weight: bold;
   color: white;
+  width: 85%;
  // border: 2px solid black;
 }
 .gray{
-  background-color: gray;
+  background-color: #ac5454;
 }
 .blue{
-  background-color: blue;
+  background-color: #6d0e0e;
 }
 #forget {
   color: green;

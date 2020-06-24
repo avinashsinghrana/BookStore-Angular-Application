@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
     return this.fullName.hasError("required")
     ? "First name is required"
     : this.fullName.hasError("pattern")
-      ? "Please enter a valid first name"
+      ? "Please enter a valid name"
       : " ";
   }
  /* //To display lastname error message.
@@ -105,7 +105,7 @@ getMobileErrorMessage() {
         console.log(data);
         this.response = data;
         this.snackbar.open('User registered Successfully!!','ok',{duration:5000});
-        //this.snackbar.open("User registered Successfully!!!!");
+       // this.snackbar.open("User registered Successfully!!!!");
         this.router.navigate(["login"]);
       },
       err => {

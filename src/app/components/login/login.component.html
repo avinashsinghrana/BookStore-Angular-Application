@@ -2,7 +2,11 @@
   <form #myform="ngForm">
 <div fxLayoutAlign="space-around center" fxFlex="100">
   <mat-card fxFlex="25" class="card" fxFlex.xs="100">
-   
+    <div><img id="bookstore_logo" src="../../../assets/image/2766594.png"/></div>
+    <div  fxLayout="row" fxLayout.xs="column" >
+      <mat-card-title fxFlex="45" id="login_title" fxLayout="row">LOGIN </mat-card-title>
+      <mat-card-title fxFlex="45" id="signup_title" fxLayout="row">SIGNUP</mat-card-title>
+    </div>
 
    <body>
       <!-- usre email id -->
@@ -27,17 +31,13 @@
             }}</mat-icon>
         </mat-form-field>
       </div>
-
+     
       <div  id="register">
-        <button mat-button (click)="forgotpassword()" class="pass-link" > Forgot password?</button>
         <button id="sigi-button" mat-button (click)="login()" [disabled]=this.validate()  [ngClass]="{'gray' : toggle, 'blue': !toggle}" fxLayoutAlign="center center">
           Sign in
         </button>
       </div>
-      <br>
-      <div>
-        <button mat-button (click)="register()" class="link"> Create account </button>
-      </div>
+      <button mat-flat-button (click)="forgotpassword()" class="pass-link" >Forgot Password?</button>
       <div class="err" role="alert" *ngIf="successMsg">{{successMsg}}</div>
       <div class="err" role="alert" *ngIf="incorrectInput">{{incorrectInput}}</div>
       <div class="err" role="alert" *ngIf="failedMsg">{{failedMsg}}</div>
