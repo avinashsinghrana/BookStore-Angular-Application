@@ -68,7 +68,8 @@ validate(){
           this.response = data;
           localStorage.setItem("token", this.response.result);
           localStorage.setItem("email",this.emailFormControl.value);
-          this.router.navigate(["dashboard"]);
+          this.failedMsg="Login Successfull"
+          //this.router.navigate(["dashboard"]);
         },
         err => {
           console.log("err", err);

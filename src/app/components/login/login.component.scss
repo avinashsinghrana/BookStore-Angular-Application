@@ -18,13 +18,23 @@
   font-size: 175%;
 }
 #signup_title{
+  margin-top: 10%;
+ // margin-left: 1%;
+  font-family: "Times New Roman";
+  font-weight: bold;
+  margin-bottom: 0%;
+  color:black;
+  font-size: 125%;
+  margin-left: -10%;
+}
+/*#signup_title{
   margin-top: 5%;
   margin-left: 8%;
   font-family: "Times New Roman";
   font-weight: bold;
   margin-bottom: 02%;
   font-size: 175%;
-}
+}*/
 .err{
   text-align: center;
   font-family: "Times New Roman";
@@ -95,6 +105,9 @@
   color: white;
   width: 85%;
  // border: 2px solid black;
+}
+.mat-raised-button.mat-primary {
+  background-color: #A03037;
 }
 .gray{
   background-color: #ac5454;

@@ -13,17 +13,18 @@
       <span class="U">U</span>
       <span class="p">p</span>
     </mat-card-title>
-    <!--mat-card-header>
-      <mat-card-title calss="acc">SignUp</mat-card-title>
-    </mat-card-header-->
-
+    <div fxLayoutAlign="space-around center">
+    <mat-card-header>
+      <mat-card-title calss="acc">Create New Bookstore account</mat-card-title>
+    </mat-card-header>
+    </div>
      <body>
       <!--div fxLayout="row" fxLayout.xs="column" fxLayoutGap="2%"-->
     <div fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field fxFlex.xs="100" appearance="outline" id="fullName">
           <mat-label aria-autocomplete="off" > Full name</mat-label>
           <input matInput placeholder="Full name" [formControl]="fullName" title="Full name start with upper case and min length 3"
-           />
+          autocomplete="off" />
           <mat-icon class="icons" matSuffix >person_outline</mat-icon>
           <mat-error *ngIf="fullName.invalid ">{{getFullnameErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -41,7 +42,7 @@
       <div fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field appearance="outline" class="mobile">
           <mat-label aria-autocomplete="off">Mobile Number</mat-label>
-          <input matInput placeholder="Enter your mobile number" [formControl]="mobileNumber" />
+          <input matInput maxlength="10" placeholder="Enter your mobile number" [formControl]="mobileNumber"  autocomplete="off"/>
           <mat-icon class="icons" matSuffix>phone</mat-icon>
           <mat-error *ngIf="mobileNumber.invalid ">{{getMobileErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -50,7 +51,7 @@
       <div fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field appearance="outline" class="email">
           <mat-label aria-autocomplete="off">Email id</mat-label>
-          <input matInput placeholder="Enter your email id" [formControl]="emailId" />
+          <input matInput placeholder="Enter your email id" [formControl]="emailId" autocomplete="off"/>
           <mat-icon class="icons" matSuffix>email</mat-icon>
           <mat-error *ngIf="emailId.invalid ">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -83,7 +84,7 @@
       
       <mat-card-actions>
       <div class="signup-in">
-        <button id="signbutton" mat-button (click)="register()" [disabled]=this.validate() [ngClass]="{'gray' : toggle, 'blue': !toggle}" fxLayoutAlign="center center">
+        <button mat-raised-button color = "primary" id="signbutton" mat-button (click)="register()" [disabled]=this.validate()  fxLayoutAlign="center center">
           Signup
       </button>
       </div>

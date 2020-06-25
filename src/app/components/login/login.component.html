@@ -5,7 +5,10 @@
     <div><img id="bookstore_logo" src="../../../assets/image/2766594.png"/></div>
     <div  fxLayout="row" fxLayout.xs="column" >
       <mat-card-title fxFlex="45" id="login_title" fxLayout="row">LOGIN </mat-card-title>
-      <mat-card-title fxFlex="45" id="signup_title" fxLayout="row">SIGNUP</mat-card-title>
+      <mat-card-title fxFlex="45" fxLayout="row">
+        <button mat-flat-button (click)="register()" id="signup_title">SIGNUP</button>
+        </mat-card-title>
+      <!--mat-card-title fxFlex="45" id="signup_title" fxLayout="row">SIGNUP</mat-card-title-->
     </div>
 
    <body>
@@ -33,7 +36,7 @@
       </div>
      
       <div  id="register">
-        <button id="sigi-button" mat-button (click)="login()" [disabled]=this.validate()  [ngClass]="{'gray' : toggle, 'blue': !toggle}" fxLayoutAlign="center center">
+        <button mat-raised-button color ="primary" id="sigi-button" mat-button (click)="login()" [disabled]=this.validate()   fxLayoutAlign="center center">
           Sign in
         </button>
       </div>
