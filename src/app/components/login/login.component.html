@@ -27,14 +27,14 @@
         <mat-form-field appearance="outline" class="password">
           <mat-label>Enter your password</mat-label>
           <input matInput placeholder="Enter your password" title="Password contain upper case, lowercase, spacial char, and number" [type]="hide ? 'password' : 'text'" [formControl]="password"
-            autocomplete="off" requried />
+                 autocomplete="off" required/>
           <mat-error *ngIf="password.invalid ">{{getPasswordErrorMessage()}}</mat-error>
           <mat-icon class="icons" matSuffix (click)="hide = !hide">{{
               hide ? "visibility_off" : "visibility"
             }}</mat-icon>
         </mat-form-field>
       </div>
-     
+
       <div  id="register">
         <button mat-raised-button color ="primary" id="sigi-button" mat-button (click)="login()" [disabled]=this.validate()   fxLayoutAlign="center center">
           Sign in

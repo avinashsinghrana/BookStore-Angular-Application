@@ -1,10 +1,10 @@
 <html>
-  <form > 
+  <form >
 <div fxLayoutAlign="space-around center" fxFlex="100">
   <mat-card fxFlex="30" class="card" fxFlex.xs="100">
-    
-    <div><img id="bookstore_logo" src="../../../assets/image/2766594.png"/></div>
-    
+
+    <div><img id="bookstore_logo" src="../../../assets/image/2766594.png" sizes="240px"/></div>
+
     <mat-card-title class="Bookstore">
       <span class="S">S</span>
       <span class="i">i</span>
@@ -15,7 +15,7 @@
     </mat-card-title>
     <div fxLayoutAlign="space-around center">
     <mat-card-header>
-      <mat-card-title calss="acc">Create New Bookstore account</mat-card-title>
+      <mat-card-title class="acc">Create New Bookstore account</mat-card-title>
     </mat-card-header>
     </div>
      <body>
@@ -37,7 +37,7 @@
           <mat-icon class="icons" matSuffix >person_outline</mat-icon>
           <mat-error *ngIf="lastname.invalid ">{{getLastnameErrorMessage()}}</mat-error>
         </mat-form-field>
-      </div--> 
+      </div-->
 
       <div fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field appearance="outline" class="mobile">
@@ -62,7 +62,7 @@
         <mat-form-field appearance="outline" class="password">
           <mat-label aria-autocomplete="off">Password</mat-label>
           <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [formControl]="password"
-          autocomplete="off" requried title="Password contain upper case, lowercase, spacial char, and number"/>
+          autocomplete="off" required title="Password contain upper case, lowercase, spacial char, and number"/>
             <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
             <mat-icon class="icons" matSuffix (click)="hide = !hide">{{
               hide ? "visibility_off" : "visibility"
@@ -81,10 +81,10 @@
             }}</mat-icon>
           </mat-form-field>
       </div-->
-      
+
       <mat-card-actions>
       <div class="signup-in">
-        <button mat-raised-button color = "primary" id="signbutton" mat-button (click)="register()" [disabled]=this.validate()  fxLayoutAlign="center center">
+        <button mat-raised-button color = "primary" id="signbutton" mat-button (click)="register()" [disabled]="this.validate()"  fxLayoutAlign="center center">
           Signup
       </button>
       </div>
@@ -92,6 +92,6 @@
     </mat-card-actions>
     </body>
   </mat-card>
-</div> 
+</div>
   </form>
 </html>

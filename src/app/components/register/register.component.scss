@@ -2,7 +2,7 @@
 .icons{
     color: gray;
   }
-  
+
   #bookstore_logo{
     margin-top: 2%;
     margin-left: 38%;
@@ -10,7 +10,7 @@
     width: 75px;
     height: 75px;
   }
- 
+
   .err{
     text-align: center;
     font-family: "Times New Roman";
@@ -21,7 +21,10 @@
     width: auto;
     background-color:navajowhite;
   }
-  
+.acc{
+  font-family: Lato,sans-serif;
+  font-size: 14px;
+}
   .card {
     margin-left: auto;
     margin-right: auto;
@@ -32,7 +35,7 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.459);
     border-radius: 2%;
   }
-  
+
   .Bookstore{
     text-align: center;
     font-family: "Times New Roman";
@@ -65,7 +68,7 @@
     height: 10%;
     margin-bottom: -10px;
   }
-  
+
   #lastname {
     width: 90%;
     margin-bottom: -10px;
@@ -99,7 +102,7 @@
     display: flex;
     width: 90%;
   }
-  
+
   #suffix {
     margin-left: 0%;
     margin-top: 5%;
@@ -124,7 +127,7 @@
   .blue{
     background-color: #A03037;
   }
-  
+
   #secleted {
     margin-left: 5%;
     color: lightblue;
@@ -135,4 +138,3 @@
     font-family: sans-serif;
     color: #7b1fa2;
   }
-  

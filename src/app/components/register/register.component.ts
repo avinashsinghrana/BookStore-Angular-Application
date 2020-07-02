@@ -18,10 +18,13 @@ export class RegisterComponent implements OnInit {
   myPatt: string;
   toggle: boolean;
   response: any;
+  changeButton:boolean=false;
   constructor(
     private router: Router,
     public userService: UserService, private snackbar: MatSnackBar,
   ) { }
+
+
 
   ngOnInit() {
   }
