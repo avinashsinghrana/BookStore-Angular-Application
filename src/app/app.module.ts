@@ -29,6 +29,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { SortbypricePipe } from './pipe/sortbyprice.pipe';
 import { NgxPaginationModule } from "ngx-pagination";
 import { UserBooksComponent } from './components/user-books/user-books.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
 
 @NgModule({
@@ -38,7 +40,7 @@ import { UserBooksComponent } from './components/user-books/user-books.component
     RegisterComponent,
     OrderConfirmationComponent,
     DashboardComponent,
-    RegisterComponent,DashboardComponent, DisplaybooksComponent, BookSearchPipe, SortbypricePipe,UserBooksComponent
+    RegisterComponent,DashboardComponent, DisplaybooksComponent, BookSearchPipe, SortbypricePipe,UserBooksComponent, ForgotpasswordComponent, ResetpasswordComponent
 
   ],
   imports: [

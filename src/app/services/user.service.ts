@@ -17,6 +17,12 @@ export class UserService {
   register(body: any) {
     return this.service.postUser(body, environment.registrationPath);
   }
+  forgotPassword(body: any){
+    return this.service.postUser(body, environment.forgotPasswordPath);
+  }
+  resetPassword(data: any, token: string) {
+    return this.service.putUrl(environment.resetPasswordPath + token, data, '');
+  }
   setQueryParam(message: any) {
     this.queryParam.next({ id: message });
   }

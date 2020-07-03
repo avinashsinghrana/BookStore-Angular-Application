@@ -8,6 +8,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DisplaybooksComponent } from './components/displaybooks/displaybooks.component';
 import { UserBooksComponent } from './components/user-books/user-books.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,14 @@ const routes: Routes = [
   {
     path:'register',
     component: RegisterComponent
+  },
+  {
+    path:'resetpassword',
+    component:ResetpasswordComponent 
+  },
+  {
+    path:'forgotpassword',
+    component: ForgotpasswordComponent
   },
   {path: 'order-confirmation', component: OrderConfirmationComponent},
   {path: 'dashboard', component:DashboardComponent},

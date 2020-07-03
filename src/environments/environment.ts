@@ -7,7 +7,8 @@ export const environment = {
   baseUrl: "http://localhost:8081",
   loginPath: "/user/login",
   registrationPath: "/user/register",
-
+  forgotPasswordPath: "/user/forgotpassword",
+  resetPasswordPath: "/user/resetpassword?token=",
 
 
   bookApiUrl: "http://localhost:8081/books",

@@ -19,6 +19,17 @@ export class HttpService {
     return this.http.post(this.apiBaseurl + url, user, httpOptions);
   }
 
+  postUrl(url){
+    var httpOptions = {
+      headers: new HttpHeaders({  "Content-Type": "application/json" })
+    };
+    return this.http.post(this.apiBaseurl + url, httpOptions);
+  }
+
+  putUrl(url: any, data: any, token: any) {
+    return this.http.put(this.apiBaseurl + url, data, token);
+  }
+
   post(url: any, body: any, options: any): Observable<any> {
     return this.http.post(url, body, options);
   }
