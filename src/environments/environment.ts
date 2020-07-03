@@ -7,6 +7,23 @@ export const environment = {
   baseUrl: "http://localhost:8081",
   loginPath: "/user/login",
   registrationPath: "/user/register",
+
+
+
+  bookApiUrl: "http://localhost:8081/books",
+  getBooksList: "getAllBooks",
+  getSellerBookList: "sellerBooks",
+  addbook: "add",
+  deleteBook: "delete",
+  addBookImage: "upload",
+
+
+  cartApiUrl: "http://localhost:8081/orders",
+  addToBag: "make-order",
+  cartList: "cart-list",
+  deleteOrder: "remove-order",
+  updateQuantity: "update-quantity",
+  confirmOrder: "confirm-order",
 };
 
 /*

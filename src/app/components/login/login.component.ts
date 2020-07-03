@@ -19,11 +19,10 @@ export class LoginComponent implements OnInit {
   incorrectInput: string;
   toggle: boolean;
   constructor(
-    private router: Router,
-    private userService: UserService,
-    public snackbar: MatSnackBar
   ) {}
-  
+  private router: Router;
+    private userService: UserService;
+    public snackbar: MatSnackBar;
   ngOnInit(): void {
   }
   model = {};

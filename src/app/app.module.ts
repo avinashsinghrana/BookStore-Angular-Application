@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
 
-import { MatCardModule, MatInputModule, MatIconModule, MatButtonModule } from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { MatCardModule, MatInputModule, MatIconModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,15 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { RegisterComponent } from './components/register/register.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+//import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DisplaybooksComponent } from './components/displaybooks/displaybooks.component';
+import { BookSearchPipe } from './pipe/book-search.pipe';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { SortbypricePipe } from './pipe/sortbyprice.pipe';
+import { NgxPaginationModule } from "ngx-pagination";
+import { UserBooksComponent } from './components/user-books/user-books.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +38,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegisterComponent,
     OrderConfirmationComponent,
     DashboardComponent,
+    RegisterComponent,DashboardComponent, DisplaybooksComponent, BookSearchPipe, SortbypricePipe,UserBooksComponent
+
   ],
   imports: [
     BrowserModule,
@@ -45,11 +55,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatSelectModule,
     FlexLayoutModule,
     HttpClientModule,
+    NgxSpinnerModule,
     MatMenuModule,
     MatSnackBarModule,
     AppMaterial,
     BrowserModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxPaginationModule,
+    MatPaginatorModule,
   ],
   providers: [AsyncPipe,UserService],
   bootstrap: [AppComponent]
