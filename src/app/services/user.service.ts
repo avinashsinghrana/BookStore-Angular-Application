@@ -17,10 +17,10 @@ export class UserService {
   register(body: any) {
     return this.service.postUser(body, environment.registrationPath);
   }
-<<<<<<< HEAD
+
   getAllUnverifiedBooks(token: string) {
     return this.service.http.get('http://localhost:8080/admin/getBooksForVerification/'+token);
-=======
+  }
   forgotPassword(body: any){
     return this.service.postUser(body, environment.forgotPasswordPath);
   }
@@ -33,6 +33,5 @@ export class UserService {
 
   getQueryParam(): Observable<any> {
     return this.queryParam.asObservable();
->>>>>>> 2ee99f1be1219c9c45dcce9a49fd9a67f9ceef27
   }
 }
