@@ -1,0 +1,44 @@
+<mat-toolbar class="container" flex>
+  <div class="bookstore"></div>
+<!--  <div class="input-icons">-->
+<!--  <mat-icon id="i">search</mat-icon>-->
+<!--  <div class="searchIcon"></div>-->
+    <input type="search" placeholder="Search.." name="search" class="search"/>
+<!--  </div>-->
+  <div class="cart">
+    <img src="../../../assets/image/supermarket.svg">
+  </div>
+</mat-toolbar>
+
+<div fxLayoutAlign="centre" class="congrats"></div>
+<div fxLayoutAlign="centre" class="orderText">order placed successfully</div>
+
+<div class="orderDetail">
+  <p>hurray!!! your order is confirmed</p>
+  <p>the order id is {{ getOrderId() }} save the order id for</p>
+  <p>further communication..</p>
+</div>
+<div class="tablePosition">
+<mat-toolbar-row>
+  <mat-toolbar class="cardStyle">
+    <div id="email">Email Us</div>
+    <div id="contact">Contact Us</div>
+    <div id="address">Address</div>
+  </mat-toolbar>
+</mat-toolbar-row>
+  <mat-toolbar-row class="cardStyle2">
+    <span><div mat-toolbar class=" email"><div class="orientation">admin@bookstore.com</div></div></span>
+    <span> <div mat-toolbar class="contact"><div class="orientation">+91 8163475881</div></div></span>
+    <span> <div mat-toolbar class="address"><div class="orientation">
+      <p>42, 14th Main, 15th Cross, Sector 4 ,opp to BDA</p>
+      <p>complex, near Kumarakom restaurant, HSR Layout,</p>
+      <p> Bangalore 560034</p>
+    </div></div></span><br>
+  </mat-toolbar-row>
+</div>
+<button mat-flat-button class="buttonstyle" routerLink="/dashboard">CONTINUE SHOPPING</button>
+<mat-toolbar class="footer">
+  <div class="footTitle">
+    <p>Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+    </p></div>
+</mat-toolbar>

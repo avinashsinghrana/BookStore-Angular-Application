@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
 
-import { MatCardModule, MatInputModule, MatIconModule, MatButtonModule } from '@angular/material';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { MatCardModule, MatInputModule, MatIconModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,18 +20,40 @@ import { AppMaterial } from "./app.material.module";
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { RegisterComponent } from './components/register/register.component';
+<<<<<<< HEAD
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SellerComponent } from './components/seller/seller.component';
+=======
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+//import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DisplaybooksComponent } from './components/displaybooks/displaybooks.component';
+import { BookSearchPipe } from './pipe/book-search.pipe';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { SortbypricePipe } from './pipe/sortbyprice.pipe';
+import { NgxPaginationModule } from "ngx-pagination";
+import { UserBooksComponent } from './components/user-books/user-books.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+
+>>>>>>> 2ee99f1be1219c9c45dcce9a49fd9a67f9ceef27
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+<<<<<<< HEAD
     AdminDashboardComponent,
     AdminComponent,
     SellerComponent
+=======
+    OrderConfirmationComponent,
+    DashboardComponent,
+    RegisterComponent,DashboardComponent, DisplaybooksComponent, BookSearchPipe, SortbypricePipe,UserBooksComponent, ForgotpasswordComponent, ResetpasswordComponent
+
+>>>>>>> 2ee99f1be1219c9c45dcce9a49fd9a67f9ceef27
   ],
   imports: [
     BrowserModule,
@@ -46,10 +69,17 @@ import { SellerComponent } from './components/seller/seller.component';
     MatSelectModule,
     FlexLayoutModule,
     HttpClientModule,
+    NgxSpinnerModule,
     MatMenuModule,
     MatSnackBarModule,
     AppMaterial,
     BrowserModule,
+    NoopAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    NgxPaginationModule,
+    MatPaginatorModule,
   ],
   providers: [AsyncPipe,UserService],
   bootstrap: [AppComponent]

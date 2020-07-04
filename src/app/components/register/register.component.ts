@@ -6,6 +6,9 @@ import {
 import { Router } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatRadioChange } from '@angular/material';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: "app-register",
@@ -18,10 +21,14 @@ export class RegisterComponent implements OnInit {
   myPatt: string;
   toggle: boolean;
   response: any;
+  changeButton:boolean=false;
+  showSpinner=false;
   constructor(
     private router: Router,
-    public userService: UserService, private snackbar: MatSnackBar,
+    public userService: UserService, private snackbar: MatSnackBar,private spinner: NgxSpinnerService,
   ) { }
+
+
 
   ngOnInit() {
   }
@@ -34,6 +41,8 @@ export class RegisterComponent implements OnInit {
   emailId = new FormControl("", [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")]);
   password = new FormControl("", [Validators.required, Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
   // confirmPassword = new FormControl("", [Validators.required]);
+  person=String;
+
 
   //To display firstname error message.
   getFullnameErrorMessage() {
@@ -91,19 +100,30 @@ export class RegisterComponent implements OnInit {
     return "true";
   }
 
-  register() {
+  onChange(mrChange: MatRadioChange) {
+    console.log(mrChange.value);
+   this.person=mrChange.value;
+   console.log(this.person);
+
+  }
+  
+  register() {      this.showSpinner=true;
+
     var reqbody = {
       fullName: this.fullName.value,
       //lastName: this.lastname.value,
       mobileNumber: this.mobileNumber.value,
       emailId: this.emailId.value,
       password: this.password.value,
+      roleType:this.person,
     };
-
+    console.log(reqbody);
+    this.spinner.show();
     this.userService.register(reqbody).subscribe(
       data => {
         console.log(data);
         this.response = data;
+        this.spinner.hide();
         //this.snackbar.open('User registered Successfully!!', 'ok', { duration: 5000 });
         // this.snackbar.open("User registered Successfully!!!!");
         this.errorMsg="Register Successfull check Registered email to verify account"
@@ -113,6 +133,7 @@ export class RegisterComponent implements OnInit {
         console.log(err);
         //this.snackbar.open("Registeration Failed!!", 'ok', { duration: 3000 });
         this.errorMsg = "Registeration Failed!!";
+        this.spinner.hide();
       });
   }
   login() {
