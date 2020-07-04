@@ -34,4 +34,15 @@ export class UserService {
   getQueryParam(): Observable<any> {
     return this.queryParam.asObservable();
   }
+  profilePic(body: any) {
+    return this.service.upload(environment.profilePicPath, body);
+  }
+
+  uploadProfie(file:FormData,isProfile)
+  {
+    console.log("IN USERSERVICE TO UPLOAD IMAGE:",file);
+    return   this.service.postUser(isProfile, environment.registrationPath);;
+    //return this.http.POST('users/uploadImage',file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')),params: new HttpParams().set('isProfile', isProfile) });
+  }
 }
+

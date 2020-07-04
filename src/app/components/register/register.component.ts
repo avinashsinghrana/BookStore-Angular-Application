@@ -1,15 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import {
   FormControl,
   Validators
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatRadioChange } from '@angular/material';
 import { NgxSpinnerService } from "ngx-spinner";
-
-
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -25,10 +23,12 @@ export class RegisterComponent implements OnInit {
   showSpinner=false;
   constructor(
     private router: Router,
-    public userService: UserService, private snackbar: MatSnackBar,private spinner: NgxSpinnerService,
-  ) { }
-
-
+    public userService: UserService,
+    private snackbar: MatSnackBar,
+    private spinner: NgxSpinnerService,
+    private dialogRef: MatDialogRef<RegisterComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   ngOnInit() {
   }
@@ -40,10 +40,8 @@ export class RegisterComponent implements OnInit {
   mobileNumber = new FormControl("", [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]);
   emailId = new FormControl("", [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")]);
   password = new FormControl("", [Validators.required, Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
-  // confirmPassword = new FormControl("", [Validators.required]);
   person=String;
-
-
+ 
   //To display firstname error message.
   getFullnameErrorMessage() {
     return this.fullName.hasError("required")
@@ -52,15 +50,7 @@ export class RegisterComponent implements OnInit {
         ? "Please enter a valid name"
         : " ";
   }
-  /* //To display lastname error message.
-   getLastnameErrorMessage() {
-     return this.lastname.hasError("required")
-     ? "Last name is required"
-     : this.lastname.hasError("pattern")
-       ? "Please enter a valid last name"
-       : " ";
-   }*/
-  //To display mobile error message
+
   getMobileErrorMessage() {
     return this.mobileNumber.hasError("required")
       ? "Mobile number is required"
@@ -84,12 +74,6 @@ export class RegisterComponent implements OnInit {
         ? "Please enter a valid password"
         : " ";
   }
-  //To display confirmPassword error message.
-  /* getConfirmPasswordErrorMessage() {
-     return this.confirmPassword.hasError("required")
-     ? "Confirm password is required"
-       : " ";
-   }*/
   validate() {
     if (this.emailId.valid && this.password.valid && this.fullName.valid &&
       this.mobileNumber.valid) {
@@ -107,8 +91,9 @@ export class RegisterComponent implements OnInit {
 
   }
   
-  register() {      this.showSpinner=true;
-
+  register() {
+    this.showSpinner=true;
+    this.dialogRef.close();
     var reqbody = {
       fullName: this.fullName.value,
       //lastName: this.lastname.value,
@@ -119,20 +104,19 @@ export class RegisterComponent implements OnInit {
     };
     console.log(reqbody);
     this.spinner.show();
+    console.log(" Value is : ", reqbody);
+    localStorage.setItem(this.emailId.value,this.fullName.value);
     this.userService.register(reqbody).subscribe(
       data => {
         console.log(data);
         this.response = data;
         this.spinner.hide();
-        //this.snackbar.open('User registered Successfully!!', 'ok', { duration: 5000 });
-        // this.snackbar.open("User registered Successfully!!!!");
-        this.errorMsg="Register Successfull check Registered email to verify account"
+        this.snackbar.open('User registered Successfully! A verification link is send to registered emailid','ok',{duration:5000});
         this.router.navigate(["login"]);
       },
       err => {
         console.log(err);
-        //this.snackbar.open("Registeration Failed!!", 'ok', { duration: 3000 });
-        this.errorMsg = "Registeration Failed!!";
+        this.snackbar.open("Registeration Failed!!", 'ok', { duration: 3000 });
         this.spinner.hide();
       });
   }

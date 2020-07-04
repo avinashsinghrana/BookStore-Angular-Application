@@ -1,0 +1,77 @@
+<div style="width: 100%; height: 30%;">
+    <mat-toolbar style="width: 98.8%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="titleText" fxLayoutGap="3%">
+        <img src="../../../assets/image/education.svg" />
+        <a
+          href="http://localhost:4200/sellerDashboard/display-books"
+          style="color: white;text-decoration: none;"
+          >BookStore</a
+        >
+      </div>
+      <mat-card
+        class="search-mat-card"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <button mat-icon-button [disableRipple]="true" matTooltip="search">
+          <mat-icon class="searchIcon">search</mat-icon>
+        </button>
+        <input
+          (input)="onKey($event)"
+          class="searchInput"
+          type="text"
+          placeholder="Search..."
+        />
+      </mat-card>
+      <span class="spanClass"></span>
+      <!-- user profile pic -->
+  
+      <button mat-mini-fab class="imageSelect" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'52px','height':'52px'}"
+      [matMenuTriggerFor]="menu1" colour="basic" matTooltip="Seller Account"
+      [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
+    </button>
+
+    <mat-menu id="profile" #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
+      <div class="backgroundimage">
+        <button (click)="$event.stopPropagation()"
+          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'100px','height':'100px'}"
+          (click)="imageSelectFile.click()" matTooltip="Seller Account" mat-mini-fab class="imageSelect">
+          <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
+        </button>
+      </div>
+      <div class="profileEmail"> {{usermail}} </div>
+      <div class="profileEmail"> {{username}} </div>
+      <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
+      <mat-divider style="margin-top: auto;"></mat-divider>
+      <div fxLayoutAlign="center center" *ngIf="!isLogin">
+        <button class="signout" mat-flat-button (click)="signin()">LogIn </button>
+      </div>
+        <div fxLayoutAlign="center center" *ngIf="isLogin">
+          <button class="signout" mat-flat-button (click)="Logout()">Sign out </button>
+        </div>
+    </mat-menu> 
+    </mat-toolbar>
+    <mat-card
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="1%"
+      ngClass.lt-md="mainContainer-lt-md"
+      ngClass.gt-sm="mainContainer-lg"
+    >
+      <span class="mainSellingSpan">Welcome on BoookStore</span>
+      <span class="subSellingSpan">Sell your book online</span>
+  
+      <button
+        mat-raised-button
+        class="addBookButton"
+        fxLayoutAlign="center"
+        [disableRipple]="true"
+        (click)="openBookForm()"
+      >
+        <span class="bookText">Add Book</span>
+      </button>
+    </mat-card>
+  
+    <router-outlet></router-outlet>
+  </div>
+  

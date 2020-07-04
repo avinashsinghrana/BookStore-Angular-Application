@@ -1,0 +1,55 @@
+mat-card {
+    width: 100%;
+    height: fit-content;
+    overflow: auto;
+  }
+  .titleInput,
+  .authorInput,
+  .priceInput,
+  .quantityInput {
+    width: 48%;
+  }
+  
+element.style {
+ // margin-bottom: 4%;
+  place-content: center;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+}
+
+/*mat-toolbar[_ngcontent-cnb-c9] {
+  background-color: #c00d58;
+}*/
+@media (max-width: 599px){}
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 40px;
+}
+  mat-toolbar {
+    color: white;
+    background-color:  brown;
+  }
+  ::placeholder {
+    font-size: 90%;
+  }
+  .mat-card-lt-md {
+    width: 100%;
+  }
+  button {
+    background-color: brown;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    font-size: 100%;
+    width: 30%;
+    height: 10%;
+  }
+  mat-error {
+    font-size: x-small;
+  }
+  .fileButton {
+    // width: 50%;
+    outline: none;
+  }
+  

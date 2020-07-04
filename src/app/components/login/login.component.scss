@@ -3,7 +3,6 @@
   color: gray;
 }
 #bookstore_logo{
-  margin-top: 2%;
   margin-left: 38%;
   border-radius: 1cm;
   width: 75px;
@@ -11,30 +10,25 @@
 }
 #login_title{
   margin-top: 5%;
-  margin-left: 10%;
+  margin-left: 3%;
   font-family: "Times New Roman";
   font-weight: bold;
   margin-bottom: 02%;
-  font-size: 175%;
+  font-size: 170%;
 }
 #signup_title{
-  margin-top: 10%;
- // margin-left: 1%;
+  margin-top: 14%;
+  margin-left: 34%;
   font-family: "Times New Roman";
   font-weight: bold;
-  margin-bottom: 0%;
-  color:black;
-  font-size: 125%;
-  margin-left: -10%;
-}
-/*#signup_title{
-  margin-top: 5%;
-  margin-left: 8%;
-  font-family: "Times New Roman";
-  font-weight: bold;
+  padding: 0;
+border: none;
+background: none;
+//color: gray;
+outline: none;
   margin-bottom: 02%;
-  font-size: 175%;
-}*/
+  font-size: 115%;
+}
 .err{
   text-align: center;
   font-family: "Times New Roman";
@@ -45,15 +39,13 @@
   width: auto;
   background-color:navajowhite;
 }
-
+/*
 .card {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5%;
-  margin-top: 5%;
-  border-radius: 02%;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.459);
-}
+ 
+  //border-radius: 01%;
+ // box-shadow: none
+ // box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0);
+}*/
 .row {
   height: 33.3vh;
 }
@@ -83,27 +75,31 @@
 }
 
 .email {
-  width: 85%;
+  width: 102%;
   align-content: center;
 }
 .password {
   margin-top: 1%;
-  width: 85%;
+  width: 102%;
   align-content: center;
-  margin-bottom: 0%;
 }
-
+.link{
+  margin-top: -8%;
+}
 .pass-link {
   color: gray;
-  margin-bottom: 7.5%;
-  margin-left: 30%;
+  //margin-bottom: 7.5%;
+  margin-left: 56%;
 }
 #sigi-button {
-  margin-top: 3%;
+  margin-top: 5%;
   margin-left: 7.5%;
   font-weight: bold;
   color: white;
   width: 85%;
+  font-size: 120%;
+  background-color:  brown;
+ // background-color: #6d0e0e;
  // border: 2px solid black;
 }
 .mat-raised-button.mat-primary {
@@ -114,7 +110,4 @@
 }
 .blue{
   background-color: #6d0e0e;
-}
-#forget {
-  color: green;
 }

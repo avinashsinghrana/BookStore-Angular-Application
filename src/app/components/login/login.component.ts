@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {
   FormControl,
   Validators
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { MatSnackBar} from '@angular/material/snack-bar';
+//import { MatSnackBar} from '@angular/material/snack-bar';
 import { UserService } from "../../services/user.service";
-
+import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Login } from 'src/app/models/login.model';
+import { MatDialog } from '@angular/material';
+import { RegisterComponent } from '../register/register.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,11 +21,20 @@ export class LoginComponent implements OnInit {
   failedMsg: string;
   incorrectInput: string;
   toggle: boolean;
+  isLogin: false;
+  reqbody = {
+    email: null,
+    password: null
+  };
   constructor(
+    private dialog: MatDialog,
+    public snackbar: MatSnackBar,
+    private router: Router,
+    private userService: UserService,
+    private dialogRef: MatDialogRef<LoginComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Login
   ) {}
-  private router: Router;
-    private userService: UserService;
-    public snackbar: MatSnackBar;
+  
   ngOnInit(): void {
   }
   model = {};
@@ -35,7 +47,7 @@ export class LoginComponent implements OnInit {
     return this.emailFormControl.hasError("required")
     ? "Email id is required"
     : this.emailFormControl.hasError("email")
-      ? "Please enter a valid email id"
+      ? "Please enter valid email id"
       : " ";
   }
   //To display password error message
@@ -43,7 +55,7 @@ export class LoginComponent implements OnInit {
     return this.password.hasError("required")
     ? "Password is required"
     : this.password.hasError("pattern")
-      ? "Please enter a valid password"
+      ? "Please enter valid password"
       : " ";
   }
 validate(){
@@ -55,31 +67,29 @@ validate(){
   return "true";
 }
   login() {
-      var reqbody = {
-        email: this.emailFormControl.value,
-        password: this.password.value
-      };
-      console.log(reqbody);
-
-      this.userService.login(reqbody).subscribe(
+    this.dialogRef.close();
+     this.reqbody.email = this.emailFormControl.value;
+     this.reqbody.password = this.password.value;
+      console.log(this.reqbody);
+       localStorage.setItem('email',this.reqbody.email);
+      this.userService.login(this.reqbody).subscribe(
         data => {
           console.log(data);
           this.response = data;
-          localStorage.setItem("token", this.response.result);
-          localStorage.setItem("email",this.emailFormControl.value);
-          this.failedMsg="Login Successfull"
-          //this.router.navigate(["dashboard"]);
+          localStorage.setItem("token", this.response.message);
+          location.reload();
         },
         err => {
-          console.log("err", err);
-       //  this.snackbar.open("Login Failed", "Ok", { duration: 5000 });
-          this.failedMsg = err.error;
-          // "Logged in failed!!";
+         this.snackbar.open("Login Failed", "Ok", { duration: 5000 });
         }
       );
   }
   register() {
-    this.router.navigate(["register"]);
+    this.dialogRef.close();
+    this.dialog.open(RegisterComponent, {
+      width: '35%',
+      height : 'auto'
+    });
   }
   forgotpassword() {
     this.router.navigate(["forgotpassword"]);

@@ -44,4 +44,24 @@ export class HttpService {
   delete(url: any, options: any): Observable<any> {
     return this.http.delete(url, options);
   }
+  
+postBook(newBook, url) {
+  var httpOptions = {
+    headers: new HttpHeaders({  "Content-Type": "application/json",
+    token: localStorage.getItem("token")  })
+  };
+  // set header in your http request
+  return this.http.post(this.apiBaseurl + url, newBook, httpOptions);
 }
+upload(url: string, body: any): any {
+  url = this.apiBaseurl + url;
+  const httpOptions = {
+    headers: new HttpHeaders({
+     // "Content-Type": "multipart/form-data"
+    })
+  };
+  return this.http.post(url, body, httpOptions);
+}
+}
+
+

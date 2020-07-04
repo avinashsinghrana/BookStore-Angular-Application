@@ -12,6 +12,11 @@ import { DisplaybooksComponent } from './components/displaybooks/displaybooks.co
 import { UserBooksComponent } from './components/user-books/user-books.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { SellerComponent } from './components/seller/seller.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
+import { UpdateBookComponent } from './components/update-book/update-book.component';
+import { AuthguardService } from './services/authguard.service';
 
 const routes: Routes = [
   {
@@ -39,13 +44,33 @@ const routes: Routes = [
     component: ForgotpasswordComponent
   },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
-  { path: 'dashboard', component: DashboardComponent },
+ // { path: 'dashboard', component: DashboardComponent },
   {
     path: "dashboard",
     component: DashboardComponent,
     children: [
-      { path: "books", component: DisplaybooksComponent },
-      { path: 'userbooks', component: UserBooksComponent }
+      { path: '', redirectTo: 'display-books', pathMatch: 'full' },
+      {
+        path: 'display-books',
+        component: DisplayBooksComponent
+      },
+      /*{ path: "books", component: DisplaybooksComponent },
+      { path: 'userbooks', component: UserBooksComponent },*/
+    ],
+  },
+  { path: 'addbook', 
+    component: AddBookComponent 
+  },
+  { path: 'updateBook', component: UpdateBookComponent },
+  {
+    path: 'sellerDashboard',
+    component: SellerComponent,
+    children: [
+      { path: '', redirectTo: 'display-books', pathMatch: 'full' },
+      {
+        path: 'display-books',
+        component: DisplayBooksComponent
+      },
     ],
   }
 ];
