@@ -19,12 +19,18 @@ import { AppMaterial } from "./app.material.module";
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { SellerComponent } from './components/seller/seller.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    AdminDashboardComponent,
+    AdminComponent,
+    SellerComponent
   ],
   imports: [
     BrowserModule,

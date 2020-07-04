@@ -14,4 +14,7 @@ export class UserService {
   register(body: any) {
     return this.service.postUser(body, environment.registrationPath);
   }
+  getAllUnverifiedBooks(token: string) {
+    return this.service.http.get('http://localhost:8080/admin/getBooksForVerification/'+token);
+  }
 }

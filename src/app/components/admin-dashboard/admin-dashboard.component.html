@@ -1,0 +1,103 @@
+<div class="backcontainer" fxLayout="column" fxLayoutAlign="start start">
+  
+  <mat-toolbar style="background-color: #a03037;">
+    <mat-toolbar-row>
+      <!--------------- bookimg and book --------------------------->
+      <div class="bookicon">
+        <mat-icon color="primary" class="grab">
+          <img src="assets/image/education.png" />
+        </mat-icon>
+
+      </div>
+      <!-- <div style="height: 40%; margin-left: -3%;" fxHide fxShow.lt-md>
+          <a (click)="adminPage()" class="bookicon">
+            <mat-icon color="primary" class="grab">
+              <img class="bookimg" src="assets/image/education@2x.png" />
+            </mat-icon>
+          </a>
+        </div> -->
+      <div class="booktext" fxhide="10" fxHide.xs="true" style=" margin-left: 3%;">BookStore</div>
+
+      <!-------------------- search ------------------->
+      <div class="searche">
+        <img class="scicon" src="assets/image/searchicon.png" />
+        <input type="text" class="searchinput" placeholder="search" autocomplete="off" />
+      </div>
+
+      <!-------------------- cart -------------------->
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 20%;">
+        <div class="carttext">
+          Admin
+        </div>
+
+        <button mat-icon-button width="30" style="margin-left: 21%; background-color: whitesmoke;" fxShow="true"
+          fxHide.lt-md="true" [matMenuTriggerFor]="beforeMenu">
+          <mat-icon id="cartimg">perm_identity</mat-icon>
+        </button>
+
+
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <div style="width: 200px;">
+            <!-- <button mat-menu-item style="text-align: center;">
+              Approve Books
+            </button>
+            <button mat-menu-item style="text-align: center;">
+              DisApproved Books
+            </button> -->
+            <div *ngIf='visible'>
+              <button mat-menu-item style="text-align: center;">
+                Login
+              </button>
+            </div>
+            <div *ngIf='!visible'>
+            <button mat-menu-item style="text-align: center;">
+              Logout
+            </button>
+            </div>
+            <!-- <label> -->
+            <button value="uploadProfile" class="uploadimage">
+              Upload Profile
+              <input style="display: none;" #fileInput type="file" name="fileupload" />
+            </button>
+            <!-- </label> -->
+          </div>
+        </mat-menu>
+        <!--------------- app ---------------->
+        <button mat-icon-button class="apps" [matMenuTriggerFor]="menu" fxHide fxShow.lt-md>
+          <mat-icon matTooltip="appearance" [ngStyle]="{ color: 'white' }">apps</mat-icon>
+          <mat-menu #menu="matMenu">
+            <div style="width: 200px;">
+              <button mat-menu-item style="text-align: center;">
+                Approve Books
+              </button>
+              <button mat-menu-item style="text-align: center;">
+                DisApproved Books
+              </button>
+              <div>
+                <button mat-menu-item style="text-align: center;">
+                  Login
+                </button>
+              </div>
+              <button mat-menu-item style="text-align: center;">
+                Logout
+              </button>
+
+              <!-- <label> -->
+              <button value="uploadProfile" class="uploadimage">
+                Upload Profile
+                <input style="display: none;" #fileInput type="file" name="fileupload" />
+              </button>
+              <!-- </label> -->
+            </div>
+          </mat-menu>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <app-admin></app-admin>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  </div>
