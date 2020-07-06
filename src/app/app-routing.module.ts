@@ -17,6 +17,7 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { AuthguardService } from './services/authguard.service';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,8 @@ const routes: Routes = [
     path: 'forgotpassword',
     component: ForgotpasswordComponent
   },
+  
+  { path: 'order-summary', component:OrderSummaryComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
  // { path: 'dashboard', component: DashboardComponent },
   {
