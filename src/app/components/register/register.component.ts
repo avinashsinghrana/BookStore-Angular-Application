@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   emailId = new FormControl("", [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")]);
   password = new FormControl("", [Validators.required, Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
   person=String;
- 
+
   //To display firstname error message.
   getFullnameErrorMessage() {
     return this.fullName.hasError("required")
@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
    console.log(this.person);
 
   }
-  
+
   register() {
     this.showSpinner=true;
     this.dialogRef.close();
