@@ -12,7 +12,7 @@
           <mat-form-field appearance="outline">
             <mat-label>sort by relevance</mat-label>
             <mat-select
-              [(value)]="selectedOption"
+            [(value)]="selectedOption"
               (selectionChange)="onclicksort()"
             >
               <mat-option value="none">
@@ -32,39 +32,20 @@
         </form>
       </div>
     </div>
-    <!--div class="addbook" *ngIf="isSeller">
-      <button class="btn-addbook" (click)="openDialog()">ADD BOOK</button>
-    </div-->
     <div class="list-books">
       <div
         class="getAllNotes"
         *ngFor="
           let book of books
-            | bookSearch: bookSearch
-            | sortbyprice: sortbyprice
-            | paginate: { itemsPerPage: 10, currentPage: page, id: 'first' }
-        "
+          | paginate: { itemsPerPage: 10, currentPage: page, id: 'first' }
+            "
+      fxFlexOffset="4" style="margin: 0px;" fxLayout="row"
       >
         <mat-card matTooltip="{{ book.bookDetails }}">
-          <!--mat-card-title
-            *ngIf="isSeller"g c 
-            (click)="openImageDialog(book.bookId)"
-            matTooltip="Update Image"
+         
+          <mat-card-title  matTooltip="Book Image"
             ><img
-              src="{{ book.bookImage }}"
-              style="
-                height: 150px;
-                width: 120px;
-                margin-left: 55px;
-                margin-right: 55px;
-                padding-top: 20px;
-                padding-bottom: 20px;
-              "
-            />
-          </mat-card-title-->
-          <mat-card-title *ngIf="isUser" matTooltip="Book Image"
-            ><img
-              src="{{ book.bookImage }}"
+              src="{{ book.bookImgUrl }}"
               style="
                 height: 150px;
                 width: 120px;
@@ -90,30 +71,18 @@
             <div class="availablity" style="color: blue;" *ngIf="book.quantity">
               Available Books: {{ book.quantity }}
             </div>
-            <div class="cart-buttons" *ngIf="isUser && book.quantity">
+            <div class="cart-buttons" *ngIf="book.quantity">
               <div>
                 <button
                   [style.background-color]="toggle ? 'green' : 'red'"
                   class="addtobag"
-                  (click)="addToBag(book.bookId, book.quantity)"
+                  (click)="addToBag(book.bookId)"
                 >
                   ADD TO BAG
                 </button>
               </div>
               <div><button class="wishlist">WISHLIST</button></div>
             </div>
-            <!--div class="cart-buttons" *ngIf="isSeller">
-              <div>
-                <button class="addtobag" (click)="deleteBook(book.bookId)">
-                  DELETE BOOK
-                </button>
-              </div>
-              <div>
-                <button class="wishlist" (click)="openDialog2()">
-                  UPDATE BOOK
-                </button>
-              </div>
-            </div-->
           </mat-card-content>
         </mat-card>
       </div>

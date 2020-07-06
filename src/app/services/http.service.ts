@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-
+ 
   url: string;
   constructor(public http: HttpClient) { }
   apiBaseurl = environment.baseUrl;
@@ -32,6 +32,12 @@ export class HttpService {
 
   post(url: any, body: any, options: any): Observable<any> {
     return this.http.post(url, body, options);
+  }
+  addtoCart(url: any): Observable<any> {
+    return this.http.post(url,Option);
+  }
+  geet(url:any): Observable<any> {
+    return this.http.get(url);
   }
 
   get(url: any, options: any): Observable<any> {
@@ -63,5 +69,3 @@ upload(url: string, body: any): any {
   return this.http.post(url, body, httpOptions);
 }
 }
-
-

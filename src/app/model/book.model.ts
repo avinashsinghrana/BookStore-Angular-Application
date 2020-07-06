@@ -7,6 +7,6 @@ export class Book {
     price: number;
     quantity: number;
     authorName: string;
-    bookImage: string;
+    bookImgUrl: string;
   }
   

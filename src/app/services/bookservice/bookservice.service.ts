@@ -22,9 +22,8 @@ export class BookserviceService {
   }
   constructor(private http: HttpClient, private httpservice: HttpService) {}
   getBookList(): Observable<any> {
-    return this.httpservice.get(
-      `${environment.bookApiUrl}/${environment.getBooksList}`,
-      { headers: new HttpHeaders().set("token", sessionStorage.token) }
+    return this.httpservice.geet(
+      "http://localhost:8081/user/getallBooks"
     );
   }
   getSellerBookList(): Observable<any> {

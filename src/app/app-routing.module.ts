@@ -20,6 +20,10 @@ import { AuthguardService } from './services/authguard.service';
 
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
@@ -49,13 +53,13 @@ const routes: Routes = [
     path: "dashboard",
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'display-books', pathMatch: 'full' },
+      /*{ path: '', redirectTo: 'display-books', pathMatch: 'full' },
       {
         path: 'display-books',
         component: DisplayBooksComponent
-      },
-      /*{ path: "books", component: DisplaybooksComponent },
-      { path: 'userbooks', component: UserBooksComponent },*/
+      },*/
+      { path: "books", component: DisplaybooksComponent },
+      //{ path: 'userbooks', component: UserBooksComponent },*/
     ],
   },
   { path: 'addbook', 
