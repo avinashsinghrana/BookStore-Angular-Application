@@ -44,8 +44,11 @@ export class UserService {
   getQueryParam(): Observable<any> {
     return this.queryParam.asObservable();
   }
-  profilePic(body: any) {
+  /*profilePic(body: any) {
     return this.service.upload(environment.addimg, body);
+  }*/
+  profilePic(body: any) {
+    return this.service.upload(environment.profilePicPath, body);
   }
 
   http : HttpClient;

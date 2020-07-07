@@ -1,18 +1,18 @@
-import { Component, OnInit,ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddBookComponent } from '../add-book/add-book.component';
 import { MessageService } from "../../services/message.service";
 import { UserService } from "../../services/user.service";
-import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { MatSnackBar } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
   styleUrls: ['./seller.component.scss'],
 })
-export class SellerComponent implements OnInit, OnChanges {
+export class SellerComponent implements OnInit {
   isBookFormOpened = false;
   searchTerm: string;
   file: any;
@@ -20,26 +20,27 @@ export class SellerComponent implements OnInit, OnChanges {
   isLogin = false;
   imgFile: File;
   response: any;
+  isImage = false;
   img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
   username: string;
   usermail: string;
-  updateStats: any;
-  userProfile: any;
-
   constructor(
     private dialog: MatDialog,
     public snackbar: MatSnackBar,
     private userService: UserService,
     private messageService: MessageService,
-    private cdRef: ChangeDetectorRef,
-    private router: Router
+    private spinner: NgxSpinnerService,
+    private data: MessageService
   ) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    //throw new Error("Method not implemented.");
-  }
-
+  
   ngOnInit() {
     this.messageService.changeMessage();
+    if(localStorage.getItem(localStorage.getItem('email'))==null){
+     this.isImage = false;
+    }
+    else{
+      this.isImage = true;
+    }
     if (localStorage.getItem('token')!=null) {
       this.isLogin = true;
       this.img = localStorage.getItem(localStorage.getItem('email'));
@@ -50,9 +51,7 @@ export class SellerComponent implements OnInit, OnChanges {
       this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
     }
   }
-  openDialogztoedit() {
-   // this.dialog.open(EditProfileComponent);
-  }
+  
   openBookForm() {
     if(this.isLogin==false){
       this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
@@ -78,30 +77,20 @@ export class SellerComponent implements OnInit, OnChanges {
     localStorage.removeItem(localStorage.getItem('email'))
     this.img = "R";
   }
-  navigateTo() {
-    this.router.navigate(['/sellerDashboard']);
-  }
-  serch(){
-    console.log("item ",this.searchTerm);
-    localStorage.setItem('searchTerm',this.searchTerm);
-  }
-  onKey(event) {
-    this.searchTerm = event;
-   // this.messageService.searchBook(event);
+  onKey(event){
+    this.data.changeEvent(this.searchTerm);
   }
   Logout() {
     localStorage.removeItem('token');
     location.reload();
   }
   fileUpload($event) {
-    console.log("jhgdhs==>", $event);
-
-    this.setProfilePic($event)
+     this.spinner.show();   
+     this.setProfilePic($event)
   }
  setProfilePic($event) {
       if(this.isLogin==false){
-        this.snackbar.open("Please Login First", "Ok", { duration: 2000, verticalPosition: 'top',
-        horizontalPosition:'right' });
+        this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
         return;
       }
      this.imgFile = $event.target.files[0];
@@ -111,12 +100,12 @@ export class SellerComponent implements OnInit, OnChanges {
      data => {
      console.log("------------------------------", data);
      this.response = data;
+     this.spinner.hide(); 
      this.img = this.response.data;
-     this.cdRef.detectChanges();
      localStorage.setItem(localStorage.getItem('email'), this.response.data);
-     this.snackbar.open("Profile pic uploded Successful!!", "Ok", { duration: 2000 });
   },
   err => {
+     this.spinner.hide();
      this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
   });
   }

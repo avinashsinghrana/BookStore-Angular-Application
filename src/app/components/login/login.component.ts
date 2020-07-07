@@ -83,7 +83,7 @@ validate(){
           localStorage.setItem('email',this.reqbody.emailId);
           localStorage.setItem('name',this.response.message);
           localStorage.setItem("token", this.response.data);
-          //location.reload();
+          location.reload();
         },
         err => {
          this.spinner.hide();

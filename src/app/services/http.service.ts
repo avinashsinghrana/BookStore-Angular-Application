@@ -63,7 +63,7 @@ upload(url: string, body: any): any {
   url = this.apiBaseurl + url;
   const httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "multipart/form-data"
+     // "Content-Type": "multipart/form-data"
     })
   };
   return this.http.post(url, body, httpOptions);

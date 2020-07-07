@@ -13,9 +13,10 @@ import { Book } from 'src/app/model/book.model';
 export class DisplayBooksComponent implements OnInit {
   books = [];
   book: Book[];
-  //searchTerm: string;
-  sortTearm: string;
-  searchTerm = localStorage.getItem('searchTerm');
+  searchTerm: string;
+  message: string;
+  //sortTearm: string;
+ // searchTerm = localStorage.getItem('searchTerm');
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,
@@ -28,6 +29,8 @@ export class DisplayBooksComponent implements OnInit {
       this.books = [];
       this.onDisplayBooks(data);
     });
+    this.messageService.currentEvent$.subscribe(message =>
+      { this.searchTerm = message});
   }
   onBookDetail(event) {
     event.stopPropagation();
