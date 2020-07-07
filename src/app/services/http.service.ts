@@ -96,4 +96,8 @@ export class HttpService {
   public getBooksCart(url: any) {
     return this.http.get(url);
   }
+
+  public getOrderId(url :any){
+    return this.http.get(url);
+  }
 }

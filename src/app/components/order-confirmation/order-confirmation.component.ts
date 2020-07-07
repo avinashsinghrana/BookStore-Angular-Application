@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {OrderconfirmationService} from "../../services/orderConfirmation/orderconfirmation.service";
 
 @Component({
   selector: 'app-order-confirmation',
@@ -7,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderConfirmationComponent implements OnInit {
   orderId: number = 123456;
-  constructor() { }
+  constructor(private ordercinfirmation : OrderconfirmationService) { }
 
   ngOnInit(): void {
+    this.getOrderId();
   }
   fetchOrderId(order_id: number){
-    this.orderId = order_id;
+    return '#'+this.orderId;
   }
-  getOrderId(): String{
-      return '#'+this.orderId;
+  getOrderId(){
+      this.ordercinfirmation.fetchOrderId().subscribe((response:any) => {
+        this.orderId = response;
+      });
   }
 }
