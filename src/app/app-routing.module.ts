@@ -17,6 +17,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { AuthguardService } from './services/authguard.service';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { DisplayBookComponent } from './components/display-book/display-book.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,13 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminDashboardComponent,
+    children: [
+      { path: '', redirectTo: 'display-book', pathMatch: 'full' },
+      {
+        path: 'display-book',
+        component: DisplayBookComponent
+      },
+    ],
   },
   {
     path: 'adminbooks',
@@ -61,6 +69,7 @@ const routes: Routes = [
       },*/
       { path: 'books', component: DisplaybooksComponent },
       //{ path: 'userbooks', component: UserBooksComponent },*/
+      { path: "books", component: DisplaybooksComponent },
     ],
   },
   { path: 'addbook',

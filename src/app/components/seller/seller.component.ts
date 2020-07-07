@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddBookComponent } from '../add-book/add-book.component';
 import { MessageService } from "../../services/message.service";
@@ -6,23 +6,21 @@ import { UserService } from "../../services/user.service";
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { MatSnackBar } from '@angular/material';
+import { RegisterComponent } from '../register/register.component';
 @Component({
   selector: 'app-seller',
   templateUrl: './seller.component.html',
   styleUrls: ['./seller.component.scss'],
 })
-export class SellerComponent implements OnInit {
+export class SellerComponent implements OnInit, OnChanges {
   isBookFormOpened = false;
+  searchTerm: string;
   file: any;
   profile: string;
-  isProfile = 'true';
   isLogin = false;
-  isProfileAvailable = false;
-  login: boolean;
   imgFile: File;
   response: any;
-  img = "https://ravi023.s3.ap-south-1.amazonaws.com/1593769264470-profile.png";
-  //img = localStorage.getItem(localStorage.getItem('email'));
+  img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
   username: string;
   usermail: string;
   updateStats: any;
@@ -33,28 +31,23 @@ export class SellerComponent implements OnInit {
     public snackbar: MatSnackBar,
     private userService: UserService,
     private messageService: MessageService,
+    private cdRef: ChangeDetectorRef,
     private router: Router
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    //throw new Error("Method not implemented.");
+  }
 
   ngOnInit() {
-    //this.isLogin = 'true';
     this.messageService.changeMessage();
-    this.usermail = localStorage.getItem('email');
-    this.username = localStorage.getItem(this.usermail);
-    this.userProfile = localStorage.getItem('image');
-    if (this.userProfile != null) {
-      this.isProfileAvailable = true;
-      this.profile = this.userProfile;
-    } else {
-      console.log(localStorage.getItem('image'));
-      this.isProfileAvailable = false;
-    }
-    if (this.usermail != null) {
+    if (localStorage.getItem('token')!=null) {
       this.isLogin = true;
       this.img = localStorage.getItem(localStorage.getItem('email'));
+      this.usermail = localStorage.getItem('email');
+      this.username = localStorage.getItem("name");
     } else {
       this.isLogin = false;
-      this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1593769264470-profile.png";
+      this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
     }
   }
   openDialogztoedit() {
@@ -75,17 +68,29 @@ export class SellerComponent implements OnInit {
       height : 'auto'
     });
   }
+  signup(){
+    this.dialog.open(RegisterComponent, {
+      width: '35%',
+      height : 'auto'
+    });
+  }
+  delete(){
+    localStorage.removeItem(localStorage.getItem('email'))
+    this.img = "R";
+  }
   navigateTo() {
     this.router.navigate(['/sellerDashboard']);
   }
-  onKey(event: any) {
+  serch(){
+    console.log("item ",this.searchTerm);
+    localStorage.setItem('searchTerm',this.searchTerm);
+  }
+  onKey(event) {
+    this.searchTerm = event;
    // this.messageService.searchBook(event);
   }
   Logout() {
-    console.log('CAME TO LOGOUT');
-   // localStorage.removeItem("stoken");
-    localStorage.clear();
-    console.log(localStorage.length);
+    localStorage.removeItem('token');
     location.reload();
   }
   fileUpload($event) {
@@ -95,42 +100,24 @@ export class SellerComponent implements OnInit {
   }
  setProfilePic($event) {
       if(this.isLogin==false){
-        this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
+        this.snackbar.open("Please Login First", "Ok", { duration: 2000, verticalPosition: 'top',
+        horizontalPosition:'right' });
         return;
       }
      this.imgFile = $event.target.files[0];
      var formData = new FormData();
-  formData.append("file", this.imgFile);
-  this.userService.profilePic(formData).subscribe(
-    data => {
-    console.log("------------------------------", data);
-    this.response = data;
-    localStorage.setItem(localStorage.getItem('email'), this.response.data);
-    this.snackbar.open("Profile pic uploded Successful!!", "Ok", { duration: 2000 });
+     formData.append("file", this.imgFile);
+     this.userService.profilePic(formData).subscribe(
+     data => {
+     console.log("------------------------------", data);
+     this.response = data;
+     this.img = this.response.data;
+     this.cdRef.detectChanges();
+     localStorage.setItem(localStorage.getItem('email'), this.response.data);
+     this.snackbar.open("Profile pic uploded Successful!!", "Ok", { duration: 2000 });
   },
   err => {
      this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
   });
-  //location.reload;
   }
- /* OnSelectedFile(event) {
-    console.log(event.target.files[0]);
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
-      const formData = new FormData();
-      formData.append('file', this.file);
-      this.file.inProgress = true;
-      console.log('FormData:', formData.get('file'));
-      this.userService
-        .uploadProfie(formData, this.isProfile)
-        .subscribe((result: any) => {
-          console.log('PROFILE RESULT:', result);
-          if (result.status === 200) {
-            localStorage.setItem('image', result.data);
-            this.profile = result.data;
-            console.log(this.profile);
-          }
-        });
-    }
-  }*/
 }

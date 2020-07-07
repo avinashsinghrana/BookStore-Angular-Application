@@ -11,10 +11,11 @@ import { environment } from 'src/environments/environment';
 export class SellerService {
   private addBookApi = 'sellers/addBook';
   private updateBookApi = '/sellers/updateBook';
-  private deleteBookApi = '/sellers/DeleteBook';
+  private deleteBookApi = '/sellers/deleteBook';
   private displayBookApi = '/sellers/getUnverifiedBooks';
   private uploadBookProfileApi = 'users/uploadImage';
-  private approveBookApi = 'sellers/approvalSent/';
+  private approveBookApi = '/admin/bookVerification';
+  private displayAllBookApi = '/admin/getBooksForVerification'
 
   constructor(private http: HttpClient,private service: HttpService) {}
   addBook(body: any): Observable<any>  {
@@ -31,9 +32,14 @@ export class SellerService {
       headers: new HttpHeaders().set('token', localStorage.getItem('token')),
     });
   }
+  displayAllBooks(): Observable<any> {
+    return this.http.get(environment.baseUrl + this.displayAllBookApi, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
+  }
 
   deleteBooks(bookId: any): Observable<any> {
-    return this.http.delete(environment.baseUrl + this.deleteBookApi + bookId, {
+    return this.http.delete(environment.baseUrl + this.deleteBookApi + '/' + bookId, {
       headers: new HttpHeaders().set('token', localStorage.getItem('token')),
     });
   }
@@ -47,10 +53,9 @@ export class SellerService {
       }
     );
   }
-  updateBook(formGroup: FormGroup, bookId: any): Observable<any> {
+  updateBook(body: any, bookId: any): Observable<any> {
     return this.http.put(
-      environment.baseUrl + this.updateBookApi + '/' + bookId,
-      formGroup,
+      environment.baseUrl + this.updateBookApi + '/' + bookId,body,
       {
         headers: new HttpHeaders().set('token', localStorage.getItem('token')),
       }
@@ -58,8 +63,7 @@ export class SellerService {
   }
   onApprove(bookId: any): Observable<any> {
     return this.http.put(
-      environment.baseUrl + this.approveBookApi + bookId,
-      '',
+      environment.baseUrl + this.approveBookApi + '/' + bookId,'',
       {
         headers: new HttpHeaders().set('token', localStorage.getItem('token')),
       }

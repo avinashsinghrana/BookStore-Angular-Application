@@ -1,4 +1,3 @@
-
 <div
   class="main-div"
   fxLayoutGap="40px"
@@ -11,15 +10,12 @@
   fxLayout.lg="row wrap"
   fxLayoutAlign.lg="start start"
 >
-<div class="form-group">
-  <input type="text" class="form-control" placeholder="Search By Name"
-          style="width:300px;" [(ngModel)]="searchTerm" />
-</div>
-  <div *ngFor="let book of books  | bookFilter:searchTerm" style="margin: 0px; " fxLayout="row">
+  <div *ngFor="let book of books" style="margin: 0px; " fxLayout="row">
     <mat-card>
      
      <div class="bookImageDiv" fxLayoutAlign="center">
         <img src="{{ book.bookImgUrl }}" />
+        
       </div>
 
       <div class="bookInfoDiv" fxLayout="column">
@@ -27,10 +23,40 @@
           {{ book.bookName }}
         </div>
         <div fxlayout="row" class="input-author">by {{ book.authorName }}</div>
-        <div fxlayout="row" (click)="onUpdateBookForm(book)">
+        <div fxlayout="row">
           <span class="input-price-span">Rs. {{ book.price }}</span>
         </div>
+        <div class="input-price" *ngIf="book.rejectionCounts > 0">
+          Rejection: {{ book.rejectionCounts }}
+        </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
+          <button
+            class="approval-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onApprovals(book.bookId)"
+          >
+            APPROVAL
+          </button>
+          <button
+            class="sent-button"
+            *ngIf="!book.approved && book.approvalSent"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+          >
+            SENT
+          </button>
+          <button
+            class="approved-button"
+            *ngIf="book.approved"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+          >
+            APPROVED
+          </button>
           <button
             class="delete-button"
             mat-raised-button
@@ -40,22 +66,13 @@
           >
             DELETE
           </button>
-          <button
-            class="update-button"
-            mat-raised-button
-            fxLayoutAlign="center"
-            [disableRipple]="true"
-            (click)="onUpdateBookForm(book)"
-          >
-            UPDATE
-          </button>
   
         </div>
       </div>
     </mat-card>
     <div class="book-details">
-      <h4 style="text-align: center;margin-top: 0mm;">Book Details</h4>
-      <span style="font-size: medium;">{{ book.bookDetails }}</span>
+      <h4>Book Details</h4>
+      <span class="input-price">{{ book.bookDetails }}</span>
     </div>
   </div>
 </div>

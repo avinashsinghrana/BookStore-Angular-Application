@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
   model = {};
   hide = true;
   fullName = new FormControl("", [Validators.required, Validators.pattern("^[A-Z][a-z]+\\s?[A-Z][a-z]+$")]);
-  // lastname = new FormControl("", [Validators.required,Validators.pattern("^[A-Z][a-z]{2,}$")]);
   mobileNumber = new FormControl("", [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]);
   emailId = new FormControl("", [Validators.required, Validators.email,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$")]);
   password = new FormControl("", [Validators.required, Validators.pattern("((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})")]);
@@ -96,31 +95,24 @@ export class RegisterComponent implements OnInit {
     this.dialogRef.close();
     var reqbody = {
       fullName: this.fullName.value,
-      //lastName: this.lastname.value,
       mobileNumber: this.mobileNumber.value,
       emailId: this.emailId.value,
       password: this.password.value,
       roleType:this.person,
     };
-    console.log(reqbody);
     this.spinner.show();
     console.log(" Value is : ", reqbody);
-    localStorage.setItem(this.emailId.value,this.fullName.value);
     this.userService.register(reqbody).subscribe(
       data => {
         console.log(data);
         this.response = data;
         this.spinner.hide();
         this.snackbar.open('User registered Successfully! A verification link is send to registered emailid','ok',{duration:5000});
-        this.router.navigate(["login"]);
       },
       err => {
         console.log(err);
         this.snackbar.open("Registeration Failed!!", 'ok', { duration: 3000 });
         this.spinner.hide();
       });
-  }
-  login() {
-    this.router.navigate(["login"]);
   }
 }

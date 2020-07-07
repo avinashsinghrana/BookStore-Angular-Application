@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
+import { MessageService } from "../../services/message.service";
+import { LoginComponent } from '../login/login.component';
+import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -22,14 +25,24 @@ export class AdminDashboardComponent implements OnInit {
   profile: string
 
 
+  
   constructor(
     private router: Router,
+    private messageService: MessageService,
+    private dialog: MatDialog,
     ) { }
 visible:boolean=true;
   ngOnInit(): void {
+    this.messageService.changeMessages();
     if(localStorage.getItem("token")!=null){
       this.visible=false;
     }
+  }
+  signin(){
+    this.dialog.open(LoginComponent, {
+      width: '28%',
+      height : 'auto'
+    });
   }
 
 //   fileUpload($event) {
@@ -67,6 +80,11 @@ onSubmit(file: File) {
 }
 
 
+  signout(){
+    localStorage.removeItem('token');
+    this.visible=true;
+    location.reload();
+  }
   adminPage(){
     this.router.navigate(['/admin']);
   }
