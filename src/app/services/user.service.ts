@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from "./../services/http.service";
 import { environment } from "./../../environments/environment";
 import { Subject, Observable } from 'rxjs';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,17 @@ export class UserService {
   }
 
   getAllUnverifiedBooks(token: string) {
-    return this.service.http.get('http://localhost:8080/admin/getBooksForVerification/'+token);
+    return this.service.http.get('http://localhost:8080/admin/getBooksForVerification/',{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
   }
+
+  disApproveBooks(bookId){
+    return this.service.http.delete('http://localhost:8080/sellers/DeleteBook?bookId='+bookId,{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
+  }
+
+  approveBooks(bookId :any){
+    return this.service.http.put('http://localhost:8080/admin/bookVerification/'+bookId+'/'+localStorage.getItem('token'),{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
+  }
+
   forgotPassword(body: any){
     return this.service.postUser(body, environment.forgotPasswordPath);
   }
@@ -34,9 +44,20 @@ export class UserService {
   getQueryParam(): Observable<any> {
     return this.queryParam.asObservable();
   }
+  /*profilePic(body: any) {
+    return this.service.upload(environment.addimg, body);
+  }*/
   profilePic(body: any) {
     return this.service.upload(environment.profilePicPath, body);
   }
+
+  http : HttpClient;
+  public uploadProfilePic(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    return this.http.post("http://localhost:8080/sellers/addImg", formData);
+  }
+
 
   uploadProfie(file:FormData,isProfile)
   {

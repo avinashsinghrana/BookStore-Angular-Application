@@ -88,19 +88,14 @@
     height: 35%;
     margin-top: 50px;
     background-color: #21bae9;
-   // background-image: url('../../../assets/image/bookstore-wallpaper2.jpg');
   }
   .mainContainer-lg {
     width: 100%;
     height: 25%;
     margin-top: 50px;
     background-color: #21bae9;
-    //background-image: url('../../../assets/image/bookstore-wallpaper2.jpg');
   }
-  .backgroundimage {
-    width: 100px;
-    height: 100px;
-  }
+
   #signin{
     margin-left: 8%;
     font-weight: bold;
@@ -109,7 +104,8 @@
   }
   //************
   .imageSelect {
-    margin-left: 7px;
+   margin-left: 43px;
+   
   }
   .profile {
     overflow: hidden;
@@ -122,14 +118,9 @@
     color: gainsboro;
   }
   .menu-button {
-    // color: #757575;
-     // margin-left: 0%;
-     // padding: 0% 5%;
      overflow: hidden;
    }
-   .backgroundimage {
-    width: auto;
-  }
+  
   .profileEmail {
     padding: 10px;
     margin-left: 0.5%;
@@ -139,7 +130,19 @@
     margin-left: auto;
     margin-right: auto;
     font-weight: bold;
-    margin-left: 130px;
-   // background: rgb(245, 243, 243);
-    //opacity: 40%;
+    margin-left: 60px;
+  
   }
+  .login {
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    margin-left: 50px;
+  
+  }
+  .delete {
+    margin-right: auto;
+    font-weight: bold;
+    margin-block-start: 1px;
+  }
+ 

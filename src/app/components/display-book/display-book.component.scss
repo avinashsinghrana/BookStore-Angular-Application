@@ -7,7 +7,10 @@ mat-card {
     box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
       0 6px 20px 0 rgba(29, 29, 29, 0.19);
   }
-  
+  .bookImageDiv {
+    background-color: #f5f5f5;
+  }
+ 
   img {
     padding: 10%;
     width: 140px;
@@ -71,17 +74,7 @@ mat-card {
     border: none;
     outline: none;
   }
-  .update-button {
-    height: 32px;
-    width: 70px;
-    font-size: x-small;
-    background-color: #a03037;
-    color: white;
-    padding: 0px;
-    margin-top: 3%;
-    border: none;
-    outline: none;
-  }
+ 
   .delete-button {
     height: 32px;
     width: 70px;
@@ -93,15 +86,6 @@ mat-card {
     border: none;
     outline: none;
   }
- /* .delete-button {
-    //height: 32px;
-    //width: 70px;
-   // padding: 0px;
-    margin-top: 0%;
-    margin-left: 20%;
-    border: none;
-    outline: none;
-  }*/
   .sent-button {
     height: 32px;
     width: 70px;
@@ -127,22 +111,18 @@ mat-card {
   .book-details {
     display: none;
     position: absolute;
-    font-size: medium;
   }
-  mat-card:hover + .book-details {
+
+  .bookImageDiv:hover + .book-details {
     display: block;
-    margin-top: 2%;
+    margin-top: 0%;
     position: absolute;
     box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
       0 6px 20px 0 rgba(29, 29, 29, 0.19);
-    // align-self: center;
+    align-self: center;
     width: 18%;
-    // min-height: 100px;
-   // font-size: medium;
     height: fit-content;
-    // margin-top: 10px;
     background-color: whitesmoke;
-    margin-left: 12%;
     z-index: 1;
     padding: 2%;
   }
@@ -152,15 +132,7 @@ mat-card {
     padding-right: 10%;
     padding-bottom: 2%;
   }
-  // @media only screen and (min-width: 600px) and (max-width: 1300) {
-  //   .main-div {
-  //     background-color: green($color: #000000);
-  //     padding-left: 16%;
-  //     padding-right: 10%;
-  //     padding-bottom: 2%;
-  //     width: 100%;
-  //   }
-  // }
+
   @media only screen and (min-width: 600px) {
     .main-div {
       background-color: green($color: #000000);

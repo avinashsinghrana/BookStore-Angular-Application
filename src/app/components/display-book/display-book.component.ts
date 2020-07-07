@@ -3,20 +3,15 @@ import { SellerService } from "../../services/seller.service";
 import { MessageService } from "../../services/message.service";
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { UpdateBookComponent } from '../update-book/update-book.component';
-import { Book } from 'src/app/model/book.model';
 
 @Component({
-  selector: 'app-display-books',
-  templateUrl: './display-books.component.html',
-  styleUrls: ['./display-books.component.scss'],
+  selector: 'app-display-book',
+  templateUrl: './display-book.component.html',
+  styleUrls: ['./display-book.component.scss'],
 })
-export class DisplayBooksComponent implements OnInit {
+export class DisplayBookComponent implements OnInit {
   books = [];
-  book: Book[];
-  searchTerm: string;
-  message: string;
-  //sortTearm: string;
- // searchTerm = localStorage.getItem('searchTerm');
+
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,
@@ -25,29 +20,15 @@ export class DisplayBooksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.messageService.currentMessage.subscribe((data) => {
+    this.messageService.currentMessages.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
     });
-    this.messageService.currentEvent$.subscribe(message =>
-      { this.searchTerm = message});
   }
   onBookDetail(event) {
     event.stopPropagation();
   }
  
-  onKey(event) {
-    this.searchTerm = event;
-   // this.messageService.searchBook(event);
-  }
-  onUpdateBookForm(book) {
-    this.dialog.open(UpdateBookComponent, {
-      width: '600px',
-      data: book,
-      panelClass: 'custom-modalbox',
-    });
-  }
-
   onDisplayBooks(data) {
     console.log(data);
     if (data.status === 200) {
@@ -56,17 +37,27 @@ export class DisplayBooksComponent implements OnInit {
       });
     }
   }
-
   onDeleteBook(bookId) {
     console.log(bookId);
     this.vendorService.deleteBooks(bookId).subscribe(
       (data) => {
-          this.messageService.changeMessage();  
+          this.messageService.changeMessages();  
       },
       (error: any) => {
         this.snackBar.open("Book Deletion Failed", 'ok', { duration: 2000 });
       }
     );
   }
- 
+  onApprovals(bookId: any) {
+    this.vendorService.onApprove(bookId).subscribe(
+      (data) => {
+          this.messageService.changeMessages();
+      },
+      (error) => {
+        this.snackBar.open("Book Verification Failed", 'ok', {
+          duration: 2000,
+        });
+      }
+    );
+  }
 }

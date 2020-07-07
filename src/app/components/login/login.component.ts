@@ -10,6 +10,8 @@ import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Login } from 'src/app/models/login.model';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
+import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
   toggle: boolean;
   isLogin: false;
   reqbody = {
-    email: null,
+    emailId: null,
     password: null
   };
   constructor(
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
     public snackbar: MatSnackBar,
     private router: Router,
     private userService: UserService,
+    private spinner: NgxSpinnerService,
     private dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Login
   ) {}
@@ -67,22 +70,27 @@ validate(){
   return "true";
 }
   login() {
-    this.dialogRef.close();
-     this.reqbody.email = this.emailFormControl.value;
+     this.spinner.show();
+     this.reqbody.emailId = this.emailFormControl.value;
      this.reqbody.password = this.password.value;
       console.log(this.reqbody);
-       localStorage.setItem('email',this.reqbody.email);
       this.userService.login(this.reqbody).subscribe(
         data => {
           console.log(data);
+          this.dialogRef.close();
+          this.spinner.hide();
           this.response = data;
-          localStorage.setItem("token", this.response.message);
+          localStorage.setItem('email',this.reqbody.emailId);
+          localStorage.setItem('name',this.response.message);
+          localStorage.setItem("token", this.response.data);
           location.reload();
         },
         err => {
+         this.spinner.hide();
          this.snackbar.open("Login Failed", "Ok", { duration: 5000 });
         }
       );
+      
   }
   register() {
     this.dialogRef.close();
@@ -92,7 +100,11 @@ validate(){
     });
   }
   forgotpassword() {
-    this.router.navigate(["forgotpassword"]);
+    this.dialogRef.close();
+    this.dialog.open(ForgotpasswordComponent, {
+      width: '30%',
+      height : 'auto'
+    });
   }
 
 }

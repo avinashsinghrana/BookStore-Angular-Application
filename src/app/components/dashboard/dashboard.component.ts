@@ -24,11 +24,10 @@ export class DashboardComponent implements OnInit {
     private router: Router,public dialog: MatDialog,) { }
 
   ngOnInit(): void {
-    this.usermail = localStorage.getItem('email');
-    this.username = localStorage.getItem(this.usermail);
-    if (this.usermail != null) {
+    if (localStorage.getItem('token')!=null) {
       this.isLogin = true;
       this.img = localStorage.getItem(localStorage.getItem('email'));
+      this.usermail = localStorage.getItem('email');
     } else {
       this.isLogin = false;
       this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1593769264470-profile.png";
@@ -42,15 +41,13 @@ export class DashboardComponent implements OnInit {
   }
   signin(){
     this.dialog.open(LoginComponent, {
-      width: 'auto',
+      width: '28%',
       height : 'auto'
     });
   }
   Logout() {
-    console.log('CAME TO LOGOUT');
-   // localStorage.removeItem("stoken");
-    localStorage.clear();
-    console.log(localStorage.length);
+    localStorage.removeItem("token");
+   // localStorage.clear();
     location.reload();
   }
   fileUpload($event) {
@@ -76,6 +73,5 @@ export class DashboardComponent implements OnInit {
   err => {
      this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
   });
-  //location.reload;
   }
 }

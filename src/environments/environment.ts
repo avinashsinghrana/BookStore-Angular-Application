@@ -11,22 +11,24 @@ export const environment = {
   resetPasswordPath: "/user/resetpassword?token=",
 
 
-  bookApiUrl: "http://localhost:8081/user/",
-  getBooksList: "getallBooks",
+  bookApiUrl: "http://localhost:8080/books",
+  getBooksList: "getAllBooks",
   getSellerBookList: "sellerBooks",
   addbook: "add",
   deleteBook: "delete",
   addBookImage: "upload",
 
 
-  cartApiUrl: "http://localhost:8081/orders",
+
+  cartApiUrl: "http://localhost:8080/orders",
   addToBag: "AddToCart",
   cartList: "cart-list",
   deleteOrder: "remove-order",
   updateQuantity: "update-quantity",
   confirmOrder: "confirm-order",
   profilePicPath: "/user/uploadFile",
-  addBookPath: "/sellers/addBook"
+  addBookPath: "/sellers/addBook",
+  addimg:'/sellers/addImg'
 };
 
 /*

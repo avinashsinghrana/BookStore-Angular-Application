@@ -1,4 +1,3 @@
-
 import { OrderConfirmationComponent } from "./components/order-confirmation/order-confirmation.component";
 //import {DashboardComponent} from "./dashboard/dashboard.component";
 import { NgModule } from '@angular/core';
@@ -18,6 +17,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { AuthguardService } from './services/authguard.service';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { DisplayBookComponent } from './components/display-book/display-book.component';
 
 const routes: Routes = [
   {
@@ -48,25 +48,19 @@ const routes: Routes = [
     path: 'forgotpassword',
     component: ForgotpasswordComponent
   },
-  
+
   { path: 'order-summary', component:OrderSummaryComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
- // { path: 'dashboard', component: DashboardComponent },
   {
     path: "dashboard",
     component: DashboardComponent,
     children: [
-      /*{ path: '', redirectTo: 'display-books', pathMatch: 'full' },
-      {
-        path: 'display-books',
-        component: DisplayBooksComponent
-      },*/
-      { path: "books", component: DisplaybooksComponent },
+      { path: 'books', component: DisplaybooksComponent },
       //{ path: 'userbooks', component: UserBooksComponent },*/
     ],
   },
-  { path: 'addbook', 
-    component: AddBookComponent 
+  { path: 'addbook',
+    component: AddBookComponent
   },
   { path: 'updateBook', component: UpdateBookComponent },
   {

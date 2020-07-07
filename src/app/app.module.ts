@@ -8,6 +8,7 @@ import { SellerComponent } from './components/seller/seller.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
+import { DisplayBookComponent } from './components/display-book/display-book.component';
 import { UserService } from './services/user.service';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,12 +43,16 @@ import { UserBooksComponent } from './components/user-books/user-books.component
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
+import { ApprovedBooksComponent } from './components/approved-books/approved-books.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { BookFilterPipe } from './components/display-books/book-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    ApprovedBooksComponent,
     AdminDashboardComponent,
     AdminComponent,
     OrderConfirmationComponent,
@@ -57,6 +62,7 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     DisplaybooksComponent,
     BookSearchPipe,
     SortbypricePipe,
+    BookFilterPipe,
     UserBooksComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
@@ -64,8 +70,9 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     AddBookComponent,
     UpdateBookComponent,
     DisplayBooksComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
 
+    DisplayBookComponent
   ],
   imports: [
     BrowserModule,

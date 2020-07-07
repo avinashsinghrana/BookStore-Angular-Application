@@ -47,24 +47,8 @@ export class AddBookComponent implements OnInit {
   });
   ngOnInit() {}
 
-  /*onUploadBookImage(event) {
-   this.imgFile = event.target.files[0];
-   var formData = new FormData();
-formData.append("file", this.imgFile);
-this.userService.profilePic(formData).subscribe(
-  data => {
-  console.log("------------------------------", data);
-  this.response = data;
-  this.bookImageUrl = this.response.data;
-  this.snackbar.open("Profile pic uploded Successful!!", "Ok", { duration: 2000 });
-},
-err => {
-   this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
-});
-}*/
-
   onUploadBookImage(event) {
-    this.result = "Uploadeding..";
+    this.result = "Uploading..";
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
       const formData = new FormData();
