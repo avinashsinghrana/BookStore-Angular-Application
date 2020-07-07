@@ -42,7 +42,9 @@ import { UserBooksComponent } from './components/user-books/user-books.component
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
 import { ApprovedBooksComponent } from './components/approved-books/approved-books.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,7 @@ import { ApprovedBooksComponent } from './components/approved-books/approved-boo
     AddBookComponent,
     UpdateBookComponent,
     DisplayBooksComponent,
+    OrderSummaryComponent
 
   ],
   imports: [
@@ -93,6 +96,7 @@ import { ApprovedBooksComponent } from './components/approved-books/approved-boo
     MatSortModule,
     NgxPaginationModule,
     MatPaginatorModule,
+    
   ],
   providers: [AsyncPipe,UserService,SellerService, MessageService,AuthguardService,AuthserviceService],
   bootstrap: [AppComponent]

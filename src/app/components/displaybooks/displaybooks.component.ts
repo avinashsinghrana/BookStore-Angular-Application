@@ -3,6 +3,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { UserService } from 'src/app/services/user.service';
 import{BookserviceService} from 'src/app/services/bookservice/bookservice.service'
 import { CartserviceService } from 'src/app/services/cartservice.service';
+import { Book } from 'src/app/model/book.model';
 
 @Component({
   selector: 'app-displaybooks',
@@ -27,37 +28,46 @@ export class DisplaybooksComponent implements OnInit {
     private bookService: BookserviceService,
     private userService: UserService,
     private cartService: CartserviceService
-  ) {
+  ) {}
+  book:Book
+  /*{
     
     this.bookService.autoRefresh$.subscribe(() => {
       this.getAllBookList();
      /// this.getSellerBook();
-    });
+    });*/
 
-    this.setBudgetTotal();
-    this.getCartItems();
+    //this.setBudgetTotal();
+    //this.getCartItems();
+ // }
+
+  ngOnInit() {
+    this.getAllBookList();
+   /* this.bookService.autoRefresh$.subscribe(() => {
+      console.log("works");
+     /// this.getSellerBook();
+    });*/
   }
-
-  ngOnInit() {}
 
   getAllBookList() {
     this.bookService.getBookList().subscribe((message) => {
       console.log(message);
-      this.books = message.bookList;
-      this.size = message.bookList.length;
+      this.books = message.data;
+      this.size = message.data.length;
+      console.log("geeth"+this.size);
     });
 
     this.getSearchBookData();
   }
 
-  addToBag(bookId, quantity) {
+  addToBag(bookId) {
     this.toggle = !this.toggle;
-    this.cartService.addToBag(bookId, 1).subscribe((message) => {
+    this.cartService.addToBag(bookId).subscribe((message) => {
       console.log(message);
       this.matSnackBar.open("Book Added to Bag SuccessFully", "OK", {
         duration: 4000,
       });
-      this.setBudgetTotal();
+    //  this.setBudgetTotal();
     });
   }
 
@@ -75,14 +85,14 @@ export class DisplaybooksComponent implements OnInit {
     console.log(this.sortbyprice);
   }
 
-  getCartItems() {
+/*  getCartItems() {
     this.cartService.getCartList().subscribe((message) => {
       console.log("sss");
       this.budgetTotal = message.orders.length;
     });
   }
-  setBudgetTotal() {
+ / setBudgetTotal() {
     this.getCartItems();
     this.cartService.setBudgetTotal(this.budgetTotal);
-  }
+  }*/
 }

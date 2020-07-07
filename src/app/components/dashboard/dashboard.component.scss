@@ -68,28 +68,7 @@
   .page {
     padding: 5px;
   }
-  /*#profile {
-    //height: 32px;
-    opacity: 1;
-    background-color: whitesmoke;
-    border: none;
-    outline: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    height: 44px;
-    width: 44px;
-    border-radius: 34px;
-    //border-radius: 5px;
-    //border-radius: 200px;
-  }*/
-  // .toolbar{
-  // position: relative;
-  // flex-wrap: wrap;
-  // padding: 10px;
-  // display: block;
-  // justify-content: center;
-  // align-items: flex-start;
-  // float: left;
+  
   .mat-sidenav-container {
     display: flex;
     width: 100%;
@@ -109,61 +88,47 @@
     margin-left: 85px;
     font-size: 18px;
   }
-  
-  // .searchInput {
-  //   border: none;
-  //   outline: none;
-  //   top: 14px;
-  //   left: 334px;
-  //   width: 490px;
-  //   height: 33px;
-  //   background: #fcfcfc 0% 0% no-repeat padding-box;
-  //   border-radius: 5px;
-  //   border-top-left-radius: 0%;
-  //   border-bottom-left-radius: 0%;
-  //   opacity: 1;
-  //   height: 33px;
-  //   margin-left: -2px;
-  //   padding-left: 13px;
-  // }
-  
-  // .search {
-  //   background-color: whitesmoke;
-  //   border-radius: 4px;
-  //   width: 40px;
-  //   height: 42px;
-  // }
-  
-  // .searche2 {
-  //   width: 30%;
-  //   height: 55%;
-  //   border-radius: 3px;
-  //   opacity: 1;
-  //   margin-left: 7%;
-  // }
-  // // .mat-toolbar-row,
-  // // .mat-toolbar-single-row {
-  // //   display: flex;
-  // //   box-sizing: border-box;
-  // //   padding: 0 16px;
-  // //   width: 100%;
-  // //   flex-direction: row;
-  // //   align-items: center;
-  // //   white-space: nowrap;
-  // //   background-color: #a03037;
-  // // }
-  
-  // .mat-icon {
-  //   background-repeat: no-repeat;
-  //   display: inline-block;
-  //   fill: currentColor;
-  //   height: 24px;
-  //   width: 24px;
-  // }
-  
-  // mat-card {
-  //   display: flex;
-  //   flex-direction: column;
-  //   flex-shrink: 0;
-  // }
-  
+  #signin{
+    margin-left: 8%;
+    font-weight: bold;
+    font-size: 100%;
+    opacity: 50%;
+  }
+  .imageSelect {
+    margin-left: 7px;
+  }
+  .icons{
+    position: absolute;
+    padding: 10px;
+    //margin-right: 100%;
+    margin-top: 30%;
+    color: gainsboro;
+  }
+  .menu-button {
+    // color: #757575;
+     // margin-left: 0%;
+     // padding: 0% 5%;
+     overflow: hidden;
+   }
+   .backgroundimage {
+    width: 100px;
+    height: 100px;
+    margin-left: 35px;
+    //width: auto;
+  }
+  .profileEmail {
+    padding: 10px;
+    margin-left: 0.5%;
+    opacity: 0.6;
+  }
+  .signout {
+    margin-left: auto;
+    margin-right: 60%;
+    font-weight: bold;
+    margin-left: 120px;
+    border-radius: 6px;
+    background-color: #A03037;
+    margin-top: 20%;
+    //background: rgb(245, 243, 243);
+    //opacity: 40%;
+  }

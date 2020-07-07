@@ -16,8 +16,13 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { AuthguardService } from './services/authguard.service';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -42,23 +47,23 @@ const routes: Routes = [
     path: 'forgotpassword',
     component: ForgotpasswordComponent
   },
+
+  { path: 'order-summary', component:OrderSummaryComponent },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
-  // { path: 'dashboard', component: DashboardComponent },
   {
     path: "dashboard",
     component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'display-books', pathMatch: 'full' },
-      {
+      /*{
         path: 'display-books',
         component: DisplayBooksComponent
-      },
-      /*{ path: "books", component: DisplaybooksComponent },
-      { path: 'userbooks', component: UserBooksComponent },*/
+      },*/
+      { path: 'books', component: DisplaybooksComponent },
+      //{ path: 'userbooks', component: UserBooksComponent },*/
     ],
   },
-  {
-    path: 'addbook',
+  { path: 'addbook',
     component: AddBookComponent
   },
   { path: 'updateBook', component: UpdateBookComponent },

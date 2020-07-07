@@ -19,8 +19,9 @@ export const environment = {
   addBookImage: "upload",
 
 
+
   cartApiUrl: "http://localhost:8080/orders",
-  addToBag: "make-order",
+  addToBag: "AddToCart",
   cartList: "cart-list",
   deleteOrder: "remove-order",
   updateQuantity: "update-quantity",

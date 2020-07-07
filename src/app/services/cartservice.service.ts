@@ -19,16 +19,17 @@ export class CartserviceService {
   }
   constructor(private http: HttpClient, private httpservice: HttpService) {}
 
-  addToBag(id, quantity): Observable<any> {
-    return this.httpservice.post(
-      `${environment.cartApiUrl}/${environment.addToBag}?bookId=${id}&qty=${quantity}`,
-      {},
-      { headers: new HttpHeaders().set("token", sessionStorage.token) }
+  addToBag(id:any): Observable<any> {
+    console.log(id);
+    return this.httpservice.addtoCart(
+      //`${environment.cartApiUrl}/${environment.addToBag}?bookId=${id}`,
+      "http://localhost:8081/user/AddToCart?bookId="+id)
+      //{},
+      /*{ headers: new HttpHeaders().set("token", sessionStorage.token) }
     ).pipe(
       tap(() => {
         this._autoRefresh$.next();
-      })
-    );
+      })*/
   }
   removeFromeBag(id): Observable<any> {
     return this.httpservice
