@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerDetailsService {
- 
+
 
   constructor(private httpService: HttpService) { }
 
- addDetails(data){
-  var userId=1;
-  return this.httpService.POST('/user/addUserDetails?userId='+userId, data);
-}
+  addDetails(data, token) {
+
+    return this.httpService.POST('/user/addUserDetails?token=' + token, data, { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+  }
 
 }
+

@@ -5,29 +5,29 @@ import { HttpService } from '../http.service';
   providedIn: 'root'
 })
 export class CartServiceService {
- 
+
 
   constructor(private httpService: HttpService) { }
 
-/* 
-  getBookCart(){
-    return this.httpService.GET('/user/getAllFromCart');
-  }
-*/
-  addBooks(bookId){
-    bookId=1;
-    
-    return this.httpService.foo('/user/addMoreItems?bookId=1');
-  } 
 
-  removeItem(bookId){
-    bookId=1;
-    
-    return this.httpService.removeCart('/user/removeFromCart?bookId=1');
+  getBookCart() {
+    return this.httpService.getBooksCart('http://localhost:8081/user/getAllFromCart');
   }
 
-  removeAllItems(){
-    
-    return this.httpService.removeAllItemsCart('/user/removeAllFromCart');
+  addBooks(bookId) {
+
+
+    return this.httpService.foo('/user/addMoreItems?bookId=' + bookId);
+  }
+
+  removeItem(bookId) {
+
+
+    return this.httpService.removeCart('/user/removeFromCart?bookId=' + bookId);
+  }
+
+  removeAllItems(book_id) {
+
+    return this.httpService.removeAllItemsCart('/user/removeAllFromCart/' + book_id);
   }
 }
