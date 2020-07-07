@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:8081",
+  baseUrl: "http://localhost:8080",
   loginPath: "/user/login",
   registrationPath: "/user/register",
   forgotPasswordPath: "/user/forgotpassword",
   resetPasswordPath: "/user/resetpassword?token=",
 
 
-  bookApiUrl: "http://localhost:8081/books",
+  bookApiUrl: "http://localhost:8080/books",
   getBooksList: "getAllBooks",
   getSellerBookList: "sellerBooks",
   addbook: "add",
@@ -19,14 +19,15 @@ export const environment = {
   addBookImage: "upload",
 
 
-  cartApiUrl: "http://localhost:8081/orders",
+  cartApiUrl: "http://localhost:8080/orders",
   addToBag: "make-order",
   cartList: "cart-list",
   deleteOrder: "remove-order",
   updateQuantity: "update-quantity",
   confirmOrder: "confirm-order",
   profilePicPath: "/user/uploadFile",
-  addBookPath: "/sellers/addBook"
+  addBookPath: "/sellers/addBook",
+  addimg:'/sellers/addImg'
 };
 
 /*

@@ -33,6 +33,13 @@ export class BookserviceService {
       { headers: new HttpHeaders().set("token", sessionStorage.token) }
     );
   }
+token :string;
+  public getAllunverifiedBooks(url: any): any {
+    this.token = localStorage.getItem("token");
+    return this.http.get(environment.baseUrl + url, {
+      headers: new HttpHeaders().set("token", localStorage.getItem("token")),
+    });
+  }
 
   addBook(book: Book): Observable<any> {
     return this.httpservice

@@ -1,4 +1,3 @@
-
 import { OrderConfirmationComponent } from "./components/order-confirmation/order-confirmation.component";
 //import {DashboardComponent} from "./dashboard/dashboard.component";
 import { NgModule } from '@angular/core';
@@ -44,7 +43,7 @@ const routes: Routes = [
     component: ForgotpasswordComponent
   },
   { path: 'order-confirmation', component: OrderConfirmationComponent },
- // { path: 'dashboard', component: DashboardComponent },
+  // { path: 'dashboard', component: DashboardComponent },
   {
     path: "dashboard",
     component: DashboardComponent,
@@ -58,8 +57,9 @@ const routes: Routes = [
       { path: 'userbooks', component: UserBooksComponent },*/
     ],
   },
-  { path: 'addbook', 
-    component: AddBookComponent 
+  {
+    path: 'addbook',
+    component: AddBookComponent
   },
   { path: 'updateBook', component: UpdateBookComponent },
   {

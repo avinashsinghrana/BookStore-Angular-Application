@@ -42,11 +42,13 @@ import { UserBooksComponent } from './components/user-books/user-books.component
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ApprovedBooksComponent } from './components/approved-books/approved-books.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    ApprovedBooksComponent,
     AdminDashboardComponent,
     AdminComponent,
     OrderConfirmationComponent,

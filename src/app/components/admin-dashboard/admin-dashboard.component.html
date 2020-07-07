@@ -30,35 +30,60 @@
           Admin
         </div>
 
-        <button mat-icon-button width="30" style="margin-left: 21%; background-color: whitesmoke;" fxShow="true"
+        <!-- <button mat-mini-fab class="imageSelect" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'52px','height':'52px'}"
+        [matMenuTriggerFor]="menu1" colour="basic" matTooltip="Seller Account"
+        [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
+      </button> -->
+  
+      <!-- <mat-menu id="profile" #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
+        <div class="backgroundimage">
+          <button (click)="$event.stopPropagation()"
+            [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'100px','height':'100px'}"
+            (click)="imageSelectFile.click()" matTooltip="Seller Account" mat-mini-fab class="imageSelect">
+            <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
+          </button>
+        </div>
+        <div class="profileEmail">  </div>
+        <div class="profileEmail">  </div>
+        <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
+        <mat-divider style="margin-top: auto;"></mat-divider>
+        <div fxLayoutAlign="center center" *ngIf="visible">
+          <button class="signout" mat-flat-button >LogIn </button>
+        </div>
+          <div fxLayoutAlign="center center" *ngIf="!visible">
+            <button class="signout" mat-flat-button>Sign out </button>
+          </div>
+      </mat-menu> -->
+
+        <button mat-icon-button width="30" style="margin-left: 41%; background-color: whitesmoke;" fxShow="true"
           fxHide.lt-md="true" [matMenuTriggerFor]="beforeMenu">
-          <mat-icon id="cartimg">perm_identity</mat-icon>
+          <mat-icon id="cartimg">list</mat-icon>
         </button>
 
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
           <div style="width: 200px;">
-            <!-- <button mat-menu-item style="text-align: center;">
-              Approve Books
-            </button>
             <button mat-menu-item style="text-align: center;">
+              Approve Books<mat-menu #menu="matMenu"> <app-approved-books></app-approved-books></mat-menu>
+            </button>
+            <!-- <button mat-menu-item style="text-align: center;">
               DisApproved Books
             </button> -->
             <div *ngIf='visible'>
               <button mat-menu-item style="text-align: center;">
-                Login
+                Login 
               </button>
             </div>
             <div *ngIf='!visible'>
-            <button mat-menu-item style="text-align: center;">
+            <button mat-menu-item style="text-align: center;" >
               Logout
-            </button>
+            </button> 
             </div>
             <!-- <label> -->
-            <button value="uploadProfile" class="uploadimage">
+            <!-- <button value="uploadProfile" class="uploadimage">
               Upload Profile
               <input style="display: none;" #fileInput type="file" name="fileupload" />
-            </button>
+            </button> -->
             <!-- </label> -->
           </div>
         </mat-menu>
@@ -96,7 +121,7 @@
   </mat-toolbar>
   <mat-sidenav-container>
     <mat-sidenav-content>
-      <!--app-admin></app-admin-->
+      <app-admin></app-admin>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

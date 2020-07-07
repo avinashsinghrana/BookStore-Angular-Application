@@ -1,82 +1,55 @@
-<div  fxLayout="row" fxLayoutAlign="space-evenly start " style="margin-left: 6%;margin-right: 6%;">
-  <div *ngFor="let book of books">
-    <!-- <div *ngIf="!book.bookVerified && !book.bookApproveStatus"> -->
-    <mat-card class="matcard2">
-      <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-        <img class="bookimg" src="{{ book.bookImage }}" />
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="row" class="display-notes">
+    <div *ngFor="let book of bookList" class="book">
+      <mat-card autocomplete="off" role="combobox" flex="column" matTooltip="Book details &#13; {{ book.bookDetails }}"
+        matTooltipPosition="right" matTooltipClass="custom-tooltip">
+        <div class="header" style="background-color: #f5f5f5;">
+          <mat-card-header>
+            <div class="container">
+              <img mat-card-image fxLayoutAlign="center start" src="{{ book.bookImgUrl }}" alt="Snow"
+                (click)="ratingAndReviews(book)" />
+              <!-- <button *ngIf="book.noOfBooks == 0" class="btn">
+          <strong>OUT OF STOCK</strong>
+        </button> -->
 
-        <div class="bookdetails">
-          <div class="booktitle" style="word-wrap: break-word;">
-            {{ book.bookName }}
-          </div>
-
-          <div class="sub" style="word-wrap: break-word;">
-            {{ book.bookAuthor }}
-          </div>
-          <div
-            style="
-              margin-bottom: 11%;
-              font: Bold 18px/10px Lato;
-              margin-top: 8px;
-              margin-bottom: 8px;
-              margin-left: -25px;
-            "
-          >
-            $ {{ book.bookPrice }}
-          </div>
-          <div
-            style="
-              margin-bottom: 11%;
-              margin-left: -25px;
-              word-wrap: break-word;
-            "
-          >
-          <strong>Seller:</strong> {{ book.sellerName }}
-          </div>
+            </div>
+          </mat-card-header>
         </div>
-      </div>
-      <!-- <div style="margin-bottom: 10px; font: Bold 18px/15px Lato;">
-        Description:
-      </div>
-      <div>{{ book.bookDescription }}</div> -->
-
-      <!-- </div> -->
-      <div fxLayout="row wrap" fxLayoutAlign="end end" *ngIf="both">
-        <button
-          mat-raised-button
-          class="button"
-          style="background-color: #f44336;"
-          (click)="onDisApprove(book)"
-        >
-          DISAPPROVE
-        </button>
-        <button mat-raised-button class="button" (click)="onApprove(book)">
-          APPROVE
-        </button>
-      </div>
-      <div *ngIf="disapprove">
-        <button
-          mat-raised-button
-          class="button"
-          style="background-color: #f44336;"
-        >
-          DISAPPROVED
-        </button>
-      </div>
-      <div *ngIf="approve">
-        <button mat-raised-button class="button">
-          APPROVED
-        </button>
-      </div>
-    </mat-card>
-    <br />
-    <!-- </div> -->
-    <!-- </div> -->
+        <div class="content">
+          <mat-card-content>
+            <div class="mat-title" (click)="ratingAndReviews(book)">
+              {{ book.bookName }}
+            </div>
+            <mat-card-subtitle (click)="ratingAndReviews(book)"
+              style="color: #9d9d9d; margin-top: -10px; margin-bottom: 7px;">by {{ book.authorName }}
+            </mat-card-subtitle>
+            <div class="mat-subheading-1">Rs. {{ book.price  }}</div>
+          </mat-card-content>
+          <mat-card-actions (click)="ratingAndReviews(book)"
+            style="margin-bottom: -0.5%; margin-top: -1%; padding: 0 34px 0 4px;">
+                     </mat-card-actions>
+          <mat-card-actions fxLayout="row" fxLayoutGap="7%">
+            <button mat-raised-button class="box1" (click)="disApproveBook(book.bookId)">
+              DISAPPROVE
+            </button>
+           
+            <!-- </ng-template> -->
+            <button mat-raised-button class="box" [ngStyle]="{ color: 'white'}" (click)="approveBook(book.bookId)">
+              APPROVE
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </div>
   </div>
-  <!---------------------------- DisApproved Books --------------------->
+  <div class="footer" *ngIf="bookList.length > 2; else foot">
+    <button class="footerButton">
+      Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+    </button>
+  </div>
+  <ng-template #foot>
+    <button class="footerButton">
+      Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+    </button>
+  </ng-template>
 </div>
-<!-- <div class="footer">
-  <app-footer></app-footer>
-</div> -->
-
-
