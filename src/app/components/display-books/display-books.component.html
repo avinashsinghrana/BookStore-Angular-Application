@@ -11,10 +11,6 @@
   fxLayout.lg="row wrap"
   fxLayoutAlign.lg="start start"
 >
-<div class="form-group">
-  <input type="text" class="form-control" placeholder="Search By Name"
-          style="width:300px;" [(ngModel)]="searchTerm" />
-</div>
   <div *ngFor="let book of books  | bookFilter:searchTerm" style="margin: 0px; " fxLayout="row">
     <mat-card>
      

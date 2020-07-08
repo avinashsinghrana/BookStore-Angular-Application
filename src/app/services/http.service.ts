@@ -6,22 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
- 
+
   url: string;
   constructor(public http: HttpClient) { }
   apiBaseurl = environment.baseUrl;
-  
+
   postUser(user, url) {
     var httpOptions = {
-      headers: new HttpHeaders({  "Content-Type": "application/json"  })
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
     };
     // set header in your http request
     return this.http.post(this.apiBaseurl + url, user, httpOptions);
   }
 
-  postUrl(url){
+  postUrl(url) {
     var httpOptions = {
-      headers: new HttpHeaders({  "Content-Type": "application/json" })
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
     };
     return this.http.post(this.apiBaseurl + url, httpOptions);
   }
@@ -34,9 +34,9 @@ export class HttpService {
     return this.http.post(url, body, options);
   }
   addtoCart(url: any): Observable<any> {
-    return this.http.post(url,Option);
+    return this.http.post(url, Option);
   }
-  geet(url:any): Observable<any> {
+  geet(url: any): Observable<any> {
     return this.http.get(url);
   }
 
@@ -50,48 +50,54 @@ export class HttpService {
   delete(url: any, options: any): Observable<any> {
     return this.http.delete(url, options);
   }
-  
-postBook(newBook, url) {
-  var httpOptions = {
-    headers: new HttpHeaders({  "Content-Type": "application/json",
-    token: localStorage.getItem("token")  })
-  };
-  // set header in your http request
-  return this.http.post(this.apiBaseurl + url, newBook, httpOptions);
-}
-upload(url: string, body: any): any {
-  url = this.apiBaseurl + url;
-  const httpOptions = {
-    headers: new HttpHeaders({
-      "Content-Type": "multipart/form-data"
-    })
-  };
-  return this.http.post(url, body, httpOptions);
-}
 
-public POST(url: any, data: any): any {
-  return this.http.post(this.apiBaseurl + url, data);
-} 
+  postBook(newBook, url) {
+    var httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token")
+      })
+    };
+    // set header in your http request
+    return this.http.post(this.apiBaseurl + url, newBook, httpOptions);
+  }
+  upload(url: string, body: any): any {
+    url = this.apiBaseurl + url;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // "Content-Type": "multipart/form-data"
+      })
+    };
+    return this.http.post(url, body, httpOptions);
+  }
+
+  public POST(url: any, data: any, token: any): any {
+    return this.http.post(this.apiBaseurl + url, data, token);
+  }
 
 
-public foo(url: any) {
-  var httpOptions = {
-    headers: new HttpHeaders({  "Content-Type": "application/json"  })
-  };
-  return this.http.post(this.apiBaseurl + url, httpOptions);
-} 
+  public foo(url: any) {
+    var httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this.http.post(this.apiBaseurl + url, httpOptions);
+  }
 
-public removeCart(url: any){
+  public removeCart(url: any) {
 
-  var httpOptions = {
-    headers: new HttpHeaders({  "Content-Type": "application/json"  })
-  };
-  return this.http.post(this.apiBaseurl + url, httpOptions);
+    return this.http.delete(this.apiBaseurl + url);
 
-}
-public removeAllItemsCart(url: any){
+  }
+  public removeAllItemsCart(url: any) {
 
-  return this.http.delete(this.apiBaseurl + url);
+    return this.http.delete(this.apiBaseurl + url);
 
-}
+  }
+  public getBooksCart(url: any) {
+    return this.http.get(url);
+  }
+
+  public getOrderId(url :any){
+    return this.http.get(url);
+  }
 }
