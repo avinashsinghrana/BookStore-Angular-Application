@@ -35,13 +35,13 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminDashboardComponent,
-    children: [
-      { path: '', redirectTo: 'display-book', pathMatch: 'full' },
-      {
-        path: 'display-book',
-        component: DisplayBookComponent
-      },
-    ],
+    // children: [
+    //   { path: '', redirectTo: 'display-book', pathMatch: 'full' },
+    //   {
+    //     path: 'display-book',
+    //     component: DisplayBookComponent
+    //   },
+    // ],
   },
   {
     path: 'adminbooks',
@@ -68,7 +68,7 @@ const routes: Routes = [
         component: DisplayBooksComponent
       },*/
       { path: 'books', component: DisplaybooksComponent },
-      //{ path: 'userbooks', component: UserBooksComponent },*/
+      { path: 'userbooks', component: UserBooksComponent },
       { path: "books", component: DisplaybooksComponent },
     ],
   },

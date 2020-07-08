@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { RegisterComponent } from './../register/register.component';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 import { MessageService } from "../../services/message.service";
 import { LoginComponent } from '../login/login.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -14,36 +16,74 @@ export class AdminDashboardComponent implements OnInit {
 
   imgFile: File;
   response: any;
-  img = localStorage.getItem('adminProfilePic');
-  userService : UserService;
-
-  firstName = "Naveen Kumar";
-  lastName = 'Arukala'
-  email = 'naveennani0711@gmail.com'
-  url = null;
-  fileUrl: File
-  profile: string
-
+ 
+  isBookFormOpened = false;
+  searchTerm: string;
+  file: any;
+  profile: string;
+  isLogin = false;
+ img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
+  username: string;
+  usermail: string;
+  updateStats: any;
+  userProfile: any;
 
   
   constructor(
-    private router: Router,
-    private messageService: MessageService,
     private dialog: MatDialog,
+    public snackbar: MatSnackBar,
+    private userService: UserService,
+    private messageService: MessageService,
+    private cdRef: ChangeDetectorRef,
+    private router: Router
     ) { }
 visible:boolean=true;
   ngOnInit(): void {
-    this.messageService.changeMessages();
-    if(localStorage.getItem("token")!=null){
-      this.visible=false;
-    }
+//    this.messageService.changeMessages();
+if (localStorage.getItem('token')!=null) {
+  this.isLogin = true;
+  this.img = localStorage.getItem(localStorage.getItem('email'));
+  this.usermail = localStorage.getItem('email');
+  this.username = localStorage.getItem("name");
+} else {
+  this.isLogin = false;
+  this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
+}
   }
+
   signin(){
     this.dialog.open(LoginComponent, {
       width: '28%',
       height : 'auto'
     });
   }
+  signup(){
+    this.dialog.open(RegisterComponent, {
+      width: '35%',
+      height : 'auto'
+    });
+  }
+  delete(){
+    localStorage.removeItem(localStorage.getItem('email'))
+    this.img = "R";
+  }
+  navigateTo() {
+    this.router.navigate(['/sellerDashboard']);
+  }
+  serch(){
+    console.log("item ",this.searchTerm);
+    localStorage.setItem('searchTerm',this.searchTerm);
+  }
+  onKey(event) {
+    this.searchTerm = event;
+   // this.messageService.searchBook(event);
+  }
+  Logout() {
+    localStorage.removeItem('token');
+    location.reload();
+  }
+
+ 
 
 //   fileUpload($event) {
   

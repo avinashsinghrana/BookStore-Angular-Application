@@ -44,7 +44,6 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { ApprovedBooksComponent } from './components/approved-books/approved-books.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { BookFilterPipe } from './components/display-books/book-filter.pipe';
 @NgModule({
@@ -52,7 +51,6 @@ import { BookFilterPipe } from './components/display-books/book-filter.pipe';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ApprovedBooksComponent,
     AdminDashboardComponent,
     AdminComponent,
     OrderConfirmationComponent,

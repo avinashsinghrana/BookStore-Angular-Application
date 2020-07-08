@@ -6,9 +6,11 @@ import {
 import { Router } from "@angular/router";
 //import { MatSnackBar} from '@angular/material/snack-bar';
 import { UserService } from "../../services/user.service";
-import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {  MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {  MatDialogRef } from '@angular/material/dialog';
 import { Login } from 'src/app/models/login.model';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
 import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -83,7 +85,7 @@ validate(){
           localStorage.setItem('email',this.reqbody.emailId);
           localStorage.setItem('name',this.response.message);
           localStorage.setItem("token", this.response.data);
-          //location.reload();
+          location.reload();
         },
         err => {
          this.spinner.hide();

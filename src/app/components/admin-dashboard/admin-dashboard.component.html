@@ -60,11 +60,32 @@
           <mat-icon id="cartimg">list</mat-icon>
         </button>
 
+        <mat-menu id="profile" #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
+          <div class="backgroundimage">
+            <button (click)="$event.stopPropagation()"
+              [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'120px','height':'120px'}"
+              (click)="imageSelectFile.click()" matTooltip="Seller Account" mat-mini-fab class="imageSelect">
+              <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
+            </button>
+          </div>
+          <div> <p style="margin-left: 53px; font-weight: bold; "> {{username}} </p> 
+               <p style="margin-left: 34px; margin-top: -13px; "> {{usermail}} </p> </div>
+          <input fxHide class="image" type="file"  #imageSelectFile enctype="multipart/form-data/" >
+          <mat-divider style="margin-top: auto;"></mat-divider>
+          <div fxLayoutAlign="center center" *ngIf="!isLogin">
+            <button class="delete" mat-flat-button (click)="signup()">SignUp </button>
+            <button class="login" mat-flat-button (click)="signin()">LogIn </button>
+          </div>
+            <div fxLayoutAlign="center center" *ngIf="isLogin">
+              <button class="delete" mat-flat-button (click)="delete()">Delete </button>
+              <button class="signout" mat-flat-button (click)="Logout()">Sign out </button>
+            </div>
+        </mat-menu> 
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
           <div style="width: 200px;">
             <button mat-menu-item style="text-align: center;">
-              Approve Books<mat-menu #menu="matMenu"> <app-approved-books></app-approved-books></mat-menu>
+              Approve Books<mat-menu #menu="matMenu"><app-user-books></app-user-books> </mat-menu>
             </button>
             <!-- <button mat-menu-item style="text-align: center;">
               DisApproved Books

@@ -21,7 +21,7 @@ export class DisplaybooksComponent implements OnInit {
   selectedOption: any;
   sortbyprice = "none";
   page: number = 1;
-  budgetTotal;
+  budgetTotal; 
   constructor(
     private dialog: MatDialog,
     private matSnackBar: MatSnackBar,

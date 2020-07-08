@@ -1,66 +1,89 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly start" style="margin-left: 10%;">
-    <div *ngFor="let book of books" >
-        <!-- <div *ngIf="!book.bookVerified && !book.bookApproveStatus"> -->
-        <mat-card class="matcard2" >
-            <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
-                <img class="bookimg" src="{{ book.bookImage }}" />
-
-                <div class="bookdetails">
-                    <div class="booktitle" style="word-wrap: break-word;">
-                        {{ book.bookName }}
-                    </div>
-
-                    <div class="sub" style="word-wrap: break-word;">
-                        {{ book.bookAuthor }}
-                    </div>
-                    <div style="
-                margin-bottom: 11%;
-                font: Bold 18px/15px Lato;
-                margin-left: -25px;
-              ">
-                        Rs. {{ book.bookPrice }}
-                    </div>
-                    <div style="
-                margin-bottom: 11%;
-                margin-left: -25px;
-                word-wrap: break-word;
-              ">
-                        <strong>Seller:</strong> <a routerLink="/seller">{{ book.sellerName }}</a>
-                    </div>
-                </div>
-            </div>
-            <!-- <div style="margin-bottom: 10px; font: Bold 18px/15px Lato;">
-                Description:
-            </div>
-            <div>{{ book.bookDescription }}</div> -->
-
-            <!-- </div> -->
-            <div fxLayout="row wrap" fxLayoutAlign="end end" *ngIf="both">
-                <button mat-raised-button class="button" style="background-color:orange;"
-                    (click)="onDisApprove(book)">
-                   add to cart
-                </button>
-                <button mat-raised-button class="button" (click)="onApprove(book)">
-                    wish list
-                </button>
-            </div>
-            <div *ngIf="disapprove">
-                <button mat-raised-button class="button" style="background-color: yellow;">
-                    add to cart
-                </button>
-            </div>
-            <div *ngIf="approve">
-                <button mat-raised-button class="button">
-                    wish list
-                </button>
-            </div>
-        </mat-card>
-        <br />
-        <!-- </div> -->
-        <!-- </div> -->
-    </div>
-    <!---------------------------- DisApproved Books --------------------->
-</div>
-<!-- <div class="footer">
-    <app-footer></app-footer>
+<div class="container">
+  <div class="title">
+    Books
+    <span style="font-size: 15px; color: rgb(139, 136, 136);">({{ size }} items)</span>
+  </div>
+  <!-- <div class="sort-choice">
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>sort by relevance</mat-label>
+        <mat-select [(value)]="selectedOption" (selectionChange)="onclicksort()">
+          <mat-option value="none">
+            sort by relevance
+          </mat-option>
+          <mat-option value="Price:High To Low">
+            Price:High To Low
+          </mat-option>
+          <mat-option value="Price:Low To High">
+            Price:Low To High
+          </mat-option>
+          <mat-option value="By Book Name">
+            By Book Name
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
   </div> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Sort By</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let sortBook of sortBooks" [value]="sortBook.value">
+        {{sortBook.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> 
+</div>
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="row" class="display-notes">
+
+
+    <div *ngFor="let book of books" class="book">
+      <mat-card autocomplete="off" role="combobox" flex="column" matTooltip="Book details &#13; {{ book.bookDetails }}"
+        matTooltipPosition="right" matTooltipClass="custom-tooltip">
+        <div class="header" style="background-color: #f5f5f5;">
+          <mat-card-header>
+            <div class="container">
+              <img mat-card-image fxLayoutAlign="center start" src="{{ book.bookImgUrl }}" alt="Snow" />
+              <!-- <button *ngIf="book.noOfBooks == 0" class="btn">
+            <strong>OUT OF STOCK</strong>
+          </button> -->
+
+            </div>
+          </mat-card-header>
+        </div>
+        <div class="content">
+          <mat-card-content>
+            <div class="mat-title">
+              {{ book.bookName }}
+            </div>
+            <mat-card-subtitle style="color: #9d9d9d; margin-top: -10px; margin-bottom: 7px;">by {{ book.authorName }}
+            </mat-card-subtitle>
+            <div class="mat-subheading-1">Rs. {{ book.price  }}</div>
+          </mat-card-content>
+          <mat-card-actions style="margin-bottom: -0.5%; margin-top: -1%; padding: 0 34px 0 4px;">
+          </mat-card-actions>
+          <mat-card-actions fxLayout="row" fxLayoutGap="7%">
+            <button mat-raised-button class="box1" (click)="addToBag(book.bookId)">
+              Add To Cart
+            </button>
+
+            <!-- </ng-template> -->
+            <button mat-raised-button class="box" [ngStyle]="{ color: 'white'}">
+              Wish List
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="footer" *ngIf="books.length > 2; else foot">
+    <button class="footerButton">
+      Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+    </button>
+  </div>
+  <ng-template #foot>
+    <button class="footerButton">
+      Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+    </button>
+  </ng-template>
+</div>

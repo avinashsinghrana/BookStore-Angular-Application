@@ -1,6 +1,17 @@
+import { CartserviceService } from 'src/app/services/cartservice.service';
+import { BookserviceService } from './../../services/bookservice/bookservice.service';
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog } from "@angular/material/dialog";
+import { MatDialogConfig } from "@angular/material/dialog";
+import { HttpService } from 'src/app/services/http.service';
+
+interface BookSortBy {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-user-books',
@@ -9,152 +20,88 @@ import { MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
 })
 export class UserBooksComponent implements OnInit {
 
+  books: any;
+  size: number;
+  id: any;
+  isUser = false;
+  isSeller = false;
+  toggle = true;
+  bookSearch: any;
+  selectedOption: any;
+  sortbyprice = "none";
+  page: number = 1;
+  budgetTotal;
+  cartSize=null;
   constructor(
-     private router: Router,
-    private snackbar: MatSnackBar,
-    public dialog: MatDialog // private bookService: BookService, // private addressService: AddressService
-  ) {}
+    private dialog: MatDialog,
+    private matSnackBar: MatSnackBar,
+    private bookService: BookserviceService,
+    private userService: UserService,
+    private cartService: CartserviceService
+  ) { }
 
-  visible: boolean;
-  profilepic: boolean = false;
-  profile: any;
   ngOnInit() {
-    if (localStorage.getItem("token") != null) {
-      this.visible = true;
-    } else {
-      this.profilepic = false;
-    }
-
-    this.unverifiedBooks();
-
-    this.profile = localStorage.getItem("userimage");
+    this.getAllBookList();
+    /* this.bookService.autoRefresh$.subscribe(() => {
+       console.log("works");
+      /// this.getSellerBook();
+     });*/
   }
 
-  books = [
-    {
-      bookAddedTime: "2020-06-01T11:22:34",
-      bookApproveStatus: false,
-      bookAuthor: "Silver",
-      bookDescription:
-        "csc covwo oei o   ww w w e o w w w w",
-      bookId: 3,
-      bookImage:
-        "https://bookstore-profile.s3.ap-south-1.amazonaws.com/1593668533164-amm.jpg",
-      bookName: "Harry potter",
-      bookPrice: 2000,
-      bookUpdatedTime: "2020-06-04T19:19:39",
-      bookVerified: true,
-      noOfBooks: 10,
-      reviewRating: [],
-      sellerName: "Geeth",
-    },
-    {
-      bookAddedTime: "2020-06-01T11:22:34",
-      bookApproveStatus: false,
-      bookAuthor: "The Jack jon",
-      bookDescription:
-        "socmwvoc  mpm p owpo pcow pk mw wl mpqm wlmqpmv w wmwoqmv  q  mwvkowv d",
-      bookId: 3,
-      bookImage:
-        "https://bookstore-profile.s3.ap-south-1.amazonaws.com/1593668533164-amm.jpg",
-      bookName: "Share Pointer",
-      bookPrice: 2525,
-      bookUpdatedTime: "2020-06-04T19:19:39",
-      bookVerified: true,
-      noOfBooks: 50,
-      reviewRating: [],
-      sellerName: "Geeth",
-    },
-    {
-      bookAddedTime: "2020-06-01T11:22:34",
-      bookApproveStatus: false,
-      bookAuthor: "The Jack jon",
-      bookDescription:
-        "socmwvoc  mpm p owpo pcow pk mw wl mpqm wlmqpmv w wmwoqmv  q  mwvkowv d",
-      bookId: 3,
-      bookImage:
-        "https://bookstore-profile.s3.ap-south-1.amazonaws.com/1593668533164-amm.jpg",
-      bookName: "Share Pointer",
-      bookPrice: 2525,
-      bookUpdatedTime: "2020-06-04T19:19:39",
-      bookVerified: true,
-      noOfBooks: 50,
-      reviewRating: [],
-      sellerName: "Geeth",
-    },
-    {
-      bookAddedTime: "2020-06-01T11:22:34",
-      bookApproveStatus: false,
-      bookAuthor: "The Jack jon",
-      bookDescription:
-        "socmwvoc  mpm p owpo pcow pk mw wl mpqm wlmqpmv w wmwoqmv  q  mwvkowv d",
-      bookId: 3,
-      bookImage:
-        "https://bookstore-profile.s3.ap-south-1.amazonaws.com/1593668533164-amm.jpg",
-      bookName: "Share Pointer",
-      bookPrice: 2525,
-      bookUpdatedTime: "2020-06-04T19:19:39",
-      bookVerified: true,
-      noOfBooks: 50,
-      reviewRating: [],
-      sellerName: "Geeth",
-    },
-    {
-      bookAddedTime: "2020-06-01T11:22:34",
-      bookApproveStatus: false,
-      bookAuthor: "The Jack jon",
-      bookDescription:
-        "socmwvoc  mpm p owpo pcow pk mw wl mpqm wlmqpmv w wmwoqmv  q  mwvkowv d",
-      bookId: 3,
-      bookImage:
-        "https://bookstore-profile.s3.ap-south-1.amazonaws.com/1593668533164-amm.jpg",
-      bookName: "Share Pointer",
-      bookPrice: 2525,
-      bookUpdatedTime: "2020-06-04T19:19:39",
-      bookVerified: true,
-      noOfBooks: 50,
-      reviewRating: [],
-      sellerName: "Geeth",
-    },
-    
+  sortBooks: BookSortBy[] = [
+    {value: 'High to low-0', viewValue: 'Steak'},
+    {value: 'low To High-1', viewValue: 'Pizza'},
+    {value: 'By Book-2', viewValue: 'Tacos'}
   ];
-  token: String;
-  //books: Array<Book> = [];
-  //bookdto: Seller = new Seller();
-  unVerifiedBooks: [];
-  unverifiedBooks() {
+
+  getAllBookList() {
+    this.bookService.getBookList().subscribe((message) => {
+      console.log(message);
+      this.books = message.data;
+      this.size = message.data.length;
+      console.log("geeth" + this.size);
+    });
+
+    this.getSearchBookData();
+  }
+
+  addToBag(bookId) {
+    this.toggle = !this.toggle;
+    this.cartService.addToBag(bookId).subscribe((message) => {
+      console.log(message);
+      this.matSnackBar.open("Book Added to Bag SuccessFully", "OK", { duration: 4000 });
+      this.cartSize += 1;
+    });
+  }
+  selectedLevel;
+  data: Array<Object> = [{ id: 0, name: "Price:High To Low" },
+  { id: 1, name: "Price:Low To High" },
+  { id: 2, name: "sort by relevance" }];
+
+  selected() { console.log(this.selectedLevel) }
+
+  getSearchBookData() {
+    this.bookService.getSearchBookData().subscribe((message) => {
+      console.log("search data", message.books);
+      this.bookSearch = message.books;
+    });
+  }
+  onclicksort() {
+    if (this.selectedLevel === "none") {
+      this.ngOnInit();
     }
-
-  both: boolean = true;
-  disapprove: boolean = false;
-  approve: boolean = false;
-  onDisApprove(book: any) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      bookId: book.bookId,
-    };
-   // const dialogRef = this.dialog.open(VerifyconfrimComponent, dialogConfig);
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   this.books.splice(0);
-    //   this.unverifiedBooks();
-    // });
+    this.sortbyprice = this.selectedOption;
+    console.log(this.sortbyprice);
   }
 
-  status: any;
-  onApprove(book: any) {
-    console.log(book);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      bookId: book.bookId,
-    };
-
-  }
-
-  getprofileLink() {
-   
-  }
-  file: File;
-  fileChange(event: any) {
-   
-  }
+  /*  getCartItems() {
+      this.cartService.getCartList().subscribe((message) => {
+        console.log("sss");
+        this.budgetTotal = message.orders.length;
+      });
+    }
+   / setBudgetTotal() {
+      this.getCartItems();
+      this.cartService.setBudgetTotal(this.budgetTotal);
+    }*/
 }

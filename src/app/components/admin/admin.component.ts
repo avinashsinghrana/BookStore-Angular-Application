@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatDialog, MatDialogConfig } from "@angular/material";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import {    MatDialog} from "@angular/material/dialog";
+import {  MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,7 +17,7 @@ import { Book } from 'src/app/model/book.model';
 export class AdminComponent implements OnInit {
   
     bookApproveStatus: boolean;
-
+    size : number
    // @Input() book: Book;
     noOfBooks: number;
     visible: boolean;
@@ -48,6 +50,7 @@ export class AdminComponent implements OnInit {
       //     this.unVerifiedBooks = Response.obj;
       console.log(Response);
       this.bookList = Response.data;
+      this.size = Response.data.length;
       })
       // for (var len in Response.obj) {
       // this.userService
