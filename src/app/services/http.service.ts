@@ -33,9 +33,11 @@ export class HttpService {
   post(url: any, body: any, options: any): Observable<any> {
     return this.http.post(url, body, options);
   }
+  
   addtoCart(url: any): Observable<any> {
     return this.http.post(url, Option);
   }
+
   geet(url: any): Observable<any> {
     return this.http.get(url);
   }
@@ -99,5 +101,9 @@ export class HttpService {
 
   public getOrderId(url :any){
     return this.http.get(url);
+  }
+
+  clearCart(url :any) {
+    return this.http.delete(url);
   }
 }

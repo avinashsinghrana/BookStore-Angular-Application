@@ -5,13 +5,21 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { UpdateBookComponent } from '../update-book/update-book.component';
 import { Book } from 'src/app/models/book.model';
 import { CartServiceService } from 'src/app/services/cart-service/cart-service.service';
+import { CartserviceService } from 'src/app/services/cartservice.service';
 
 @Component({
   selector: 'app-user-books',
   templateUrl: './user-books.component.html',
+  // <ul>
+//   <li *ngFor="let item of collection | paginate: { currentPage: currentPage, itemsPerPage: itemsPerPage }; let i = index">
+//     {{ itemsPerPage * (currentPage - 1) + i }}
+//   </li>
+// </ul>
   styleUrls: ['./user-books.component.scss'],
 })
 export class UserBooksComponent implements OnInit {
+  // p: number = 1;
+  // collection: any[] = someArrayOfThings; 
   books = [];
   book: Book[];
   searchTerm: string;
@@ -19,11 +27,15 @@ export class UserBooksComponent implements OnInit {
   size: any;
   sortTerm: string;
   item = 0;
+  add: false;
+  toggle = true;
+
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,
     private snackBar: MatSnackBar,
     private cartService: CartServiceService,
+    private cartServices: CartserviceService,
     private data: MessageService,
     private dialog: MatDialog
   ) {}
@@ -44,7 +56,6 @@ export class UserBooksComponent implements OnInit {
  
   onKey(event) {
     this.searchTerm = event;
-   // this.messageService.searchBook(event);
   }
   onSelect(val: any){
    this.sortTerm = val;
@@ -64,19 +75,17 @@ export class UserBooksComponent implements OnInit {
     }
   }
 
+  
   onAddBook(bookId) {
-    console.log(bookId);
+    this.toggle = !this.toggle;
     this.item++;
-    console.log(this.item);
     this.data.changeItem(this.item);
-    this.cartService.addBooks(bookId).subscribe(
-      (data) => {
-          this.messageService.changeMessages();  
-      },
-      (error: any) => {
-        this.snackBar.open("Book Added to cart Failed", 'ok', { duration: 2000 });
-      }
-    );
+    this.cartServices.addToBag(bookId).subscribe((message) => {
+      console.log(message);
+      this.snackBar.open("Book Added to Bag SuccessFully", "OK", {
+        duration: 4000,
+      });
+    });
   }
- 
+
 }

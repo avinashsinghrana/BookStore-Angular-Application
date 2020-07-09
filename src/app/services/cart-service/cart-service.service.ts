@@ -6,7 +6,6 @@ import { HttpService } from '../http.service';
 })
 export class CartServiceService {
 
-
   constructor(private httpService: HttpService) { }
 
 
@@ -19,13 +18,15 @@ export class CartServiceService {
   }
 
   removeItem(bookId) {
-
-
     return this.httpService.removeCart('/user/removeFromCart?bookId=' + bookId);
   }
 
   removeAllItems(book_id) {
-
     return this.httpService.removeAllItemsCart('/user/removeAllFromCart/' + book_id);
   }
+
+  removeAll() {
+    return this.httpService.clearCart('http://localhost:8081/user/removeAll');
+  }
+
 }

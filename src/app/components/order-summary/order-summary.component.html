@@ -15,13 +15,13 @@
 </mat-toolbar>
 
 <mat-card class="place-book">
-  <p>My cart</p>
+  <p>My cart({{size}})</p>
 
   <div *ngFor="let book of books; let i = index">
     <mat-card>
-      <mat-card-title matTooltip="Book Image"
+      <mat-card-title
         ><img
-          src="{{ book.bookImgUrl }}"
+          src="{{ book.imgUrl }}"
           style="
             height: 111px;
             width: 89px;
@@ -192,9 +192,7 @@
     fxLayoutGap="50px"
     (change)="onChange($event)"
   >
-    <mat-radio-button name="home" value="home" checked="true"
-      >Home</mat-radio-button
-    >
+    <mat-radio-button name="home" value="home" checked="true">Home</mat-radio-button>
     <mat-radio-button name="work" value="work"> Work</mat-radio-button>
     <mat-radio-button name="other" value="other">Other</mat-radio-button>
   </mat-radio-group>
@@ -220,7 +218,7 @@
     <mat-card>
       <mat-card-title matTooltip="Book Image"
         ><img
-          src="{{ book.bookImgUrl }}"
+          src="{{ book.imgUrl }}"
           style="
             height: 105px;
             width: 89px;
@@ -245,7 +243,6 @@
     color="primary"
     class="checkout"
     (click)="checkout()"
-    routerLink="/order-confirmation"
   >
     Checkout
   </button>

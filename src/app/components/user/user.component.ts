@@ -8,6 +8,8 @@ import { MatSnackBar } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Sortmethod } from 'src/app/model/sortmethod';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -31,6 +33,8 @@ export class UserComponent implements OnInit {
     private dialog: MatDialog,
     public snackbar: MatSnackBar,
     private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute,
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
     private data: MessageService
@@ -68,8 +72,9 @@ export class UserComponent implements OnInit {
     });
   }
   onCart(){
-
+    this.router.navigate(['order-summary']);
   }
+
   signin(){
     this.dialog.open(LoginComponent, {
       width: '28%',
