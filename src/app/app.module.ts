@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SellerComponent } from './components/seller/seller.component';
+import { UserComponent } from './components/user/user.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
+import { UserBooksComponent } from './components/user-books/user-books.component';
 import { DisplayBookComponent } from './components/display-book/display-book.component';
 import { UserService } from './services/user.service';
 
@@ -33,19 +35,20 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { AdminComponent } from './components/admin/admin.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 //import { DashboardComponent } from './dashboard/dashboard.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DisplaybooksComponent } from './components/displaybooks/displaybooks.component';
-import { BookSearchPipe } from './pipe/book-search.pipe';
+//import { DashboardComponent } from './components/dashboard/dashboard.component';
+//import { DisplaybooksComponent } from './components/displaybooks/displaybooks.component';
+//import { BookSearchPipe } from './pipe/book-search.pipe';
 import { NgxSpinnerModule } from "ngx-spinner";
-import { SortbypricePipe } from './pipe/sortbyprice.pipe';
 import { NgxPaginationModule } from "ngx-pagination";
-import { UserBooksComponent } from './components/user-books/user-books.component';
+//import { UserBooksComponent } from './components/user-books/user-books.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { BookFilterPipe } from './components/display-books/book-filter.pipe';
+import { SortbypricePipe } from './components/user-books/sortbyprice.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,22 +57,23 @@ import { BookFilterPipe } from './components/display-books/book-filter.pipe';
     AdminDashboardComponent,
     AdminComponent,
     OrderConfirmationComponent,
-    DashboardComponent,
+  //  DashboardComponent,
     RegisterComponent,
-    DashboardComponent,
-    DisplaybooksComponent,
-    BookSearchPipe,
+ //   DashboardComponent,
+  //  DisplaybooksComponent,
+  //  BookSearchPipe,
     SortbypricePipe,
     BookFilterPipe,
-    UserBooksComponent,
+  //  UserBooksComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
     SellerComponent,
+    UserComponent,
     AddBookComponent,
     UpdateBookComponent,
     DisplayBooksComponent,
+    UserBooksComponent,
     OrderSummaryComponent,
-
     DisplayBookComponent
   ],
   imports: [

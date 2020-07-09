@@ -3,7 +3,7 @@ import { HttpHeaders, HttpClient, HttpEvent, HttpEventType } from '@angular/comm
 import { HttpService } from '../http.service';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Book } from 'src/app/model/book.model';
+import { Book } from 'src/app/models/book.model';
 import { tap, map, catchError } from "rxjs/operators";
 
 
@@ -23,7 +23,7 @@ export class BookserviceService {
   constructor(private http: HttpClient, private httpservice: HttpService) {}
   getBookList(): Observable<any> {
     return this.httpservice.geet(
-      "http://localhost:8080/user/getallBooks"
+      "http://localhost:8081/user/getallBooks"
     );
   }
   getSellerBookList(): Observable<any> {

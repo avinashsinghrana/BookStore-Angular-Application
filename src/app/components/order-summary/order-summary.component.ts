@@ -3,7 +3,7 @@ import { CustomerDetailsService } from './../../services/customer-Details/custom
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { Book } from '../../model/book.model';
+import { Book } from '../../models/book.model';
 import { MatRadioChange } from '@angular/material';
 
 

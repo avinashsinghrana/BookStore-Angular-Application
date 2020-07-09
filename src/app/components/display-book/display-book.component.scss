@@ -67,6 +67,18 @@ mat-card {
     height: 32px;
     width: 70px;
     font-size: x-small;
+    background-color: gray;
+    color: white;
+    padding: 0px;
+    margin-top: 3%;
+    border: none;
+    outline: none;
+  }
+ 
+  .add-button {
+    height: 32px;
+    width: 70px;
+    font-size: x-small;
     background-color: #a03037;
     color: white;
     padding: 0px;
@@ -75,39 +87,6 @@ mat-card {
     outline: none;
   }
  
-  .delete-button {
-    height: 32px;
-    width: 70px;
-    font-size: x-small;
-    background-color: #a03037;
-    color: white;
-    padding: 0px;
-    margin-top: 3%;
-    border: none;
-    outline: none;
-  }
-  .sent-button {
-    height: 32px;
-    width: 70px;
-    font-size: x-small;
-    background-color: #3371b5;
-    color: white;
-    padding: 0px;
-    margin-top: 3%;
-    border: none;
-    outline: none;
-  }
-  .approved-button {
-    height: 32px;
-    width: 70px;
-    font-size: x-small;
-    background-color: #054927;
-    color: white;
-    padding: 0px;
-    margin-top: 3%;
-    border: none;
-    outline: none;
-  }
   .book-details {
     display: none;
     position: absolute;
@@ -131,6 +110,7 @@ mat-card {
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 2%;
+    margin-top: 5%;
   }
 
   @media only screen and (min-width: 600px) {

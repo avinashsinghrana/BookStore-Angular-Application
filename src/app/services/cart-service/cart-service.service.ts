@@ -15,8 +15,6 @@ export class CartServiceService {
   }
 
   addBooks(bookId) {
-
-
     return this.httpService.foo('/user/addMoreItems?bookId=' + bookId);
   }
 

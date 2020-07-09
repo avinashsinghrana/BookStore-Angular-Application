@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SellerService } from "../../services/seller.service";
 import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MessageService } from "../../services/message.service";
-import { Book } from 'src/app/models/book.model';
+import { Book } from 'src/app/model/book.model';
 
 @Component({
   selector: 'app-update-book',

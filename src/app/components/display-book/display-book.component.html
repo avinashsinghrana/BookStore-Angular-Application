@@ -26,45 +26,24 @@
         <div fxlayout="row">
           <span class="input-price-span">Rs. {{ book.price }}</span>
         </div>
-        <div class="input-price" *ngIf="book.rejectionCounts > 0">
-          Rejection: {{ book.rejectionCounts }}
-        </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <button
             class="approval-button"
             mat-raised-button
             fxLayoutAlign="center"
             [disableRipple]="true"
-            (click)="onApprovals(book.bookId)"
+            (click)="onWish(book.bookId)"
           >
-            APPROVAL
+            Wish list
           </button>
           <button
-            class="sent-button"
-            *ngIf="!book.approved && book.approvalSent"
+            class="add-button"
             mat-raised-button
             fxLayoutAlign="center"
             [disableRipple]="true"
+            (click)="onAdd(book.bookId)"
           >
-            SENT
-          </button>
-          <button
-            class="approved-button"
-            *ngIf="book.approved"
-            mat-raised-button
-            fxLayoutAlign="center"
-            [disableRipple]="true"
-          >
-            APPROVED
-          </button>
-          <button
-            class="delete-button"
-            mat-raised-button
-            fxLayoutAlign="center"
-            [disableRipple]="true"
-            (click)="onDeleteBook(book.bookId)"
-          >
-            DELETE
+            Add to cart
           </button>
   
         </div>

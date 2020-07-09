@@ -3,7 +3,7 @@ import { SellerService } from "../../services/seller.service";
 import { MessageService } from "../../services/message.service";
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { UpdateBookComponent } from '../update-book/update-book.component';
-import { Book } from 'src/app/model/book.model';
+import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-display-books',

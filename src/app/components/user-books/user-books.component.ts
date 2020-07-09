@@ -1,107 +1,82 @@
-import { CartserviceService } from 'src/app/services/cartservice.service';
-import { BookserviceService } from './../../services/bookservice/bookservice.service';
-import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatDialog } from "@angular/material/dialog";
-import { MatDialogConfig } from "@angular/material/dialog";
-import { HttpService } from 'src/app/services/http.service';
-
-interface BookSortBy {
-  value: string;
-  viewValue: string;
-}
+import { SellerService } from "../../services/seller.service";
+import { MessageService } from "../../services/message.service";
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { UpdateBookComponent } from '../update-book/update-book.component';
+import { Book } from 'src/app/models/book.model';
+import { CartServiceService } from 'src/app/services/cart-service/cart-service.service';
 
 @Component({
   selector: 'app-user-books',
   templateUrl: './user-books.component.html',
-  styleUrls: ['./user-books.component.scss']
+  styleUrls: ['./user-books.component.scss'],
 })
 export class UserBooksComponent implements OnInit {
-
-  books: any;
-  size: number;
-  id: any;
-  isUser = false;
-  isSeller = false;
-  toggle = true;
-  bookSearch: any;
-  selectedOption: any;
-  sortbyprice = "none";
-  page: number = 1;
-  budgetTotal;
-  cartSize=null;
+  books = [];
+  book: Book[];
+  searchTerm: string;
+  message: string;
+  size: any;
+  sortTerm: string;
+  item = 0;
   constructor(
-    private dialog: MatDialog,
-    private matSnackBar: MatSnackBar,
-    private bookService: BookserviceService,
-    private userService: UserService,
-    private cartService: CartserviceService
-  ) { }
+    private vendorService: SellerService,
+    private messageService: MessageService,
+    private snackBar: MatSnackBar,
+    private cartService: CartServiceService,
+    private data: MessageService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.getAllBookList();
-    /* this.bookService.autoRefresh$.subscribe(() => {
-       console.log("works");
-      /// this.getSellerBook();
-     });*/
-  }
-
-  sortBooks: BookSortBy[] = [
-    {value: 'High to low-0', viewValue: 'Steak'},
-    {value: 'low To High-1', viewValue: 'Pizza'},
-    {value: 'By Book-2', viewValue: 'Tacos'}
-  ];
-
-  getAllBookList() {
-    this.bookService.getBookList().subscribe((message) => {
-      console.log(message);
-      this.books = message.data;
-      this.size = message.data.length;
-      console.log("geeth" + this.size);
+   
+    this.sortTerm = 'none';
+    this.messageService.currentMessages.subscribe((data) => {
+      this.books = [];
+      this.onDisplayBooks(data);
     });
-
-    this.getSearchBookData();
+    this.messageService.currentEvent$.subscribe(message =>
+      { this.searchTerm = message});
+  }
+  onBookDetail(event) {
+    event.stopPropagation();
+  }
+ 
+  onKey(event) {
+    this.searchTerm = event;
+   // this.messageService.searchBook(event);
+  }
+  onSelect(val: any){
+   this.sortTerm = val;
+   console.log("sorting term",this.sortTerm);
+  }
+  onWish() {
   }
 
-  addToBag(bookId) {
-    this.toggle = !this.toggle;
-    this.cartService.addToBag(bookId).subscribe((message) => {
-      console.log(message);
-      this.matSnackBar.open("Book Added to Bag SuccessFully", "OK", { duration: 4000 });
-      this.cartSize += 1;
-    });
-  }
-  selectedLevel;
-  data: Array<Object> = [{ id: 0, name: "Price:High To Low" },
-  { id: 1, name: "Price:Low To High" },
-  { id: 2, name: "sort by relevance" }];
-
-  selected() { console.log(this.selectedLevel) }
-
-  getSearchBookData() {
-    this.bookService.getSearchBookData().subscribe((message) => {
-      console.log("search data", message.books);
-      this.bookSearch = message.books;
-    });
-  }
-  onclicksort() {
-    if (this.selectedLevel === "none") {
-      this.ngOnInit();
-    }
-    this.sortbyprice = this.selectedOption;
-    console.log(this.sortbyprice);
-  }
-
-  /*  getCartItems() {
-      this.cartService.getCartList().subscribe((message) => {
-        console.log("sss");
-        this.budgetTotal = message.orders.length;
+  onDisplayBooks(data) {
+    console.log(data);
+    if (data.status === 200) {
+      this.size = data.data.length;
+      data.data.forEach((bookData) => {
+        this.books.push(bookData);
+        
       });
     }
-   / setBudgetTotal() {
-      this.getCartItems();
-      this.cartService.setBudgetTotal(this.budgetTotal);
-    }*/
+  }
+
+  onAddBook(bookId) {
+    console.log(bookId);
+    this.item++;
+    console.log(this.item);
+    this.data.changeItem(this.item);
+    this.cartService.addBooks(bookId).subscribe(
+      (data) => {
+          this.messageService.changeMessages();  
+      },
+      (error: any) => {
+        this.snackBar.open("Book Added to cart Failed", 'ok', { duration: 2000 });
+      }
+    );
+  }
+ 
 }

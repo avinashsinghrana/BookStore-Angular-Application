@@ -5,7 +5,7 @@ import {  MatDialogConfig } from "@angular/material/dialog";
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
-import { Book } from 'src/app/model/book.model';
+import { Book } from 'src/app/models/book.model';
 // import { Book } from "src/app/models/book";
 // import { Seller } from "src/app/models/seller";
 // import { VerifyconfrimComponent } from "../verifyconfrim/verifyconfrim.component";

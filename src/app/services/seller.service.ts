@@ -16,6 +16,7 @@ export class SellerService {
   private uploadBookProfileApi = 'users/uploadImage';
   private approveBookApi = '/admin/bookVerification';
   private displayAllBookApi = '/admin/getBooksForVerification'
+  private getBookApi = '/user/getallBooks';
 
   constructor(private http: HttpClient,private service: HttpService) {}
   addBook(body: any): Observable<any>  {
@@ -31,6 +32,12 @@ export class SellerService {
     return this.http.get(environment.baseUrl + this.displayBookApi, {
       headers: new HttpHeaders().set('token', localStorage.getItem('token')),
     });
+  }
+  getBooks(): Observable<any> {
+    var httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    return this.http.get(environment.baseUrl + this.getBookApi,httpOptions);
   }
   displayAllBooks(): Observable<any> {
     return this.http.get(environment.baseUrl + this.displayAllBookApi, {

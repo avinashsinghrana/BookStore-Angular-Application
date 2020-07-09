@@ -13,7 +13,8 @@ export class OrderConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.getOrderId();
   }
-  fetchOrderId(order_id: number){
+  fetchOrderId(){
+   // order_id: number
     return '#'+this.orderId;
   }
   getOrderId(){

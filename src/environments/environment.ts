@@ -11,7 +11,7 @@ export const environment = {
   resetPasswordPath: "/user/resetpassword?token=",
 
 
-  bookApiUrl: "http://localhost:8080/books",
+  bookApiUrl: "http://localhost:8081/books",
   getBooksList: "getAllBooks",
   getSellerBookList: "sellerBooks",
   addbook: "add",
@@ -20,7 +20,7 @@ export const environment = {
 
 
 
-  cartApiUrl: "http://localhost:8080/orders",
+  cartApiUrl: "http://localhost:8081/orders",
   addToBag: "AddToCart",
   cartList: "cart-list",
   deleteOrder: "remove-order",

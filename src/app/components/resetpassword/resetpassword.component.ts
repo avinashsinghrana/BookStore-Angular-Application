@@ -28,6 +28,7 @@ export class ResetpasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
   ) {}
+
   public resetPasswordForm: FormGroup;
   resetPassword: Resetpassword = new Resetpassword();
   private token: string;

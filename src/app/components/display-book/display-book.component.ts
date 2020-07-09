@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SellerService } from "../../services/seller.service";
 import { MessageService } from "../../services/message.service";
 import { MatSnackBar, MatDialog } from '@angular/material';
-import { UpdateBookComponent } from '../update-book/update-book.component';
+import { CartServiceService } from 'src/app/services/cart-service/cart-service.service';
+import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-display-book',
@@ -11,12 +12,13 @@ import { UpdateBookComponent } from '../update-book/update-book.component';
 })
 export class DisplayBookComponent implements OnInit {
   books = [];
-
+  book: Book[];
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cartService: CartServiceService
   ) {}
 
   ngOnInit() {
@@ -24,6 +26,11 @@ export class DisplayBookComponent implements OnInit {
       this.books = [];
       this.onDisplayBooks(data);
     });
+  /*  this.vendorService.getBooks().subscribe((data) => {
+      this.books = [];
+      this.onDisplayBooks(data);
+    });*/
+   // console.log(this.books);
   }
   onBookDetail(event) {
     event.stopPropagation();
@@ -37,27 +44,17 @@ export class DisplayBookComponent implements OnInit {
       });
     }
   }
-  onDeleteBook(bookId) {
+  onAdd(bookId) {
     console.log(bookId);
-    this.vendorService.deleteBooks(bookId).subscribe(
+    this.cartService.addBooks(bookId).subscribe(
       (data) => {
           this.messageService.changeMessages();  
       },
       (error: any) => {
-        this.snackBar.open("Book Deletion Failed", 'ok', { duration: 2000 });
+        this.snackBar.open("Book Added to cart Failed", 'ok', { duration: 2000 });
       }
     );
   }
-  onApprovals(bookId: any) {
-    this.vendorService.onApprove(bookId).subscribe(
-      (data) => {
-          this.messageService.changeMessages();
-      },
-      (error) => {
-        this.snackBar.open("Book Verification Failed", 'ok', {
-          duration: 2000,
-        });
-      }
-    );
+  onWish(bookId) {
   }
 }
