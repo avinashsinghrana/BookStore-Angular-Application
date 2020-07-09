@@ -1,7 +1,7 @@
 .toolBarDiv {
     position: fixed;
   }
-  mat-toolbar {
+.mat-toolbar {
     width: 100%;
     background-color: #a03037;
     top: 0;
@@ -9,7 +9,7 @@
     z-index: 100;
   }
   .search-mat-card {
-    margin-left: 2%;
+    margin-left: 100px;
     width: 40%;
     height: 60%;
     padding: 0px;
@@ -145,4 +145,30 @@
     font-weight: bold;
     margin-block-start: 1px;
   }
+
+.cartname{
+  position: absolute;
+  color:aliceblue;;
+  margin-top: 1.5%;
+  margin-left: 64%;
  
+}
+
+span{
+  margin-left: 250px;
+}
+.cart{
+  margin-left: 10%;
+  padding-right: 5%;
+  background-color: none;
+  outline: none;
+  color:aliceblue;
+}
+
+.span.small {
+  font-size: 5px;
+}
+.mat-badge-content{
+  background : white;
+  color:#A03037;
+}

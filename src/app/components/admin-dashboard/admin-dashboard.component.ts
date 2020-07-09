@@ -22,7 +22,7 @@ export class AdminDashboardComponent implements OnInit {
   file: any;
   profile: string;
   isLogin = false;
- img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
+  img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
   username: string;
   usermail: string;
   updateStats: any;
