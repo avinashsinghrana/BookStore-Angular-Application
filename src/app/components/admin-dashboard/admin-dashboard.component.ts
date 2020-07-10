@@ -1,12 +1,10 @@
 import { RegisterComponent } from './../register/register.component';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-
 import { MessageService } from "../../services/message.service";
 import { LoginComponent } from '../login/login.component';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -34,7 +32,6 @@ export class AdminDashboardComponent implements OnInit {
     public snackbar: MatSnackBar,
     private userService: UserService,
     private messageService: MessageService,
-    private cdRef: ChangeDetectorRef,
     private router: Router
     ) { }
 visible:boolean=true;

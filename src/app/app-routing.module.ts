@@ -20,6 +20,8 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
 import { DisplayBookComponent } from './components/display-book/display-book.component';
 import { UserComponent } from './components/user/user.component';
 import { UserBooksComponent } from './components/user-books/user-books.component';
+import { AdminBooksComponent } from './components/admin-books/admin-books.component';
+import { AdminsComponent } from './components/admins/admins.component';
 
 const routes: Routes = [
   {
@@ -30,14 +32,14 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
-  {
+  /*{
     path: "admin",
     component: AdminDashboardComponent,
   },
   {
     path: 'adminbooks',
     component: AdminComponent
-  },
+  },*/
   {
     path: 'resetpassword',
     component: ResetpasswordComponent
@@ -54,6 +56,17 @@ const routes: Routes = [
     component: AddBookComponent
   },
   { path: 'updateBook', component: UpdateBookComponent },
+  {
+    path: 'adminDashboard',
+    component: AdminsComponent,
+    children: [
+      { path: '', redirectTo: 'admin-books', pathMatch: 'full' },
+      {
+        path: 'admin-books',
+        component: AdminBooksComponent
+      },
+    ],
+  },
   {
     path: 'userDashboard',
     component: UserComponent,

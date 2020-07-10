@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { UserService } from 'src/app/services/user.service';
 import { Book } from 'src/app/models/book.model';
+import { SellerService } from 'src/app/services/seller.service';
 // import { Book } from "src/app/models/book";
 // import { Seller } from "src/app/models/seller";
 // import { VerifyconfrimComponent } from "../verifyconfrim/verifyconfrim.component";
@@ -33,6 +34,8 @@ export class AdminComponent implements OnInit {
       private userService : UserService,
       private httService : HttpService,
       private router: Router,
+      private seller: SellerService,
+      public snackbar: MatSnackBar,
       //private bookService: BookService,
       public dialog: MatDialog //private cartService: ViewcartService
     ) {}
@@ -69,17 +72,21 @@ export class AdminComponent implements OnInit {
     }  
 
     disApproveBook(bookId){
-      this.userService.disApproveBooks(bookId).subscribe((Response: any)=>{
-
-      })
-      this.unverifiedBooks()
+      this.seller.deleteBooks(bookId).subscribe((Response: any)=>{
+        this.unverifiedBooks()
+      },
+      err => {
+        this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
+     })
     }
 
     approveBook(bookId :any){
-      this.userService.approveBooks(bookId).subscribe((Response:any) => {
-        
+      this.seller.onApprove(bookId).subscribe((Response:any) => {
         this.unverifiedBooks()
-      })
+      },
+      err => {
+        this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
+     })
     }
 
     ratingAndReviews(book: any) {

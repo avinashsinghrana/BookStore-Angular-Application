@@ -8,5 +8,6 @@ export class Book {
     quantity: number;
     authorName: string;
     bookImgUrl: string;
+    seller: string;
   }
   

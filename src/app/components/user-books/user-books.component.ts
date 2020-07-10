@@ -69,7 +69,7 @@ export class UserBooksComponent implements OnInit {
     if (data.status === 200) {
       this.size = data.data.length;
       data.data.forEach((bookData) => {
-        this.books.push(bookData);
+      this.books.push(bookData);
         
       });
     }

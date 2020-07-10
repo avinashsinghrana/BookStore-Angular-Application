@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="title">
+    Books
+    <span style="font-size: 15px; color: rgb(139, 136, 136);"
+      >({{ size }} items)</span
+    >
+  </div>
+</div>
+<div
+  class="main-div"
+  fxLayoutGap="40px"
+  fxLayout.lt-sm="column"
+  fxLayout.sm="row wrap"
+  fxLayoutAlign.sm="start center"
+  fxLayout.md="row wrap"
+  fxLayoutAlign.md="start center"
+  fxLayoutAlign.lt-sm="center center"
+  fxLayout.lg="row wrap"
+  fxLayoutAlign.lg="start start"
+>
+  <div *ngFor="let book of books  | bookFilter:searchTerm" style="margin: 0px; " fxLayout="row">
+    <mat-card>
+     
+     <div class="bookImageDiv" fxLayoutAlign="center">
+        <img src="{{ book.bookImgUrl }}" />
+      </div>
+
+      <div class="bookInfoDiv" fxLayout="column">
+        <div class="input-title">
+          {{ book.bookName }}
+        </div>
+        <div fxlayout="row" class="input-author">by {{ book.authorName }}</div>
+        <div fxlayout="row">
+          <span class="input-price-span">Rs. {{ book.price }}</span>
+        </div>
+        <div fxlayout="row" class="input-author">Seller {{ book.seller }}</div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <button
+            class="delete-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onDisapproval(book.bookId)"
+          >
+            Disapproved
+          </button>
+          <button
+            class="update-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onApproval(book.bookId)"
+          >
+            Approved
+          </button>
+  
+        </div>
+      </div>
+    </mat-card>
+    <div class="book-details">
+      <h4 style="text-align: center;margin-top: 0mm;">Book Details</h4>
+      <span style="font-size: medium;">{{ book.bookDetails }}</span>
+    </div>
+  </div>
+</div>

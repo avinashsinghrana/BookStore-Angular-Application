@@ -6,6 +6,7 @@ export interface Book {
     quantity: any;
     bookDetails: string;
     bookImgUrl: string;
+    seller: string;
     isApproved: boolean;
     rejectionCounts: any;
     isApprovalSent: boolean;

@@ -8,14 +8,13 @@ import { MatSnackBar } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Sortmethod } from 'src/app/model/sortmethod';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  selector: 'app-admins',
+  templateUrl: './admins.component.html',
+  styleUrls: ['./admins.component.scss'],
 })
-export class UserComponent implements OnInit {
+export class AdminsComponent implements OnInit {
   isBookFormOpened = false;
   searchTerm: string;
   file: any;
@@ -33,7 +32,6 @@ export class UserComponent implements OnInit {
     private dialog: MatDialog,
     public snackbar: MatSnackBar,
     private userService: UserService,
-    private route: ActivatedRoute,
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
     private router: Router,
@@ -41,7 +39,7 @@ export class UserComponent implements OnInit {
   ) {}
   
   ngOnInit() {
-    this.messageService.changeMessages();
+    this.messageService.changeBooks();
     this.messageService.currentItem$.subscribe(message =>
       { this.item = message});
       console.log("recv ",this.item);
@@ -72,9 +70,8 @@ export class UserComponent implements OnInit {
     });
   }
   onCart(){
-    this.router.navigate(['order-summary']);
+    this.router.navigate(['/order-summary']);
   }
-
   signin(){
     this.dialog.open(LoginComponent, {
       width: '28%',

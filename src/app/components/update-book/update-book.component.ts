@@ -45,11 +45,31 @@ export class UpdateBookComponent implements OnInit {
   }
   onFormSubmit() {
     this.dialogRef.close();
-    this.book.bookName = this.bookForm.value.bookName;
-    this.book.authorName = this.bookForm.value.authorName;
-    this.book.price = this.bookForm.value.price;
-    this.book.quantity = this.bookForm.value.quantity;
-    this.book.bookDetails = this.bookForm.value.description;
+    if(this.bookForm.value.bookName==''){
+      this.book.bookName = this.data.bookName;
+    }else{
+      this.book.bookName = this.bookForm.value.bookName;
+    }
+    if(this.bookForm.value.authorName == ''){
+      this.book.authorName = this.data.authorName;
+    }else{
+      this.book.authorName = this.bookForm.value.authorName;
+    }
+    if(this.bookForm.value.price==''){
+      this.book.price = this.data.price
+    }else{
+      this.book.price = this.bookForm.value.price;
+    }
+    if(this.bookForm.value.quantity==''){
+      this.book.quantity = this.data.quantity;
+    }else{
+      this.book.quantity = this.bookForm.value.quantity;
+    }
+    if(this.bookForm.value.description==''){
+      this.book.bookDetails = this.data.bookDetails;
+    }else{
+      this.book.bookDetails = this.bookForm.value.description;
+    }  
     console.log("book data ",this.book);
     this.vendorService.updateBook(this.book,this.data.bookId).subscribe(
       (data) => {

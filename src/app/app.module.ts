@@ -48,6 +48,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { BookFilterPipe } from './components/display-books/book-filter.pipe';
 import { SortbypricePipe } from './components/user-books/sortbyprice.pipe';
+import { AdminsComponent } from './components/admins/admins.component';
+import { AdminBooksComponent } from './components/admin-books/admin-books.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { SortbypricePipe } from './components/user-books/sortbyprice.pipe';
     RegisterComponent,
     AdminDashboardComponent,
     AdminComponent,
+    AdminsComponent,
     OrderConfirmationComponent,
+
   //  DashboardComponent,
     RegisterComponent,
  //   DashboardComponent,
@@ -73,6 +77,7 @@ import { SortbypricePipe } from './components/user-books/sortbyprice.pipe';
     UpdateBookComponent,
     DisplayBooksComponent,
     UserBooksComponent,
+    AdminBooksComponent,
     OrderSummaryComponent,
     DisplayBookComponent
   ],

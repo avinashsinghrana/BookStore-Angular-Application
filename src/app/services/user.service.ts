@@ -20,15 +20,15 @@ export class UserService {
   }
 
   getAllUnverifiedBooks(token: string) {
-    return this.service.http.get('http://localhost:8080/admin/getBooksForVerification/',{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
+    return this.service.http.get('http://localhost:8081/admin/getBooksForVerification/',{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
   }
 
   disApproveBooks(bookId){
-    return this.service.http.delete('http://localhost:8080/sellers/DeleteBook?bookId='+bookId,{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
+    return this.service.http.delete('http://localhost:8081/sellers/DeleteBook?bookId='+bookId,{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
   }
 
   approveBooks(bookId :any){
-    return this.service.http.put('http://localhost:8080/admin/bookVerification/'+bookId+'/'+localStorage.getItem('token'),{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
+    return this.service.http.put('http://localhost:8081/admin/bookVerification/'+bookId+'/'+localStorage.getItem('token'),{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
   }
 
   forgotPassword(body: any){
@@ -55,7 +55,7 @@ export class UserService {
   public uploadProfilePic(file: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file);
-    return this.http.post("http://localhost:8080/sellers/addImg", formData);
+    return this.http.post("http://localhost:8081/sellers/addImg", formData);
   }
 
 
