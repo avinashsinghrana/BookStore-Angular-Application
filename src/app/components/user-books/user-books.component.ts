@@ -29,7 +29,7 @@ export class UserBooksComponent implements OnInit {
   item = 0;
   add: false;
   toggle = true;
-
+  page: number = 1;
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,

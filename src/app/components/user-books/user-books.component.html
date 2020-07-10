@@ -26,7 +26,7 @@
   fxLayout.lg="row wrap"
   fxLayoutAlign.lg="start start"
 >
-  <div *ngFor="let book of books  | bookFilter:searchTerm | sortbyprice:sortTerm" style="margin: 0px; " fxLayout="row">
+  <div *ngFor="let book of books  | bookFilter:searchTerm | sortbyprice:sortTerm | paginate: { itemsPerPage: 5, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row" >
     <mat-card>
      
      <div class="bookImageDiv" fxLayoutAlign="center">
@@ -68,4 +68,10 @@
       <span style="font-size: medium;">{{ book.bookDetails }}</span>
     </div>
   </div>
+</div>
+<div class="paginator">
+  <pagination-controls
+    (pageChange)="page = $event"
+    id="first"
+  ></pagination-controls>
 </div>

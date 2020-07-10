@@ -90,8 +90,8 @@ mat-card {
     width: 70px;
     font-size: x-small;
     font-weight: bold;
-    background-color: gray;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 0px;
     margin-top: 3%;
     border: none;
@@ -211,5 +211,14 @@ mat-card {
       padding-bottom: 2%;
       width: 100%;
     }
+  }
+  .paginator{
+    display: flex;
+    // width: 2%;
+    align-content: center;
+    align-items: center;
+    font-size: 100%;
+    margin-left: 40%;
+    // margin-top: 20px;
   }
   
