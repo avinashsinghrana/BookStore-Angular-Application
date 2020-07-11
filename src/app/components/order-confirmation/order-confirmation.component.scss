@@ -1,18 +1,29 @@
 .container{
-  width: 1376px;
+  width: 1350px;
   height: 50px;
-  background: #A03037 0% 0% no-repeat padding-box;
+  background: hsl(356, 54%, 41%) 0% 0% no-repeat padding-box;
   opacity: 1;
+}
+.titleText {
+  margin-left: 12%;
+  color: white;
+}
+@media only screen and (max-width: 720px) {
+  .titleText {
+    font-size: medium;
+    margin-left: 2%;
+    color: white;
+  }
 }
 
-.bookstore{
-  margin-top: 0px;
-  margin-left: 164px;
-  width: 128px;
-  height: 26px;
-  background: transparent url('../../../assets/image/bookstore.svg') 0% 0% no-repeat padding-box;
-  opacity: 1;
-}
+// .bookstore{
+//   margin-top: 0px;
+//   margin-left: 164px;
+//   width: 128px;
+//   height: 26px;
+//   background: transparent url('../../../assets/image/bookstore.svg') 0% 0% no-repeat padding-box;
+//   opacity: 1;
+// }
 .cart{
   margin-top: 0px;
   margin-left: 11%;
@@ -21,24 +32,45 @@
   //background: transparent url('../../../assets/image/supermarket.svg') 0% 0% no-repeat padding-box;
   opacity: 1;
 }
-.search{
-  margin-top: 0px;
-  margin-left: 134px;
-  width: 490px;
-  height: 33px;
-  background: #FCFCFC;
-  border-radius: 3px;
-  border-color: white;
+// .search{
+//   margin-top: 0px;
+//   margin-left: 134px;
+//   width: 490px;
+//   height: 33px;
+//   background: #FCFCFC;
+//   border-radius: 3px;
+//   border-color: white;
+//   outline: none;
+//   outline-width: unset;
+//   opacity: 10;
+// }
+.search-mat-card {
+  display: flex;
+  margin-left: 100px;
+  width: 40%;
+  height: 60%;
+  padding: 0px;
+}
+.searchIcon {
+  display: flex;
+  opacity: 0.5;
+}
+.searchIcon:hover {
+  opacity: 1;
+}
+.searchInput {
+  display: flex;
+  height: 90%;
+  width: 90%;
+  border: none;
   outline: none;
-  outline-width: unset;
-  opacity: 10;
 }
 .footer{
-  margin-top: 1%;
+  margin-top: 0;
   //top: 718px;
   left: 0px;
-  width: 1366px;
-  height: 50px;
+  width: 1376x;
+  height: 14px;
   background: #2E1D1E 0% 0% no-repeat padding-box;
   opacity: 1;
 }
@@ -71,7 +103,7 @@
 }
 .footer{
   margin-top: 1%;
-  width: 1376px;
+  width: 1320px;
   height: 50px;
   background: #2E1D1E 0% 0% no-repeat padding-box;
   opacity: 1;

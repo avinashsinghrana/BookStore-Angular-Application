@@ -26,7 +26,7 @@
   fxLayout.lg="row wrap"
   fxLayoutAlign.lg="start start"
 >
-  <div *ngFor="let book of books  | bookFilter:searchTerm | sortbyprice:sortTerm | paginate: { itemsPerPage: 5, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row" >
+  <div *ngFor="let book of books  | bookFilter:searchTerm | sortbyprice:sortTerm | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row" >
     <mat-card>
      
      <div class="bookImageDiv" fxLayoutAlign="center">

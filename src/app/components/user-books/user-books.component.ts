@@ -10,16 +10,9 @@ import { CartserviceService } from 'src/app/services/cartservice.service';
 @Component({
   selector: 'app-user-books',
   templateUrl: './user-books.component.html',
-  // <ul>
-//   <li *ngFor="let item of collection | paginate: { currentPage: currentPage, itemsPerPage: itemsPerPage }; let i = index">
-//     {{ itemsPerPage * (currentPage - 1) + i }}
-//   </li>
-// </ul>
   styleUrls: ['./user-books.component.scss'],
 })
 export class UserBooksComponent implements OnInit {
-  // p: number = 1;
-  // collection: any[] = someArrayOfThings; 
   books = [];
   book: Book[];
   searchTerm: string;

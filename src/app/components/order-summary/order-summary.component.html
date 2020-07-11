@@ -1,19 +1,31 @@
-<mat-toolbar class="menu" flex>
-  <img
-    src="../../../assets/image/education.png"
-    alt="my img"
-    class="book-image"
-  />
-  <h4 class="header">BookStore</h4>
-  <input type="search" placeholder="Search.." name="search" class="search" />
-  <div><h6 class="cart">cart</h6></div>
-  <img
-    src="../../../assets/image/supermarket.png"
-    alt="my img"
-    class="cart-image"
-  />
-</mat-toolbar>
+  <mat-toolbar style="width: 98.8%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
+      <!--------------- bookimg and book --------------------------->
+      <div class="titleText" fxLayoutGap="3%">
+        <img src="../../../assets/image/education.svg" />
+        <a
+          href="http://localhost:4200/dashboard/books"
+          style="color: white;text-decoration: none;"
+          >BookStore</a>
+      </div>
+      <!-------------------- search ------------------->
+      <!-- <div class="searche">
+        <img class="scicon" src="assets/image/searchicon.png" />
+        <input type="text" class="searchinput" placeholder="search.." />
+      </div> -->
+      <mat-card class="search-mat-card" fxLayout="row" fxLayoutAlign="space-around center"> 
+        <button mat-icon-button [disableRipple]="true" matTooltip="search" >
+          <mat-icon class="searchIcon">search</mat-icon>
+        </button>
+        <input class="searchInput" type="text" placeholder="Search..."/>
+      </mat-card>
 
+      <div fxLayout="row" fxLayoutAlign="start end" style="margin-right: 10%;">
+          <button class="cart" mat-icon-button matTooltip="Cart">
+            Cart <mat-icon>shopping_cart</mat-icon></button>
+        <br/>
+      </div>
+  </mat-toolbar>
+<!-- </div> -->
 <mat-card class="place-book">
   <p>My cart({{size}})</p>
 

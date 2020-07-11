@@ -26,9 +26,7 @@
         <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 23%;">
         <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
           Cart <mat-icon matBadge="{{item}}" MatBadgeSize="small"
-             >shopping_cart</mat-icon
-           ></button
-         ><br />
+             >shopping_cart</mat-icon></button><br />
         </div>
       <!-- user profile pic --> 
       <button mat-mini-fab class ="imageSelect" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'52px','height':'52px'}"
@@ -44,8 +42,10 @@
           <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
         </button>
       </div>
-      <div> <p style="margin-left: 53px; font-weight: bold; "> {{username}} </p> 
-           <p style="margin-left: 34px; margin-top: -13px; "> {{usermail}} </p> </div>
+      <div> 
+          <div class="mat-subheading-1" style="font-weight: bold;" >{{username}}</div>
+          <div class="mat-subheading-1">{{usermail}}</div>
+      </div>
       <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
       <mat-divider style="margin-top: auto;"></mat-divider>
       <div fxLayoutAlign="center center" *ngIf="!isLogin">

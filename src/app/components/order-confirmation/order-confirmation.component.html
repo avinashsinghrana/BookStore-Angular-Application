@@ -1,10 +1,19 @@
 <mat-toolbar class="container" flex>
-  <div class="bookstore"></div>
-<!--  <div class="input-icons">-->
-<!--  <mat-icon id="i">search</mat-icon>-->
-<!--  <div class="searchIcon"></div>-->
-    <input type="search" placeholder="Search.." name="search" class="search"/>
+  <div class="titleText" fxLayoutGap="3%">
+    <img src="../../../assets/image/education.svg" />
+    <a
+      href="http://localhost:4200/dashboard/books"
+      style="color: white;text-decoration: none;"
+      >BookStore</a>
+  </div>
+    <!-- <input type="search" placeholder="Search.." name="search" class="search"/> -->
 <!--  </div>-->
+  <mat-card class="search-mat-card" fxLayout="row" fxLayoutAlign="space-around center"> 
+    <button mat-icon-button [disableRipple]="true" matTooltip="search" >
+      <mat-icon class="searchIcon">search</mat-icon>
+    </button>
+     <input class="searchInput" type="text" placeholder="Search..."/>
+  </mat-card>
   <div class="cart">
     <img src="../../../assets/image/supermarket.svg">
   </div>

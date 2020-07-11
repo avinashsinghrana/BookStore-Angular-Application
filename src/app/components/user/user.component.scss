@@ -1,7 +1,9 @@
+
 .toolBarDiv {
     position: fixed;
   }
 .mat-toolbar {
+  display: flex;
     width: 100%;
     background-color: #a03037;
     top: 0;
@@ -9,6 +11,7 @@
     z-index: 100;
   }
   .search-mat-card {
+    display: flex;
     margin-left: 100px;
     width: 40%;
     height: 60%;
@@ -21,6 +24,7 @@
     opacity: 1;
   }
   .searchInput {
+    display: flex;
     height: 90%;
     width: 90%;
     border: none;
@@ -108,6 +112,7 @@
    
   }
   .profile {
+    display: flex;
     overflow: hidden;
   }
   .icons{
@@ -153,11 +158,18 @@
   margin-left: 64%;
  
 }
+.mat-subheading-1{
+  margin-top: 50%;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
 
 span{
   margin-left: 250px;
 }
 .cart{
+  display: flex;
   margin-left: 10%;
   padding-right: 5%;
   background-color: none;
