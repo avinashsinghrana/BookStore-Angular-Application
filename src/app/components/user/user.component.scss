@@ -174,7 +174,7 @@ span{
   padding-right: 5%;
   background-color: none;
   outline: none;
-  color:aliceblue;
+  color:white;
 }
 
 .span.small {
@@ -184,3 +184,18 @@ span{
   background : white;
   color:#A03037;
 }
+.footer{ 
+  width: 1308px;
+  height: 14px;
+  top: 34px;
+  background: #2E1D1E 0% 0% no-repeat padding-box;
+  opacity: 1;
+  margin-right: 10%;
+  }
+  
+.footerText{
+    font-size: x-small;
+    color: white;
+    margin-left: 12%;
+    margin-top: 2px;
+  }
