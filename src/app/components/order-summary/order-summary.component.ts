@@ -21,17 +21,10 @@ export class OrderSummaryComponent implements OnInit {
   popDown = false;
   size: any;
   sortTerm: any;
-  //objectKeys=Object.keys;
   actualPrice: Number;
   books: any;
-  // lType: any;
-  //price:books.price;
-  //quantity: number;
-  //totalPrice: number=1500;
   person: String;
   token: string;
-
-
 
   constructor(public formBuilder: FormBuilder,
     private dialog: MatDialog,
@@ -45,15 +38,14 @@ export class OrderSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      fullName: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required]],
+      fullName: ['', [Validators.required, Validators.pattern("^[A-Z][a-z]+\\s?[A-Z][a-z]+$")]],
+      phoneNumber: ['', [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]],
       locality: ['', [Validators.required]],
-      pinCode: ['', [Validators.required]],
+      pinCode: ['', [Validators.required,Validators.pattern("^[0-9]{6}")]],
       address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
+      city: ['', [Validators.required,Validators.pattern("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$")]],
       landMark: ['', [Validators.required]],
       locationType: new FormControl(this.person)
-
     })
     this.getAllBookCart()
   }
