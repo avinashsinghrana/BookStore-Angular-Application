@@ -1,4 +1,5 @@
-<mat-toolbar class="container" flex>
+<mat-toolbar  class="toolBar" style="width: 98.8%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
+  
   <div class="titleText" fxLayoutGap="3%">
     <img src="../../../assets/image/education.svg" />
     <a
@@ -6,19 +7,20 @@
       style="color: white;text-decoration: none;"
       >BookStore</a>
   </div>
-    <!-- <input type="search" placeholder="Search.." name="search" class="search"/> -->
-<!--  </div>-->
+  
   <mat-card class="search-mat-card" fxLayout="row" fxLayoutAlign="space-around center"> 
     <button mat-icon-button [disableRipple]="true" matTooltip="search" >
       <mat-icon class="searchIcon">search</mat-icon>
     </button>
-     <input class="searchInput" type="text" placeholder="Search..."/>
+    <input class="searchInput" type="text" placeholder="Search..."/>
   </mat-card>
-  <div class="cart">
-    <img src="../../../assets/image/supermarket.svg">
+
+  <div fxLayout="row" fxLayoutAlign="start end" style="margin-right: 10%;">
+      <button class="cart" mat-icon-button matTooltip="Cart">
+        Cart <mat-icon>shopping_cart</mat-icon></button>
+    <br/>
   </div>
 </mat-toolbar>
-
 <div fxLayoutAlign="centre" class="congrats"></div>
 <div fxLayoutAlign="centre" class="orderText">order placed successfully</div>
 
@@ -46,8 +48,10 @@
   </mat-toolbar-row>
 </div>
 <button mat-flat-button class="buttonstyle" routerLink="/userDashboard/user-books">CONTINUE SHOPPING</button>
-<mat-toolbar class="footer">
-  <div class="footTitle">
-    <p>Copyright © 2020, Bookstore Private Limited. All Rights Reserved
-    </p></div>
-</mat-toolbar>
+<mat-card class="footer">
+  <div>
+    <p class="footerText">
+      Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+    </p>
+  </div>
+</mat-card>
