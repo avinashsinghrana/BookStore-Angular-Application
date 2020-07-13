@@ -116,11 +116,15 @@ export class OrderSummaryComponent implements OnInit {
 
   removeAllItemsCart(index: any) {
     this.cartService.removeAllItems(this.books[index].book_id).subscribe((response: any) => {
-      window.location.reload();
+     // window.location.reload();
+     let size: any =  sessionStorage.getItem('size');
+     size--;
+     sessionStorage.setItem('size', size);
+     this.getAllBookCart();
       console.log("Book id",this.books[index].book_id);
       console.log("response", response);
     })
-    this.getAllBookCart();
+   // this.getAllBookCart();
   }
 
   onPress() {
@@ -142,6 +146,7 @@ export class OrderSummaryComponent implements OnInit {
     console.log(this.userId);
     this.cartService.removeAll().subscribe((response: any) => {
        console.log("response", response);
+       sessionStorage.clear();
        this.getAllBookCart();
        this.router.navigate(['/order-confirmation']);
     })

@@ -9,7 +9,7 @@
     z-index: 100;
   }
   .search-mat-card {
-    margin-left: 2%;
+    margin-left: 8%;
     width: 40%;
     height: 60%;
     padding: 0px;
@@ -86,12 +86,14 @@
   .mainContainer-lt-md {
     width: 100%;
     height: 35%;
+    //position: fixed;
     margin-top: 50px;
     background-color: #21bae9;
   }
   .mainContainer-lg {
     width: 100%;
     height: 25%;
+   // position: fixed;
     margin-top: 50px;
     background-color: #21bae9;
   }
@@ -104,10 +106,11 @@
   }
   //************
   .imageSelect {
-   margin-left: 43px;
+  // margin-left: 43px;
+  align-items: center;
    
   }
-  .profile {
+  #profile {
     overflow: hidden;
   }
   .icons{
@@ -127,11 +130,12 @@
     opacity: 0.6;
   }
   .signout {
-    margin-left: auto;
-    margin-right: auto;
+   
     font-weight: bold;
-    margin-left: 60px;
-  
+    align-items: flex-end;
+  //  margin-left: 60px;
+    overflow: hidden;
+    position: relative;
   }
   .mat-subheading-1{
     margin-top: 50%;
@@ -140,15 +144,34 @@
     margin: 0px;
   }
   .login {
-    margin-left: auto;
-    margin-right: auto;
+    align-items: flex-end;
+   // margin-left: auto;
+   // margin-right: auto;
     font-weight: bold;
-    margin-left: 50px;
-  
+   // margin-left: 50px;
+    overflow: hidden;
   }
   .delete {
-    margin-right: auto;
+    align-items: flex-start;
+    position: relative;
     font-weight: bold;
-    margin-block-start: 1px;
+    overflow: hidden;
+
+  }
+  #profileImage{
+    background-color: green;
+    text-align: center;
+    color: blue;
+    font-size: medium;
+    font-weight: bold;
+    background-size: cover
+  }
+  #profileInnerImage{
+    background-color: green;
+    text-align: center;
+    color: blue;
+    font-size: large; 
+    font-weight: bold;
+    background-size: cover
   }
  

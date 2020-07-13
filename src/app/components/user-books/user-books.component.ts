@@ -19,8 +19,10 @@ export class UserBooksComponent implements OnInit {
   message: string;
   size: any;
   sortTerm: string;
-  item = 0;
+  item: any;
   add: false;
+  isAdded: boolean;
+  value: any = [];
   toggle = true;
   page: number = 1;
   constructor(
@@ -31,18 +33,28 @@ export class UserBooksComponent implements OnInit {
     private cartServices: CartserviceService,
     private data: MessageService,
     private dialog: MatDialog
-  ) {}
+  ) {
+    for (let i = 0; i < sessionStorage.length; i++) {
+      let key = sessionStorage.key(i);
+      this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
+    }
+    
+  }
 
   ngOnInit() {
-   
     this.sortTerm = 'none';
+    this.item = sessionStorage.getItem('size');
+    this.data.changeItem(this.item);
     this.messageService.currentMessages.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
     });
     this.messageService.currentEvent$.subscribe(message =>
       { this.searchTerm = message});
+
   }
+
+  
   onBookDetail(event) {
     event.stopPropagation();
   }
@@ -70,11 +82,12 @@ export class UserBooksComponent implements OnInit {
 
   
   onAddBook(bookId) {
-    this.toggle = !this.toggle;
-    this.item++;
-    this.data.changeItem(this.item);
     this.cartServices.addToBag(bookId).subscribe((message) => {
       console.log(message);
+      sessionStorage.setItem(bookId, bookId);
+      this.value[bookId] = bookId;
+      this.data.changeItem(message.data);
+      sessionStorage.setItem('size', message.data);
       this.snackBar.open("Book Added to Bag SuccessFully", "OK", {
         duration: 4000,
       });

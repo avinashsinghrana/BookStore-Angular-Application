@@ -42,8 +42,11 @@
           <span class="input-price-span">Rs. {{ book.price }}</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
-          <button class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
+          <button *ngIf="value[book.bookId] != book.bookId" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
             Add to cart
+          </button>
+          <button *ngIf="value[book.bookId] == book.bookId" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
+            Added to cart
           </button>
           <!-- <button class="delete-button" 
             mat-raised-button fxLayoutAlign="center"

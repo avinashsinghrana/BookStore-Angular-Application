@@ -20,7 +20,7 @@ export class SellerComponent implements OnInit {
   isLogin = false;
   imgFile: File;
   response: any;
-  isImage = false;
+  isProfile = true;
   img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
   username: string;
   usermail: string;
@@ -35,21 +35,29 @@ export class SellerComponent implements OnInit {
   
   ngOnInit() {
     this.messageService.changeMessage();
-    if(localStorage.getItem(localStorage.getItem('email'))==null){
+  /*  if(localStorage.getItem(localStorage.getItem('email'))==null){
      this.isImage = false;
     }
     else{
       this.isImage = true;
-    }
+    }*/
     if (localStorage.getItem('token')!=null) {
       this.isLogin = true;
       this.img = localStorage.getItem(localStorage.getItem('email'));
       this.usermail = localStorage.getItem('email');
       this.username = localStorage.getItem("name");
+      if(this.img==null){
+        this.isProfile = false;
+        const intials =  this.username.split(' ').map(name => name[0]).join('').toUpperCase();
+        document.getElementById('profileImage').innerHTML = intials;
+       // document.getElementById('profileInnerImage').innerHTML = intials;
+      }
     } else {
       this.isLogin = false;
       this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
     }
+   // document.getElementById('profileImage').innerHTML = intials;
+   // document.getElementById('profileInnerImage').innerHTML = intials;
   }
   
   openBookForm() {

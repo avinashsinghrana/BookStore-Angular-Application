@@ -5,7 +5,7 @@
         <a
           href="http://localhost:4200/userDashboard/user-books"
           style="color: white;text-decoration: none;"
-          >BookStore</a
+          >  BookStore</a
         >
       </div>
       <mat-card
@@ -25,27 +25,32 @@
       </mat-card>
       <span class="spanClass"></span>
       <!-- user profile pic --> 
-      <button mat-mini-fab class ="imageSelect" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'52px','height':'52px'}"
+      <button mat-mini-fab class ="imageSelect" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'45px','height':'45px'}"
       [matMenuTriggerFor]="menu1" colour="basic" matTooltip="Seller Account"
       [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
-    </button>
-
+     </button>
+    <!--button mat-mini-fab *ngIf="isProfile&&!isLogin" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'52px','height':'52px'}"
+      [matMenuTriggerFor]="menu1" matTooltip="Seller Account"
+      [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
+    </button-->
+  
     <mat-menu id="profile" #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
-      <div class="backgroundimage">
-        <button (click)="$event.stopPropagation()"
-          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'120px','height':'120px'}"
+      <div class="backgroundimage" fxLayoutAlign="center center"  >
+        <button (click)="$event.stopPropagation()" id="profileImage"
+          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'initials','width':'120px','height':'120px'}"
           (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
           <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
         </button>
       </div>
-      <div> 
+      <!--div> 
         <div class="mat-subheading-1" style="font-weight: bold;" >{{username}}</div>
         <div class="mat-subheading-1">{{usermail}}</div>
-     </div>
+     </div-->
+      <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p> 
+            <p style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis;"> {{usermail}} </p> </div>
       <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
       <mat-divider style="margin-top: auto;"></mat-divider>
       <div fxLayoutAlign="center center" *ngIf="!isLogin">
-        <button class="delete" mat-flat-button (click)="signup()">SignUp </button>
         <button class="login" mat-flat-button (click)="signin()">LogIn </button>
       </div>
         <div fxLayoutAlign="center center" *ngIf="isLogin">
