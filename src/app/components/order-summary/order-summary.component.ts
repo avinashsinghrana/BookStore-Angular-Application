@@ -6,6 +6,7 @@ import { RouterLink, Router } from '@angular/router';
 import { Book } from '../../models/book.model';
 import { MatRadioChange, MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
+import { MessageService } from 'src/app/services/message.service';
 
 
 @Component({
@@ -25,39 +26,55 @@ export class OrderSummaryComponent implements OnInit {
   books: any;
   person: String;
   token: string;
+  cartQuantity: any;
+  cartPrice: any;
+  itemQuantity: any;
+  isEmpty: any;
 
   constructor(public formBuilder: FormBuilder,
     private dialog: MatDialog,
     private customerDetailsService: CustomerDetailsService,
     private cartService: CartServiceService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
 
 
   }
 
   ngOnInit() {
+    this.getAllBookCart()
+    
+      this.isEmpty = true;
+    
+    // this.cartPrice = this.books.totalPrice
+    this.messageService.currentCart$.subscribe(message =>
+      { console.log("ravi",message), this.isEmpty = false,this.itemQuantity = message.quantity,
+      this.cartPrice = message.price,console.log("geeth",this.cartPrice),
+        this.cartQuantity = 1});
+        
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.pattern("^[A-Z][a-z]+\\s?[A-Z][a-z]+$")]],
       phoneNumber: ['', [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]],
-      locality: ['', [Validators.required]],
+      locality: ['', [Validators.required, Validators.minLength(3)]],
       pinCode: ['', [Validators.required,Validators.pattern("^[0-9]{6}")]],
-      address: ['', [Validators.required]],
+      address: ['', [Validators.required, Validators.minLength(3)]],
       city: ['', [Validators.required,Validators.pattern("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$")]],
-      landMark: ['', [Validators.required]],
+      landMark: ['', [Validators.required,Validators.minLength(3)]],
       locationType: new FormControl(this.person)
     })
-    this.getAllBookCart()
+    
   }
 
   getAllBookCart() {
     this.cartService.getBookCart().subscribe((response: any) => {
       this.books = response;
       this.size = response.length;
-      console.log(response);
+      console.log("getallbook",response);
 
     });
   }
+
 
   onPopup() {
     if(localStorage.getItem("token")== null){
@@ -74,9 +91,15 @@ export class OrderSummaryComponent implements OnInit {
 
   increaseQuantity(index: any) {
 
-    this.books[index].quantity++;
+    // this.books[index].quantity++;
     this.cartService.addBooks(this.books[index].book_id).subscribe((response: any) => {
-      console.log("response", response);
+      this.cartQuantity = response.data.quantity;
+      this.cartPrice = response.data.totalPrice;
+      // this.size = response.length;
+     console.log("increase qnt",this.cartService.getBookCart());
+      
+      // window.location.reload();
+      // console.log("response", response);
     })
 
 
@@ -91,10 +114,14 @@ export class OrderSummaryComponent implements OnInit {
 
   decreaseQuantity(index: any) {
 
-    this.books[index].quantity--;
+    // this.books[index].quantity--;
     //this.quantity--;
     if (this.books[index].quantity > 0) {
       this.cartService.removeItem(this.books[index].book_id).subscribe((response: any) => {
+        this.cartQuantity = response.data.quantity;
+        this.cartPrice = response.data.totalPrice;
+        this.cartService.getBookCart();
+        // window.location.reload();
         console.log("response=", response);
       })
 
@@ -106,7 +133,7 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   getQuantitiy(index: any): boolean{
-    if(this.books[index].quantity<2){
+    if(this.cartQuantity<1){
       return true;
     }
     
@@ -115,12 +142,14 @@ export class OrderSummaryComponent implements OnInit {
 
 
   removeAllItemsCart(index: any) {
-    this.cartService.removeAllItems(this.books[index].book_id).subscribe((response: any) => {
-     // window.location.reload();
+    this.cartService.removeBookById(this.books[index].book_id).subscribe((response: any) => {
+      window.location.reload();
+     sessionStorage.removeItem(this.books[index].book_id);
+     this.cartService.getBookCart();
      let size: any =  sessionStorage.getItem('size');
      size--;
      sessionStorage.setItem('size', size);
-     this.getAllBookCart();
+    //  this.getAllBookCart();
       console.log("Book id",this.books[index].book_id);
       console.log("response", response);
     })

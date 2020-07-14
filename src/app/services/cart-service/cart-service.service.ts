@@ -22,7 +22,7 @@ export class CartServiceService {
     return this.httpService.removeCart('/user/removeFromCart?bookId=' + bookId);
   }
 
-  removeAllItems(book_id) {
+  removeBookById(book_id) {
     return this.httpService.removeAllItemsCart('/user/removeAllFromCart/' + book_id);
   }
 

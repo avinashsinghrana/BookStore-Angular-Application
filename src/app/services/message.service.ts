@@ -14,11 +14,13 @@ export class MessageService {
   private adminBooks = new BehaviorSubject(Response);
   private eventSource = new Subject<string>();
   private itemSource = new Subject<number>();
+  private cartSource = new Subject<any>();
   currentMessage = this.messageSource.asObservable();
   currentMessages = this.messageSources.asObservable();
   currentBooks = this.adminBooks.asObservable();
   currentEvent$ = this.eventSource.asObservable();
   currentItem$ = this.itemSource.asObservable();
+  currentCart$ = this.cartSource.asObservable();
   constructor(
     private vendorService: SellerService,
   ) {}
@@ -28,6 +30,9 @@ export class MessageService {
   }
   changeItem(message: number){
     this.itemSource.next(message);
+  }
+  changeCart(message: any){
+    this.cartSource.next(message);
   }
   changeMessage() {
     this.vendorService.displayBooks().subscribe((data) => {

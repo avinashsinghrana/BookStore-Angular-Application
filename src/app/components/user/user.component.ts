@@ -29,6 +29,7 @@ export class UserComponent implements OnInit {
   usermail: string;
   sorting: Sortmethod[];
   item: any;
+  
   constructor(
     private dialog: MatDialog,
     public snackbar: MatSnackBar,
@@ -43,7 +44,8 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.messageService.changeMessages();
       this.messageService.currentItem$.subscribe(message =>
-      { this.item = message});
+      { if (message == 0) { this.item = ""} else {
+        this.item = message}});
     //  this.item = sessionStorage.getItem('size');
       console.log("recv ",this.item);
     if(localStorage.getItem(localStorage.getItem('email'))==null){

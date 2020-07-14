@@ -81,11 +81,13 @@ export class UserBooksComponent implements OnInit {
   }
 
   
-  onAddBook(bookId) {
-    this.cartServices.addToBag(bookId).subscribe((message) => {
+  onAddBook(book) {
+    this.messageService.changeCart(book);
+    console.log("seema",book);
+    this.cartServices.addToBag(book.bookId).subscribe((message) => {
       console.log(message);
-      sessionStorage.setItem(bookId, bookId);
-      this.value[bookId] = bookId;
+      sessionStorage.setItem(book.bookId, book.bookId);
+      this.value[book.bookId] = book.bookId;
       this.data.changeItem(message.data);
       sessionStorage.setItem('size', message.data);
       this.snackBar.open("Book Added to Bag SuccessFully", "OK", {

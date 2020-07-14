@@ -47,7 +47,7 @@
       <mat-card-content class="mat-content">
         <div>
           <p class="book-names">{{ book.name }}</p>
-          <p class="book-names1">{{ book.author }}</p>
+          <p class="book-names1">By {{ book.author }}</p>
           <p class="book-names2">Rs.{{ book.totalPrice }}</p>
         </div>
         <div class="quantity">
@@ -61,6 +61,7 @@
             >
           </button>
           <input
+            style="text-align: center;"
             type="text"
             class="quantity-holder"
             [(ngModel)]="book.quantity"
