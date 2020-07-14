@@ -90,6 +90,7 @@
     color="primary"
     class="placeOrder"
     *ngIf="!popup"
+    ng-disabled="!show"
     (click)="onPopup()"
   >
     PLACE ORDER
@@ -215,6 +216,7 @@
     color="primary"
     class="Continue"
     *ngIf="!press"
+    ng-disabled="!order"
     (click)="onPress()"
   >
     Continue

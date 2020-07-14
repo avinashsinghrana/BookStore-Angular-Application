@@ -18,6 +18,8 @@ export class OrderSummaryComponent implements OnInit {
   books = [];
   registerForm: FormGroup;
   cartItems: any;
+  show = false;
+  order = false;
   popup = false;
   press = false;
   popDown = false;
@@ -96,16 +98,17 @@ export class OrderSummaryComponent implements OnInit {
 
 
   onPopup() {
-    if(localStorage.getItem("token")== null){
-      this.dialog.open(LoginComponent, {
-        width: '28%',
-        height : 'auto'
-      });
+    if (this.size >= 1){
+      if(localStorage.getItem("token")== null){
+        this.dialog.open(LoginComponent, {
+          width: '28%',
+          height : 'auto'
+        });
+      }
+      this.popup = true;
+      this.popDown = true;
     }
-    this.popup = true;
-    this.popDown = true;
-    
-
+    this.show = true;
   }
 
   increaseQuantity(index: any) {
@@ -180,14 +183,15 @@ export class OrderSummaryComponent implements OnInit {
   onPress() {
     console.log("data1", this.registerForm.value);
     this.token = localStorage.getItem('token');
-    if (this.registerForm.valid)
+    if (this.registerForm.valid){ 
       this.customerDetailsService.addDetails(this.registerForm.value, this.token).subscribe((response: any) => {
         console.log("data", this.registerForm.value);
         console.log("response", response);
       }
       )
     this.press = true;
-
+    }
+    this.order = true;
   }
 
   userId: Number = 1;
