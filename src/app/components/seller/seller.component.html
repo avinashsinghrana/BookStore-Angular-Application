@@ -25,7 +25,7 @@
       </mat-card>
       <span class="spanClass"></span>
       <!-- user profile pic --> 
-      <button mat-mini-fab class ="imageSelect" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'45px','height':'45px'}"
+      <button mat-mini-fab class ="imageSelect"  [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'45px','height':'45px'}"
       [matMenuTriggerFor]="menu1" colour="basic" matTooltip="Seller Account"
       [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
      </button>
@@ -34,10 +34,10 @@
       [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
     </button-->
   
-    <mat-menu id="profile" #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
-      <div class="backgroundimage" fxLayoutAlign="center center"  >
-        <button (click)="$event.stopPropagation()" id="profileImage"
-          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'initials','width':'120px','height':'120px'}"
+    <mat-menu  #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
+      <div class="backgroundimage"  fxLayoutAlign="center center"  >
+        <button (click)="$event.stopPropagation()" 
+          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'120px','height':'120px'}"
           (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
           <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
         </button>

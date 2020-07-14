@@ -5,9 +5,10 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
-import { MatRadioChange } from '@angular/material';
+import { MatRadioChange, MatDialog } from '@angular/material';
 import { NgxSpinnerService } from "ngx-spinner";
 import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { LoginComponent } from '../login/login.component';
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit {
     public userService: UserService,
     private snackbar: MatSnackBar,
     private spinner: NgxSpinnerService,
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<RegisterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -92,7 +94,6 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.showSpinner=true;
-    this.dialogRef.close();
     var reqbody = {
       fullName: this.fullName.value,
       mobileNumber: this.mobileNumber.value,
@@ -108,6 +109,11 @@ export class RegisterComponent implements OnInit {
         this.response = data;
         this.spinner.hide();
         this.snackbar.open('User registered Successfully! A verification link is send to registered emailid','ok',{duration:5000});
+        this.dialogRef.close();
+        this.dialog.open(LoginComponent, {
+          width: '28%',
+          height : 'auto'
+        });
       },
       err => {
         console.log(err);

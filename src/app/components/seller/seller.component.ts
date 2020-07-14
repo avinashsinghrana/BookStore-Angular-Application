@@ -48,8 +48,9 @@ export class SellerComponent implements OnInit {
       this.username = localStorage.getItem("name");
       if(this.img==null){
         this.isProfile = false;
-        const intials =  this.username.split(' ').map(name => name[0]).join('').toUpperCase();
-        document.getElementById('profileImage').innerHTML = intials;
+       // const intials =  this.username.split(' ').map(name => name[0]).join('').toUpperCase();
+        const intials = this.username.substring(0,1);
+       document.getElementById('profileImage').innerHTML = intials;
        // document.getElementById('profileInnerImage').innerHTML = intials;
       }
     } else {

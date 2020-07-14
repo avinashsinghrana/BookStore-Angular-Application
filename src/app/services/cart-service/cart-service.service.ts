@@ -10,7 +10,7 @@ export class CartServiceService {
   constructor(private httpService: HttpService) { }
 
 
-  getBookCart() {
+  getBookCart(): Observable<any> {
     return this.httpService.getBooksCart('http://localhost:8081/user/getAllFromCart');
   }
 

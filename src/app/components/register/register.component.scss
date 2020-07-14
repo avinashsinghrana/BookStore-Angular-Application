@@ -31,6 +31,9 @@
     margin-top: -1%;
     margin-bottom: -1%;
     width: 100%;
+    border: none;
+    border-color: white;
+    box-shadow: none
     //height: 100%;
     //box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.459);
     //border-radius: 2%;
@@ -114,7 +117,7 @@
     margin-bottom: -5%;
     font-weight: bold;
     font-size: 120%;
-    color: white;
+    background-color:  #a03037;;
   }
  /* .mat-raised-button.mat-primary {
     background-color: #A03037;

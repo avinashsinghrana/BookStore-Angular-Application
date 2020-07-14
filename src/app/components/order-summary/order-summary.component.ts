@@ -15,6 +15,7 @@ import { MessageService } from 'src/app/services/message.service';
   styleUrls: ['./order-summary.component.scss']
 })
 export class OrderSummaryComponent implements OnInit {
+  books = [];
   registerForm: FormGroup;
   cartItems: any;
   popup = false;
@@ -23,7 +24,7 @@ export class OrderSummaryComponent implements OnInit {
   size: any;
   sortTerm: any;
   actualPrice: Number;
-  books: any;
+ // books: any;
   person: String;
   token: string;
   cartQuantity: any;
@@ -43,7 +44,7 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllBookCart()
+   // this.getAllBookCart()
     
       this.isEmpty = true;
     
@@ -53,6 +54,11 @@ export class OrderSummaryComponent implements OnInit {
       this.cartPrice = message.price,console.log("geeth",this.cartPrice),
         this.cartQuantity = 1});
         
+    this.messageService.changeCartBook();
+    this.messageService.currentBooksInCart.subscribe((data) => {
+      console.log("data",data);
+      this.onDisplayBooks(data);
+    });
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.pattern("^[A-Z][a-z]+\\s?[A-Z][a-z]+$")]],
       phoneNumber: ['', [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]],
@@ -64,15 +70,28 @@ export class OrderSummaryComponent implements OnInit {
       locationType: new FormControl(this.person)
     })
     
+  //  this.getAllBookCart()
   }
 
-  getAllBookCart() {
+ /* getAllBookCart() {
     this.cartService.getBookCart().subscribe((response: any) => {
       this.books = response;
       this.size = response.length;
       console.log("getallbook",response);
 
     });
+  }*/
+  onDisplayBooks(data) {
+    console.log(data);
+    this.books = data;
+    this.size = data.length;
+  /*  if (data.status === 200) {
+      this.size = data.length;
+      data.forEach((bookData) => {
+      this.books.push(bookData);
+        
+      });*/
+   // }
   }
 
 
@@ -104,7 +123,7 @@ export class OrderSummaryComponent implements OnInit {
 
 
 
-    this.getAllBookCart();
+   // this.getAllBookCart();
     // this.quantity++;
     /*  var price=this.books[index].totalPrice;
      this.books[index].totalPrice =  this.books[index].totalprice+price; */
@@ -125,7 +144,7 @@ export class OrderSummaryComponent implements OnInit {
         console.log("response=", response);
       })
 
-      this.getAllBookCart();
+     // this.getAllBookCart();
       //var price = this.books[index].totalPrice;
       // this.books[index].totalPrice = this.books[index].totalprice - this.priceList[index];
 
@@ -150,6 +169,8 @@ export class OrderSummaryComponent implements OnInit {
      size--;
      sessionStorage.setItem('size', size);
     //  this.getAllBookCart();
+   //  this.getAllBookCart();
+      this.messageService.changeCartBook();
       console.log("Book id",this.books[index].book_id);
       console.log("response", response);
     })
@@ -176,7 +197,7 @@ export class OrderSummaryComponent implements OnInit {
     this.cartService.removeAll().subscribe((response: any) => {
        console.log("response", response);
        sessionStorage.clear();
-       this.getAllBookCart();
+     //  this.getAllBookCart();
        this.router.navigate(['/order-confirmation']);
     })
   }
