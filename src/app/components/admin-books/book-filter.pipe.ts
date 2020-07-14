@@ -10,7 +10,8 @@ export class BookFilterPipe implements PipeTransform {
             return books;
         }
 
-        return books.filter(book =>
-            book.bookName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
+        return books.filter(book =>{
+            book.bookName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+        });
     }
 }

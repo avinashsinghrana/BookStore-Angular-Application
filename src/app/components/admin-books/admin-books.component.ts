@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { SellerService } from "../../services/seller.service";
 import { MessageService } from "../../services/message.service";
@@ -23,7 +24,8 @@ export class AdminBooksComponent implements OnInit {
     private messageService: MessageService,
     private snackBar: MatSnackBar,
     private data: MessageService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService : UserService
   ) {}
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class AdminBooksComponent implements OnInit {
     });
     this.messageService.currentEvent$.subscribe(message =>
       { this.searchTerm = message});
+      this.getAllBooks();
   }
   onBookDetail(event) {
     event.stopPropagation();
@@ -49,6 +52,7 @@ export class AdminBooksComponent implements OnInit {
       (data) => {
         if (data.status === 200) {
           this.messageService.changeBooks();
+          this.ngOnInit();
           this.snackBar.open("Book approved successfully", 'ok', {
             duration: 2000,
           });
@@ -73,6 +77,16 @@ export class AdminBooksComponent implements OnInit {
     }
   }
 
+bookList : [];
+getAllBooks() {
+  this.userService.getAllBooks().subscribe((Response: any) => {
+  //    this.unVerifiedBooks = Response.obj;
+ 
+  console.log(Response);
+  this.bookList = Response.data;
+  this.size = Response.data.length;
+  })
+}
   onDisapproval(bookId) {
     console.log(bookId);
     this.vendorService.deleteBooks(bookId).subscribe(

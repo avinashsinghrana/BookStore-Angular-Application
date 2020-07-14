@@ -49,7 +49,7 @@ export class AdminComponent implements OnInit {
    
     bookList : [];
     unverifiedBooks() {
-      this.userService.getAllUnverifiedBooks(localStorage.getItem('token')).subscribe((Response: any) => {
+      this.userService.getAllBooks().subscribe((Response: any) => {
       //     this.unVerifiedBooks = Response.obj;
       console.log(Response);
       this.bookList = Response.data;

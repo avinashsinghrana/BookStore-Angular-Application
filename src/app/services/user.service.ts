@@ -19,8 +19,8 @@ export class UserService {
     return this.service.postUser(body, environment.registrationPath);
   }
 
-  getAllUnverifiedBooks(token: string) {
-    return this.service.http.get('http://localhost:8081/admin/getBooksForVerification/',{headers: new HttpHeaders().set("token", localStorage.getItem("token"))});
+  getAllBooks() {
+    return this.service.http.get('http://localhost:8081/user/getallBooks');
   }
 
   disApproveBooks(bookId){
