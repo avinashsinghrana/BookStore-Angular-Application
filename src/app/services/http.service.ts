@@ -106,4 +106,12 @@ export class HttpService {
   clearCart(url :any) {
     return this.http.delete(url);
   }
+
+  addItem(url) {
+    var httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+    // set header in your http request
+    return this.http.post(this.apiBaseurl + url, httpOptions);
+  }
 }

@@ -26,6 +26,10 @@ export class CartServiceService {
     return this.httpService.removeAllItemsCart('/user/removeAllFromCart/' + book_id);
   }
 
+  addIteams(book_id, quantity) {
+    return this.httpService.addItem('/user/addItems/' + book_id + "/" + quantity);
+  }
+
   removeAll() {
     return this.httpService.clearCart('http://localhost:8081/user/removeAll');
   }
