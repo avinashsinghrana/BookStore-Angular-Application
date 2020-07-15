@@ -17,7 +17,7 @@ export class SellerService {
   private uploadBookProfileApi = 'users/uploadImage';
   private approveBookApi = '/admin/bookVerification';
   private displayAllBookApi = '/admin/getBooksForVerification';
-  private getBookApi = '/user/getallBooks';
+  private getBookApi = '/user/getAllVerifiedBooks';
 
   constructor(private http: HttpClient, private service: HttpService) {}
   addBook(body: any): Observable<any> {

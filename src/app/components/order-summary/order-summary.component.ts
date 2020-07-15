@@ -7,6 +7,7 @@ import { Book } from '../../models/book.model';
 import { MatRadioChange, MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { MessageService } from 'src/app/services/message.service';
+import { AddBookComponent } from '../add-book/add-book.component';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class OrderSummaryComponent implements OnInit {
   books = [];
+  myBooks = [];
   registerForm: FormGroup;
   cartItems: any;
   show = false;
@@ -33,13 +35,13 @@ export class OrderSummaryComponent implements OnInit {
   cartPrice: any;
   itemQuantity: any;
   isEmpty: any;
-
+  isAvailable: any;
   constructor(public formBuilder: FormBuilder,
     private dialog: MatDialog,
     private customerDetailsService: CustomerDetailsService,
     private cartService: CartServiceService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) {
 
 
@@ -49,10 +51,11 @@ export class OrderSummaryComponent implements OnInit {
    // this.getAllBookCart()
     
       this.isEmpty = true;
-    
+      this.isAvailable = true;
     // this.cartPrice = this.books.totalPrice
     this.messageService.currentCart$.subscribe(message =>
-      { console.log("ravi",message), this.isEmpty = false,this.itemQuantity = message.quantity,
+      { //this.myBooks.push(message)
+        console.log("ravi",message), this.isEmpty = false,this.itemQuantity = message.quantity,
       this.cartPrice = message.price,console.log("geeth",this.cartPrice),
         this.cartQuantity = 1});
         
@@ -112,6 +115,11 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   onQuantity(bookId: any ,event: any){
+    this.myBooks.forEach((bookData) => {
+      console.log('book data ',bookData);
+      if(bookData.bookId==bookId && event.data>=bookData.quantity){
+        this.isAvailable = false;
+      }})
     console.log("index",bookId);
     console.log("event",event.data);
     this.cartService.addIteams(bookId, event.data).subscribe((response: any) => {
@@ -134,8 +142,6 @@ export class OrderSummaryComponent implements OnInit {
     this.cartService.addBooks(bookId).subscribe((response: any) => {
       this.cartQuantity = response.data.quantity;
       this.cartPrice = response.data.totalPrice;
-      // this.size = response.length;
-     console.log("increase qnt",this.cartService.getBookCart());
      this.messageService.changeCartBook();
       // window.location.reload();
       // console.log("response", response);
@@ -183,8 +189,9 @@ export class OrderSummaryComponent implements OnInit {
      sessionStorage.removeItem(bookId);
      let size: any =  sessionStorage.getItem('size');
      size--;
+     if(size>=0){
      sessionStorage.setItem('size', size);
-      
+     }
       console.log("Book id",bookId);
       console.log("response", response);
       

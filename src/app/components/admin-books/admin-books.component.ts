@@ -29,6 +29,7 @@ export class AdminBooksComponent implements OnInit {
 
   ngOnInit() {
     // this.sortTerm = 'none';
+    this.messageService.changeMessages();
     this.messageService.currentBooks.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
