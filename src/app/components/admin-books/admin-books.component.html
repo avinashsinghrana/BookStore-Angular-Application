@@ -111,6 +111,7 @@
           </div>
           <div fxLayout="row" fxLayoutAlign="space-between">
             <button
+              *ngIf="book.verfied === false && book.isDisApproved == false"
               class="delete-button"
               mat-raised-button
               fxLayoutAlign="center"
@@ -118,6 +119,17 @@
               (click)="onDisapproval(book.bookId)"
             >
               Disapprove
+            </button>
+
+            <button
+              *ngIf="book.verfied === false && book.isDisApproved == true"
+              class="delete-button"
+              mat-raised-button
+              fxLayoutAlign="center"
+              [disableRipple]="true"
+              (click)="onDisapproval(book.bookId)"
+            >
+              Disapproved
             </button>
 
             <button

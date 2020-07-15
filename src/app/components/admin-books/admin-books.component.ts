@@ -87,11 +87,12 @@ export class AdminBooksComponent implements OnInit {
       this.size = Response.data.length;
     });
   }
+
   onDisapproval(bookId) {
-    console.log(bookId);
-    this.vendorService.deleteBooks(bookId).subscribe(
+    this.vendorService.ondisapprove(bookId).subscribe(
       (data) => {
         this.messageService.changeBooks();
+        this.ngOnInit();
         this.snackBar.open('Book disapproved successfully', 'ok', {
           duration: 2000,
         });
@@ -103,4 +104,21 @@ export class AdminBooksComponent implements OnInit {
       }
     );
   }
+
+  // onDisapproval(bookId) {
+  //   console.log(bookId);
+  //   this.vendorService.deleteBooks(bookId).subscribe(
+  //     (data) => {
+  //       this.messageService.changeBooks();
+  //       this.snackBar.open('Book disapproved successfully', 'ok', {
+  //         duration: 2000,
+  //       });
+  //     },
+  //     (error: any) => {
+  //       this.snackBar.open('Failed to disapproved book', 'ok', {
+  //         duration: 2000,
+  //       });
+  //     }
+  //   );
+  // }
 }
