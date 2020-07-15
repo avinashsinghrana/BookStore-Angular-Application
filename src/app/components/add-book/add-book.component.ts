@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, PatternValidator } from '@angular/forms';
 import { SellerService } from "../../services/seller.service";
 import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MessageService } from "../../services/message.service";
@@ -38,7 +38,7 @@ export class AddBookComponent implements OnInit {
   ) {}
 
   bookForm = new FormGroup({
-    bookName: new FormControl('', Validators.required),
+    bookName: new FormControl('', [Validators.required,]),
     authorName: new FormControl('', Validators.required),
     price: new FormControl('', [Validators.min(1), Validators.required]),
     quantity: new FormControl('', [Validators.min(1), Validators.required]),

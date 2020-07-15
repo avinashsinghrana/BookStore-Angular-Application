@@ -42,16 +42,11 @@
           <span class="input-price-span">Rs. {{ book.price }}</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
-          <button *ngIf="value[book.bookId] != book.bookId" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book)">
+          <button *ngIf="value[book.bookId] != book.bookId && book.quantity > 0" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book)">
             Add to cart
           </button>
-          <!-- <button class="delete-button" 
-            mat-raised-button fxLayoutAlign="center"
-           [ngClass]="{'btn btn-danger':book.add, 'btn btn-success':!book.add}" 
-           (click)="onAddBook(book)"> {{book.add ? 'Added To Bag':'Add To Bag'}}
-          </button> -->
           <button
-            *ngIf="value[book.bookId] != book.bookId"
+            *ngIf="value[book.bookId] != book.bookId && book.quantity > 0"
             class="update-button"
             mat-raised-button
             fxLayoutAlign="center"
@@ -62,7 +57,7 @@
           </button>
   
         </div>
-        <div *ngIf="value[book.bookId] == book.bookId">
+        <div *ngIf="value[book.bookId] == book.bookId || book.quantity <= 0">
           <button   style="
           height: 32px;
           width: 100%;
@@ -75,6 +70,21 @@
        [disabled] = "value[book.bookId] == book.bookId" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
             Added to cart
           </button>
+        </div>
+        <div *ngIf="book.quantity <= 0">
+          <div   style="
+          height: 32px;
+          width: 100%;
+          margin-top: -200px;
+          background-color: white;
+          border-radius: 2px;
+          color:black;
+          text-align: center;
+          opacity: 90%;
+        "
+          >
+            Out Of Stock
+        </div>
         </div>
       </div>
     </mat-card>

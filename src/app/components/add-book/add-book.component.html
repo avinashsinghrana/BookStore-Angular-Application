@@ -13,10 +13,12 @@
               placeholder="Book Name"
               formControlName="bookName"
               autocomplete="off"
+              pattern="[a-zA-Z\s]{3,}"
             />
             <mat-error *ngIf="bookForm.get('bookName').hasError('required')">
-              Book name is required</mat-error
-            >
+              Book name is required</mat-error>
+              <mat-error *ngIf="bookForm.get('bookName').hasError('pattern')">
+                Plz enter valid book name</mat-error >
           </mat-form-field>
           <mat-form-field appearance="outline" class="authorInput">
             <mat-label>Author</mat-label>
@@ -26,10 +28,12 @@
               placeholder="Author Name"
               formControlName="authorName"
               autocomplete="off"
+              pattern="^[A-Z][a-z\s]{2,}"
             />
             <mat-error *ngIf="bookForm.get('authorName').hasError('required')">
-              Book author name is required</mat-error
-            >
+              Book author name is required</mat-error>
+             <mat-error *ngIf="bookForm.get('authorName').hasError('pattern')">
+               Plz enter valid author name</mat-error>
           </mat-form-field>
         </div>
         <div fxLayoutAlign="space-between center">
@@ -45,11 +49,9 @@
               formControlName="price"
             />
             <mat-error *ngIf="bookForm.get('price').hasError('min')"
-              >Amount should not be less than zero</mat-error
-            >
+              >Amount should not be less than zero</mat-error>
             <mat-error *ngIf="bookForm.get('price').hasError('required')"
-              >Book price is required</mat-error
-            >
+              >Book price is required</mat-error>
             <span matPrefix>₹&nbsp;</span>
           </mat-form-field>
           <mat-form-field appearance="outline" class="quantityInput">
@@ -62,13 +64,14 @@
               min="1"
               autocomplete="off"
               formControlName="quantity"
+              pattern="^[1-9][0,9]{0,}"
             />
-            <mat-error *ngIf="bookForm.get('quantity').hasError('min')"
-              >Amount should not be less than zero</mat-error
-            >
+            <!--mat-error *ngIf="bookForm.get('quantity').hasError('min')"
+              >Quantity should not be less than zero</mat-error-->
             <mat-error *ngIf="bookForm.get('quantity').hasError('required')"
-              >Book quantity is required</mat-error
-            >
+              >Book quantity is required</mat-error>
+              <mat-error *ngIf="bookForm.get('quantity').hasError('pattern')"
+              >Plz enter valid quantity</mat-error>
           </mat-form-field>
         </div>
         <mat-form-field appearance="outline">
@@ -80,10 +83,12 @@
             style="overflow: hidden;"
             formControlName="description"
             autocomplete="off"
+            pattern="[a-zA-Z\s]{3,}"
           ></textarea>
           <mat-error *ngIf="bookForm.get('description').hasError('required')"
-            >Book description is required</mat-error
-          >
+            >Book description is required</mat-error>
+            <mat-error *ngIf="bookForm.get('description').hasError('pattern')"
+            >Plz enter valid book description</mat-error>
         </mat-form-field>
         <div fxLayout="column">
           <input

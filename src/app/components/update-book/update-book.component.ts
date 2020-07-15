@@ -4,6 +4,7 @@ import { SellerService } from "../../services/seller.service";
 import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { MessageService } from "../../services/message.service";
 import { Book } from 'src/app/model/book.model';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-update-book',
@@ -29,17 +30,27 @@ export class UpdateBookComponent implements OnInit {
   ) {}
 
   bookForm = new FormGroup({
-    bookName: new FormControl(''),
-    authorName: new FormControl(''),
-    price: new FormControl(''),
-    quantity: new FormControl(''),
-    description: new FormControl(''),
+    bookName: new FormControl('',Validators.pattern("[a-zA-Z\s]{3,}")),
+    authorName: new FormControl('',Validators.pattern("^[A-Z][a-z\s]{2,}")),
+    price: new FormControl('',Validators.min(0)),
+    quantity: new FormControl('',Validators.pattern("^[1-9][0,9]{0,}")),
+    description: new FormControl('',Validators.pattern("[a-zA-Z\s]{3,}")),
   });
   ngOnInit() {}
   validate(){
     if( this.bookForm.value.bookName != '' || this.bookForm.value.authorName != '' || this.bookForm.value.price
-         != '' || this.bookForm.value.quantity != '' || this.bookForm.value.description != ''){
-      return "false";
+         != NONE_TYPE || this.bookForm.value.quantity != NONE_TYPE || this.bookForm.value.description != ''){
+           if(this.bookForm.get('bookName').hasError('pattern'))
+               return "true";
+           if(this.bookForm.get('authorName').hasError('pattern'))
+               return "true";
+           if(this.bookForm.get('price').hasError('min'))
+               return "true";
+           if(this.bookForm.get('quantity').hasError('pattern'))
+               return "true";
+           if(this.bookForm.get('description').hasError('pattern'))
+               return "true";
+               return "false";
     }
     return "true";
   }

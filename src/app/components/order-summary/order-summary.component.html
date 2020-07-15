@@ -29,7 +29,7 @@
 <mat-card class="place-book">
   <p>My cart({{size}})</p>
 
-  <div *ngFor="let book of books; let i = index">
+  <div *ngFor="let book of books">
     <mat-card>
       <mat-card-title
         ><img
@@ -53,8 +53,8 @@
         <div class="quantity">
           <button
             mat-icon-button
-            (click)="decreaseQuantity(i)"
-            [disabled]="getQuantitiy(i) "
+            (click)="decreaseQuantity(book.book_id)"
+            [disabled]="getQuantitiy(book.book_id) "
           >
             <mat-icon class="material-icons-outlined"
               >remove_circle_outline</mat-icon
@@ -63,10 +63,11 @@
           <input
             style="text-align: center;"
             type="text"
+            (input)="onQuantity(book.book_id,$event)"
             class="quantity-holder"
             [(ngModel)]="book.quantity"
           />
-          <button mat-icon-button (click)="increaseQuantity(i)">
+          <button mat-icon-button (click)="increaseQuantity(book.book_id)">
             <mat-icon class="material-icons-outlined"
               >add_circle_outline</mat-icon
             >
@@ -74,7 +75,7 @@
           <button
             mat-flat-button
             class="remove-button"
-            (click)="removeAllItemsCart(i)"
+            (click)="removeAllItemsCart(book.book_id)"
           >
             Remove
           </button>
@@ -231,8 +232,7 @@
 
   <div *ngFor="let book of books">
     <br>
-    <mat-card>
-      <mat-card-title matTooltip="Book Image"
+      <mat-card-title
         ><img
           src="{{ book.imgUrl }}"
           style="
@@ -246,13 +246,12 @@
         />
       </mat-card-title>
       <mat-card-content>
-        <div class="mat-content1">
-          <p class="book-names3">{{ book.name }}</p>
-          <p class="book-names4">{{ book.author }}</p>
-          <p class="book-names5">Rs.{{ book.totalPrice }}</p>
+        <div class="mat-content">
+          <p class="book-names">{{ book.name }}</p>
+          <p class="book-names1">By {{ book.author }}</p>
+          <p class="book-names2">Rs.{{ book.totalPrice }}</p>
         </div>
       </mat-card-content>
-    </mat-card>
   </div>
   <button
     mat-flat-button

@@ -111,15 +111,32 @@ export class OrderSummaryComponent implements OnInit {
     this.show = true;
   }
 
-  increaseQuantity(index: any) {
+  onQuantity(bookId: any ,event: any){
+    console.log("index",bookId);
+    console.log("event",event.data);
+    this.cartService.addIteams(bookId, event.data).subscribe((response: any) => {
+      // this.size = response.length;
+
+    //  this.cartService.getBookCart();
+     this.messageService.changeCartBook();
+      
+      // window.location.reload();
+      // console.log("response", response);
+    })
+
+
+  }
+
+
+  increaseQuantity(bookId: any) {
 
     // this.books[index].quantity++;
-    this.cartService.addBooks(this.books[index].book_id).subscribe((response: any) => {
+    this.cartService.addBooks(bookId).subscribe((response: any) => {
       this.cartQuantity = response.data.quantity;
       this.cartPrice = response.data.totalPrice;
       // this.size = response.length;
      console.log("increase qnt",this.cartService.getBookCart());
-      
+     this.messageService.changeCartBook();
       // window.location.reload();
       // console.log("response", response);
     })
@@ -134,27 +151,23 @@ export class OrderSummaryComponent implements OnInit {
   }
 
 
-  decreaseQuantity(index: any) {
+  decreaseQuantity(bookId: any) {
 
-    // this.books[index].quantity--;
-    //this.quantity--;
-    if (this.books[index].quantity > 0) {
-      this.cartService.removeItem(this.books[index].book_id).subscribe((response: any) => {
+    
+    console.log("id", bookId);
+    
+      this.cartService.removeItem(bookId).subscribe((response: any) => {
         this.cartQuantity = response.data.quantity;
         this.cartPrice = response.data.totalPrice;
         this.cartService.getBookCart();
-        // window.location.reload();
+        this.messageService.changeCartBook();
         console.log("response=", response);
       })
 
-     // this.getAllBookCart();
-      //var price = this.books[index].totalPrice;
-      // this.books[index].totalPrice = this.books[index].totalprice - this.priceList[index];
-
-    }
+    
   }
 
-  getQuantitiy(index: any): boolean{
+  getQuantitiy(bookId: any): boolean{
     if(this.cartQuantity<1){
       return true;
     }
@@ -163,21 +176,20 @@ export class OrderSummaryComponent implements OnInit {
   }
 
 
-  removeAllItemsCart(index: any) {
-    this.cartService.removeBookById(this.books[index].book_id).subscribe((response: any) => {
-      window.location.reload();
-     sessionStorage.removeItem(this.books[index].book_id);
-     this.cartService.getBookCart();
+  removeAllItemsCart(bookId: any) {
+    this.messageService.changeCartBook();
+    this.cartService.removeBookById(bookId).subscribe((response: any) => {
+     window.location.reload();
+     sessionStorage.removeItem(bookId);
      let size: any =  sessionStorage.getItem('size');
      size--;
      sessionStorage.setItem('size', size);
-    //  this.getAllBookCart();
-   //  this.getAllBookCart();
-      this.messageService.changeCartBook();
-      console.log("Book id",this.books[index].book_id);
+      
+      console.log("Book id",bookId);
       console.log("response", response);
+      
     })
-   // this.getAllBookCart();
+    this.messageService.changeCartBook();
   }
 
   onPress() {
