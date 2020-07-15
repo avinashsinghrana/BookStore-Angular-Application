@@ -54,7 +54,7 @@
           <button
             mat-icon-button
             (click)="decreaseQuantity(book.book_id)"
-            [disabled]="getQuantitiy(book.book_id) "
+            [disabled]="book.quantity == 1"
           >
             <mat-icon class="material-icons-outlined"
               >remove_circle_outline</mat-icon
@@ -63,11 +63,11 @@
           <input
             style="text-align: center;"
             type="text"
-            (input)="onQuantity(book.book_id,$event)"
+            (input)="onQuantity(book,$event)"
             class="quantity-holder"
             [(ngModel)]="book.quantity"
           />
-          <button mat-icon-button (click)="increaseQuantity(book.book_id)"  [disabled]=!isAvailable>
+          <button mat-icon-button (click)="increaseQuantity(book.book_id)"  [disabled]="book.maxQuantity <= book.quantity">
             <mat-icon class="material-icons-outlined"
               >add_circle_outline</mat-icon
             >

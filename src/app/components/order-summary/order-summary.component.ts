@@ -114,15 +114,14 @@ export class OrderSummaryComponent implements OnInit {
     this.show = true;
   }
 
-  onQuantity(bookId: any ,event: any){
-    this.myBooks.forEach((bookData) => {
-      console.log('book data ',bookData);
-      if(bookData.bookId==bookId && event.data>=bookData.quantity){
+  onQuantity(book: any ,event: any){
+   
+      if(event.data>=book.maxQuantity){
         this.isAvailable = false;
-      }})
-    console.log("index",bookId);
+      }
+    console.log("index",book.book_id);
     console.log("event",event.data);
-    this.cartService.addIteams(bookId, event.data).subscribe((response: any) => {
+    this.cartService.addIteams(book.book_id, event.data).subscribe((response: any) => {
       // this.size = response.length;
 
     //  this.cartService.getBookCart();
@@ -138,6 +137,7 @@ export class OrderSummaryComponent implements OnInit {
 
   increaseQuantity(bookId: any) {
 
+    
     // this.books[index].quantity++;
     this.cartService.addBooks(bookId).subscribe((response: any) => {
       this.cartQuantity = response.data.quantity;

@@ -57,7 +57,7 @@
           </button>
   
         </div>
-        <div *ngIf="value[book.bookId] == book.bookId || book.quantity <= 0">
+        <div *ngIf="value[book.bookId] == book.bookId">
           <button   style="
           height: 32px;
           width: 100%;
@@ -75,7 +75,7 @@
           <div   style="
           height: 32px;
           width: 100%;
-          margin-top: -200px;
+          margin-top: -160px;
           background-color: white;
           border-radius: 2px;
           color:black;
@@ -85,6 +85,21 @@
           >
             Out Of Stock
         </div>
+        </div>
+        <div *ngIf="book.quantity <= 0">
+          <button   style="
+          height: 32px;
+          width: 100%;
+          margin-top: 3%;
+          border-radius: 2px;
+          color: black;
+          text-align: center;
+          border-color: black;
+        "
+        mat-button
+       [disabled] = "book.quantity <= 0"  mat-raised-button fxLayoutAlign="center" [disableRipple]="true">
+            Out Of Stock
+          </button>
         </div>
       </div>
     </mat-card>

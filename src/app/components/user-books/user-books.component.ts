@@ -88,8 +88,8 @@ export class UserBooksComponent implements OnInit {
       console.log(message);
       sessionStorage.setItem(book.bookId, book.bookId);
       this.value[book.bookId] = book.bookId;
-      this.data.changeItem(message.data);
-      sessionStorage.setItem('size', message.data);
+      this.data.changeItem(message.size);
+      sessionStorage.setItem('size', message.size);
       this.snackBar.open("Book Added to Bag SuccessFully", "OK", {
         duration: 4000,
       });
