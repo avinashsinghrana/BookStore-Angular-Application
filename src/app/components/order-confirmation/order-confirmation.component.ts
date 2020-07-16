@@ -20,8 +20,6 @@ export class OrderConfirmationComponent implements OnInit {
   getOrderId(){
       this.ordercinfirmation.fetchOrderId().subscribe((response:any) => {
         this.orderId = response;
-        console.log("id", response)
-
-      });
+     });
   }
 }
