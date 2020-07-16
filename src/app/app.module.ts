@@ -14,7 +14,15 @@ import { DisplayBookComponent } from './components/display-book/display-book.com
 import { UserService } from './services/user.service';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatInputModule, MatIconModule, MatButtonModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatInputModule,
+  MatIconModule,
+  MatButtonModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+} from '@angular/material';
 import { SellerService } from './services/seller.service';
 import { MessageService } from './services/message.service';
 import { AuthguardService } from './services/authguard.service';
@@ -27,19 +35,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { AppMaterial } from "./app.material.module";
+import { AppMaterial } from './app.material.module';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RegisterComponent } from './components/register/register.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 //import { DashboardComponent } from './dashboard/dashboard.component';
 //import { DashboardComponent } from './components/dashboard/dashboard.component';
 //import { DisplaybooksComponent } from './components/displaybooks/displaybooks.component';
 //import { BookSearchPipe } from './pipe/book-search.pipe';
-import { NgxSpinnerModule } from "ngx-spinner";
-import { NgxPaginationModule } from "ngx-pagination";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule } from 'ngx-pagination';
 //import { UserBooksComponent } from './components/user-books/user-books.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
@@ -50,25 +57,25 @@ import { BookFilterPipe } from './components/display-books/book-filter.pipe';
 import { SortbypricePipe } from './components/user-books/sortbyprice.pipe';
 import { AdminsComponent } from './components/admins/admins.component';
 import { AdminBooksComponent } from './components/admin-books/admin-books.component';
+import { VerifydialogComponent } from './components/verifydialog/verifydialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AdminDashboardComponent,
     AdminComponent,
     AdminsComponent,
     OrderConfirmationComponent,
 
-  //  DashboardComponent,
+    //  DashboardComponent,
     RegisterComponent,
- //   DashboardComponent,
-  //  DisplaybooksComponent,
-  //  BookSearchPipe,
+    //   DashboardComponent,
+    //  DisplaybooksComponent,
+    //  BookSearchPipe,
     SortbypricePipe,
     BookFilterPipe,
-  //  UserBooksComponent,
+    //  UserBooksComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
     SellerComponent,
@@ -79,7 +86,8 @@ import { AdminBooksComponent } from './components/admin-books/admin-books.compon
     UserBooksComponent,
     AdminBooksComponent,
     OrderSummaryComponent,
-    DisplayBookComponent
+    DisplayBookComponent,
+    VerifydialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,9 +115,15 @@ import { AdminBooksComponent } from './components/admin-books/admin-books.compon
     MatSortModule,
     NgxPaginationModule,
     MatPaginatorModule,
-    
   ],
-  providers: [AsyncPipe,UserService,SellerService, MessageService,AuthguardService,AuthserviceService],
-  bootstrap: [AppComponent]
+  providers: [
+    AsyncPipe,
+    UserService,
+    SellerService,
+    MessageService,
+    AuthguardService,
+    AuthserviceService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

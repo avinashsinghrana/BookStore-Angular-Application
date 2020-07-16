@@ -6,7 +6,7 @@
     >
   </div>
 </div>
-<div
+<!-- <div
   class="main-div"
   fxLayoutGap="30px"
   fxLayout.lt-sm="column"
@@ -71,11 +71,11 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div
+<!-- <div
   class="main-div"
-  fxLayoutGap="30px"
+  fxLayoutGap="40px"
   fxLayout.lt-sm="column"
   fxLayout.sm="row wrap"
   fxLayoutAlign.sm="start center"
@@ -134,6 +134,18 @@
 
             <button
               class="update-button"
+              *ngIf="book.verfied === true"
+              mat-raised-button
+              fxLayoutAlign="center"
+              [disableRipple]="true"
+              (click)="onApproval(book.bookId)"
+            >
+              Approved
+            </button>
+
+            <button
+              class="update-button"
+              *ngIf="book.verfied === false"
               mat-raised-button
               fxLayoutAlign="center"
               [disableRipple]="true"
@@ -150,4 +162,100 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<div
+  class="main-div"
+  fxLayoutGap="40px"
+  fxLayout.lt-sm="column"
+  fxLayout.sm="row wrap"
+  fxLayoutAlign.sm="start center"
+  fxLayout.md="row wrap"
+  fxLayoutAlign.md="start center"
+  fxLayoutAlign.lt-sm="center center"
+  fxLayout.lg="row wrap"
+  fxLayoutAlign.lg="start start"
+>
+  <div
+    *ngFor="
+      let book of bookList
+        | bookFilter: searchTerm
+        | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }
+    "
+    style="margin: 0px;"
+    fxLayout="row"
+  >
+    <mat-card>
+      <div class="bookImageDiv" fxLayoutAlign="center">
+        <img src="{{ book.bookImgUrl }}" />
+      </div>
+
+      <div class="bookInfoDiv" fxLayout="column">
+        <div class="input-title">
+          {{ book.bookName }}
+        </div>
+        <div fxlayout="row" class="input-author">by {{ book.authorName }}</div>
+        <div fxlayout="row">
+          <span class="input-price-span">Rs. {{ book.price }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <button
+            class="delete-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            *ngIf="
+              (book.verfied === false && book.isDisApproved == false) ||
+              book.verfied === true
+            "
+            [disableRipple]="true"
+            (click)="onDisapproval(book.bookId)"
+          >
+            DISAPPROVE
+          </button>
+          <button
+            class="delete-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            *ngIf="book.verfied === false && book.isDisApproved == true"
+            [disableRipple]="true"
+            (click)="onDisapproved()"
+          >
+            DISAPPROVED
+          </button>
+          <button
+            class="update-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            *ngIf="book.verfied === false"
+            [disableRipple]="true"
+            (click)="onApproval(book.bookId)"
+          >
+            APPROVE
+          </button>
+          <button
+            class="update-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            *ngIf="book.verfied === true"
+            [disableRipple]="true"
+            (click)="onApproved()"
+          >
+            APPROVED
+          </button>
+        </div>
+      </div>
+    </mat-card>
+    <div class="book-details">
+      <h3 style="text-align: left; margin-top: 0mm;">
+        <strong>Book Details : </strong>
+      </h3>
+      <span style="font-size: medium;">{{ book.bookDetails }}</span>
+    </div>
+  </div>
+</div>
+<div class="paginator">
+  <pagination-controls
+    (pageChange)="page = $event"
+    id="first"
+  ></pagination-controls>
 </div>

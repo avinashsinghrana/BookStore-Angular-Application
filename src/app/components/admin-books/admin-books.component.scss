@@ -86,7 +86,7 @@ img {
 }
 .update-button {
   height: 32px;
-  width: 70px;
+  width: 73px;
   font-size: x-small;
   font-weight: bold;
   background-color: gray;
@@ -210,4 +210,14 @@ mat-card:hover + .book-details {
     padding-bottom: 2%;
     width: 100%;
   }
+}
+.paginator {
+  display: flex;
+  // width: 2%;
+  align-content: center;
+  align-items: center;
+  font-size: 100%;
+  margin-left: 40%;
+  margin-bottom: 3%;
+  // margin-top: 20px;
 }

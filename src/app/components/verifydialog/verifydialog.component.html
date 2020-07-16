@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="matcard2">
+    Are You Sure to {{ status }} Book?
+    <div
+      fxLayout="row wrap"
+      style="justify-content: flex-end;"
+      fxLayoutGap="10px"
+    >
+      <button
+        mat-raised-button
+        (click)="onCancel()"
+        style="background-color: darkgray; color: black;"
+      >
+        <!-- <mat-icon [ngStyle]="{ color: 'red' }">clear</mat-icon> -->
+        cancel
+      </button>
+      <button
+        mat-raised-button
+        (click)="onVerify()"
+        style="background-color: #a03037; color: white;"
+      >
+        <!-- <mat-icon [ngStyle]="{ color: 'green' }">ceck</mat-icon> -->
+        ok
+      </button>
+    </div>
+  </mat-card>
+</div>
