@@ -85,7 +85,8 @@ export class UpdateBookComponent implements OnInit {
     this.vendorService.updateBook(this.book,this.data.bookId).subscribe(
       (data) => {
           console.log("book data response ",data);
-          this.messageService.changeMessage();
+         this.messageService.changeOnDisapproved();
+         this.messageService.changeOnApproved();
       },
       (error) => {
         this.snackBar.open("Failed to update", 'cancel', {

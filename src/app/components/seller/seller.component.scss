@@ -73,8 +73,6 @@
   .mainSellingSpan {
     font-weight: bold;
     font-size: 150%;
-  //  margin-top: 4%;
-  //  margin-bottom: 4%;
   }
   .subSellingSpan {
     font-weight: 500;
@@ -86,14 +84,12 @@
   .mainContainer-lt-md {
     width: 100%;
     height: 35%;
-    //position: fixed;
     margin-top: 50px;
     background-color: #21bae9;
   }
   .mainContainer-lg {
     width: 100%;
     height: 25%;
-   // position: fixed;
     margin-top: 50px;
     background-color: #21bae9;
   }
@@ -106,9 +102,7 @@
   }
   //************
   .imageSelect {
-  // margin-left: 43px;
-  align-items: center;
-   
+  align-items: center; 
   }
   #profile {
     overflow: hidden;

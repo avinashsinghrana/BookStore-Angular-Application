@@ -15,8 +15,10 @@ export class DisplayBooksComponent implements OnInit {
   book: Book[];
   searchTerm: string;
   message: string;
-  //sortTearm: string;
- // searchTerm = localStorage.getItem('searchTerm');
+  status1: boolean = false;
+  status2: boolean = false;
+  status3: boolean = false;
+  isLogin: boolean = false;
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,
@@ -25,20 +27,67 @@ export class DisplayBooksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.messageService.currentMessage.subscribe((data) => {
-      this.books = [];
-      this.onDisplayBooks(data);
-    });
+    this.onNewlyAdded();
+  
+  /* if (localStorage.getItem('token')!=null) {
+    this.isLogin = true;
+   }*/
     this.messageService.currentEvent$.subscribe(message =>
       { this.searchTerm = message});
   }
+  onNewlyAdded(){
+    this.status1 = true;
+    this.status2 = false;
+    this.status3 = false;
+    this.messageService.changeOnNewlyAdded();
+    this.messageService.currentNewlyAdded.subscribe((data) => {
+      this.books = [];
+      console.log('new book',data);
+      this.onDisplayBooks(data);
+    });
+  }
+  onDisapproved(){
+    this.status1 = false;
+    this.status2 = true;
+    this.status3 = false;
+    this.messageService.changeOnDisapproved();
+    this.messageService.currentDisapproved.subscribe((data) => {
+      this.books = [];
+      console.log('disapproved book',data);
+      this.onDisplayBooks(data);
+    });
+  }
+  onApproved(){
+    this.status1 = false;
+    this.status2 = false;
+    this.status3 = true;
+    this.messageService.changeOnApproved();
+    this.messageService.currentApproved.subscribe((data) => {
+      this.books = [];
+      console.log('approved book',data);
+      this.onDisplayBooks(data);
+    });
+
+  }
+  onApprovalRequest(bookId){
+    console.log(bookId);
+    this.vendorService.sendApprovalRequest(bookId).subscribe(
+      (data) => {
+        //  this.messageService.changeMessage();  
+        this.ngOnInit();
+      },
+      (error: any) => {
+        this.snackBar.open("Book Deletion Failed", 'ok', { duration: 2000 });
+      }
+    );
+  }
+
   onBookDetail(event) {
     event.stopPropagation();
   }
  
   onKey(event) {
     this.searchTerm = event;
-   // this.messageService.searchBook(event);
   }
   onUpdateBookForm(book) {
     this.dialog.open(UpdateBookComponent, {
@@ -61,7 +110,8 @@ export class DisplayBooksComponent implements OnInit {
     console.log(bookId);
     this.vendorService.deleteBooks(bookId).subscribe(
       (data) => {
-          this.messageService.changeMessage();  
+        //  this.messageService.changeMessage();  
+        this.ngOnInit();
       },
       (error: any) => {
         this.snackBar.open("Book Deletion Failed", 'ok', { duration: 2000 });

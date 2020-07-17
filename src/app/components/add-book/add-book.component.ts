@@ -76,7 +76,7 @@ export class AddBookComponent implements OnInit {
       (data) => {
         console.log("book data response ",data);
        // if (data.status === 200) {
-          this.messageService.changeMessage();
+          this.messageService.changeOnNewlyAdded();
         /*  this.snackBar.open(data.message, 'ok', {
             duration: 2000,
           });*/

@@ -1,4 +1,17 @@
 
+<div>
+  <mat-toolbar style="width: 100%; height: 8%; background-color: #e99921" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-flat-button (click)="onNewlyAdded()" fxLayout="row"  [ngClass]="status1 ? 'bookNewButton' : 'bookButton'"
+       fxLayoutAlign="end center">Newly Added Books
+      </button>
+    <button mat-flat-button (click)="onDisapproved()"  fxLayout="row" [ngClass]="status2 ? 'bookNewButton' : 'bookButton'"
+     fxLayoutAlign="end center">Disapproved Books
+   </button>
+   <button mat-flat-button (click)="onApproved()" fxLayout="row" [ngClass]="status3 ? 'bookNewButton' : 'bookButton'"
+    fxLayoutAlign="end center">Approved Books
+  </button>
+  </mat-toolbar>
+</div>
 <div
   class="main-div"
   fxLayoutGap="40px"
@@ -41,9 +54,20 @@
             mat-raised-button
             fxLayoutAlign="center"
             [disableRipple]="true"
+            *ngIf="book.isSendForApproval"
             (click)="onUpdateBookForm(book)"
           >
             UPDATE
+          </button>
+          <button
+            class="update-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            *ngIf="!book.isSendForApproval"
+            (click)="onApprovalRequest(book.bookId)"
+          >
+            Approval
           </button>
   
         </div>

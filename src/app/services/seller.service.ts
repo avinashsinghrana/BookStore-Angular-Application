@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class SellerService {
+ 
   private addBookApi = 'sellers/addBook';
   private updateBookApi = '/sellers/updateBook';
   private deleteBookApi = '/sellers/deleteBook';
@@ -18,6 +19,10 @@ export class SellerService {
   private approveBookApi = '/admin/bookVerification';
   private displayAllBookApi = '/admin/getBooksForVerification';
   private getBookApi = '/user/getAllVerifiedBooks';
+  private newlyAddedBookApi = '/sellers/getNewlyAddedBooks';
+  private disapprovedBookApi = '/sellers/getDisapprovedBooks';
+  private approvedBookApi = '/sellers/getApprovedBooks';
+  private sendApprovalApi = '/sellers//sendApprovalRequest'
 
   constructor(private http: HttpClient, private service: HttpService) {}
   addBook(body: any): Observable<any> {
@@ -28,6 +33,32 @@ export class SellerService {
       headers: new HttpHeaders().set('token', localStorage.getItem('stoken')),
     });
   }*/
+
+  sendApprovalRequest(bookId: any): Observable<any> {
+    return this.http.put(
+      environment.baseUrl + this.sendApprovalApi + '/' + bookId,
+      '',
+      {
+        headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      }
+    );
+  }
+
+  displayApprovedBooks(): Observable<any> {
+    return this.http.get(environment.baseUrl + this.approvedBookApi, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
+  }
+  displayDisapprovedBooks(): Observable<any> {
+    return this.http.get(environment.baseUrl + this.disapprovedBookApi, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
+  }
+  displayNewlyAddedBooks(): Observable<any> {
+    return this.http.get(environment.baseUrl + this.newlyAddedBookApi, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
+  }
 
   displayBooks(): Observable<any> {
     return this.http.get(environment.baseUrl + this.displayBookApi, {

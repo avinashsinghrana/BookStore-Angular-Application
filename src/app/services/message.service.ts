@@ -10,14 +10,18 @@ import { CartServiceService } from './cart-service/cart-service.service';
   providedIn: 'root',
 })
 export class MessageService {
-  private messageSource = new BehaviorSubject(Response);
+  private messageOnNewlyAdded = new BehaviorSubject(Response);
+  private messageOnDisapproved = new BehaviorSubject(Response);
+  private messageOnApproved = new BehaviorSubject(Response);
   private messageSources = new BehaviorSubject(Response);
   private cartBookSource = new BehaviorSubject(Response);
   private adminBooks = new BehaviorSubject(Response);
   private eventSource = new Subject<string>();
   private itemSource = new Subject<number>();
   private cartSource = new Subject<any>();
-  currentMessage = this.messageSource.asObservable();
+  currentNewlyAdded = this.messageOnNewlyAdded.asObservable();
+  currentDisapproved = this.messageOnDisapproved.asObservable();
+  currentApproved = this.messageOnApproved.asObservable();
   currentMessages = this.messageSources.asObservable();
   currentBooks = this.adminBooks.asObservable();
   currentEvent$ = this.eventSource.asObservable();
@@ -45,9 +49,19 @@ export class MessageService {
   changeCart(message: any){
     this.cartSource.next(message);
   }
-  changeMessage() {
-    this.vendorService.displayBooks().subscribe((data) => {
-      this.messageSource.next(data);
+  changeOnNewlyAdded() {
+    this.vendorService.displayNewlyAddedBooks().subscribe((data) => {
+      this.messageOnNewlyAdded.next(data);
+    });
+  }
+  changeOnDisapproved() {
+    this.vendorService.displayDisapprovedBooks().subscribe((data) => {
+      this.messageOnDisapproved.next(data);
+    });
+  }
+  changeOnApproved() {
+    this.vendorService.displayApprovedBooks().subscribe((data) => {
+      this.messageOnApproved.next(data);
     });
   }
   changeMessages() {

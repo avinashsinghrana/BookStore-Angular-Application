@@ -224,4 +224,20 @@ mat-card {
       width: 100%;
     }
   }
-  
+  .titleText {
+    margin-left: 12%;
+    color: white;
+  }
+  .spanClass {
+    flex-grow: 0.5;
+  }
+  .bookButton {
+    color: white;
+    background-color: #a03037;
+    border-radius: 2vw;
+  }
+  .bookNewButton{
+    color: white;
+    background-color: #2334cc;
+    border-radius: 2vw
+  }

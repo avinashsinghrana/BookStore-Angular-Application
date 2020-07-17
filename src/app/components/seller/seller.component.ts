@@ -34,7 +34,7 @@ export class SellerComponent implements OnInit {
   ) {}
   
   ngOnInit() {
-    this.messageService.changeMessage();
+    this.messageService.changeOnNewlyAdded();
   /*  if(localStorage.getItem(localStorage.getItem('email'))==null){
      this.isImage = false;
     }
