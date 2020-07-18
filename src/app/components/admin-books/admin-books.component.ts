@@ -1,8 +1,13 @@
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SellerService } from '../../services/seller.service';
 import { MessageService } from '../../services/message.service';
-import { MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
+import {
+  MatSnackBar,
+  MatDialog,
+  MatDialogConfig,
+  MAT_DIALOG_DATA,
+} from '@angular/material';
 import { Book } from 'src/app/models/book.model';
 import { VerifydialogComponent } from '../verifydialog/verifydialog.component';
 
@@ -26,11 +31,15 @@ export class AdminBooksComponent implements OnInit {
     private snackBar: MatSnackBar,
     private data: MessageService,
     private dialog: MatDialog,
-    private userService: UserService
+    private userService: UserService,
+    @Inject(MAT_DIALOG_DATA) public datadialog: any
   ) {}
-
+  seller: any;
   ngOnInit() {
     // this.sortTerm = 'none';
+    console.log(this.datadialog.sellerId);
+    this.seller = this.datadialog.book;
+    this.size = this.datadialog.book.length;
     this.messageService.changeMessages();
     this.messageService.currentBooks.subscribe((data) => {
       this.books = [];
@@ -89,7 +98,7 @@ export class AdminBooksComponent implements OnInit {
   onDisplayBooks(data) {
     console.log(data);
     if (data.status === 200) {
-      this.size = data.data.length;
+      //      this.size = data.data.length;
       data.data.forEach((bookData) => {
         this.books.push(bookData);
       });
@@ -103,7 +112,7 @@ export class AdminBooksComponent implements OnInit {
 
       console.log(Response);
       this.bookList = Response.data;
-      this.size = Response.data.length;
+      //      this.size = Response.data.length;
     });
   }
 

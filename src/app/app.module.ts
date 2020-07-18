@@ -58,6 +58,7 @@ import { SortbypricePipe } from './components/user-books/sortbyprice.pipe';
 import { AdminsComponent } from './components/admins/admins.component';
 import { AdminBooksComponent } from './components/admin-books/admin-books.component';
 import { VerifydialogComponent } from './components/verifydialog/verifydialog.component';
+import { SellersListComponent } from './components/sellers-list/sellers-list.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { VerifydialogComponent } from './components/verifydialog/verifydialog.co
     AdminComponent,
     AdminsComponent,
     OrderConfirmationComponent,
-
+    SellersListComponent,
     //  DashboardComponent,
     RegisterComponent,
     //   DashboardComponent,

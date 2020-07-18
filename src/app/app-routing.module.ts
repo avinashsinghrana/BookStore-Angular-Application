@@ -1,6 +1,6 @@
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 //import {DashboardComponent} from "./dashboard/dashboard.component";
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -22,6 +22,7 @@ import { UserBooksComponent } from './components/user-books/user-books.component
 import { AdminBooksComponent } from './components/admin-books/admin-books.component';
 import { AdminsComponent } from './components/admins/admins.component';
 import { VerifydialogComponent } from './components/verifydialog/verifydialog.component';
+import { SellersListComponent } from './components/sellers-list/sellers-list.component';
 
 const routes: Routes = [
   {
@@ -58,13 +59,17 @@ const routes: Routes = [
   { path: 'addbook', component: AddBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
   {
+    path: 'admin-books',
+    component: AdminBooksComponent,
+  },
+  {
     path: 'adminDashboard',
     component: AdminsComponent,
     children: [
-      { path: '', redirectTo: 'admin-books', pathMatch: 'full' },
+      { path: '', redirectTo: 'seller-list', pathMatch: 'full' },
       {
-        path: 'admin-books',
-        component: AdminBooksComponent,
+        path: 'seller-list',
+        component: SellersListComponent,
       },
     ],
   },
