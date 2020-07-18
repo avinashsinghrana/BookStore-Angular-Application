@@ -86,6 +86,9 @@ export class OrderSummaryComponent implements OnInit {
 
     });
   }*/
+  onShoping(){
+    this.router.navigate(['user-dashboard']);
+  }
   onDisplayBooks(data) {
     console.log(data);
     this.books = data;

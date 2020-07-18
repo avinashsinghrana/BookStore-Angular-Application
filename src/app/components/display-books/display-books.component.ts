@@ -15,6 +15,7 @@ export class DisplayBooksComponent implements OnInit {
   book: Book[];
   searchTerm: string;
   message: string;
+  page: number = 1;
   status1: boolean = false;
   status2: boolean = false;
   status3: boolean = false;
@@ -29,9 +30,9 @@ export class DisplayBooksComponent implements OnInit {
   ngOnInit() {
     this.onNewlyAdded();
   
-  /* if (localStorage.getItem('token')!=null) {
+   if (localStorage.getItem('token')!=null) {
     this.isLogin = true;
-   }*/
+   }
     this.messageService.currentEvent$.subscribe(message =>
       { this.searchTerm = message});
   }

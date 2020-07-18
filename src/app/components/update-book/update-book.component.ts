@@ -13,6 +13,11 @@ import { NONE_TYPE } from '@angular/compiler';
 })
 export class UpdateBookComponent implements OnInit {
   response: any;
+  currentBookName: string = this.data.bookName;
+  currentAuthorName: string = this.data.authorName;
+  currentPrice: number = this.data.price;
+  currentQuantity: number = this.data.quantity;
+  currentBookDetails: string = this.data.bookDetails;
   book = {
     bookName: null,
     authorName: null,

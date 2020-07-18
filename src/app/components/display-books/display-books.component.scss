@@ -241,3 +241,14 @@ mat-card {
     background-color: #2334cc;
     border-radius: 2vw
   }
+  .paginator{
+    display: flex;
+    // width: 2%;
+    align-content: center;
+    align-items: center;
+    font-size: 100%;
+    margin-left: -40%;
+   // margin-bottom: 3%;
+    bottom: 2%;
+    // margin-top: 20px;
+  }

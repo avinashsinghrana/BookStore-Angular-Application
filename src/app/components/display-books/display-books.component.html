@@ -1,5 +1,16 @@
-
-<div>
+<div *ngIf="!isLogin">
+  <marquee behavior="scroll" direction="right" scrollamount="30">
+    <img src="../../../assets/image/viveka.jpg" width="120" height="80" alt="book" />
+    <img src="../../../assets/image/physics.jpg" width="120" height="80" alt="book" />
+    <img src="../../../assets/image/story.png" width="120" height="80" alt="book" />
+    <img src="../../../assets/image/epic.jpg" width="120" height="80" alt="book" />
+    <img src="../../../assets/image/viveka.jpg" width="120" height="80" alt="book" />
+    <img src="../../../assets/image/physics.jpg" width="120" height="80" alt="book" />
+    <img src="../../../assets/image/story.png" width="120" height="80" alt="book" />
+    <img src="../../../assets/image/epic.jpg" width="120" height="80" alt="book" />
+  </marquee>
+</div>
+<div *ngIf="isLogin">
   <mat-toolbar style="width: 100%; height: 8%; background-color: #e99921" fxLayout="row" fxLayoutAlign="space-between center">
       <button mat-flat-button (click)="onNewlyAdded()" fxLayout="row"  [ngClass]="status1 ? 'bookNewButton' : 'bookButton'"
        fxLayoutAlign="end center">Newly Added Books
@@ -13,6 +24,7 @@
   </mat-toolbar>
 </div>
 <div
+ *ngIf="isLogin"
   class="main-div"
   fxLayoutGap="40px"
   fxLayout.lt-sm="column"
@@ -78,4 +90,9 @@
       <span style="font-size: medium;">{{ book.bookDetails }}</span>
     </div>
   </div>
-</div>
+  <!--div class="paginator">
+    <pagination-controls
+      (pageChange)="page = $event"
+      id="first"
+    ></pagination-controls>
+</div-->
