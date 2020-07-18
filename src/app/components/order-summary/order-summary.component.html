@@ -84,7 +84,7 @@
   </div>
 
   <!-- end -->
-  <div *ngIf="!size>0">
+  <div *ngIf="size==0">
     <img src="../../../assets/image/cart.png" width="200" height="200" style="margin-left: 37%;" alt="EmptyCart" />
     <p style="text-align: center; font-weight: bold;">Add some Items in Cart</p>
     <button
@@ -102,7 +102,7 @@
     mat-flat-button
     color="primary"
     class="placeOrder"
-    *ngIf="!popup && size>0"
+    *ngIf="!popup && size!=0"
     (click)="onPopup()"
   >
     PLACE ORDER

@@ -1,5 +1,8 @@
 <div *ngIf="!isLogin">
-  <marquee behavior="scroll" direction="right" scrollamount="30">
+  <marquee behavior="scroll" direction="left" style="font-size: 150%; font-weight: bold;"
+  onmousedown="this.stop();"
+  onmouseup="this.start();">Sell Book Of Any Category</marquee>
+  <marquee behavior="scroll" direction="right" scrollamount="10">
     <img src="../../../assets/image/viveka.jpg" width="120" height="80" alt="book" />
     <img src="../../../assets/image/physics.jpg" width="120" height="80" alt="book" />
     <img src="../../../assets/image/story.png" width="120" height="80" alt="book" />
