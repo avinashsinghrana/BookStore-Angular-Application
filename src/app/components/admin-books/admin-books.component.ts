@@ -34,12 +34,8 @@ export class AdminBooksComponent implements OnInit {
     private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public datadialog: any
   ) {}
-  seller: any;
+  seller: [];
   ngOnInit() {
-    // this.sortTerm = 'none';
-    console.log(this.datadialog.sellerId);
-    this.seller = this.datadialog.book;
-    this.size = this.datadialog.book.length;
     this.messageService.changeMessages();
     this.messageService.currentBooks.subscribe((data) => {
       this.books = [];
@@ -49,7 +45,8 @@ export class AdminBooksComponent implements OnInit {
       this.searchTerm = message;
     });
     if (localStorage.getItem('token') != null) {
-      this.getAllBooks();
+      this.seller = this.datadialog.book;
+      this.size = this.seller.length;
     }
   }
   onBookDetail(event) {
@@ -95,26 +92,26 @@ export class AdminBooksComponent implements OnInit {
     // );
   }
 
-  onDisplayBooks(data) {
-    console.log(data);
-    if (data.status === 200) {
-      //      this.size = data.data.length;
-      data.data.forEach((bookData) => {
-        this.books.push(bookData);
-      });
-    }
-  }
+  // onDisplayBooks(data) {
+  //   console.log(data);
+  //   if (data.status === 200) {
+  //     //      this.size = data.data.length;
+  //     data.data.forEach((bookData) => {
+  //       this.books.push(bookData);
+  //     });
+  //   }
+  // }
 
-  bookList: [];
-  getAllBooks() {
-    this.userService.getAllBooks().subscribe((Response: any) => {
-      //    this.unVerifiedBooks = Response.obj;
+  // bookList: [];
+  // getAllBooks() {
+  //   this.userService.getAllBooks().subscribe((Response: any) => {
+  //     //    this.unVerifiedBooks = Response.obj;
 
-      console.log(Response);
-      this.bookList = Response.data;
-      //      this.size = Response.data.length;
-    });
-  }
+  //     console.log(Response);
+  //     this.bookList = Response.data;
+  //     //      this.size = Response.data.length;
+  //   });
+  // }
 
   onDisapproved() {
     this.snackBar.open('Book Already disapproved', 'ok', {
