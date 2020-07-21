@@ -184,3 +184,24 @@ span {
   background: white;
   color: #a03037;
 }
+.footer {
+  //width: 1308px;
+  height: 5px;
+  //top: 34px;
+  background: #2e1d1efa 0% 0% no-repeat padding-box;
+  opacity: 90%;
+  // margin-right: 10%;
+  //margin-top: 95%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 98%;
+}
+
+.footerText {
+  font-size: x-small;
+  text-align: center;
+  color: white;
+  // margin-left: 12%;
+  // margin-top: 2px;
+}

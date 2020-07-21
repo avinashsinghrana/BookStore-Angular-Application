@@ -15,20 +15,24 @@
 }
 
 .footer{ 
-  width: 1308px;
+  // width: 1308px;
   height: 14px;
-  top: 34px;
-  background: #2E1D1E 0% 0% no-repeat padding-box;
-  opacity: 1;
-  margin-right: 10%;
+  // top: 34px;
+  background: #2e1d1efa 0% 0% no-repeat padding-box;
+  opacity: 90%;
+  // margin-right: 10%;
+  position: fixed;
+  width: 98%;
+  bottom: 0;
+  right: 0;
   }
   
 .footerText{
     font-size: x-small;
     color: white;
-    margin-left: 12%;
-    margin-top: 2px;
+    text-align: center;
   }
+ 
 .buttonstyle{
   margin-top: 1%;
   margin-left: 587px;
@@ -187,7 +191,7 @@ p
   border: solid;
   border-width: thin;
   border-color: #DCDCDC;
-  alignment: center;
+  align-items: center;
   width: 757.5px;
   height: 42px;
   outline: red;
@@ -292,4 +296,5 @@ p
   color: #333232;
   opacity: 1;
 }
+
 
