@@ -5,6 +5,7 @@
     width: 100%;
     background-color: #a03037;
     top: 0;
+    right: 0;
     position: fixed;
     z-index: 100;
   }
@@ -27,7 +28,7 @@
     outline: none;
   }
   .titleText {
-    margin-left: 12%;
+    margin-left: 20%;
     color: white;
   }
   @media only screen and (max-width: 720px) {

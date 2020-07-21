@@ -23,6 +23,7 @@ import { AdminBooksComponent } from './components/admin-books/admin-books.compon
 import { AdminsComponent } from './components/admins/admins.component';
 import { VerifydialogComponent } from './components/verifydialog/verifydialog.component';
 import { SellersListComponent } from './components/sellers-list/sellers-list.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,7 @@ const routes: Routes = [
     path: 'forgotpassword',
     component: ForgotpasswordComponent,
   },
+  {path: 'wishlist', component: WishlistComponent},
   {
     path: 'verifydialog',
     component: VerifydialogComponent,

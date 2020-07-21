@@ -59,6 +59,7 @@ import { AdminsComponent } from './components/admins/admins.component';
 import { AdminBooksComponent } from './components/admin-books/admin-books.component';
 import { VerifydialogComponent } from './components/verifydialog/verifydialog.component';
 import { SellersListComponent } from './components/sellers-list/sellers-list.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { SellersListComponent } from './components/sellers-list/sellers-list.com
     OrderSummaryComponent,
     DisplayBookComponent,
     VerifydialogComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,

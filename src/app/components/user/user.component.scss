@@ -6,12 +6,13 @@
   width: 100%;
   background-color: #a03037;
   top: 0;
+  margin-left: -7%;
   position: fixed;
   z-index: 100;
 }
 .search-mat-card {
   display: flex;
-  margin-left: 100px;
+  margin-left: 5%;
   width: 40%;
   height: 60%;
   padding: 0px;
@@ -30,8 +31,10 @@
   outline: none;
 }
 .titleText {
-  margin-left: 12%;
+  margin-left: 15%;
   color: white;
+  font-family: Roboto;
+  font-weight: Regular;
 }
 @media only screen and (max-width: 720px) {
   .titleText {
@@ -107,7 +110,8 @@ button {
 }
 //************
 .imageSelect {
-  margin-left: 43px;
+  // margin-left: -5%;
+  align-items: center; 
 }
 .profile {
   display: flex;
@@ -121,6 +125,7 @@ button {
   color: gainsboro;
 }
 .menu-button {
+  margin-left: 60%;
   overflow: hidden;
 }
 
@@ -165,8 +170,10 @@ span {
 }
 .cart {
   display: flex;
-  margin-left: 10%;
+  margin-left: 8%;
   padding-right: 5%;
+  font-family: Roboto;
+  font-weight: Regular;
   background-color: none;
   outline: none;
   color: white;
@@ -200,3 +207,25 @@ span {
   // margin-left: 12%;
   // margin-top: 2px;
 }
+ // margin-right: 10%;
+ //margin-top: 95%;
+  
+.footerText{
+    font-size: x-small;
+    text-align: center;
+    color: white;
+   // margin-left: 12%;
+   // margin-top: 2px;
+  }
+
+  .mat-dialog-content {
+    overflow-y: hidden !important;
+  }
+
+  .fav {
+    color: white;
+    padding-right: 5%;
+    margin-left: -100% ;
+    background-color: none;
+  }
+  

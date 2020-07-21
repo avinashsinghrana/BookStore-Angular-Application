@@ -1,0 +1,90 @@
+.container {
+    margin: fill;
+    background-color: #A03037;
+    width: 364px;
+    //background-color: whitesmoke;
+    height: auto;
+  }
+  
+  .card {
+    width: 331px;
+    height: 86px;
+    box-shadow: white;
+  }
+  
+  .paginator {
+    display: flex;
+    // width: 2%;
+    color: red;
+    align-content: center;
+    align-items: center;
+    font-size: 70%;
+    // margin-top: 20px;
+  }
+  
+  .title {
+    background-color: #A03037;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    font-family: Lato, sans-serif, Bold;
+  }
+  
+  .book-image2 {
+    margin-left: 2%;
+    margin-top: 6%;
+  }
+  
+  .book-names3 {
+    margin-top: -40%;
+    font-weight: bold;
+    margin-left: 162px;
+    padding: 0px;
+    font-size: small;
+  }
+  
+  .book-names4 {
+    margin-top: -10px;
+    font-size: x-small;
+    margin-left: 162px;
+  }
+  
+  .book-names5 {
+    margin-top: -4px;
+    font-weight: bold;
+    margin-left: 162px;
+    padding: 0px;
+    font-size: small;
+  }
+  
+  .buttonstyle {
+    background-color: #A03037;
+    color: white;
+    width: 75px;
+    height: 25px;
+    padding: inherit;
+    font-size: 10px;
+    align-content: center;
+    font-family: Lato, sans-serif;
+  }
+  
+  .buttonstyle1 {
+    background-color: #A03037;
+    color: white;
+    width: 75px;
+    height: 25px;
+    padding: inherit;
+    align-content: center;
+    font-family: Lato, sans-serif;
+    font-size: 10px;
+    margin-left: 2%;
+  }
+  
+  .p1 {
+    margin-top: -6px;
+  }
+  
+  .buttonArr {
+    margin-left: 162px
+  }
+  

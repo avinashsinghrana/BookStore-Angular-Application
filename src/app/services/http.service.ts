@@ -114,4 +114,30 @@ export class HttpService {
     // set header in your http request
     return this.http.post(this.apiBaseurl + url, httpOptions);
   }
+
+  addedToWishList(url: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.post(url, httpOptions);
+  }
+
+  getWishlistBooks(url: string) {
+    return this.http.get(url);
+  }
+
+  removeFromWishList(url: string) {
+    return this.http.delete(url);
+  }
+
+  addToCartFromWishList(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.http.put(url, httpOptions);
+  }
+
+  getIdFromWL(url: string) {
+    return this.http.get(url);
+  }
 }

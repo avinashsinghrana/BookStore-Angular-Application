@@ -25,6 +25,7 @@ export class OrderSummaryComponent implements OnInit {
   popup = false;
   press = false;
   popDown = false;
+  afterCheckout = "Not true";
   size: any;
   sortTerm: any;
   actualPrice: Number;
@@ -49,7 +50,7 @@ export class OrderSummaryComponent implements OnInit {
 
   ngOnInit() {
    // this.getAllBookCart()
-    
+      this.afterCheckout = "Not true";
       this.isEmpty = true;
       this.isAvailable = true;
     // this.cartPrice = this.books.totalPrice
@@ -65,13 +66,13 @@ export class OrderSummaryComponent implements OnInit {
       this.onDisplayBooks(data);
     });
     this.registerForm = this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.pattern("^[A-Z][a-z]+\\s?[A-Z][a-z]+$")]],
+      fullName: ['', [Validators.required, Validators.pattern("^[A-Z][A-Za-z\s]{3,}$")]],
       phoneNumber: ['', [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]],
-      locality: ['', [Validators.required, Validators.minLength(3)]],
+      locality: ['', [Validators.required, Validators.pattern("^[A-Z][a-z\\s]{3,}")]],
       pinCode: ['', [Validators.required,Validators.pattern("^[0-9]{6}")]],
       address: ['', [Validators.required, Validators.minLength(3)]],
       city: ['', [Validators.required,Validators.pattern("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$")]],
-      landMark: ['', [Validators.required,Validators.minLength(3)]],
+      landMark: ['', [Validators.required,Validators.pattern("^[A-Z][a-z\\s]{3,}")]],
       locationType: new FormControl(this.person)
     })
     
@@ -223,6 +224,8 @@ export class OrderSummaryComponent implements OnInit {
     this.cartService.removeAll().subscribe((response: any) => {
        console.log("response", response);
        sessionStorage.clear();
+       this.afterCheckout = "true";
+       localStorage.setItem("checkout status", this.afterCheckout);
      //  this.getAllBookCart();
        this.router.navigate(['/order-confirmation']);
     })

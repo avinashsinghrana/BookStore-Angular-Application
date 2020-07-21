@@ -28,7 +28,7 @@
               placeholder="Author Name"
               formControlName="authorName"
               autocomplete="off"
-              pattern="^[A-Z][a-z\s]{2,}"
+              pattern="^[A-Z][A-Za-z\s]{3,}$"
             />
             <mat-error *ngIf="bookForm.get('authorName').hasError('required')">
               Book author name is required</mat-error>

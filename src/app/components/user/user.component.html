@@ -1,6 +1,6 @@
-<div style="width: 100%; height: 30%;">
-  <mat-toolbar style="width: 98.8%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
-    <div class="titleText" fxLayoutGap="3%">
+<div style="width: 100%; height: 10%;">
+  <mat-toolbar style="width: 109.5%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="titleText" fxLayoutGap="3%" margin-top = "2%">
       <img src="../../../assets/image/education.svg" />
       <a
         href="http://localhost:4200/userDashboard/user-books"
@@ -23,8 +23,15 @@
     [(ngModel)]="searchTerm"
   />
     </mat-card>
-        <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 23%;">
-        <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
+    <!-- WishList -->
+    <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 10%;">
+      <button class="fav" mat-icon-button>
+        <mat-icon  mat-button style="backface-visibility: hidden" (click)="openDialog()" color="white" MatBadgeSize="small" matTooltip="WishList">favorite</mat-icon></button>
+    
+    <!-- shopping cart -->
+        
+        <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart" flex
+        >
           Cart <mat-icon matBadge="{{item}}" MatBadgeSize="small"
              >shopping_cart</mat-icon></button><br />
         </div>

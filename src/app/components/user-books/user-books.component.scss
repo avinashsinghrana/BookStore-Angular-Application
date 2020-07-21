@@ -90,8 +90,9 @@ img {
   width: 70px;
   font-size: x-small;
   font-weight: bold;
+  color: #0A0102;
+  text-transform: uppercase;
   background-color: white;
-  color: black;
   padding: 0px;
   margin-top: 3%;
   border: none;
@@ -102,12 +103,39 @@ img {
   width: 70px;
   font-size: x-small;
   font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  color: #FFFFFF;
   background-color: #a03037;
-  color: white;
+  // color: white;
+  opacity: 1;
   padding: 0px;
   margin-top: 3%;
   border: none;
   outline: none;
+}
+
+.book-details {
+  display: none;
+  position: absolute;
+  font-size: medium;
+}
+mat-card:hover + .book-details {
+  display: block;
+  margin-top: 2%;
+  position: absolute;
+  box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+    0 6px 20px 0 rgba(29, 29, 29, 0.19);
+  // align-self: center;
+  width: 18%;
+  // min-height: 100px;
+ // font-size: medium;
+  height: fit-content;
+  // margin-top: 10px;
+  background-color: whitesmoke;
+  margin-left: 12%;
+  z-index: 1;
+  padding: 2%;
 }
 
 .book-details {

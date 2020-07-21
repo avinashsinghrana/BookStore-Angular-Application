@@ -9,6 +9,7 @@ import { RegisterComponent } from '../register/register.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Sortmethod } from 'src/app/model/sortmethod';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { WishlistComponent } from '../wishlist/wishlist.component';
 
 @Component({
   selector: 'app-user',
@@ -21,6 +22,8 @@ export class UserComponent implements OnInit {
   file: any;
   profile: string;
   isLogin = false;
+  popup = false;
+  popDown = false;
   imgFile: File;
   response: any;
   isImage = false;
@@ -29,6 +32,7 @@ export class UserComponent implements OnInit {
   usermail: string;
   sorting: Sortmethod[];
   item: any;
+  wishitem: any;
   
   constructor(
     private dialog: MatDialog,
@@ -75,8 +79,23 @@ export class UserComponent implements OnInit {
     });
   }
   onCart(){
-    this.router.navigate(['order-summary']);
-  }
+     
+    if(localStorage.getItem("token") != null){
+      this.router.navigate(['order-summary']);
+    }
+    if(localStorage.getItem("token")== null){
+       this.dialog.open(LoginComponent, {
+        width: '28%',
+        height : 'auto'
+        });
+       }
+        // this.popup = true;
+        // this.popDown = true;
+        
+      
+    }
+   
+  
 
   signin(){
     this.dialog.open(LoginComponent, {
@@ -125,5 +144,12 @@ export class UserComponent implements OnInit {
      this.spinner.hide();
      this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
   });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(WishlistComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
