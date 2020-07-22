@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Sortmethod } from 'src/app/model/sortmethod';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { WishlistComponent } from '../wishlist/wishlist.component';
+import { CartserviceService } from 'src/app/services/cartservice.service';
 
 @Component({
   selector: 'app-user',
@@ -42,23 +43,21 @@ export class UserComponent implements OnInit {
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
     private router: Router,
+    private cartServices: CartserviceService,
     private data: MessageService
   ) {}
   
   ngOnInit() {
     this.messageService.changeMessages();
-      this.messageService.currentItem$.subscribe(message =>
-      { if (message == 0) { this.item = ""} else {
-        this.item = message}});
-    //  this.item = sessionStorage.getItem('size');
-      console.log("recv ",this.item);
     if(localStorage.getItem(localStorage.getItem('email'))==null){
      this.isImage = false;
     }
     else{
       this.isImage = true;
     }
-    if (localStorage.getItem('token')!=null) {
+    if (localStorage.getItem('token')!=null) {  
+      this.messageService.changeCartBook();
+      this.data.changeItem(1);
       this.isLogin = true;
       this.img = localStorage.getItem(localStorage.getItem('email'));
       this.usermail = localStorage.getItem('email');
@@ -67,6 +66,18 @@ export class UserComponent implements OnInit {
       this.isLogin = false;
       this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
     }
+    this.messageService.currentItem$.subscribe(message =>
+      {  
+          let num1: number = +sessionStorage.getItem('cartsize');
+          let num2: number = +sessionStorage.getItem('size');
+          let totalSize: number = num1 + num2;
+          if(totalSize>0){
+            this.item = totalSize;
+          }
+            else{
+              this.item = '';
+            }
+        });
   }
   
   openBookForm() {
@@ -79,23 +90,9 @@ export class UserComponent implements OnInit {
     });
   }
   onCart(){
-     
-    if(localStorage.getItem("token") != null){
-      this.router.navigate(['order-summary']);
-    }
-    if(localStorage.getItem("token")== null){
-       this.dialog.open(LoginComponent, {
-        width: '28%',
-        height : 'auto'
-        });
-       }
-        // this.popup = true;
-        // this.popDown = true;
-        
-      
-    }
    
-  
+    this.router.navigate(['order-summary']);
+  }
 
   signin(){
     this.dialog.open(LoginComponent, {
@@ -117,7 +114,20 @@ export class UserComponent implements OnInit {
     this.data.changeEvent(this.searchTerm);
   }
   Logout() {
-    localStorage.removeItem('token');
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if(key[0]=='c'){
+        var obj = JSON.parse(localStorage.getItem(key));
+        console.log('cart data',obj);
+        console.log('cart id',key[1]);
+        this.cartServices.addToBag(obj,key[1]).subscribe((message) => {
+        });
+      }
+    }
+    this.img = localStorage.getItem(localStorage.getItem('email'));
+    localStorage.clear();
+    sessionStorage.clear();
+    localStorage.setItem(this.usermail,this.img);
     location.reload();
   }
   fileUpload($event) {

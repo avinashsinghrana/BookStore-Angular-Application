@@ -92,11 +92,15 @@ export class HttpService {
   }
   public removeAllItemsCart(url: any) {
 
-    return this.http.delete(this.apiBaseurl + url);
+    return this.http.delete(this.apiBaseurl + url, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
 
   }
   public getBooksCart(url: any) {
-    return this.http.get(url);
+    return this.http.get(url, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
   }
 
   public getOrderId(url :any){
@@ -104,7 +108,9 @@ export class HttpService {
   }
 
   clearCart(url :any) {
-    return this.http.delete(url);
+    return this.http.delete(url, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
   }
 
   addItem(url) {

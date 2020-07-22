@@ -19,10 +19,17 @@ export class CartserviceService {
   }
   constructor(private http: HttpClient, private httpservice: HttpService) {}
 
-  addToBag(id:any): Observable<any> {
+/*addToBag(id:any): Observable<any> {
     console.log(id);
     return this.httpservice.addtoCart("http://localhost:8081/user/AddToCart?bookId="+id)
       
+  }*/
+
+  addToBag(cartBook:any,bookId:any): Observable<any> {
+    var httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json",token: localStorage.getItem("token") })
+    };
+    return this.http.post("http://localhost:8081/user/AddToCart/" + bookId, cartBook, httpOptions);  
   }
   removeFromeBag(id): Observable<any> {
     return this.httpservice

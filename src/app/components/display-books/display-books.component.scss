@@ -9,7 +9,7 @@ mat-card {
   }
   
   img {
-    padding: 10%;
+    padding: 5%;
     width: 140px;
     height: 160px;
   }
@@ -96,15 +96,6 @@ mat-card {
     border: none;
     outline: none;
   }
- /* .delete-button {
-    //height: 32px;
-    //width: 70px;
-   // padding: 0px;
-    margin-top: 0%;
-    margin-left: 20%;
-    border: none;
-    outline: none;
-  }*/
   .sent-button {
     height: 32px;
     width: 70px;
@@ -131,6 +122,7 @@ mat-card {
     display: none;
     position: absolute;
     font-size: medium;
+    
   }
   mat-card:hover + .book-details {
     display: block;
@@ -138,14 +130,10 @@ mat-card {
     position: absolute;
     box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
       0 6px 20px 0 rgba(29, 29, 29, 0.19);
-    // align-self: center;
     width: 18%;
-    // min-height: 100px;
-   // font-size: medium;
     height: fit-content;
-    // margin-top: 10px;
     background-color: whitesmoke;
-    margin-left: 12%;
+    margin-left: 5%;
     z-index: 1;
     padding: 2%;
   }
@@ -246,12 +234,9 @@ mat-card {
   }
   .paginator{
     display: flex;
-    // width: 2%;
-    align-content: center;
-    align-items: center;
     font-size: 100%;
-    margin-left: -40%;
-   // margin-bottom: 3%;
-    bottom: 2%;
-    // margin-top: 20px;
+    bottom: 3%;
+    position: fixed;
+    margin-left: 25%;
+    margin-top: 1%;
   }

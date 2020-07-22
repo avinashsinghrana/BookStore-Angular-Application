@@ -2,12 +2,10 @@ import { CartServiceService } from './../../services/cart-service/cart-service.s
 import { CustomerDetailsService } from './../../services/customer-Details/customer-details.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { RouterLink, Router } from '@angular/router';
-import { Book } from '../../models/book.model';
+import {  Router } from '@angular/router';
 import { MatRadioChange, MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { MessageService } from 'src/app/services/message.service';
-import { AddBookComponent } from '../add-book/add-book.component';
 
 
 @Component({
@@ -44,8 +42,6 @@ export class OrderSummaryComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
   ) {
-
-
   }
 
   ngOnInit() {
@@ -54,17 +50,19 @@ export class OrderSummaryComponent implements OnInit {
       this.isEmpty = true;
       this.isAvailable = true;
     // this.cartPrice = this.books.totalPrice
+   
     this.messageService.currentCart$.subscribe(message =>
       { //this.myBooks.push(message)
         console.log("ravi",message), this.isEmpty = false,this.itemQuantity = message.quantity,
       this.cartPrice = message.price,console.log("geeth",this.cartPrice),
         this.cartQuantity = 1});
-        
-    this.messageService.changeCartBook();
+  
     this.messageService.currentBooksInCart.subscribe((data) => {
       console.log("data",data);
       this.onDisplayBooks(data);
     });
+  
+    this.printData();
     this.registerForm = this.formBuilder.group({
       fullName: ['', [Validators.required, Validators.pattern("^[A-Z][A-Za-z\s]{3,}$")]],
       phoneNumber: ['', [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]],
@@ -77,6 +75,24 @@ export class OrderSummaryComponent implements OnInit {
     })
     
   //  this.getAllBookCart()
+  }
+   
+  printData(){ 
+    let num1: number = +sessionStorage.getItem('cartsize');
+    let num2: number = +sessionStorage.getItem('size');
+    this.size = num1 + num2;
+    console.log('num1 ',num1);
+    console.log('num2 ',num2);
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      console.log("key",key);
+      console.log("key 0",key[0]);
+      if(key[0]=='c'){
+      console.log("value",JSON.parse(localStorage.getItem(key)));
+      this.books.push(JSON.parse(localStorage.getItem(key)));
+      }
+     // this.value[localStorage.getItem(key)] = sessionStorage.getItem(key);
+    }
   }
 
  /* getAllBookCart() {
@@ -91,16 +107,15 @@ export class OrderSummaryComponent implements OnInit {
     this.router.navigate(['user-dashboard']);
   }
   onDisplayBooks(data) {
-    console.log(data);
-    this.books = data;
-    this.size = data.length;
-  /*  if (data.status === 200) {
-      this.size = data.length;
+   // console.log(data);
+   // this.books = data;
+   // this.size = data.length;
+    //  this.size = data.length;
       data.forEach((bookData) => {
-      this.books.push(bookData);
+        localStorage.setItem('c'+bookData.bookId, JSON.stringify(bookData));
+        sessionStorage.setItem(bookData.bookId, bookData.bookId);
         
-      });*/
-   // }
+      }); 
   }
 
 
@@ -129,7 +144,7 @@ export class OrderSummaryComponent implements OnInit {
       // this.size = response.length;
 
     //  this.cartService.getBookCart();
-     this.messageService.changeCartBook();
+    // this.messageService.changeCartBook();
       
       // window.location.reload();
       // console.log("response", response);
@@ -139,18 +154,21 @@ export class OrderSummaryComponent implements OnInit {
   }
 
 
-  increaseQuantity(bookId: any) {
-
-    
-    // this.books[index].quantity++;
-    this.cartService.addBooks(bookId).subscribe((response: any) => {
+  increaseQuantity(book: any) { 
+   // let fixPrice =  book.totalPrice/;   
+      book.quantity++;
+      book.totalPrice =  (book.totalPrice/(book.quantity-1))*book.quantity;
+      localStorage.setItem('c'+book.bookId, JSON.stringify(book));
+      this.books = [];
+      this.printData();
+ /*   this.cartService.addBooks(bookId).subscribe((response: any) => {
       this.cartQuantity = response.data.quantity;
       this.cartPrice = response.data.totalPrice;
      this.messageService.changeCartBook();
       // window.location.reload();
       // console.log("response", response);
     })
-
+*/
 
 
    // this.getAllBookCart();
@@ -161,46 +179,67 @@ export class OrderSummaryComponent implements OnInit {
   }
 
 
-  decreaseQuantity(bookId: any) {
-
-    
-    console.log("id", bookId);
-    
+  decreaseQuantity(book: any) {
+    book.quantity--;
+    book.totalPrice =  (book.totalPrice/(book.quantity+1))*book.quantity;
+    localStorage.setItem('c'+book.bookId, JSON.stringify(book));
+    this.books = [];
+    this.printData();
+    /*console.log("id", bookId);
       this.cartService.removeItem(bookId).subscribe((response: any) => {
         this.cartQuantity = response.data.quantity;
         this.cartPrice = response.data.totalPrice;
         this.cartService.getBookCart();
         this.messageService.changeCartBook();
         console.log("response=", response);
-      })
-
-    
+      }) */
   }
 
   getQuantitiy(bookId: any): boolean{
     if(this.cartQuantity<1){
       return true;
     }
-    
     return false;
   }
 
 
   removeAllItemsCart(bookId: any) {
-    this.messageService.changeCartBook();
+    console.log("ccc",bookId)
+    localStorage.removeItem('c'+bookId);
+    sessionStorage.removeItem(bookId);
+    let num1: number = +sessionStorage.getItem('cartsize');
+    let num2: number = +sessionStorage.getItem('size');
+     let size1: number =  num2;
+     size1--;
+     if(size1>=0){
+       sessionStorage.setItem('size', JSON.stringify(size1));
+     }
+   /*  if(size1==0){
+      location.reload();
+      }*/
+   // this.messageService.changeCartBook();
+   if(localStorage.getItem('token')!=null && num1!=0 ){
     this.cartService.removeBookById(bookId).subscribe((response: any) => {
-     window.location.reload();
-     sessionStorage.removeItem(bookId);
+      this.messageService.changeCartBook();
+      location.reload();
+     // num1--;
+     // sessionStorage.setItem('cartsize',JSON.stringify(num1));
+     // this.books = [];
+     // this.printData();
+    /* sessionStorage.removeItem(bookId);
      let size: any =  sessionStorage.getItem('size');
      size--;
      if(size>=0){
      sessionStorage.setItem('size', size);
      }
       console.log("Book id",bookId);
-      console.log("response", response);
+      console.log("response", response);*/
       
     })
-    this.messageService.changeCartBook();
+   // this.messageService.changeCartBook();
+  }
+  this.books = [];
+  this.printData();
   }
 
   onPress() {

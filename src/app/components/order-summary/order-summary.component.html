@@ -27,86 +27,86 @@
 </mat-toolbar>
 <!-- </div> -->
 <mat-card class="place-book">
-<p>My cart ({{size}})</p>
-<div *ngFor="let book of books">
-<mat-card>
-  <mat-card-title
-    ><img
-      src="{{ book.imgUrl }}"
-      style="
-        height: 111px;
-        width: 89px;
-        margin-left: 21px;
-        margin-right: 55px;
-        padding-top: 20px;
-        padding-bottom: 21px;
-      "
-    />
-  </mat-card-title>
-  <mat-card-content class="mat-content">
-    <div>
-      <p class="book-names">{{ book.name }}</p>
-      <p class="book-names1">by {{ book.author }}</p>
-      <p class="book-names2">Rs.{{ book.totalPrice }}</p>
-    </div>
-    <div class="quantity">
-      <button
-        mat-icon-button
-        (click)="decreaseQuantity(book.book_id)"
-        [disabled]="book.quantity == 1"
-      >
-        <mat-icon class="material-icons-outlined"
-          >remove_circle_outline</mat-icon
-        >
-      </button>
-      <input
-        style="text-align: center;"
-        type="text"
-        (input)="onQuantity(book,$event)"
-        class="quantity-holder"
-        [(ngModel)]="book.quantity"
-      />
-      <button mat-icon-button (click)="increaseQuantity(book.book_id)"  [disabled]="book.maxQuantity <= book.quantity">
-        <mat-icon class="material-icons-outlined"
-          >add_circle_outline</mat-icon
-        >
-      </button>
-      <button
-        mat-flat-button
-        class="remove-button"
-        (click)="removeAllItemsCart(book.book_id)"
-      >
-        Remove
-      </button>
-    </div>
-  </mat-card-content>
-</mat-card>
-</div>
+  <p>My cart({{size}})</p>
+  <div *ngFor="let book of books">
+    <mat-card>
+      <mat-card-title
+        ><img
+          src="{{ book.imgUrl }}"
+          style="
+            height: 111px;
+            width: 89px;
+            margin-left: 21px;
+            margin-right: 55px;
+            padding-top: 20px;
+            padding-bottom: 21px;
+          "
+        />
+      </mat-card-title>
+      <mat-card-content class="mat-content">
+        <div>
+          <p class="book-names">{{ book.name }}</p>
+          <p class="book-names1">By {{ book.author }}</p>
+          <p class="book-names2">Rs.{{ book.totalPrice }}</p>
+        </div>
+        <div class="quantity">
+          <button
+            mat-icon-button
+            (click)="decreaseQuantity(book)"
+            [disabled]="book.quantity == 1"
+          >
+            <mat-icon class="material-icons-outlined"
+              >remove_circle_outline</mat-icon
+            >
+          </button>
+          <input
+            style="text-align: center;"
+            type="text"
+            (input)="onQuantity(book,$event)"
+            class="quantity-holder"
+            [(ngModel)]="book.quantity"
+          />
+          <button mat-icon-button (click)="increaseQuantity(book)"  [disabled]="book.maxQuantity <= book.quantity">
+            <mat-icon class="material-icons-outlined"
+              >add_circle_outline</mat-icon
+            >
+          </button>
+          <button
+            mat-flat-button
+            class="remove-button"
+            (click)="removeAllItemsCart(book.bookId)"
+          >
+            Remove
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
-<!-- end -->
-<div *ngIf="size == 0">
-<img src="../../../assets/image/cart.png" width="200" height="200" style="margin-left: 37%;" alt="EmptyCart" />
-<p style="text-align: center; font-weight: bold;">Add some Items in Cart</p>
-<button
-flex
-mat-flat-button
-color="primary"
-class="emptyCart"
-(click)="onShoping()"
->
-Continue Shopping
-</button>
+  <!-- end -->
+  <div *ngIf="size==0 || size==null">
+    <img src="../../../assets/image/cart.png" width="200" height="200" style="margin-left: 37%;" alt="EmptyCart" />
+    <p style="text-align: center; font-weight: bold;">Add some Items in Cart</p>
+    <button
+    flex
+    mat-flat-button
+    color="primary"
+    class="emptyCart"
+    (click)="onShoping()"
+  >
+    Continue Shopping
+  </button>
 </div>
-<button
-flex
-mat-flat-button
-color="primary"
-class="placeOrder"
-*ngIf="!popup && size != 0"
-(click)="onPopup()"
->
-PLACE ORDER
-</button>
+  <button
+    flex
+    mat-flat-button
+    color="primary"
+    class="placeOrder"
+    *ngIf="!popup && size!=0 && size!=null"
+    (click)="onPopup()"
+  >
+    PLACE ORDER
+  </button>
 </mat-card>
 
 <mat-card *ngIf="!popup" class="mat-details">

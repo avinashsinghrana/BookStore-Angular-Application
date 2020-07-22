@@ -25,6 +25,7 @@ export class UserBooksComponent implements OnInit {
   value: any = [];
   toggle = true;
   page: number = 1;
+  num: number = 0;
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,
@@ -43,8 +44,8 @@ export class UserBooksComponent implements OnInit {
 
   ngOnInit() {
     this.sortTerm = 'none';
-    this.item = sessionStorage.getItem('size');
-    this.data.changeItem(this.item);
+   // this.item = sessionStorage.getItem('size');
+    this.data.changeItem(1);
     this.messageService.currentMessages.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
@@ -82,9 +83,25 @@ export class UserBooksComponent implements OnInit {
 
   
   onAddBook(book) {
-    this.messageService.changeCart(book);
+   // this.messageService.changeCart(book);
     console.log("seema",book);
-    this.cartServices.addToBag(book.bookId).subscribe((message) => {
+    this.value[book.bookId] = book.bookId;  
+    this.num++;
+    sessionStorage.setItem('size', JSON.stringify(this.num));
+    this.data.changeItem(this.num);
+    sessionStorage.setItem(book.bookId, book.bookId);
+    this.value[book.bookId] = book.bookId;
+    var cartBook = {
+       bookId: book.bookId,
+       name: book.bookName,
+       author: book.authorName,
+       imgUrl: book.bookImgUrl,
+       maxQuantity: book.quantity,
+       quantity: 1,
+       totalPrice: book.price
+    };
+    localStorage.setItem('c'+book.bookId, JSON.stringify(cartBook));
+  /*  this.cartServices.addToBag(book.bookId).subscribe((message) => {
       console.log(message);
       sessionStorage.setItem(book.bookId, book.bookId);
       this.value[book.bookId] = book.bookId;
@@ -93,7 +110,7 @@ export class UserBooksComponent implements OnInit {
       this.snackBar.open("Book Added to Bag SuccessFully", "OK", {
         duration: 4000,
       });
-    });
+    });*/
   }
 
 }

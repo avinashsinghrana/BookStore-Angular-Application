@@ -11,7 +11,6 @@ mat-card {
   }
   
 element.style {
- // margin-bottom: 4%;
   place-content: center;
   align-items: center;
   flex-direction: row;
@@ -19,9 +18,7 @@ element.style {
   display: flex;
 }
 
-/*mat-toolbar[_ngcontent-cnb-c9] {
-  background-color: #c00d58;
-}*/
+
 @media (max-width: 599px){}
 .mat-toolbar-row, .mat-toolbar-single-row {
   height: 40px;
@@ -49,7 +46,6 @@ element.style {
     font-size: x-small;
   }
   .fileButton {
-    // width: 50%;
     outline: none;
   }
   

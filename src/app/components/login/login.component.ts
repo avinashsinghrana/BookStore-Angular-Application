@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
 import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'src/app/services/message.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
