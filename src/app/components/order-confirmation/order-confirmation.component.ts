@@ -7,20 +7,23 @@ import {OrderconfirmationService} from "../../services/orderConfirmation/orderco
   styleUrls: ['./order-confirmation.component.scss']
 })
 export class OrderConfirmationComponent implements OnInit {
-  orderId: number = 123456;
+  // orderId: number = 123456;
   constructor(private ordercinfirmation : OrderconfirmationService) { }
 
   ngOnInit(): void {
-    this.getOrderId();
+    // this.fetchOrderId();
   }
   fetchOrderId(){
    // order_id: number
-    return '#'+this.orderId;
+   let orderId = sessionStorage.getItem("orderId");
+   sessionStorage.clear();
+    return '#'+orderId;
   }
   getOrderId(){
-      this.ordercinfirmation.fetchOrderId().subscribe((response:any) => {
-        this.orderId = response;
-        console.log("id", response)
-     });
+    //   this.ordercinfirmation.fetchOrderId().subscribe((response:any) => {
+    //     this.orderId = response;
+    //     console.log("id", response)
+    //  });
+    
   }
 }

@@ -7,7 +7,6 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class CustomerDetailsService {
 
-
   constructor(private httpService: HttpService) { }
 
   addDetails(data, token) {
@@ -15,5 +14,8 @@ export class CustomerDetailsService {
     return this.httpService.POST('/user/addUserDetails?token=' + token, data, { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
 
+  getUserDetails() {
+    return this.httpService.getDetails('/user/getUserDetails?token=' + localStorage.getItem('token'));
+  }
 }
 

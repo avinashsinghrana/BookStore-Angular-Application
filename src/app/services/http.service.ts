@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
+  
 
   url: string;
   constructor(public http: HttpClient) { }
@@ -146,4 +147,13 @@ export class HttpService {
   getIdFromWL(url: string) {
     return this.http.get(url);
   }
+
+  mailSend(url: string) {
+    return this.http.post(url, '');
+}
+
+getDetails(url: string) {
+  return this.http.get(url);
+}
+
 }

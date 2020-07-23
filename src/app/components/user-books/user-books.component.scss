@@ -133,7 +133,7 @@ mat-card:hover + .book-details {
   height: fit-content;
   // margin-top: 10px;
   background-color: whitesmoke;
-  margin-left: 12%;
+  margin-left: 5%;
   z-index: 1;
   padding: 2%;
 }
@@ -143,23 +143,23 @@ mat-card:hover + .book-details {
   position: absolute;
   font-size: medium;
 }
-mat-card:hover + .book-details {
-  display: block;
-  margin-top: 2%;
-  position: absolute;
-  box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
-    0 6px 20px 0 rgba(29, 29, 29, 0.19);
-  // align-self: center;
-  width: 18%;
-  // min-height: 100px;
- // font-size: medium;
-  height: fit-content;
-  // margin-top: 10px;
-  background-color: whitesmoke;
-  margin-left: 12%;
-  z-index: 1;
-  padding: 2%;
-}
+// mat-card:hover + .book-details {
+//   display: block;
+//   margin-top: 2%;
+//   position: absolute;
+//   box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+//     0 6px 20px 0 rgba(29, 29, 29, 0.19);
+//   // align-self: center;
+//   width: 18%;
+//   // min-height: 100px;
+//  // font-size: medium;
+//   height: fit-content;
+//   // margin-top: 10px;
+//   background-color: whitesmoke;
+//   margin-left: 12%;
+//   z-index: 1;
+//   padding: 2%;
+// }
 .main-div {
   width: 100%;
   padding-left: 10%;

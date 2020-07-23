@@ -6,6 +6,7 @@ import {  Router } from '@angular/router';
 import { MatRadioChange, MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { MessageService } from 'src/app/services/message.service';
+import { CartserviceService } from 'src/app/services/cartservice.service';
 
 
 @Component({
@@ -26,7 +27,17 @@ export class OrderSummaryComponent implements OnInit {
   afterCheckout = "Not true";
   size: any;
   sortTerm: any;
+  fullName:any;
+  phoneNumber: any;
+  locality:  any;
+  pinCode:  any;
+  address:  any;
+  city:  any;
+  landMark:  any;
+  locationType:  any;
   actualPrice: Number;
+  totalPrice: number=0;
+
  // books: any;
   person: String;
   token: string;
@@ -39,6 +50,7 @@ export class OrderSummaryComponent implements OnInit {
     private dialog: MatDialog,
     private customerDetailsService: CustomerDetailsService,
     private cartService: CartServiceService,
+    private cartServices: CartserviceService,
     private router: Router,
     private messageService: MessageService,
   ) {
@@ -64,12 +76,12 @@ export class OrderSummaryComponent implements OnInit {
   
     this.printData();
     this.registerForm = this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.pattern("^[A-Z][A-Za-z\s]{3,}$")]],
+      fullName: ['', [Validators.required, Validators.pattern("^[A-Z][a-z]+\\s?[A-Z][a-z]+$")]],
       phoneNumber: ['', [Validators.required,Validators.pattern("^[6-9][0-9]{9}$")]],
       locality: ['', [Validators.required, Validators.pattern("^[A-Z][a-z\\s]{3,}")]],
       pinCode: ['', [Validators.required,Validators.pattern("^[0-9]{6}")]],
       address: ['', [Validators.required, Validators.minLength(3)]],
-      city: ['', [Validators.required,Validators.pattern("^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$")]],
+      city: ['', [Validators.required,Validators.pattern("^[A-Z][a-z]+(?:[\s-][a-zA-Z]+)*$")]],
       landMark: ['', [Validators.required,Validators.pattern("^[A-Z][a-z\\s]{3,}")]],
       locationType: new FormControl(this.person)
     })
@@ -131,6 +143,28 @@ export class OrderSummaryComponent implements OnInit {
       this.popDown = true;
     }
     this.show = true;
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if(key[0]=='c'){
+        var obj = JSON.parse(localStorage.getItem(key));
+        this.totalPrice = this.totalPrice + +obj.totalPrice;
+        console.log(this.totalPrice); 
+        console.log(obj); 
+        this.cartServices.addToBag(obj,key[1]).subscribe((message) => {
+        });
+      }
+    }
+    // this.customerDetailsService.getUserDetails().subscribe((response: any) => {
+    //   this.fullName = response.userDetailList[0].fullName;
+    //   this.phoneNumber = response.userDetailList[0].phoneNumber;
+    //   this.locality= response.userDetailList[0].locality;
+    //   console.log(response);
+  // pinCode:  any;
+  // address:  any;
+  // city:  any;
+  // landMark:  any;
+  // locationType:  any;
+    // })
   }
 
   onQuantity(book: any ,event: any){
@@ -245,6 +279,7 @@ export class OrderSummaryComponent implements OnInit {
   onPress() {
     console.log("data1", this.registerForm.value);
     this.token = localStorage.getItem('token');
+    
     if (this.registerForm.valid){ 
       this.customerDetailsService.addDetails(this.registerForm.value, this.token).subscribe((response: any) => {
         console.log("data", this.registerForm.value);
@@ -258,13 +293,23 @@ export class OrderSummaryComponent implements OnInit {
 
   userId: Number = 1;
   checkout() {
-    this.userId = 2;
-    console.log(this.userId);
+    this.cartService.sendMail().subscribe((response: any) => {
+     sessionStorage.setItem("orderId", response.data);
+   })
+   let token = localStorage.getItem('token');
+   let emailId = localStorage.getItem('email');
+   let name = localStorage.getItem('name');
+   let image = localStorage.getItem(emailId);
     this.cartService.removeAll().subscribe((response: any) => {
-       console.log("response", response);
-       sessionStorage.clear();
-       this.afterCheckout = "true";
-       localStorage.setItem("checkout status", this.afterCheckout);
+      localStorage.clear();
+      localStorage.setItem('token', token);
+      localStorage.setItem('email', emailId);
+      localStorage.setItem('name', name);
+      localStorage.setItem('image', image);
+      //  console.log("response", response);
+      //  sessionStorage.clear();
+      //  this.afterCheckout = "true";
+      //  localStorage.setItem("checkout status", this.afterCheckout);
      //  this.getAllBookCart();
        this.router.navigate(['/order-confirmation']);
     })
