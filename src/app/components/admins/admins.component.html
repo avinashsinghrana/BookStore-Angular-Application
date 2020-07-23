@@ -1,9 +1,5 @@
 <div style="width: 100%; height: 30%;">
-  <mat-toolbar
-    style="width: 100%; height: 8%;"
-    fxLayout="row"
-    fxLayoutAlign="space-between center"
-  >
+  <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
     <div class="titleText" fxLayoutGap="3%">
       <img src="../../../assets/image/education.svg" />
       <a
@@ -36,8 +32,8 @@
       [ngStyle]="{
         'background-image': 'url(' + img + ')',
         'background-size': 'cover',
-        width: '52px',
-        height: '52px'
+        width: '47px',
+        height: '43px'
       }"
       [matMenuTriggerFor]="menu1"
       colour="basic"
@@ -97,11 +93,4 @@
     </mat-menu>
   </mat-toolbar>
   <router-outlet></router-outlet>
-  <mat-card class="footer" flex>
-    <div>
-      <p class="footerText">
-        Copyright © 2020, Bookstore Private Limited. All Rights Reserved
-      </p>
-    </div>
-  </mat-card>
 </div>

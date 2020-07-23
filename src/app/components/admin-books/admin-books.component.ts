@@ -1,5 +1,6 @@
+import { Seller } from 'src/app/model/seller.model';
 import { UserService } from './../../services/user.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { SellerService } from '../../services/seller.service';
 import { MessageService } from '../../services/message.service';
 import {
@@ -10,7 +11,7 @@ import {
 } from '@angular/material';
 import { Book } from 'src/app/models/book.model';
 import { VerifydialogComponent } from '../verifydialog/verifydialog.component';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-admin-books',
   templateUrl: './admin-books.component.html',
@@ -21,7 +22,7 @@ export class AdminBooksComponent implements OnInit {
   book: Book[];
   searchTerm: string;
   message: string;
-  size: any;
+  //  size: any;
   sortTerm: string;
   item: any;
   page: number = 1;
@@ -32,10 +33,15 @@ export class AdminBooksComponent implements OnInit {
     private data: MessageService,
     private dialog: MatDialog,
     private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) public datadialog: any
+    private router: Router,
+    private route: ActivatedRoute //    @Inject(MAT_DIALOG_DATA) public datadialog: any
   ) {}
-  seller: [];
+  // seller: [];
+  sellerId: any;
   ngOnInit() {
+    this.sellerId = this.route.snapshot.paramMap.get('sellerId');
+    console.log(this.sellerId);
+    this.getAllSellerBooks();
     this.messageService.changeMessages();
     this.messageService.currentBooks.subscribe((data) => {
       this.books = [];
@@ -44,10 +50,10 @@ export class AdminBooksComponent implements OnInit {
     this.messageService.currentEvent$.subscribe((message) => {
       this.searchTerm = message;
     });
-    if (localStorage.getItem('token') != null) {
-      this.seller = this.datadialog.book;
-      this.size = this.seller.length;
-    }
+    // if (localStorage.getItem('token') != null) {
+    //   this.seller = this.datadialog.book;
+    //   //      this.size = this.seller.length;
+    // }
   }
   onBookDetail(event) {
     event.stopPropagation();
@@ -63,6 +69,16 @@ export class AdminBooksComponent implements OnInit {
     });
   }
 
+  datas: any;
+  getAllSellerBooks() {
+    this.userService.getAllSellerBooks(this.sellerId).subscribe((response) => {
+      this.datas = response;
+      console.log(this.datas);
+      this.books = this.datas.data;
+      console.log(this.books);
+    });
+  }
+
   onApproval(bookId: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
@@ -74,44 +90,7 @@ export class AdminBooksComponent implements OnInit {
       //this.books.splice(0);
       this.ngOnInit();
     });
-    // this.vendorService.onApprove(bookId).subscribe(
-    //   (data) => {
-    //     if (data.status === 200) {
-    //       this.messageService.changeBooks();
-    //       this.ngOnInit();
-    //       this.snackBar.open('Book approved successfully', 'ok', {
-    //         duration: 2000,
-    //       });
-    //     }
-    //   },
-    //   (error) => {
-    //     this.snackBar.open('Failed to Approved', 'ok', {
-    //       duration: 2000,
-    //     });
-    //   }
-    // );
   }
-
-  // onDisplayBooks(data) {
-  //   console.log(data);
-  //   if (data.status === 200) {
-  //     //      this.size = data.data.length;
-  //     data.data.forEach((bookData) => {
-  //       this.books.push(bookData);
-  //     });
-  //   }
-  // }
-
-  // bookList: [];
-  // getAllBooks() {
-  //   this.userService.getAllBooks().subscribe((Response: any) => {
-  //     //    this.unVerifiedBooks = Response.obj;
-
-  //     console.log(Response);
-  //     this.bookList = Response.data;
-  //     //      this.size = Response.data.length;
-  //   });
-  // }
 
   onDisapproved() {
     this.snackBar.open('Book Already disapproved', 'ok', {
@@ -130,37 +109,5 @@ export class AdminBooksComponent implements OnInit {
       //this.books.splice(0);
       this.ngOnInit();
     });
-
-    // this.vendorService.ondisapprove(bookId).subscribe(
-    //   (data) => {
-    //     this.messageService.changeBooks();
-    //     this.ngOnInit();
-    //     this.snackBar.open('Book disapproved successfully', 'ok', {
-    //       duration: 2000,
-    //     });
-    //   },
-    //   (error: any) => {
-    //     this.snackBar.open('Failed to disapproved book', 'ok', {
-    //       duration: 2000,
-    //     });
-    //   }
-    // );
   }
-
-  // onDisapproval(bookId) {
-  //   console.log(bookId);
-  //   this.vendorService.deleteBooks(bookId).subscribe(
-  //     (data) => {
-  //       this.messageService.changeBooks();
-  //       this.snackBar.open('Book disapproved successfully', 'ok', {
-  //         duration: 2000,
-  //       });
-  //     },
-  //     (error: any) => {
-  //       this.snackBar.open('Failed to disapproved book', 'ok', {
-  //         duration: 2000,
-  //       });
-  //     }
-  //   );
-  // }
 }

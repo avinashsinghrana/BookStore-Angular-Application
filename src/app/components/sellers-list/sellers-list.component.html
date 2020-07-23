@@ -7,13 +7,130 @@
   </div>
 </div>
 
-<div style="margin-top: 60px;">
+<!-- <div style="margin-top: 60px;">
   <mat-nav-list>
-    <mat-list-item *ngFor="let seller of sellerList">
-      <a matLine (click)="getSellerBooks(seller)">{{ seller.sellerName }}</a>
-      <button mat-icon-button (click)="getSellerBooks(seller)">
-        <mat-icon>info</mat-icon>
-      </button>
+    <mat-list-item>
+      <mat-list-item><strong>Seller Id</strong></mat-list-item>
+      <mat-list-item><strong>Seller Name</strong></mat-list-item>
+      <mat-list-item><strong>Email</strong></mat-list-item>
+      <mat-list-item><strong>No. Of Books</strong></mat-list-item>
+      <mat-list-item><strong>CheckOut To Books</strong></mat-list-item>
     </mat-list-item>
   </mat-nav-list>
 </div>
+
+<div>
+  <mat-nav-list>
+    <mat-list-item
+      *ngFor="
+        let seller of sellerList
+          | paginate: { itemsPerPage: 5, currentPage: page, id: 'first' }
+      "
+    >
+      <a matLine (click)="getSellerBooks(seller)">{{ seller.sellerName }}</a>
+      <mat-list-item>{{ seller.sellerId }}</mat-list-item>
+      <mat-list-item (click)="getSellerBooks(seller)">{{
+        seller.sellerName
+      }}</mat-list-item>
+      <mat-list-item>{{ seller.emailId }}</mat-list-item>
+      <mat-list-item>{{ seller.book.length }}</mat-list-item>
+      <mat-list-item
+        ><a (click)="getSellerBooks(seller)">click here</a></mat-list-item
+      >
+    </mat-list-item>
+  </mat-nav-list>
+</div> -->
+
+<!-- <app-admindashboard></app-admindashboard> -->
+<div
+  role="combobox"
+  fxLayout="row wrap"
+  fxLayoutGap="6%"
+  style="margin-left: 10%; margin-top: 5%; margin-bottom: 5%;"
+>
+  <!-- <div fxLayout="column wrap" fxLayoutGap="10px" fxLayoutAlign="start center"> -->
+
+  <div
+    *ngFor="
+      let seller of sellerList
+        | paginate: { itemsPerPage: 5, currentPage: page, id: 'first' }
+    "
+  >
+    <div>
+      <mat-card
+        class="matcard2"
+        matTooltipPosition="left"
+        matTooltipClass="custom-tooltip"
+      >
+        <div class="cartdetails" fxLayout="row" fxLayoutAlign="start start">
+          <img
+            class="bookimg"
+            alt="image not Found"
+            src="{{ seller.book.emailId }}"
+          />
+
+          <div class="bookdetails">
+            <div
+              class="booktitle"
+              style="word-wrap: break-word; margin-bottom: 11%;"
+            >
+              <strong>Seller Id : </strong>{{ seller.sellerId }}
+            </div>
+
+            <div
+              class="booktitle"
+              style="word-wrap: break-word; margin-bottom: 11%;"
+            >
+              <strong>Seller : </strong>{{ seller.sellerName }}
+            </div>
+
+            <div
+              style="
+                margin-bottom: 11%;
+                margin-left: -25px;
+                width: max-content;
+              "
+            >
+              <strong style="overflow: hidden; text-overflow: ellipsis;"
+                >email : </strong
+              >{{ seller.emailId }}
+            </div>
+            <div style="margin-left: -25px; word-wrap: break-word;">
+              <strong>Quantity : </strong>{{ seller.book.length }}
+            </div>
+          </div>
+        </div>
+
+        <!-- </div> -->
+        <div fxLayout="row wrap" fxLayoutAlign="end end">
+          <button
+            mat-raised-button
+            class="button"
+            style="background-color: #a03037; margin-top: -12%;"
+            (click)="getSellerBooks(seller)"
+          >
+            CheckOut To Books
+          </button>
+        </div>
+      </mat-card>
+      <br />
+      <!-- </div> -->
+    </div>
+  </div>
+  <!---------------------------- DisApproved Books --------------------->
+</div>
+
+<div class="paginator">
+  <pagination-controls
+    (pageChange)="page = $event"
+    id="first"
+  ></pagination-controls>
+</div>
+
+<mat-card class="footer" flex>
+  <div>
+    <p class="footerText">
+      Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+    </p>
+  </div>
+</mat-card>

@@ -50,7 +50,7 @@ const routes: Routes = [
     path: 'forgotpassword',
     component: ForgotpasswordComponent,
   },
-  {path: 'wishlist', component: WishlistComponent},
+  { path: 'wishlist', component: WishlistComponent },
   {
     path: 'verifydialog',
     component: VerifydialogComponent,
@@ -60,10 +60,7 @@ const routes: Routes = [
 
   { path: 'addbook', component: AddBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
-  {
-    path: 'admin-books',
-    component: AdminBooksComponent,
-  },
+
   {
     path: 'adminDashboard',
     component: AdminsComponent,
@@ -72,6 +69,10 @@ const routes: Routes = [
       {
         path: 'seller-list',
         component: SellersListComponent,
+      },
+      {
+        path: 'admin-books/:sellerId',
+        component: AdminBooksComponent,
       },
     ],
   },

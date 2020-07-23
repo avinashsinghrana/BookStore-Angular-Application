@@ -4,7 +4,8 @@
 .mat-toolbar {
   background-color: #a03037;
   top: 0;
-  right: 0;
+  left: 0;
+  height: 52px;
   position: fixed;
   z-index: 100;
 }
@@ -185,23 +186,16 @@ span {
   color: #a03037;
 }
 .footer {
-  //width: 1308px;
   height: 5px;
-  //top: 34px;
   background: #2e1d1efa 0% 0% no-repeat padding-box;
-  opacity: 90%;
-  // margin-right: 10%;
-  //margin-top: 95%;
+  opacity: 150%;
   position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 98%;
+  bottom: 4px;
+  width: 96.5%;
 }
-
 .footerText {
-  font-size: x-small;
-  text-align: center;
-  color: white;
-  // margin-left: 12%;
-  // margin-top: 2px;
+  font-size: small;
+  text-align: right;
+  color: beige;
+  margin-block-start: auto;
 }

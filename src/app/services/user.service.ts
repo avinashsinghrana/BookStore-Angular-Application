@@ -1,3 +1,4 @@
+import { Seller } from 'src/app/model/seller.model';
 import { Injectable } from '@angular/core';
 import { HttpService } from './../services/http.service';
 import { environment } from './../../environments/environment';
@@ -61,6 +62,13 @@ export class UserService {
   }*/
   profilePic(body: any) {
     return this.service.upload(environment.profilePicPath, body);
+  }
+
+  getAllSellerBooks(sellerId: any) {
+    return this.http.get(
+      'http://localhost:8081/admin/getBooksForVerification/' + sellerId,
+      { headers: new HttpHeaders().set('token', localStorage.getItem('token')) }
+    );
   }
 
   public uploadProfilePic(file: File): Observable<any> {

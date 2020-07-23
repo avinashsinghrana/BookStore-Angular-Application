@@ -2,7 +2,7 @@
   <div class="title">
     Books
     <span style="font-size: 15px; color: rgb(139, 136, 136);"
-      >({{ size }} items)</span
+      >({{ books.length }} items)</span
     >
   </div>
 </div>
@@ -21,7 +21,7 @@
 >
   <div
     *ngFor="
-      let book of seller
+      let book of books
         | bookFilter: searchTerm
         | paginate: { itemsPerPage: 6, currentPage: page, id: 'first' }
     "
@@ -59,6 +59,7 @@
             class="delete-button"
             mat-raised-button
             fxLayoutAlign="center"
+            style="background-color: gray;"
             *ngIf="book.verfied === false && book.isDisApproved == true"
             [disableRipple]="true"
             (click)="onDisapproved()"
@@ -69,6 +70,7 @@
             class="update-button"
             mat-raised-button
             fxLayoutAlign="center"
+            style="background-color: #a03037;"
             *ngIf="book.verfied === false"
             [disableRipple]="true"
             (click)="onApproval(book.bookId)"
