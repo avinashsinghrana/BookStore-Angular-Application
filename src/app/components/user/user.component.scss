@@ -111,8 +111,10 @@ button {
 //************
 .imageSelect {
   // margin-left: -5%;
-  align-items: center; 
+  // align-items: center; 
+  margin-right: 11%;
 }
+
 .profile {
   display: flex;
   overflow: hidden;
@@ -215,7 +217,7 @@ span {
     text-align: center;
     color: white;
    // margin-left: 12%;
-   // margin-top: 2px;
+   margin-top: 2px;
   }
 
   .mat-dialog-content {

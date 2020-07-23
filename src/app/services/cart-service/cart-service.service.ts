@@ -36,5 +36,7 @@ export class CartServiceService {
   removeAll() {
     return this.httpService.clearCart('http://localhost:8081/user/removeAll');
   }
-
+  sendMail() {
+    return this.httpService.mailSend('http://localhost:8081/user/orderPlacedMail/' + localStorage.getItem('token'));
+  }
 }

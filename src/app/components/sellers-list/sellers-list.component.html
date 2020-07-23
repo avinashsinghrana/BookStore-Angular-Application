@@ -2,12 +2,12 @@
   <div class="title">
     Sellers
     <span style="font-size: 15px; color: rgb(139, 136, 136);"
-      >({{ size }} items)</span
+      >({{ size }})</span
     >
   </div>
 </div>
 
-<div style="margin-top: 60px;">
+<div style="width: 70%; margin-top: 60px; margin-left: 215px;">
   <mat-nav-list>
     <mat-list-item *ngFor="let seller of sellerList">
       <a matLine (click)="getSellerBooks(seller)">{{ seller.sellerName }}</a>

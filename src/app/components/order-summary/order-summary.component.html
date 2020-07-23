@@ -1,4 +1,4 @@
-<mat-toolbar style="width: 100%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar style="width: 109.5%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
   <!--------------- bookimg and book --------------------------->
   <div class="titleText" fxLayoutGap="3%">
     <img src="../../../assets/image/education.svg" />
@@ -187,7 +187,7 @@ Customer Details
         <mat-label>City</mat-label>
         <input
           matInput
-          placeholder="Ex. San Francisco"
+          placeholder="Ex. Bangalore"
           formControlName="city"
           required
         />
@@ -241,9 +241,7 @@ Continue
 <mat-card *ngIf="!press" class="Summary-details">
 Order Summary
 </mat-card>
-
-<mat-card *ngIf="press" class="order-details"
->Order Summary
+<mat-card *ngIf="press" class="order-details">Order Summary
 
 <div *ngFor="let book of books">
 <br>
@@ -268,6 +266,15 @@ Order Summary
     </div>
   </mat-card-content>
 </div>
+<div>
+    <mat-card style="margin-top: 10%;background-color: white;">
+      <p style="color: black; font-size: medium;">Total Items:&nbsp;&nbsp;&nbsp; {{size}}</p>
+      <p style="color: black; font-size: medium;">Delivery Charges:&nbsp;&nbsp; FREE</p>
+      <mat-divider style="color: black;"></mat-divider>
+      <p style="color: black;font-size: medium; font-weight: bold;">
+        Total Payable:&nbsp;&nbsp;&nbsp;{{totalPrice}}</p>
+    </mat-card>
+</div>
 <button
 mat-flat-button
 color="primary"
@@ -276,6 +283,7 @@ class="checkout"
 >
 Checkout
 </button>
+<br><br><br>
 </mat-card>
 
 <mat-card class="footer">
