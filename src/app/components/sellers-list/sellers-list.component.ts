@@ -28,7 +28,7 @@ export class SellersListComponent implements OnInit {
     this.userService.getAllSellers().subscribe((Response: any) => {
       //    this.unVerifiedBooks = Response.obj;
 
-      //console.log(Response);
+      console.log(Response.data);
       this.sellerList = Response.data;
       this.size = this.sellerList.length;
       // console.log(this.sellerList);

@@ -27,6 +27,7 @@ export const environment = {
   updateQuantity: "update-quantity",
   confirmOrder: "confirm-order",
   profilePicPath: "/user/uploadFile",
+  bookPicPath: "/sellers/uploadFile",
   addBookPath: "/sellers/addBook",
   addimg:'/sellers/addImg'
 };

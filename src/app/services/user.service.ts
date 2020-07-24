@@ -63,6 +63,9 @@ export class UserService {
   profilePic(body: any) {
     return this.service.upload(environment.profilePicPath, body);
   }
+  bookPic(body: any) {
+    return this.service.uploadImg(environment.bookPicPath, body);
+  }
 
   getAllSellerBooks(sellerId: any) {
     return this.http.get(

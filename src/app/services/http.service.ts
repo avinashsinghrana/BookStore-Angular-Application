@@ -68,7 +68,15 @@ export class HttpService {
     url = this.apiBaseurl + url;
     const httpOptions = {
       headers: new HttpHeaders({
-        // "Content-Type": "multipart/form-data"
+        token: localStorage.getItem("token")
+      })
+    };
+    return this.http.post(url, body, httpOptions);
+  }
+  uploadImg(url: string, body: any): any {
+    url = this.apiBaseurl + url;
+    const httpOptions = {
+      headers: new HttpHeaders({ 
       })
     };
     return this.http.post(url, body, httpOptions);
@@ -77,8 +85,7 @@ export class HttpService {
   public POST(url: any, data: any, token: any): any {
     return this.http.post(this.apiBaseurl + url, data, token);
   }
-
-
+  
   public foo(url: any) {
     var httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json" })

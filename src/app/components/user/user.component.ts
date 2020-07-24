@@ -79,7 +79,7 @@ export class UserComponent implements OnInit {
             }
         });
   }
-  
+
   openBookForm() {
     if(this.isLogin==false){
       this.snackbar.open("Please Login First", "Ok", { duration: 2000 });

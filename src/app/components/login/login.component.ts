@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   reqbody = {
     emailId: null,
     password: null,
+    roleType: null,
   };
   constructor(
     private dialog: MatDialog,
@@ -79,7 +80,15 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.reqbody.emailId = this.emailFormControl.value;
     this.reqbody.password = this.password.value;
-    console.log(this.reqbody);
+    let currentUrl = this.router.url;
+    this.reqbody.roleType = "USER";
+    if(currentUrl.localeCompare('http://localhost:4200/adminDashboard/seller-list')){
+      this.reqbody.roleType = "ADMIN";
+    }
+    if(currentUrl.localeCompare('http://localhost:4200/sellerDashboard/display-books')){
+      this.reqbody.roleType = "SELLER";
+    }
+    console.log('reqbody',this.reqbody);
     this.userService.login(this.reqbody).subscribe(
       (data) => {
         console.log(data);
@@ -88,12 +97,32 @@ export class LoginComponent implements OnInit {
         this.response = data;
         localStorage.setItem('email', this.reqbody.emailId);
         localStorage.setItem('name', this.response.message);
-        localStorage.setItem('token', this.response.data);
-        location.reload();
+        if(this.response.roleType=="SELLER"){
+          localStorage.setItem('token', this.response.data);
+          this.router.navigate(['sellerDashboard']);
+          return;
+        }
+         if (this.response.roleType=="ADMIN") {
+          localStorage.setItem('token', this.response.data);
+          this.router.navigate(['adminDashboard']);
+          return;
+        }
+        
+          localStorage.setItem('token', this.response.data);
+          location.reload();
+        
+      /*  if(this.response.loginResponse.roleType=="SELLER"){
+          localStorage.setItem('stoken', this.response.loginResponse.token);
+        }
+        if(this.response.loginResponse.roleType=="ADMIN"){
+          localStorage.setItem('atoken', this.response.loginResponse.token);
+        }-*/
+       // localStorage.setItem('token', this.response.data);
+       
       },
       (err) => {
         this.spinner.hide();
-        this.snackbar.open('Login Failed', 'Ok', { duration: 5000 });
+        this.snackbar.open("Invalid Credential", 'Ok', { duration: 5000 });
       }
     );
   }

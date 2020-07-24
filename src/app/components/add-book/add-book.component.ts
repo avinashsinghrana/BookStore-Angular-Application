@@ -55,7 +55,7 @@ export class AddBookComponent implements OnInit {
       formData.append('file', this.file);
       this.file.inProgress = true;
       
-      this.userService.profilePic(formData).subscribe((data: any) => {
+      this.userService.bookPic(formData).subscribe((data: any) => {
             this.bookImageUrl = data.data;
             console.log(data);
             console.log(this.bookImageUrl);
