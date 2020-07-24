@@ -112,7 +112,7 @@ button {
 .imageSelect {
   // margin-left: -5%;
   // align-items: center; 
-  margin-right: 11%;
+  margin-right: 6%;
 }
 
 .profile {
@@ -137,16 +137,19 @@ button {
   opacity: 0.6;
 }
 .signout {
-  margin-left: auto;
-  margin-right: auto;
   font-weight: bold;
-  margin-left: 60px;
+    align-items: flex-end;
+  //  margin-left: 60px;
+    overflow: hidden;
+    position: relative;
 }
 .login {
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: bold;
-  margin-left: 50px;
+  align-items: flex-end;
+  // margin-left: auto;
+  // margin-right: auto;
+   font-weight: bold;
+  // margin-left: 50px;
+   overflow: hidden;
 }
 .delete {
   margin-right: auto;

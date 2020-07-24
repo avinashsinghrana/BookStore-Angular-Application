@@ -83,8 +83,9 @@ export class OrderSummaryComponent implements OnInit {
       address: ['', [Validators.required, Validators.minLength(3)]],
       city: ['', [Validators.required,Validators.pattern("^[A-Z][a-z]+(?:[\s-][a-zA-Z]+)*$")]],
       landMark: ['', [Validators.required,Validators.pattern("^[A-Z][a-z\\s]{3,}")]],
-      locationType: new FormControl(this.person)
+      // locationType: new FormControl(this.person)
     })
+    
     
   //  this.getAllBookCart()
   }
@@ -154,17 +155,17 @@ export class OrderSummaryComponent implements OnInit {
         });
       }
     }
-    // this.customerDetailsService.getUserDetails().subscribe((response: any) => {
-    //   this.fullName = response.userDetailList[0].fullName;
-    //   this.phoneNumber = response.userDetailList[0].phoneNumber;
-    //   this.locality= response.userDetailList[0].locality;
-    //   console.log(response);
-  // pinCode:  any;
-  // address:  any;
-  // city:  any;
-  // landMark:  any;
-  // locationType:  any;
-    // })
+    this.customerDetailsService.getUserDetails().subscribe((response: any) => {
+      this.fullName = response.userDetailsList[0].fullName;
+      this.phoneNumber = response.userDetailsList[0].phoneNumber;
+      this.locality= response.userDetailsList[0].locality;
+      this.pinCode = response.userDetailsList[0].pinCode;
+      this.address = response.userDetailsList[0].address;
+      this.city = response.userDetailsList[0].city;
+      this.landMark = response.userDetailsList[0].landMark;
+      console.log(response);
+      console.log('phone',this.phoneNumber);
+    })
   }
 
   onQuantity(book: any ,event: any){
@@ -281,7 +282,7 @@ export class OrderSummaryComponent implements OnInit {
     this.token = localStorage.getItem('token');
     
     if (this.registerForm.valid){ 
-      this.customerDetailsService.addDetails(this.registerForm.value, this.token).subscribe((response: any) => {
+      this.customerDetailsService.addDetails(this.registerForm.value,this.sortTerm.value, this.token).subscribe((response: any) => {
         console.log("data", this.registerForm.value);
         console.log("response", response);
       }
@@ -323,6 +324,7 @@ export class OrderSummaryComponent implements OnInit {
   onChange(val: any){
     this.sortTerm = val;
     this.person = this.sortTerm;
-    console.log("sorting term",this.sortTerm);
+    localStorage.setItem('locationType', this.sortTerm);
+    console.log("sorting term",this.sortTerm.value);
    }
 }

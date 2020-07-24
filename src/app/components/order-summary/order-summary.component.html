@@ -121,7 +121,7 @@ Customer Details
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="fullName" required />
+        <input matInput formControlName="fullName" value="{{fullName}}" required />
         <mat-error *ngIf="registerForm.get('fullName').hasError('required')">
           Field must not be Empty</mat-error>
           <mat-error *ngIf="registerForm.get('fullName').hasError('pattern')">
@@ -131,7 +131,7 @@ Customer Details
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>PhoneNumber</mat-label>
-        <input matInput formControlName="phoneNumber" required />
+        <input matInput formControlName="phoneNumber" value="{{phoneNumber}}" required />
         <mat-error *ngIf="registerForm.get('phoneNumber').hasError('required')">
           Field must not be Empty</mat-error>
           <mat-error *ngIf="registerForm.get('phoneNumber').hasError('pattern')">
@@ -145,7 +145,7 @@ Customer Details
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Pincode</mat-label>
-        <input matInput formControlName="pinCode" required />
+        <input matInput formControlName="pinCode" value="{{pinCode}}" required />
         <mat-error *ngIf="registerForm.get('pinCode').hasError('required')">
           Field must not be Empty</mat-error>
         <mat-error *ngIf="registerForm.get('pinCode').hasError('pattern')">
@@ -155,7 +155,7 @@ Customer Details
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Locality</mat-label>
-        <input matInput formControlName="locality" required />
+        <input matInput formControlName="locality" value="{{locality}}" required />
         <mat-error *ngIf="registerForm.get('locality').hasError('required')">
           Field must not be Empty</mat-error>
           <mat-error *ngIf="registerForm.get('locality').hasError('pattern')">
@@ -172,6 +172,7 @@ Customer Details
       matInput
       placeholder="Ex. 100 Main St"
       formControlName="address"
+      value="{{address}}"
       required
     ></textarea>
     <mat-error *ngIf="registerForm.get('address').hasError('required')">
@@ -189,6 +190,7 @@ Customer Details
           matInput
           placeholder="Ex. Bangalore"
           formControlName="city"
+          value="{{city}}"
           required
         />
         <mat-error *ngIf="registerForm.get('city').hasError('required')">
@@ -204,6 +206,7 @@ Customer Details
           matInput
           placeholder="Ex. California"
           formControlName="landMark"
+          value="{{landMark}}"
           required
         />
         <mat-error *ngIf="registerForm.get('landMark').hasError('required')">
@@ -267,13 +270,22 @@ Order Summary
   </mat-card-content>
 </div>
 <div>
-    <mat-card style="margin-top: 10%;background-color: white;">
-      <p style="color: black; font-size: medium;">Total Items:&nbsp;&nbsp;&nbsp; {{size}}</p>
-      <p style="color: black; font-size: medium;">Delivery Charges:&nbsp;&nbsp; FREE</p>
-      <mat-divider style="color: black;"></mat-divider>
-      <p style="color: black;font-size: medium; font-weight: bold;">
-        Total Payable:&nbsp;&nbsp;&nbsp;{{totalPrice}}</p>
-    </mat-card>
+  <mat-card style="margin-top: 6%;" fxflex="40">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="80%">
+      <mat-label fxFlex="40" style="font-weight: bold;">Total Items:</mat-label>
+      <mat-label fxFlex.xs="40">{{size}}</mat-label>
+</div>
+<br>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="70%">
+    <mat-label fxFlex="40" style="font-weight: bold;">Delivery Charges: </mat-label>
+    <mat-label fxFlex.xs="40" style="color: green;">FREE</mat-label>
+</div>
+<br>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="80%">
+  <mat-label fxFlex="40" style="font-weight: bold;">Total Payable:</mat-label>
+    <mat-label fxFlex.xs="40">Rs.{{totalPrice}}</mat-label>
+</div>
+  </mat-card>
 </div>
 <button
 mat-flat-button

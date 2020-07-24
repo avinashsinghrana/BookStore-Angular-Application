@@ -110,7 +110,7 @@ button {
 }
 //************
 .imageSelect {
-  margin-left: 35px;
+  margin-right: 4%;
 }
 .profile {
   overflow: hidden;
@@ -132,16 +132,20 @@ button {
   opacity: 0.6;
 }
 .signout {
-  margin-left: auto;
-  margin-right: auto;
+   
   font-weight: bold;
-  margin-left: 50px;
+  align-items: flex-end;
+//  margin-left: 60px;
+  overflow: hidden;
+  position: relative;
 }
 .login {
-  margin-left: auto;
-  margin-right: auto;
+  align-items: flex-end;
+ // margin-left: auto;
+ // margin-right: auto;
   font-weight: bold;
-  margin-left: 50px;
+ // margin-left: 50px;
+  overflow: hidden;
 }
 .delete {
   margin-right: auto;
@@ -186,16 +190,22 @@ span {
   color: #a03037;
 }
 .footer {
-  height: 5px;
+  //width: 1308px;
+  height: 3px;
+  //top: 34px;
   background: #2e1d1efa 0% 0% no-repeat padding-box;
-  opacity: 150%;
+  opacity: 90%;
   position: fixed;
-  bottom: 4px;
-  width: 96.5%;
+  left: 0;
+  bottom: 0;
+  width: 98%;
 }
+
 .footerText {
-  font-size: small;
-  text-align: right;
-  color: beige;
-  margin-block-start: auto;
+  font-size: x-small;
+  text-align: center;
+  color: white;
+  margin-top: 3px;
+  // margin-left: 12%;
+  // margin-top: 2px;
 }

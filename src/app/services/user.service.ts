@@ -19,7 +19,9 @@ export class UserService {
   register(body: any) {
     return this.service.postUser(body, environment.registrationPath);
   }
-
+  verification(token: string) {
+    return this.http.get("http://localhost:8081/user/verify/" + token);
+  }
   getAllBooks() {
     return this.service.http.get('http://localhost:8081/user/getallBooks');
   }

@@ -9,13 +9,13 @@ export class CustomerDetailsService {
 
   constructor(private httpService: HttpService) { }
 
-  addDetails(data, token) {
+  addDetails(data, locationType, token) {
 
-    return this.httpService.POST('/user/addUserDetails?token=' + token, data, { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+    return this.httpService.POST('/user/addUserDetails?locationType='+locationType+'&token=' + token, data, { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
 
   getUserDetails() {
-    return this.httpService.getDetails('/user/getUserDetails?token=' + localStorage.getItem('token'));
+    return this.httpService.getDetails('http://localhost:8081/user/getUserDetails?token=' + localStorage.getItem('token'));
   }
 }
 

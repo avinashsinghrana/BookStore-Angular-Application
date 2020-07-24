@@ -24,6 +24,7 @@ import { AdminsComponent } from './components/admins/admins.component';
 import { VerifydialogComponent } from './components/verifydialog/verifydialog.component';
 import { SellersListComponent } from './components/sellers-list/sellers-list.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { VerificationComponent } from './components/verification/verification.component';
 
 const routes: Routes = [
   {
@@ -34,11 +35,11 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  /*{
-    path: "admin",
-    component: AdminDashboardComponent,
-  },
   {
+    path: "verification/:token",
+    component: VerificationComponent,
+  },
+  /*{
     path: 'adminbooks',
     component: AdminComponent
   },*/
