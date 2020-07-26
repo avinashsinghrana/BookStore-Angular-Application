@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { SellerService } from "./../services/seller.service";
-import { UserService } from "./../services/user.service";
-import { BookserviceService } from './bookservice/bookservice.service';
-import { CartServiceService } from './cart-service/cart-service.service';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Subject} from 'rxjs';
+import {SellerService} from './../services/seller.service';
+import {UserService} from './../services/user.service';
+import {BookserviceService} from './bookservice/bookservice.service';
+import {CartServiceService} from './cart-service/cart-service.service';
+
 //import { BookService } from "./../services/book.service";
 
 @Injectable({
@@ -19,6 +20,7 @@ export class MessageService {
   private eventSource = new Subject<string>();
   private itemSource = new Subject<number>();
   private cartSource = new Subject<any>();
+  private wishItemSource = new Subject<any>();
   currentNewlyAdded = this.messageOnNewlyAdded.asObservable();
   currentDisapproved = this.messageOnDisapproved.asObservable();
   currentApproved = this.messageOnApproved.asObservable();
@@ -28,61 +30,76 @@ export class MessageService {
   currentItem$ = this.itemSource.asObservable();
   currentCart$ = this.cartSource.asObservable();
   currentBooksInCart = this.cartBookSource.asObservable();
+  currentWishItem$ = this.wishItemSource.asObservable();
+
+
   constructor(
     private vendorService: SellerService,
     private cartService: CartServiceService
-  ) {}
+  ) {
+  }
 
-  changeCartBook(){
+  changeCartBook() {
     this.cartService.getBookCart().subscribe((data) => {
-      if(localStorage.getItem('token')!=null)  {
-        console.log('here data',data);
+      if (localStorage.getItem('token') != null) {
+        console.log('here data', data);
         sessionStorage.setItem('cartsize', JSON.stringify(data.length));
-    }
-    else{
-      sessionStorage.setItem('cartsize','0');
-    }
-       this.cartBookSource.next(data);
+      } else {
+        sessionStorage.setItem('cartsize', '0');
+      }
+      this.cartBookSource.next(data);
     });
   }
 
-  changeEvent(message: string){
+  changeEvent(message: string) {
     this.eventSource.next(message);
   }
-  changeItem(message: number){
+
+  changeItem(message: number) {
     this.itemSource.next(message);
   }
-  changeCart(message: any){
+
+  changeWishItem(message: number) {
+    this.itemSource.next(message);
+  }
+
+  changeCart(message: any) {
     this.cartSource.next(message);
   }
+
   changeOnNewlyAdded() {
     this.vendorService.displayNewlyAddedBooks().subscribe((data) => {
       this.messageOnNewlyAdded.next(data);
     });
   }
+
   changeOnDisapproved() {
     this.vendorService.displayDisapprovedBooks().subscribe((data) => {
       this.messageOnDisapproved.next(data);
     });
   }
+
   changeOnApproved() {
     this.vendorService.displayApprovedBooks().subscribe((data) => {
       this.messageOnApproved.next(data);
     });
   }
+
   changeMessages() {
     this.vendorService.getBooks().subscribe((data) => {
       this.messageSources.next(data);
     });
   }
+
   changeBooks() {
     this.vendorService.displayAllBooks().subscribe((data) => {
       this.adminBooks.next(data);
     });
   }
+
   searchBook(event) {
-   /* this.bookService.searchBooks(event.target.value).subscribe((data) => {
-      this.messageSource.next(data);
-    });*/
+    /* this.bookService.searchBooks(event.target.value).subscribe((data) => {
+       this.messageSource.next(data);
+     });*/
   }
 }

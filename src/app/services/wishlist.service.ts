@@ -13,7 +13,7 @@ export class WishlistService {
     return this.httpService.addedToWishList('http://localhost:8081/user/addToWishlist?bookId=' + bookId + '&token=' + token);
   }
 
-  getBookOfWishList(token: string) {
+  getBookOfWishList(token: string): any {
     return this.httpService.getWishlistBooks('http://localhost:8081/user/getWishListBooks?token=' + token);
   }
 

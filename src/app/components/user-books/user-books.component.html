@@ -28,7 +28,7 @@
 >
   <div *ngFor="let book of books  | bookFilter:searchTerm | sortbyprice:sortTerm | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row" >
     <mat-card>
-     
+
      <div class="bookImageDiv" fxLayoutAlign="center">
         <img src="{{ book.bookImgUrl }}" />
       </div>
@@ -46,16 +46,25 @@
             Add to cart
           </button>
           <button
-            *ngIf="value[book.bookId] != book.bookId && book.quantity > 0"
+            *ngIf="wishvalue[book.bookId] != book.bookId && book.quantity > 0"
             class="update-button"
             mat-raised-button
             fxLayoutAlign="center"
             [disableRipple]="true"
-            (click)="onWish()"
+            (click)="onWish(book)"
           >
             Wish list
           </button>
-  
+          <button
+            *ngIf="wishvalue[book.bookId] == book.bookId && book.quantity > 0"
+            class="update-button"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+          >
+            Wishlisted
+          </button>
+
         </div>
         <div *ngIf="value[book.bookId] == book.bookId">
           <button   style="

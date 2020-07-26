@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { AddBookComponent } from '../add-book/add-book.component';
-import { MessageService } from "../../services/message.service";
-import { UserService } from "../../services/user.service";
-import { LoginComponent } from '../login/login.component';
-import { MatSnackBar } from '@angular/material';
-import { RegisterComponent } from '../register/register.component';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Sortmethod } from 'src/app/model/sortmethod';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { WishlistComponent } from '../wishlist/wishlist.component';
-import { CartserviceService } from 'src/app/services/cartservice.service';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {AddBookComponent} from '../add-book/add-book.component';
+import {MessageService} from '../../services/message.service';
+import {UserService} from '../../services/user.service';
+import {LoginComponent} from '../login/login.component';
+import {MatSnackBar} from '@angular/material';
+import {RegisterComponent} from '../register/register.component';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {Sortmethod} from 'src/app/model/sortmethod';
+import {ActivatedRoute, Router, ParamMap} from '@angular/router';
+import {WishlistComponent} from '../wishlist/wishlist.component';
+import {CartserviceService} from 'src/app/services/cartservice.service';
 
 @Component({
   selector: 'app-user',
@@ -28,13 +28,13 @@ export class UserComponent implements OnInit {
   imgFile: File;
   response: any;
   isImage = false;
-  img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
+  img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
   username: string;
   usermail: string;
   sorting: Sortmethod[];
   item: any;
   wishitem: any;
-  
+
   constructor(
     private dialog: MatDialog,
     public snackbar: MatSnackBar,
@@ -45,115 +45,123 @@ export class UserComponent implements OnInit {
     private router: Router,
     private cartServices: CartserviceService,
     private data: MessageService
-  ) {}
-  
+  ) {
+  }
+
   ngOnInit() {
+    this.messageService.currentWishItem$.subscribe(response => {
+      this.wishitem = response.data;
+    });
     this.messageService.changeMessages();
-    if(localStorage.getItem(localStorage.getItem('email'))==null){
-     this.isImage = false;
-    }
-    else{
+    if (localStorage.getItem(localStorage.getItem('email')) == null) {
+      this.isImage = false;
+    } else {
       this.isImage = true;
     }
-    if (localStorage.getItem('token')!=null) {  
+    if (localStorage.getItem('token') != null) {
       this.messageService.changeCartBook();
       this.data.changeItem(1);
       this.isLogin = true;
       this.img = localStorage.getItem(localStorage.getItem('email'));
       this.usermail = localStorage.getItem('email');
-      this.username = localStorage.getItem("name");
+      this.username = localStorage.getItem('name');
     } else {
       this.isLogin = false;
-      this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
+      this.img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
     }
-    this.messageService.currentItem$.subscribe(message =>
-      {  
-          let num1: number = +sessionStorage.getItem('cartsize');
-          let num2: number = +sessionStorage.getItem('size');
-          let totalSize: number = num1 + num2;
-          if(totalSize>0){
-            this.item = totalSize;
-          }
-            else{
-              this.item = '';
-            }
-        });
+    this.messageService.currentItem$.subscribe(message => {
+      let num1: number = +sessionStorage.getItem('cartsize');
+      let num2: number = +sessionStorage.getItem('size');
+      let totalSize: number = num1 + num2;
+      if (totalSize > 0) {
+        this.item = totalSize;
+      } else {
+        this.item = '';
+      }
+    });
   }
 
   openBookForm() {
-    if(this.isLogin==false){
-      this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
+    if (this.isLogin == false) {
+      this.snackbar.open('Please Login First', 'Ok', {duration: 2000});
       return;
     }
     this.dialog.open(AddBookComponent, {
-      height : '80%'
+      height: '80%'
     });
   }
-  onCart(){
-   
+
+  onCart() {
+
     this.router.navigate(['order-summary']);
   }
 
-  signin(){
+  signin() {
     this.dialog.open(LoginComponent, {
       width: '28%',
-      height : 'auto'
+      height: 'auto'
     });
   }
-  signup(){
+
+  signup() {
     this.dialog.open(RegisterComponent, {
       width: '35%',
-      height : 'auto'
+      height: 'auto'
     });
   }
-  delete(){
-    localStorage.removeItem(localStorage.getItem('email'))
-    this.img = "R";
+
+  delete() {
+    localStorage.removeItem(localStorage.getItem('email'));
+    this.img = 'R';
   }
-  onKey(event){
+
+  onKey(event) {
     this.data.changeEvent(this.searchTerm);
   }
+
   Logout() {
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
-      if(key[0]=='c'){
+      if (key[0] == 'c') {
         var obj = JSON.parse(localStorage.getItem(key));
-        console.log('cart data',obj);
-        console.log('cart id',key[1]);
-        this.cartServices.addToBag(obj,key[1]).subscribe((message) => {
+        console.log('cart data', obj);
+        console.log('cart id', key[1]);
+        this.cartServices.addToBag(obj, key[1]).subscribe((message) => {
         });
       }
     }
     this.img = localStorage.getItem(localStorage.getItem('email'));
     localStorage.clear();
     sessionStorage.clear();
-    localStorage.setItem(this.usermail,this.img);
+    localStorage.setItem(this.usermail, this.img);
     location.reload();
   }
+
   fileUpload($event) {
-     this.spinner.show();   
-     this.setProfilePic($event)
+    this.spinner.show();
+    this.setProfilePic($event);
   }
- setProfilePic($event) {
-      if(this.isLogin==false){
-        this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
-        return;
-      }
-     this.imgFile = $event.target.files[0];
-     var formData = new FormData();
-     formData.append("file", this.imgFile);
-     this.userService.profilePic(formData).subscribe(
-     data => {
-     console.log("------------------------------", data);
-     this.response = data;
-     this.spinner.hide(); 
-     this.img = this.response.data;
-     localStorage.setItem(localStorage.getItem('email'), this.response.data);
-  },
-  err => {
-     this.spinner.hide();
-     this.snackbar.open("Profile pic uplodation failed!!", "Ok", { duration: 2000 });
-  });
+
+  setProfilePic($event) {
+    if (this.isLogin == false) {
+      this.snackbar.open('Please Login First', 'Ok', {duration: 2000});
+      return;
+    }
+    this.imgFile = $event.target.files[0];
+    var formData = new FormData();
+    formData.append('file', this.imgFile);
+    this.userService.profilePic(formData).subscribe(
+      data => {
+        console.log('------------------------------', data);
+        this.response = data;
+        this.spinner.hide();
+        this.img = this.response.data;
+        localStorage.setItem(localStorage.getItem('email'), this.response.data);
+      },
+      err => {
+        this.spinner.hide();
+        this.snackbar.open('Profile pic uplodation failed!!', 'Ok', {duration: 2000});
+      });
   }
 
   openDialog() {
