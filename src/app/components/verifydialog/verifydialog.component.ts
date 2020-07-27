@@ -3,6 +3,7 @@ import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { SellerService } from 'src/app/services/seller.service';
 import { MessageService } from 'src/app/services/message.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-verifydialog',
@@ -19,9 +20,12 @@ export class VerifydialogComponent implements OnInit {
     private vendorService: SellerService,
     private router: Router
   ) {}
-
+  reasonForm = new FormGroup({
+    reason: new FormControl('', [Validators.required,]),
+  });
   book: any;
   status: any;
+  statuss: String = "DisApprove";
   ngOnInit(): void {
     console.log(this.data['status']);
     this.status = this.data['status'];
@@ -30,7 +34,8 @@ export class VerifydialogComponent implements OnInit {
 
   onVerify() {
     if (this.status == 'DisApprove') {
-      this.vendorService.ondisapprove(this.data.bookId).subscribe(
+      console.log("reason",this.reasonForm.value.reason);
+      this.vendorService.ondisapprove(this.data.bookId, this.reasonForm.value.reason).subscribe(
         (data) => {
           this.messageService.changeBooks();
           this.ngOnInit();

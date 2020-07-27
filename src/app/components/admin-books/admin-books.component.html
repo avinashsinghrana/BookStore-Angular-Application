@@ -29,6 +29,7 @@
     fxLayout="row"
   >
     <mat-card>
+      <span matBadge="n" matBadgeColor="warn" *ngIf="!book.isDisApproved && !book.verfied"></span>
       <div class="bookImageDiv" fxLayoutAlign="center">
         <img src="{{ book.bookImgUrl }}" />
       </div>

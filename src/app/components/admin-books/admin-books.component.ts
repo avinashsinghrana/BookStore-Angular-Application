@@ -42,11 +42,11 @@ export class AdminBooksComponent implements OnInit {
     this.sellerId = this.route.snapshot.paramMap.get('sellerId');
     console.log(this.sellerId);
     this.getAllSellerBooks();
-    this.messageService.changeMessages();
+   /* this.messageService.changeMessages();
     this.messageService.currentBooks.subscribe((data) => {
       this.books = [];
       // this.onDisplayBooks(data);
-    });
+    });*/
     this.messageService.currentEvent$.subscribe((message) => {
       this.searchTerm = message;
     });

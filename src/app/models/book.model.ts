@@ -7,10 +7,11 @@ export interface Book {
     bookDetails: string;
     bookImgUrl: string;
     seller: string;
-    isVerfied: boolean;
+    verfied: boolean;
     isDisApproved: boolean;
     isSendForApproval: boolean
     rejectionCounts: any;
     isApprovalSent: boolean;
+    rejectionReason: string;
   }
   

@@ -4,6 +4,7 @@ import { MessageService } from "../../services/message.service";
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { UpdateBookComponent } from '../update-book/update-book.component';
 import { Book } from 'src/app/models/book.model';
+import { BookRejectionComponent } from '../bookRejection/bookRejection.component';
 
 @Component({
   selector: 'app-display-books',
@@ -16,6 +17,7 @@ export class DisplayBooksComponent implements OnInit {
   searchTerm: string;
   message: string;
   page: number = 1;
+  isActive: boolean = false;
   status1: boolean = false;
   status2: boolean = false;
   status3: boolean = false;
@@ -105,6 +107,10 @@ export class DisplayBooksComponent implements OnInit {
         this.books.push(bookData);
       });
     }
+  }
+  notification(reason: any){
+    localStorage.setItem('reason',reason);
+    this.dialog.open(BookRejectionComponent)
   }
 
   onDeleteBook(bookId) {

@@ -16,13 +16,15 @@ export class SellersListComponent implements OnInit {
     private router: Router
   ) {}
   page: number = 1;
+  sellerList: [];
+  size: any;
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
       this.getSeller();
+     
     }
   }
-  sellerList: [];
-  size: any;
+ 
 
   getSeller() {
     this.userService.getAllSellers().subscribe((Response: any) => {

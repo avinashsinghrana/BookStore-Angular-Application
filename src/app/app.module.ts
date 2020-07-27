@@ -61,6 +61,7 @@ import { VerifydialogComponent } from './components/verifydialog/verifydialog.co
 import { SellersListComponent } from './components/sellers-list/sellers-list.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { VerificationComponent } from './components/verification/verification.component';
+import { BookRejectionComponent } from './components/bookRejection/bookRejection.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { VerificationComponent } from './components/verification/verification.co
     VerifydialogComponent,
     WishlistComponent,
     VerificationComponent,
+    BookRejectionComponent,
   ],
   imports: [
     BrowserModule,

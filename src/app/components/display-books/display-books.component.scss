@@ -124,7 +124,58 @@ mat-card {
     font-size: medium;
     
   }
+  .rejection {
+    display: none;
+    position: absolute;
+    font-size: medium;
+    
+  }
+  .reason{
+    background-color: red;
+  }
+  .bookImageDiv{
+    overflow: hidden;
+  }
+/*  .bookImageDiv:hover  .book-details {
+    display: block;
+    margin-top: 2%;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+      0 6px 20px 0 rgba(29, 29, 29, 0.19);
+    width: 18%;
+    height: fit-content;
+    background-color: whitesmoke;
+    margin-left: 5%;
+    z-index: 1;
+    padding: 2%;
+  }*/
+  /* a:hover .rejection {
+    display: block;
+    margin-top: 2%;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+      0 6px 20px 0 rgba(29, 29, 29, 0.19);
+    width: 18%;
+    height: fit-content;
+    background-color: whitesmoke;
+    margin-left: 5%;
+    z-index: 1;
+    padding: 2%;
+  }*/
   mat-card:hover + .book-details {
+    display: block;
+    margin-top: 2%;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+      0 6px 20px 0 rgba(29, 29, 29, 0.19);
+    width: 18%;
+    height: fit-content;
+    background-color: whitesmoke;
+    margin-left: 5%;
+    z-index: 1;
+    padding: 2%;
+  }
+  mat-icon:hover + .rejection{
     display: block;
     margin-top: 2%;
     position: absolute;
@@ -142,6 +193,8 @@ mat-card {
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 2%;
+    overflow: hidden;
+    scroll-padding-top: 5%;
   }
   // @media only screen and (min-width: 600px) and (max-width: 1300) {
   //   .main-div {
