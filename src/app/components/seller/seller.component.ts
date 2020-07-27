@@ -32,7 +32,7 @@ export class SellerComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private data: MessageService
   ) {}
-  
+
   ngOnInit() {
     this.messageService.changeOnNewlyAdded();
   /*  if(localStorage.getItem(localStorage.getItem('email'))==null){
@@ -60,7 +60,7 @@ export class SellerComponent implements OnInit {
    // document.getElementById('profileImage').innerHTML = intials;
    // document.getElementById('profileInnerImage').innerHTML = intials;
   }
-  
+
   openBookForm() {
     if(this.isLogin==false){
       this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
@@ -94,7 +94,7 @@ export class SellerComponent implements OnInit {
     location.reload();
   }
   fileUpload($event) {
-     this.spinner.show();   
+     this.spinner.show();
      this.setProfilePic($event)
   }
  setProfilePic($event) {
@@ -109,7 +109,7 @@ export class SellerComponent implements OnInit {
      data => {
      console.log("------------------------------", data);
      this.response = data;
-     this.spinner.hide(); 
+     this.spinner.hide();
      this.img = this.response.data;
      localStorage.setItem(localStorage.getItem('email'), this.response.data);
   },

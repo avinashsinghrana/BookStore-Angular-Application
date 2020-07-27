@@ -37,7 +37,7 @@ export class AdminsComponent implements OnInit {
     private router: Router,
     private data: MessageService
   ) {}
-  
+
   ngOnInit() {
     this.messageService.changeBooks();
     this.messageService.currentItem$.subscribe(message =>
@@ -49,7 +49,7 @@ export class AdminsComponent implements OnInit {
     else{
       this.isImage = true;
     }
-    if (localStorage.getItem('token')!=null) {
+    if (localStorage.getItem('token')!=null && localStorage.getItem('roleType') === 'ADMIN') {
       this.isLogin = true;
       this.img = localStorage.getItem(localStorage.getItem('email'));
       this.usermail = localStorage.getItem('email');
@@ -59,7 +59,7 @@ export class AdminsComponent implements OnInit {
       this.img = "https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png";
     }
   }
-  
+
   openBookForm() {
     if(this.isLogin==false){
       this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
@@ -96,7 +96,7 @@ export class AdminsComponent implements OnInit {
     location.reload();
   }
   fileUpload($event) {
-     this.spinner.show();   
+     this.spinner.show();
      this.setProfilePic($event)
   }
  setProfilePic($event) {
@@ -111,7 +111,7 @@ export class AdminsComponent implements OnInit {
      data => {
      console.log("------------------------------", data);
      this.response = data;
-     this.spinner.hide(); 
+     this.spinner.hide();
      this.img = this.response.data;
      localStorage.setItem(localStorage.getItem('email'), this.response.data);
   },

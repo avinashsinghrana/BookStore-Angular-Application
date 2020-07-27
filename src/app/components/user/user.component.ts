@@ -11,6 +11,7 @@ import {Sortmethod} from 'src/app/model/sortmethod';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {WishlistComponent} from '../wishlist/wishlist.component';
 import {CartserviceService} from 'src/app/services/cartservice.service';
+import {WishlistService} from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-user',
@@ -44,13 +45,22 @@ export class UserComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private cartServices: CartserviceService,
-    private data: MessageService
+    private data: MessageService,
+    private wishlistService: WishlistService
   ) {
   }
 
   ngOnInit() {
     this.messageService.currentWishItem$.subscribe(response => {
-      this.wishitem = response.data;
+      // this.wishitem = +sessionStorage.getItem('wishsize');
+      let num1: number = +sessionStorage.getItem('wishsize');
+      let num2: number = +sessionStorage.getItem('wishsize2');
+      let totalSize: number = num1 + num2;
+      if (totalSize > 0) {
+        this.wishitem = totalSize;
+      } else {
+        this.wishitem = '';
+      }
     });
     this.messageService.changeMessages();
     if (localStorage.getItem(localStorage.getItem('email')) == null) {
@@ -58,7 +68,7 @@ export class UserComponent implements OnInit {
     } else {
       this.isImage = true;
     }
-    if (localStorage.getItem('token') != null) {
+    if (localStorage.getItem('token') != null && localStorage.getItem('roleType') === 'USER') {
       this.messageService.changeCartBook();
       this.data.changeItem(1);
       this.isLogin = true;
@@ -127,6 +137,16 @@ export class UserComponent implements OnInit {
         console.log('cart data', obj);
         console.log('cart id', key[1]);
         this.cartServices.addToBag(obj, key[1]).subscribe((message) => {
+        });
+      }
+    }
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if (key[0] == 'w') {
+        var obj = JSON.parse(localStorage.getItem(key));
+        console.log('wish data', obj);
+        console.log('wish id', key[1]);
+        this.wishlistService.addToWishList(key[1], localStorage.getItem('token')).subscribe((message) => {
         });
       }
     }

@@ -45,17 +45,17 @@
 
   <mat-menu  #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
     <div class="backgroundimage"  fxLayoutAlign="center center"  >
-      <button (click)="$event.stopPropagation()" 
-        [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'120px','height':'120px'}"
+      <button (click)="$event.stopPropagation()"
+        [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'80px','height':'80px'}"
         (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
         <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
       </button>
     </div>
-    <!--div> 
+    <!--div>
       <div class="mat-subheading-1" style="font-weight: bold;" >{{username}}</div>
       <div class="mat-subheading-1">{{usermail}}</div>
    </div-->
-    <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p> 
+    <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p>
           <p style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis;"> {{usermail}} </p> </div>
     <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
     <mat-divider style="margin-top: auto;"></mat-divider>
@@ -66,7 +66,7 @@
         <button class="delete" mat-flat-button (click)="delete()">Delete </button>
         <button class="signout" mat-flat-button (click)="Logout()">Sign out </button>
       </div>
-  </mat-menu> 
+  </mat-menu>
   </mat-toolbar>
   <router-outlet></router-outlet>
   <mat-card class="footer" flex>

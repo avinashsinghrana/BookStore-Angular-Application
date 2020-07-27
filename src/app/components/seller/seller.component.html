@@ -24,7 +24,7 @@
     />
       </mat-card>
       <span class="spanClass"></span>
-      <!-- user profile pic --> 
+      <!-- user profile pic -->
       <button mat-mini-fab class ="imageSelect"  [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'45px','height':'45px'}"
       [matMenuTriggerFor]="menu1" colour="basic" matTooltip="Seller Account"
       [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
@@ -33,20 +33,20 @@
       [matMenuTriggerFor]="menu1" matTooltip="Seller Account"
       [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
     </button-->
-  
+
     <mat-menu  #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
       <div class="backgroundimage"  fxLayoutAlign="center center"  >
-        <button (click)="$event.stopPropagation()" 
-          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'120px','height':'120px'}"
+        <button (click)="$event.stopPropagation()"
+          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'80px','height':'80px'}"
           (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
           <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
         </button>
       </div>
-      <!--div> 
+      <!--div>
         <div class="mat-subheading-1" style="font-weight: bold;" >{{username}}</div>
         <div class="mat-subheading-1">{{usermail}}</div>
      </div-->
-      <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p> 
+      <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p>
             <p style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis;"> {{usermail}} </p> </div>
       <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
       <mat-divider style="margin-top: auto;"></mat-divider>
@@ -57,7 +57,7 @@
           <button class="delete" mat-flat-button (click)="delete()">Delete </button>
           <button class="signout" mat-flat-button (click)="Logout()">Sign out </button>
         </div>
-    </mat-menu> 
+    </mat-menu>
     </mat-toolbar>
     <mat-card
       fxLayout="column"
@@ -68,9 +68,9 @@
     >
       <span class="mainSellingSpan">Welcome on BoookStore</span>
       <span class="subSellingSpan">Sell your book online</span>
-  
+
       <button
-        mat-raised-button 
+        mat-raised-button
         class="addBookButton"
         fxLayoutAlign="center"
         [disableRipple]="true"
@@ -94,7 +94,7 @@
         <img src="../../../assets/image/epic.jpg" width="150" height="200" alt="book" style="margin-left: 2%; margin-right: 2%;"/>
       </marquee>
     </div>
-  
+
     <router-outlet></router-outlet>
     <mat-card class="footer" flex>
       <div>
@@ -104,4 +104,3 @@
       </div>
     </mat-card>
   </div>
-  

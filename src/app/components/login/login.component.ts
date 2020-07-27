@@ -99,16 +99,19 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('name', this.response.message);
         if (this.response.roleType === 'SELLER'){
           localStorage.setItem('token', this.response.data);
+          localStorage.setItem('roleType', this.response.roleType);
           this.router.navigate(['sellerDashboard']);
           return;
         }
         if (this.response.roleType === 'ADMIN') {
           localStorage.setItem('token', this.response.data);
+          localStorage.setItem('roleType', this.response.roleType);
           this.router.navigate(['adminDashboard']);
           return;
         }
 
         localStorage.setItem('token', this.response.data);
+        localStorage.setItem('roleType', this.response.roleType);
         location.reload();
 
       /*  if(this.response.loginResponse.roleType=="SELLER"){

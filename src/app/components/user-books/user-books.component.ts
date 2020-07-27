@@ -27,7 +27,8 @@ export class UserBooksComponent implements OnInit {
   wishvalue: any = [];
   page: number = 1;
   num: number = 0;
-  wishnum: number = 0;
+  wishnum = 0;
+  wishToCart: any;
 
   constructor(
     private vendorService: SellerService,
@@ -40,24 +41,41 @@ export class UserBooksComponent implements OnInit {
   ) {
     for (let i = 0; i < sessionStorage.length; i++) {
       let key = sessionStorage.key(i);
-      this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
+      if (key[0] !== 'w') {
+        this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
+      }
     }
     for (let i = 0; i < sessionStorage.length; i++) {
       let key = sessionStorage.key(i);
-      this.wishvalue[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
+      if (key[0] === 'w') {
+        this.wishvalue[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
+      }
     }
   }
 
   ngOnInit() {
+    // this.data.changeItem(this.item);
+    // this.data.changeWishItem(this.wishnum);
+    // this.messageService.currentWishBooks$.subscribe(reply => {
+    //   let bookobject = JSON.parse(localStorage.getItem('duplicate'));
+    //   localStorage.removeItem('duplicate');
+    //   if (bookobject !== null ) {
+    //     // console.log('local for wish book' , localStorage.getItem('duplicate'));
+    //     this.onAddBook(bookobject);
+    //   }
+    // });
+
     this.sortTerm = 'none';
     // this.item = sessionStorage.getItem('size');
-    this.data.changeItem(1);
+    this.data.changeItem(this.item);
+    this.data.changeWishItem(0);
     this.messageService.currentMessages.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
     });
     this.messageService.currentEvent$.subscribe(message => {
       this.searchTerm = message;
+      console.log('message' + message);
     });
   }
 
@@ -82,7 +100,8 @@ export class UserBooksComponent implements OnInit {
     this.wishnum++;
     sessionStorage.setItem('wishsize', JSON.stringify(this.wishnum));
     this.data.changeWishItem(this.wishnum);
-    sessionStorage.setItem(book.bookId, book.bookId);
+    // sessionStorage.setItem('wishsize', JSON.stringify(this.wishnum));
+    sessionStorage.setItem('w' + book.bookId, book.bookId);
     this.wishvalue[book.bookId] = book.bookId;
     // tslint:disable-next-line:prefer-const
     var wishBook = {
@@ -110,6 +129,9 @@ export class UserBooksComponent implements OnInit {
     // this.messageService.changeCart(book);
     console.log('seema', book);
     this.num++;
+    if (this.wishnum > 0){
+      this.data.changeWishItem(--this.wishnum);
+    }
     sessionStorage.setItem('size', JSON.stringify(this.num));
     this.data.changeItem(this.num);
     sessionStorage.setItem(book.bookId, book.bookId);

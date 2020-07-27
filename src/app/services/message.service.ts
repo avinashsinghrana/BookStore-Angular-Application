@@ -20,6 +20,7 @@ export class MessageService {
   private eventSource = new Subject<string>();
   private itemSource = new Subject<number>();
   private cartSource = new Subject<any>();
+  private changeWishSource = new Subject<any>();
   private wishItemSource = new Subject<any>();
   currentNewlyAdded = this.messageOnNewlyAdded.asObservable();
   currentDisapproved = this.messageOnDisapproved.asObservable();
@@ -31,7 +32,7 @@ export class MessageService {
   currentCart$ = this.cartSource.asObservable();
   currentBooksInCart = this.cartBookSource.asObservable();
   currentWishItem$ = this.wishItemSource.asObservable();
-
+  currentWishBooks$ = this.wishItemSource.asObservable();
 
   constructor(
     private vendorService: SellerService,
@@ -60,7 +61,7 @@ export class MessageService {
   }
 
   changeWishItem(message: number) {
-    this.itemSource.next(message);
+    this.wishItemSource.next(message);
   }
 
   changeCart(message: any) {
@@ -101,5 +102,10 @@ export class MessageService {
     /* this.bookService.searchBooks(event.target.value).subscribe((data) => {
        this.messageSource.next(data);
      });*/
+  }
+
+  changeWishObject(message: any) {
+    console.log('message of wish' + message);
+    this.changeWishSource.next(message);
   }
 }

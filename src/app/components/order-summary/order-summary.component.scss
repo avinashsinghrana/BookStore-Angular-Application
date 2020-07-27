@@ -36,10 +36,11 @@
 }
 .search-mat-card {
   display: flex;
-  margin-right: 120px;
+  margin-right: 430px;
   width: 40%;
   height: 60%;
   padding: 0px;
+
 }
 .searchIcon {
   display: flex;
@@ -60,7 +61,7 @@
   color:white;
   margin-top: 1.5%;
   margin-left: 64%;
- 
+
 }
 
 span{
@@ -75,7 +76,7 @@ span{
   color:white;
 }
 .titleText {
-  margin-left: 12%;
+  margin-left: 18%;
   color: white;
 }
 @media only screen and (max-width: 720px) {
@@ -95,7 +96,7 @@ span{
   border: 1px solid #707070;
   border-radius: 1px;
   opacity: 0.85;
- 
+
 }
 
 .mat-content{
@@ -130,18 +131,18 @@ span{
 }
 
 .placeOrder{
-   
+
   margin-left: 82%;
   margin-top: 5%;
-  background-color: #3169ce;    
+  background-color: #3169ce;
   font-size: small;
 }
-.emptyCart{ 
+.emptyCart{
 
  margin-left: 39%;
 // margin-top: %;
  color: white;
- background-color: #a03037;    
+ background-color: #a03037;
  font-size: medium;
 }
 .mat-details{
@@ -152,7 +153,7 @@ span{
   border-radius: 1px;
   opacity: 0.85;
   top:67px;
-} 
+}
 .contact-details{
   left: 177px;
   width: 760px;
@@ -169,7 +170,7 @@ span{
   margin-top: 2%;
   margin-right: 6px;
   font-size: medium;
-}   
+}
 td {
   padding-right: 8px;
 
@@ -188,7 +189,7 @@ td {
 }
 .Continue{
   margin-left: 40%;
-  background-color: #3169ce;    
+  background-color: #3169ce;
   font-size: small;
 }
 .Edit{
@@ -206,7 +207,7 @@ td {
   top: 79px;
 }
 .order-details{
-  
+
   left: 177px;
   width: 760px;
   height: auto;
@@ -226,7 +227,7 @@ td {
 .book-image2{
   margin-left: 2%;
   margin-top: 6%;
-} 
+}
 .book-names3{
   margin-left: 25%;
   margin-top: -15%;
@@ -244,7 +245,7 @@ td {
   margin-left: 26%;
   padding: 0px;
   font-size: small;
-} 
+}
 
 .footer {
   //width: 1308px;
@@ -271,7 +272,7 @@ td {
 .quantity{
  margin-top: -13px;
  margin-left: 30px;
- 
+
 }
 .quantity-holder{
  width: 16px;
@@ -282,10 +283,10 @@ td {
 .material-icons-outlined{
  font-size: 20px;
  outline-color: whitesmoke;
- /* color: #abbcecfb; */ 
+ /* color: #abbcecfb; */
 
 /*   text-shadow: 0px 0px 1px black;
-/* color:rgb(243, 225, 192); 
+/* color:rgb(243, 225, 192);
 color:  rgb(232, 243, 242); */
 }
 
@@ -300,7 +301,7 @@ color:  rgb(232, 243, 242); */
 
 
 
-/* 
+/*
 :host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
   padding: 0 .75em 0 .75em;
   margin-top: -.25em;
