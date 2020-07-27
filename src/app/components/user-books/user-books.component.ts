@@ -59,7 +59,6 @@ export class UserBooksComponent implements OnInit {
     this.messageService.currentEvent$.subscribe(message => {
       this.searchTerm = message;
     });
-    this.printData();
   }
 
 
