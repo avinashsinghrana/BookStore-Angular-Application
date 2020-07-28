@@ -85,9 +85,9 @@ export class SellerService {
       }
     );
   }
-  ondisapprove(bookId: any,rejectionReason: any): Observable<any> {
+  ondisapprove(bookId: any): Observable<any> {
     return this.http.put(
-      environment.baseUrl + this.disapprove + '/' + bookId + '/' + rejectionReason,
+      environment.baseUrl + this.disapprove + '/' + bookId,
       '',
       {
         headers: new HttpHeaders().set('token', localStorage.getItem('token')),

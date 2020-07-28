@@ -20,9 +20,9 @@ export class VerifydialogComponent implements OnInit {
     private vendorService: SellerService,
     private router: Router
   ) {}
-  reasonForm = new FormGroup({
-    reason: new FormControl('', [Validators.required,]),
-  });
+  // reasonForm = new FormGroup({
+  //   reason: new FormControl('', [Validators.required,]),
+  // });
   book: any;
   status: any;
   statuss: String = "DisApprove";
@@ -34,8 +34,7 @@ export class VerifydialogComponent implements OnInit {
 
   onVerify() {
     if (this.status == 'DisApprove') {
-      console.log("reason",this.reasonForm.value.reason);
-      this.vendorService.ondisapprove(this.data.bookId, this.reasonForm.value.reason).subscribe(
+      this.vendorService.ondisapprove(this.data.bookId).subscribe(
         (data) => {
           this.messageService.changeBooks();
           this.ngOnInit();

@@ -8,7 +8,7 @@ import {MatSnackBar} from '@angular/material';
 import {RegisterComponent} from '../register/register.component';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Sortmethod} from 'src/app/model/sortmethod';
-import {ActivatedRoute, Router, ParamMap} from '@angular/router';
+import {Router} from '@angular/router';
 import {WishlistComponent} from '../wishlist/wishlist.component';
 import {CartserviceService} from 'src/app/services/cartservice.service';
 import {WishlistService} from '../../services/wishlist.service';
@@ -40,7 +40,6 @@ export class UserComponent implements OnInit {
     private dialog: MatDialog,
     public snackbar: MatSnackBar,
     private userService: UserService,
-    private route: ActivatedRoute,
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
     private router: Router,
@@ -52,9 +51,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.messageService.currentWishItem$.subscribe(response => {
-      // this.wishitem = +sessionStorage.getItem('wishsize');
-      let num1: number = +sessionStorage.getItem('wishsize');
-      let num2: number = +sessionStorage.getItem('wishsize2');
+      let num1: number = +sessionStorage.getItem('fwsize');
+      let num2: number = +sessionStorage.getItem('bwsize');
+      console.log('fs',num1);
+      console.log('bs',num2);
       let totalSize: number = num1 + num2;
       if (totalSize > 0) {
         this.wishitem = totalSize;
@@ -91,18 +91,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-  openBookForm() {
-    if (this.isLogin === false) {
-      this.snackbar.open('Please Login First', 'Ok', {duration: 2000});
-      return;
-    }
-    this.dialog.open(AddBookComponent, {
-      height: '80%'
-    });
-  }
-
   onCart() {
-
     this.router.navigate(['order-summary']);
   }
 
@@ -122,7 +111,6 @@ export class UserComponent implements OnInit {
 
   delete() {
     localStorage.removeItem(localStorage.getItem('email'));
-    this.img = 'R';
   }
 
   onKey(event) {
@@ -134,8 +122,6 @@ export class UserComponent implements OnInit {
       let key = localStorage.key(i);
       if (key[0] == 'c') {
         var obj = JSON.parse(localStorage.getItem(key));
-        console.log('cart data', obj);
-        console.log('cart id', key[1]);
         this.cartServices.addToBag(obj, key[1]).subscribe((message) => {
         });
       }
@@ -144,8 +130,6 @@ export class UserComponent implements OnInit {
       let key = localStorage.key(i);
       if (key[0] == 'w') {
         var obj = JSON.parse(localStorage.getItem(key));
-        console.log('wish data', obj);
-        console.log('wish id', key[1]);
         this.wishlistService.addToWishList(key[1], localStorage.getItem('token')).subscribe((message) => {
         });
       }

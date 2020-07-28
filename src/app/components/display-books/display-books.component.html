@@ -27,13 +27,6 @@
 >
   <div *ngFor="let book of books  | bookFilter:searchTerm | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row">
     <mat-card>
-   <button
-      mat-raised-button
-      fxLayoutAlign="end end"
-      [disableRipple]="true"
-      (click)="notification(book.rejectionReason)"
-    >  <mat-icon style="background-color: red;" matSuffix>notifications</mat-icon>
-    </button>
      <div fxLayoutAlign="center">
         <img class="bookImageDiv" src="{{ book.bookImgUrl }}" />
       </div>

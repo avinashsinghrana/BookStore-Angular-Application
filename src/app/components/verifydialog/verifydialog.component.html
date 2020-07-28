@@ -6,20 +6,6 @@
       style="justify-content: flex-end;"
       fxLayoutGap="10px"
     >
-    <form [formGroup]="reasonForm" *ngIf="status==statuss">
-    <mat-form-field appearance="outline">
-      <mat-label>Rejection Reason</mat-label>
-      <textarea
-        required
-        matInput
-        placeholder="reason"
-        style="overflow: hidden;"
-        formControlName="reason"
-        autocomplete="off"
-        pattern="[a-zA-Z\s]{3,}"
-      ></textarea>
-    </mat-form-field>
-    </form>
       <button
         mat-raised-button
         (click)="onCancel()"

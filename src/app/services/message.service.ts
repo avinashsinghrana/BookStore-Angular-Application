@@ -32,7 +32,7 @@ export class MessageService {
   currentCart$ = this.cartSource.asObservable();
   currentBooksInCart = this.cartBookSource.asObservable();
   currentWishItem$ = this.wishItemSource.asObservable();
-  currentWishBooks$ = this.wishItemSource.asObservable();
+  currentWishBooks$ = this.changeWishSource.asObservable();
 
   constructor(
     private vendorService: SellerService,
@@ -96,12 +96,6 @@ export class MessageService {
     this.vendorService.displayAllBooks().subscribe((data) => {
       this.adminBooks.next(data);
     });
-  }
-
-  searchBook(event) {
-    /* this.bookService.searchBooks(event.target.value).subscribe((data) => {
-       this.messageSource.next(data);
-     });*/
   }
 
   changeWishObject(message: any) {

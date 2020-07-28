@@ -95,17 +95,11 @@ export class OrderSummaryComponent implements OnInit {
     let num1: number = +sessionStorage.getItem('cartsize');
     let num2: number = +sessionStorage.getItem('size');
     this.size = num1 + num2;
-    console.log('num1 ', num1);
-    console.log('num2 ', num2);
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
-      console.log('key', key);
-      console.log('key 0', key[0]);
       if (key[0] == 'c') {
-        console.log('value', JSON.parse(localStorage.getItem(key)));
         this.books.push(JSON.parse(localStorage.getItem(key)));
       }
-      // this.value[localStorage.getItem(key)] = sessionStorage.getItem(key);
     }
   }
 
@@ -122,14 +116,9 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   onDisplayBooks(data) {
-    // console.log(data);
-    // this.books = data;
-    // this.size = data.length;
-    //  this.size = data.length;
     data.forEach((bookData) => {
       localStorage.setItem('c' + bookData.bookId, JSON.stringify(bookData));
-      sessionStorage.setItem(bookData.bookId, bookData.bookId);
-
+      sessionStorage.setItem('c'+bookData.bookId, bookData.bookId);
     });
   }
 
@@ -178,13 +167,6 @@ export class OrderSummaryComponent implements OnInit {
     console.log('index', book.book_id);
     console.log('event', event.data);
     this.cartService.addIteams(book.book_id, event.data).subscribe((response: any) => {
-      // this.size = response.length;
-
-      //  this.cartService.getBookCart();
-      // this.messageService.changeCartBook();
-
-      // window.location.reload();
-      // console.log("response", response);
     });
 
 
@@ -198,21 +180,6 @@ export class OrderSummaryComponent implements OnInit {
     localStorage.setItem('c' + book.bookId, JSON.stringify(book));
     this.books = [];
     this.printData();
-    /*   this.cartService.addBooks(bookId).subscribe((response: any) => {
-         this.cartQuantity = response.data.quantity;
-         this.cartPrice = response.data.totalPrice;
-        this.messageService.changeCartBook();
-         // window.location.reload();
-         // console.log("response", response);
-       })
-   */
-
-
-    // this.getAllBookCart();
-    // this.quantity++;
-    /*  var price=this.books[index].totalPrice;
-     this.books[index].totalPrice =  this.books[index].totalprice+price; */
-
   }
 
 
@@ -222,14 +189,6 @@ export class OrderSummaryComponent implements OnInit {
     localStorage.setItem('c' + book.bookId, JSON.stringify(book));
     this.books = [];
     this.printData();
-    /*console.log("id", bookId);
-      this.cartService.removeItem(bookId).subscribe((response: any) => {
-        this.cartQuantity = response.data.quantity;
-        this.cartPrice = response.data.totalPrice;
-        this.cartService.getBookCart();
-        this.messageService.changeCartBook();
-        console.log("response=", response);
-      }) */
   }
 
   getQuantitiy(bookId: any): boolean {
@@ -243,7 +202,7 @@ export class OrderSummaryComponent implements OnInit {
   removeAllItemsCart(bookId: any) {
     console.log('ccc', bookId);
     localStorage.removeItem('c' + bookId);
-    sessionStorage.removeItem(bookId);
+    sessionStorage.removeItem('c'+ bookId);
     let num1: number = +sessionStorage.getItem('cartsize');
     let num2: number = +sessionStorage.getItem('size');
     let size1: number = num2;
@@ -251,29 +210,12 @@ export class OrderSummaryComponent implements OnInit {
     if (size1 >= 0) {
       sessionStorage.setItem('size', JSON.stringify(size1));
     }
-    /*  if(size1==0){
-       location.reload();
-       }*/
-    // this.messageService.changeCartBook();
     if (localStorage.getItem('token') != null && num1 != 0) {
       this.cartService.removeBookById(bookId).subscribe((response: any) => {
         this.messageService.changeCartBook();
         location.reload();
-        // num1--;
-        // sessionStorage.setItem('cartsize',JSON.stringify(num1));
-        // this.books = [];
-        // this.printData();
-        /* sessionStorage.removeItem(bookId);
-         let size: any =  sessionStorage.getItem('size');
-         size--;
-         if(size>=0){
-         sessionStorage.setItem('size', size);
-         }
-          console.log("Book id",bookId);
-          console.log("response", response);*/
 
       });
-      // this.messageService.changeCartBook();
     }
     this.books = [];
     this.printData();

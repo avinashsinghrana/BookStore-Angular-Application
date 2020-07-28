@@ -86,7 +86,6 @@ export class AdminsComponent implements OnInit {
   }
   delete(){
     localStorage.removeItem(localStorage.getItem('email'))
-    this.img = "R";
   }
   onKey(event){
     this.data.changeEvent(this.searchTerm);
@@ -96,7 +95,6 @@ export class AdminsComponent implements OnInit {
     location.reload();
   }
   fileUpload($event) {
-     this.spinner.show();
      this.setProfilePic($event)
   }
  setProfilePic($event) {
@@ -104,6 +102,7 @@ export class AdminsComponent implements OnInit {
         this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
         return;
       }
+      this.spinner.show();
      this.imgFile = $event.target.files[0];
      var formData = new FormData();
      formData.append("file", this.imgFile);

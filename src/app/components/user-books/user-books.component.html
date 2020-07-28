@@ -41,12 +41,12 @@
         <div fxlayout="row">
           <span class="input-price-span">Rs. {{ book.price }}</span>
         </div>
-        <div *ngIf="value[book.bookId] != book.bookId" fxLayout="row" fxLayoutAlign="space-between">
+        <div *ngIf="value['c'+book.bookId] != book.bookId" fxLayout="row" fxLayoutAlign="space-between">
           <button *ngIf="value[book.bookId] != book.bookId && book.quantity > 0" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book)">
             Add to cart
           </button>
           <button
-            *ngIf="wishvalue[book.bookId] != book.bookId"
+            *ngIf="wishvalue['w'+book.bookId] != book.bookId && value['c'+book.bookId] != book.bookId && book.quantity > 0"
             class="update-button"
             mat-raised-button
             fxLayoutAlign="center"
@@ -56,7 +56,7 @@
             Wish list
           </button>
           <button
-            *ngIf="wishvalue[book.bookId] == book.bookId"
+            *ngIf="wishvalue['w'+book.bookId] == book.bookId"
             class="update-button"
             mat-raised-button
             fxLayoutAlign="center"
@@ -66,7 +66,7 @@
           </button>
 
         </div>
-        <div *ngIf="value[book.bookId] == book.bookId">
+        <div *ngIf="value['c'+book.bookId] == book.bookId">
           <button   style="
           height: 32px;
           width: 100%;
@@ -76,7 +76,7 @@
           text-align: center;
         "
         mat-button
-       [disabled] = "value[book.bookId] == book.bookId" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
+       [disabled] = "value['c'+book.bookId] == book.bookId" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
             Added to cart
           </button>
         </div>
