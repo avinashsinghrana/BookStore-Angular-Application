@@ -14,7 +14,7 @@
   opacity: 1;
 }
 
-.footer{ 
+.footer{
   // width: 1308px;
   height: 14px;
   // top: 34px;
@@ -26,13 +26,14 @@
   bottom: 0;
   right: 0;
   }
-  
+
 .footerText{
     font-size: x-small;
     color: white;
     text-align: center;
+  margin-top: 2px;
   }
- 
+
 .buttonstyle{
   margin-top: 1%;
   margin-left: 587px;
@@ -95,7 +96,7 @@
 }
 .search-mat-card {
   display: flex;
-  margin-right: 100px;
+  margin-right: 415px;
   width: 40%;
   height: 60%;
   padding: 0px;

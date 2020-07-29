@@ -3,6 +3,7 @@ import { UserService } from './../../services/user.service';
 import { AdminBooksComponent } from './../admin-books/admin-books.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import {MessageService} from '../../services/message.service';
 
 @Component({
   selector: 'app-sellers-list',
@@ -10,21 +11,25 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./sellers-list.component.scss'],
 })
 export class SellersListComponent implements OnInit {
+
+  searchTerm: string;
   constructor(
     private dialog: MatDialog,
+    private messageService: MessageService,
     private userService: UserService,
     private router: Router
   ) {}
   page: number = 1;
   sellerList: [];
   size: any;
-  ngOnInit(): void {
-    if (localStorage.getItem('token') != null) {
+  ngOnInit() {
+    if (localStorage.getItem('token') != null && localStorage.getItem('roleType') === 'ADMIN') {
       this.getSeller();
-     
     }
+    this.messageService.currentEvent$.subscribe(message =>
+    { this.searchTerm = message});
   }
- 
+
 
   getSeller() {
     this.userService.getAllSellers().subscribe((Response: any) => {

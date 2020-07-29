@@ -48,13 +48,13 @@
   role="combobox"
   fxLayout="row wrap"
   fxLayoutGap="6%"
-  style="margin-left: 10%; margin-top: 5%; margin-bottom: 5%;"
+  style="margin-left: 12%; margin-top: 5%; margin-bottom: 5%;"
 >
   <!-- <div fxLayout="column wrap" fxLayoutGap="10px" fxLayoutAlign="start center"> -->
 
   <div
     *ngFor="
-      let seller of sellerList
+      let seller of sellerList | sellerFilter:searchTerm
         | paginate: { itemsPerPage: 5, currentPage: page, id: 'first' }
     "
   >

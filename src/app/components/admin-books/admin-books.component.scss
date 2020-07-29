@@ -3,6 +3,7 @@ mat-card {
   width: 200px;
   padding: 0%;
 }
+.mat-badge-content { background:  #a03037 }
 mat-card:hover {
   box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
     0 6px 20px 0 rgba(29, 29, 29, 0.19);
@@ -89,7 +90,7 @@ img {
   width: 73px;
   font-size: x-small;
   font-weight: bold;
-  background-color: blue;
+  background-color: #3169ce;
   color: white;
   padding: 0px;
   margin-top: 3%;
@@ -104,6 +105,7 @@ img {
   color: whitesmoke;
   padding: 0px;
   background-color: #a03037;
+
   margin-top: 3%;
   border: none;
   outline: none;

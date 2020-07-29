@@ -110,9 +110,10 @@ button {
 }
 //************
 .imageSelect {
-  // margin-left: -5%;
-  // align-items: center; 
+  //margin-left: -65px;
+  // align-items: center;
   margin-right: 6%;
+  background-color:whitesmoke;
 }
 
 .profile {
@@ -123,8 +124,9 @@ button {
   position: absolute;
   padding: 10px;
   //margin-right: 100%;
-  margin-top: 30%;
-  color: gainsboro;
+  margin-top: 22px;
+  color: darkgrey;
+  //margin-top: -5px;
 }
 .menu-button {
   margin-left: 60%;
@@ -140,8 +142,10 @@ button {
   font-weight: bold;
     align-items: flex-end;
   //  margin-left: 60px;
+  margin-left: 71px;
     overflow: hidden;
     position: relative;
+
 }
 .login {
   align-items: flex-end;
@@ -155,6 +159,9 @@ button {
   margin-right: auto;
   font-weight: bold;
   margin-block-start: 1px;
+ // margin-left: -70px;
+  display: table-row;
+
 }
 
 .cartname {
@@ -214,13 +221,13 @@ span {
 }
  // margin-right: 10%;
  //margin-top: 95%;
-  
+
 .footerText{
     font-size: x-small;
     text-align: center;
     color: white;
    // margin-left: 12%;
-   margin-top: 2px;
+   margin-top: -3px;
   }
 
   .mat-dialog-content {
@@ -233,4 +240,3 @@ span {
     margin-left: -100% ;
     background-color: none;
   }
-  

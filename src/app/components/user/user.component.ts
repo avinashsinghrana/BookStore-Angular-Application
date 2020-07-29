@@ -51,13 +51,14 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.messageService.currentWishItem$.subscribe(response => {
+      // this.wishitem = response;
       let num1: number = +sessionStorage.getItem('fwsize');
-      let num2: number = +sessionStorage.getItem('bwsize');
-      console.log('fs',num1);
-      console.log('bs',num2);
-      let totalSize: number = num1 + num2;
-      if (totalSize > 0) {
-        this.wishitem = totalSize;
+      // let num2: number = +sessionStorage.getItem('bwsize');
+      // console.log('fs',num1);
+      // console.log('bs',num2);
+      // let totalSize: number = num1 + num2;
+      if (num1 > 0) {
+        this.wishitem = num1;
       } else {
         this.wishitem = '';
       }
@@ -126,14 +127,14 @@ export class UserComponent implements OnInit {
         });
       }
     }
-    for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i);
-      if (key[0] == 'w') {
-        var obj = JSON.parse(localStorage.getItem(key));
-        this.wishlistService.addToWishList(key[1], localStorage.getItem('token')).subscribe((message) => {
-        });
-      }
-    }
+    // for (let i = 0; i < localStorage.length; i++) {
+    //   let key = localStorage.key(i);
+    //   if (key[0] == 'w') {
+    //     var obj = JSON.parse(localStorage.getItem(key));
+    //     this.wishlistService.addToWishList(key[1], localStorage.getItem('token')).subscribe((message) => {
+    //     });
+    //   }
+    // }
     this.img = localStorage.getItem(localStorage.getItem('email'));
     localStorage.clear();
     sessionStorage.clear();
@@ -147,7 +148,7 @@ export class UserComponent implements OnInit {
   }
 
   setProfilePic($event) {
-    if (this.isLogin == false) {
+    if (this.isLogin === false) {
       this.snackbar.open('Please Login First', 'Ok', {duration: 2000});
       return;
     }

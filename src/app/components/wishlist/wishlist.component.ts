@@ -17,46 +17,42 @@ export class WishlistComponent implements OnInit {
   }
 
   ngOnInit(): any {
-    if (localStorage.getItem('token') !== null) {
+    this.data.changeWishItem(this.size);
+    if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'USER') {
       this.getAllBookOfWL();
 
     }
-    this.printData();
+    // this.printData();
     const sqnc = new Observable(this.books);
-
   }
 
   removeFromWishList(bookId: any) {
-    // this.wishService.removeFromWL(bookId, localStorage.getItem('token')).subscribe(data => {
-    //   console.log(data);
-    //   if (this.books.length > 0) {
-    //     // this.getAllBookOfWL();
-    //   }
+    // localStorage.removeItem('w' + bookId);
+    // sessionStorage.removeItem('w' + bookId);
+    // let num1: number = +sessionStorage.getItem('fwsize');
+    // let num2: number = +sessionStorage.getItem('bwsize');
+    // let size1: number = num1;
+    // size1--;
+    // if (size1 >= 0) {
+    //   sessionStorage.setItem('fwsize', JSON.stringify(size1));
+    // }
+    // this.data.currentWishItem$.subscribe(data => {
+    //   this.size = data;
     // });
-
-    localStorage.removeItem('w' + bookId);
-    sessionStorage.removeItem('w' + bookId);
-    let num1: number = +sessionStorage.getItem('fwsize');
-    let num2: number = +sessionStorage.getItem('bwsize');
-    let size1: number = num1;
-    size1--;
-    if (size1 >= 0) {
-      sessionStorage.setItem('fwsize', JSON.stringify(size1));
-    }
-    this.data.changeWishItem(size1);
-    if (localStorage.getItem('token') != null && num1 !== 0) {
-      this.wishService.removeFromWL(bookId, localStorage.getItem('token')).subscribe((response: any) => {
+    this.size = +sessionStorage.getItem('fwsize');
+    this.size--;
+    sessionStorage.setItem('fwsize', JSON.stringify(this.size));
+    this.data.changeWishItem(this.size);
+    this.wishService.removeFromWL(bookId, localStorage.getItem('token')).subscribe((response: any) => {
         this.getAllBookOfWL();
-        location.reload();
-      });
-    }
-    this.books = [];
-    this.printData();
+    });
+    // this.books = [];
+    // this.printData();
   }
 
   addToCart(book: any) {
      this.removeFromWishList(book.bookId);
-     this.data.changeWishObject(book);   
+     this.data.changeWishObject(book);
   }
 
   public getAllBookOfWL() {
@@ -64,19 +60,20 @@ export class WishlistComponent implements OnInit {
       this.books = response.data;
       sessionStorage.setItem('bwsize', response.data.length);
       this.data.changeWishItem(response.data.length);
-      response.data.forEach((bookData) => {
-        localStorage.setItem('w' + bookData.bookId, JSON.stringify(bookData));
-        sessionStorage.setItem('w' + bookData.bookId, bookData.bookId);
-      });
+      this.data.changeWishObject(response.data);
+      // response.data.forEach((bookData) => {
+      //   localStorage.setItem('w' + bookData.bookId, JSON.stringify(bookData));
+      //   sessionStorage.setItem('w' + bookData.bookId, bookData.bookId);
+      // });
     });
   }
 
-  printData() {
-    for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i);
-      if (key[0] == 'w') {
-        this.books.push((JSON.parse(localStorage.getItem(key))));
-      }
-    }
-  }
+  // printData() {
+  //   for (let i = 0; i < localStorage.length; i++) {
+  //     let key = localStorage.key(i);
+  //     if (key[0] == 'w') {
+  //       this.books.push((JSON.parse(localStorage.getItem(key))));
+  //     }
+  //   }
+  // }
 }

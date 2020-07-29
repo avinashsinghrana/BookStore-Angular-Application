@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class SellerService {
- 
+
   private addBookApi = 'sellers/addBook';
   private updateBookApi = '/sellers/updateBook';
   private deleteBookApi = '/sellers/deleteBook';

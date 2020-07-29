@@ -101,12 +101,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', this.response.data);
           localStorage.setItem('roleType', this.response.roleType);
           this.router.navigate(['sellerDashboard']);
+          location.reload();
           return;
         }
         if (this.response.roleType === 'ADMIN') {
           localStorage.setItem('token', this.response.data);
           localStorage.setItem('roleType', this.response.roleType);
           this.router.navigate(['adminDashboard']);
+          location.reload();
           return;
         }
 

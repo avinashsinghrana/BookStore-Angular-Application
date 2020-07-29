@@ -9,7 +9,7 @@ export class WishlistService {
   constructor(private httpService: HttpService) {
   }
 
-  addToWishList(bookId: any, token: string) {
+  addToWishList(bookId: any, token: string): any {
     return this.httpService.addedToWishList('http://localhost:8081/user/addToWishlist?bookId=' + bookId + '&token=' + token);
   }
 

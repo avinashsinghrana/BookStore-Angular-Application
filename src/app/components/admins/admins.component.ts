@@ -65,9 +65,6 @@ export class AdminsComponent implements OnInit {
       this.snackbar.open("Please Login First", "Ok", { duration: 2000 });
       return;
     }
-    this.dialog.open(AddBookComponent, {
-      height : '80%'
-    });
   }
   onCart(){
     this.router.navigate(['/order-summary']);

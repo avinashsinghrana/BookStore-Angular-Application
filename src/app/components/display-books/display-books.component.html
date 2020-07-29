@@ -25,8 +25,15 @@
   fxLayout.lg="row wrap"
   fxLayoutAlign.lg="start start"
 >
-  <div *ngFor="let book of books  | bookFilter:searchTerm | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row">
+  <div *ngFor="let book of books  | bookFilter:searchTerm | paginate: { itemsPerPage: 4, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row">
     <mat-card>
+<!--   <button-->
+<!--      mat-raised-button-->
+<!--      fxLayoutAlign="end end"-->
+<!--      [disableRipple]="true"-->
+<!--      (click)="notification(book.rejectionReason)"-->
+<!--    >  <mat-icon style="background-color: red;" matSuffix>notifications</mat-icon>-->
+<!--    </button>-->
      <div fxLayoutAlign="center">
         <img class="bookImageDiv" src="{{ book.bookImgUrl }}" />
       </div>
@@ -69,7 +76,7 @@
           >
             APPROVAL
           </button>
-  
+
         </div>
       </div>
     </mat-card>
@@ -77,14 +84,17 @@
       <h4 style="text-align: center;margin-top: 0mm;">Book Details</h4>
       <span style="font-size: medium;">{{ book.bookDetails }}</span>
     </div>
-    <div class="rejection">
-      <h4 style="text-align: center;margin-top: 0mm;">Rejection Reason</h4>
-      <span style="font-size: medium;">{{ book.rejectionReason }}</span>
+<!--    <div class="rejection">-->
+<!--      <h4 style="text-align: center;margin-top: 0mm;">Rejection Reason</h4>-->
+<!--      <span style="font-size: medium;">{{ book.rejectionReason }}</span>-->
+<!--    </div>-->
+<!--  </div>-->
+    <div class="paginator">
+      <pagination-controls
+        (pageChange)="page = $event"
+        id="first"
+      ></pagination-controls>
     </div>
-  </div>
-  <div class="paginator">
-    <pagination-controls
-      (pageChange)="page = $event"
-      id="first"
-    ></pagination-controls>
 </div>
+
+

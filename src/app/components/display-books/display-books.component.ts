@@ -31,8 +31,8 @@ export class DisplayBooksComponent implements OnInit {
 
   ngOnInit() {
     this.onNewlyAdded();
-  
-   if (localStorage.getItem('token')!=null) {
+
+   if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'SELLER') {
     this.isLogin = true;
    }
     this.messageService.currentEvent$.subscribe(message =>
@@ -76,7 +76,7 @@ export class DisplayBooksComponent implements OnInit {
     console.log(bookId);
     this.vendorService.sendApprovalRequest(bookId).subscribe(
       (data) => {
-        //  this.messageService.changeMessage();  
+        //  this.messageService.changeMessage();
         this.ngOnInit();
       },
       (error: any) => {
@@ -88,7 +88,7 @@ export class DisplayBooksComponent implements OnInit {
   onBookDetail(event) {
     event.stopPropagation();
   }
- 
+
   onKey(event) {
     this.searchTerm = event;
   }
@@ -117,7 +117,7 @@ export class DisplayBooksComponent implements OnInit {
     console.log(bookId);
     this.vendorService.deleteBooks(bookId).subscribe(
       (data) => {
-        //  this.messageService.changeMessage();  
+        //  this.messageService.changeMessage();
         this.ngOnInit();
       },
       (error: any) => {
@@ -125,5 +125,5 @@ export class DisplayBooksComponent implements OnInit {
       }
     );
   }
- 
+
 }

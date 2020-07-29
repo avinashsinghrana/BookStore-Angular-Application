@@ -41,14 +41,36 @@
       [matTooltipClass]="'my-tooltip'"
       fxLayout="row"
       fxLayoutAlign="end center"
-    ></button>
+    > <div
+      style="        margin-right: 2px;
+    color: darkblue;
+    margin-top: 22px;
+    width: 43px;
+    height: 43px;
+    font-size: x-large;"
+      *ngIf="img == null"
+    >
+      {{ username | slice: 0:1 }}
+    </div>
+    </button>
 
   <mat-menu  #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
     <div class="backgroundimage"  fxLayoutAlign="center center"  >
       <button (click)="$event.stopPropagation()"
         [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'80px','height':'80px'}"
         (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
-        <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
+        <div
+          style="margin-top: 16px;
+    color: darkblue;
+    margin-right: -4px;
+    font-size: -webkit-xxx-large;
+    font-family: Lato, sans-serif, Bold"
+          *ngIf="img == null"
+        >
+          {{ username | slice: 0:1 }}
+        </div>
+        <mat-icon class="icons" matSuffix style="margin-top: 3px;">add_a_photo</mat-icon>
+
       </button>
     </div>
     <!--div>
@@ -56,15 +78,15 @@
       <div class="mat-subheading-1">{{usermail}}</div>
    </div-->
     <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p>
-          <p style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis;"> {{usermail}} </p> </div>
+          <p style="text-align: center; margin-top: -13px; padding-left: 10px; padding-right: 10px; overflow: hidden; text-overflow: ellipsis;"> {{usermail}} </p> </div>
     <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
     <mat-divider style="margin-top: auto;"></mat-divider>
     <div fxLayoutAlign="center center" *ngIf="!isLogin">
       <button class="login" mat-flat-button (click)="signin()">LogIn </button>
     </div>
-      <div fxLayoutAlign="center center" *ngIf="isLogin">
-        <button class="delete" mat-flat-button (click)="delete()">Delete </button>
-        <button class="signout" mat-flat-button (click)="Logout()">Sign out </button>
+      <div fxLayoutAlign="row" *ngIf="isLogin">
+        <div><button class="delete" mat-flat-button (click)="delete()">Delete </button></div>
+        <div><button class="signout" mat-flat-button (click)="Logout()">Sign out </button></div>
       </div>
   </mat-menu>
   </mat-toolbar>

@@ -23,7 +23,7 @@
     *ngFor="
       let book of books
         | bookFilter: searchTerm
-        | paginate: { itemsPerPage: 6, currentPage: page, id: 'first' }
+        | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }
     "
     style="margin: 0px;"
     fxLayout="row"
@@ -60,7 +60,7 @@
             class="delete-button"
             mat-raised-button
             fxLayoutAlign="center"
-            style="background-color: gray;"
+            style="background-color: #3169ce;"
             *ngIf="book.verfied === false && book.isDisApproved == true"
             [disableRipple]="true"
             (click)="onDisapproved()"

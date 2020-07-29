@@ -54,6 +54,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { BookFilterPipe } from './components/display-books/book-filter.pipe';
+import {SellerSearchPipe} from './components/sellers-list/sellerSearch.pipe';
 import { SortbypricePipe } from './components/user-books/sortbyprice.pipe';
 import { AdminsComponent } from './components/admins/admins.component';
 import { AdminBooksComponent } from './components/admin-books/admin-books.component';
@@ -79,6 +80,7 @@ import { BookRejectionComponent } from './components/bookRejection/bookRejection
     //  BookSearchPipe,
     SortbypricePipe,
     BookFilterPipe,
+    SellerSearchPipe,
     //  UserBooksComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
