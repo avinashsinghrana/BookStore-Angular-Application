@@ -58,16 +58,14 @@ onSubmit(resetPassword) {
         console.log(response);
         if (response.status === 200) {
           localStorage.removeItem("token");
-          // this.snackBar.open("Password updated successfully", "Ok", { duration: 3000 })
-          this.failedMsg="Password updated successfully"
-          this.router.navigate(['login']);
+          this.snackBar.open("Password updated successfully now you can login", "Ok", { duration: 3000 })
+          this.router.navigate(['user-dashboard/user-books']);
         }
          
       },
       (error: any) => {
         //console.log(error);
-        // this.snackBar.open("Password updated Failed", "Ok", { duration: 3000 })
-        this.failedMsg = "Password updated Failed";
+         this.snackBar.open("Password updated Failed", "Ok", { duration: 3000 })
       }
     );
   }

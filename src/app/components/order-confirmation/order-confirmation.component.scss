@@ -298,4 +298,81 @@ p
   opacity: 1;
 }
 
+#signin {
+  margin-left: 8%;
+  font-weight: bold;
+  font-size: 100%;
+  opacity: 50%;
+}
+//************
+.imageSelect {
+  //margin-left: -65px;
+  // align-items: center;
+  margin-right: 6%;
+  background-color:whitesmoke;
+}
+
+.profile {
+  display: flex;
+  overflow: hidden;
+}
+.icons {
+  position: absolute;
+  padding: 10px;
+  //margin-right: 100%;
+  margin-top: 22px;
+  color: darkgrey;
+  //margin-top: -5px;
+}
+.menu-button {
+  margin-left: 60%;
+  overflow: hidden;
+}
+
+.profileEmail {
+  padding: 10px;
+  margin-left: 0.5%;
+  opacity: 0.6;
+}
+.signout {
+  font-weight: bold;
+    align-items: flex-end;
+  //  margin-left: 60px;
+  margin-left: 71px;
+    overflow: hidden;
+    position: relative;
+
+}
+.login {
+  align-items: flex-end;
+  // margin-left: auto;
+  // margin-right: auto;
+   font-weight: bold;
+  // margin-left: 50px;
+   overflow: hidden;
+}
+.delete {
+  margin-right: auto;
+  font-weight: bold;
+  margin-block-start: 1px;
+ // margin-left: -70px;
+  display: table-row;
+
+}
+
+.cartname {
+  position: absolute;
+  color: aliceblue;
+  margin-top: 1.5%;
+  margin-left: 64%;
+}
+.mat-subheading-1 {
+  margin-top: 50%;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+.spanClass {
+  margin-left: 5%;
+}
 
