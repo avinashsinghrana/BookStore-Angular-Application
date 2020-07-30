@@ -195,3 +195,8 @@
     // margin-left: 12%;
     // margin-top: 2px;
   }
+  html{display: none;
+  overflow: hidden; }
+::-webkit-scrollbar{
+  display: none;
+}

@@ -81,8 +81,10 @@ export class UserComponent implements OnInit {
       this.img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
     }
     this.messageService.currentItem$.subscribe(message => {
-      let num1: number = +sessionStorage.getItem('cartsize');
-      let num2: number = +sessionStorage.getItem('size');
+      let num1: number = +localStorage.getItem('mycartsize');
+      let num2: number = +localStorage.getItem('size');
+      console.log(num1);
+      console.log(num2);
       let totalSize: number = num1 + num2;
       if (totalSize > 0) {
         this.item = totalSize;

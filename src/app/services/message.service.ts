@@ -43,10 +43,9 @@ export class MessageService {
   changeCartBook() {
     this.cartService.getBookCart().subscribe((data) => {
       if (localStorage.getItem('token') != null) {
-        console.log('here data', data);
-        sessionStorage.setItem('cartsize', JSON.stringify(data.length));
+        localStorage.setItem('mycartsize', JSON.stringify(data.length));
       } else {
-        sessionStorage.setItem('cartsize', '0');
+        localStorage.setItem('mycartsize', '0');
       }
       this.cartBookSource.next(data);
     });

@@ -27,9 +27,9 @@ export class UserBooksComponent implements OnInit {
   ) {
     for (let i = 0; i < sessionStorage.length; i++) {
       let key = sessionStorage.key(i);
-      if (key[0] === 'c') {
+     // if (key[0] === 'c') {
         this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
-      }
+     // }
     }
     for (let i = 0; i < sessionStorage.length; i++) {
       let key = sessionStorage.key(i);
@@ -48,8 +48,8 @@ export class UserBooksComponent implements OnInit {
   item: any;
   add: false;
   isAdded: boolean;
-  value: any = [];
   toggle = true;
+  value: any = [];
   wishvalue: any = [];
   // wishvalue: any;
   page: number = 1;
@@ -130,10 +130,10 @@ export class UserBooksComponent implements OnInit {
 
   onAddBook(book) {
     this.num++;
-    sessionStorage.setItem('size', JSON.stringify(this.num));
+    localStorage.setItem('size', JSON.stringify(this.num));
     this.messageService.changeItem(this.num);
-    sessionStorage.setItem('c'+book.bookId, book.bookId);
-    this.value['c'+ book.bookId] = book.bookId;
+    sessionStorage.setItem(book.bookId, book.bookId);
+    this.value[book.bookId] = book.bookId;
     var cartBook = {
       bookId: book.bookId,
       name: book.bookName,
