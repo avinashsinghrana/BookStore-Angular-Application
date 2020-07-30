@@ -7,9 +7,9 @@ import {MatRadioChange, MatDialog, MatSnackBar} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
 import {MessageService} from 'src/app/services/message.service';
 import {CartserviceService} from 'src/app/services/cartservice.service';
-import { UserService } from 'src/app/services/user.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { RegisterComponent } from '../register/register.component';
+import {UserService} from 'src/app/services/user.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {RegisterComponent} from '../register/register.component';
 
 
 @Component({
@@ -128,7 +128,6 @@ export class OrderSummaryComponent implements OnInit {
   }
 
 
-
   signin() {
     this.dialog.open(LoginComponent, {
       width: '28%',
@@ -191,8 +190,8 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   printData() {
-    let num1: number = +sessionStorage.getItem('cartsize');
-    let num2: number = +sessionStorage.getItem('size');
+    let num1: number = +localStorage.getItem('mycartsize');
+    let num2: number = +localStorage.getItem('size');
     this.size = num1 + num2;
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
@@ -217,14 +216,14 @@ export class OrderSummaryComponent implements OnInit {
   onDisplayBooks(data) {
     data.forEach((bookData) => {
       localStorage.setItem('c' + bookData.bookId, JSON.stringify(bookData));
-      sessionStorage.setItem('c'+bookData.bookId, bookData.bookId);
+      sessionStorage.setItem(bookData.bookId, bookData.bookId);
     });
   }
 
 
   onPopup() {
     if (this.size >= 1) {
-      if (localStorage.getItem('token') == null) {
+      if (localStorage.getItem('token') == null && localStorage.getItem('roleType') !== 'USER') {
         this.dialog.open(LoginComponent, {
           width: '28%',
           height: 'auto'
@@ -245,18 +244,53 @@ export class OrderSummaryComponent implements OnInit {
         });
       }
     }
-    this.customerDetailsService.getUserDetails().subscribe((response: any) => {
-      this.fullName = response.userDetailsList[0].fullName;
-      this.phoneNumber = response.userDetailsList[0].phoneNumber;
-      this.locality = response.userDetailsList[0].locality;
-      this.pinCode = response.userDetailsList[0].pinCode;
-      this.address = response.userDetailsList[0].address;
-      this.city = response.userDetailsList[0].city;
-      this.landMark = response.userDetailsList[0].landMark;
-      console.log(response);
-      console.log('phone', this.phoneNumber);
-    });
+    this.populateUserDetails('home');
   }
+
+  populateUserDetails(locationType: any) {
+    for (let i = 0; i < 7; i++) {
+      this.customerDetailsService.getUserDetails().subscribe((response: any) => {
+        if (locationType == 'home' && response.userDetailsList.length == 0) {
+          return;
+        }
+        if (locationType == 'work' && response.userDetailsList.length == 1) {
+          return;
+        }
+        if (locationType == 'other' && response.userDetailsList.length == 2) {
+          return;
+        }
+        if (locationType == 'home' && response.userDetailsList[0] != null) {
+          this.registerForm.value.fullName = response.userDetailsList[0].fullName;
+          this.registerForm.value.phoneNumber = response.userDetailsList[0].phoneNumber;
+          this.registerForm.value.locality = response.userDetailsList[0].locality;
+          this.registerForm.value.pinCode = response.userDetailsList[0].pinCode;
+          this.registerForm.value.address = response.userDetailsList[0].address;
+          this.registerForm.value.city = response.userDetailsList[0].city;
+          this.registerForm.value.landMark = response.userDetailsList[0].landMark;
+
+        }
+        if (locationType == 'work' && response.userDetailsList[1] != null) {
+          this.registerForm.value.fullName = response.userDetailsList[1].fullName;
+          this.registerForm.value.phoneNumber = response.userDetailsList[1].phoneNumber;
+          this.registerForm.value.locality = response.userDetailsList[1].locality;
+          this.registerForm.value.pincode = response.userDetailsList[1].pinCode;
+          this.registerForm.value.address = response.userDetailsList[1].address;
+          this.registerForm.value.city = response.userDetailsList[1].city;
+          this.registerForm.value.landMark = response.userDetailsList[1].landMark;
+        }
+        if (locationType == 'other' && response.userDetailsList[2] != null) {
+          this.registerForm.value.fullName = response.userDetailsList[2].fullName;
+          this.registerForm.value.phoneNumber = response.userDetailsList[2].phoneNumber;
+          this.registerForm.value.locality = response.userDetailsList[2].locality;
+          this.registerForm.value.pincode = response.userDetailsList[2].pinCode;
+          this.registerForm.value.address = response.userDetailsList[2].address;
+          this.registerForm.value.city = response.userDetailsList[2].city;
+          this.registerForm.value.landMark = response.userDetailsList[2].landMark;
+        }
+      });
+    }
+  }
+
 
   onQuantity(book: any, event: any) {
 
@@ -273,12 +307,17 @@ export class OrderSummaryComponent implements OnInit {
 
 
   increaseQuantity(book: any) {
-    // let fixPrice =  book.totalPrice/;
-    book.quantity++;
-    book.totalPrice = (book.totalPrice / (book.quantity - 1)) * book.quantity;
-    localStorage.setItem('c' + book.bookId, JSON.stringify(book));
-    this.books = [];
-    this.printData();
+    // let fixPric =  book.totalPrice/;
+    if (book.quantity > 0) {
+      book.quantity++;
+      book.totalPrice = (book.totalPrice / (book.quantity - 1)) * book.quantity;
+      localStorage.setItem('c' + book.bookId, JSON.stringify(book));
+      this.books = [];
+      this.printData();
+    }
+    if (book.maxQuantity > 1 && book.maxQuantity === book.quantity) {
+      alert('Last Stock of this book is added successfully');
+    }
   }
 
 
@@ -301,13 +340,14 @@ export class OrderSummaryComponent implements OnInit {
   removeAllItemsCart(bookId: any) {
     console.log('ccc', bookId);
     localStorage.removeItem('c' + bookId);
-    sessionStorage.removeItem('c'+ bookId);
-    let num1: number = +sessionStorage.getItem('cartsize');
-    let num2: number = +sessionStorage.getItem('size');
+    sessionStorage.removeItem(bookId);
+    let num1: number = +localStorage.getItem('mycartsize');
+    let num2: number = +localStorage.getItem('size');
     let size1: number = num2;
     size1--;
     if (size1 >= 0) {
-      sessionStorage.setItem('size', JSON.stringify(size1));
+      localStorage.setItem('size', JSON.stringify(size1));
+      this.messageService.changeItem(1);
     }
     if (localStorage.getItem('token') != null && num1 != 0) {
       this.cartService.removeBookById(bookId).subscribe((response: any) => {
@@ -370,6 +410,6 @@ export class OrderSummaryComponent implements OnInit {
     this.sortTerm = val;
     this.person = this.sortTerm;
     localStorage.setItem('locationType', this.sortTerm);
-    console.log('sorting term', this.sortTerm.value);
+    this.populateUserDetails(this.sortTerm.value);
   }
 }

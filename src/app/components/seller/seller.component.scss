@@ -1,197 +1,416 @@
+//.toolBarDiv {
+//    position: fixed;
+//  }
+//  mat-toolbar {
+//    width: 100%;
+//    background-color: #a03037;
+//    top: 0;
+//    right: 0;
+//    position: fixed;
+//    z-index: 100;
+//  }
+//  .search-mat-card {
+//    margin-left: 16px;
+//    width: 40%;
+//    height: 52%;
+//    padding: 0px;
+//  }
+//  .searchIcon {
+//    opacity: 0.5;
+//  }
+//  .searchIcon:hover {
+//    opacity: 1;
+//  }
+//  .searchInput {
+//    height: 90%;
+//    width: 90%;
+//    border: none;
+//    outline: none;
+//  }
+//  .titleText {
+//    margin-left: 11%;
+//    color: white;
+//  }
+//
+//  @media only screen and (max-width: 720px) {
+//    .titleText {
+//      font-size: medium;
+//      margin-left: 2%;
+//      color: white;
+//    }
+//  }
+//  .bookText {
+//    font-size: 90%;
+//    color: white;
+//    margin-left: 0px;
+//
+//  }
+//  .accountIcon {
+//    font-size: 200%;
+//    opacity: 0.5;
+//  }
+//  .accountIcon:hover {
+//    opacity: 1;
+//  }
+//  button {
+//    outline: none;
+//  }
+//  .spanClass {
+//    flex-grow: 0.5;
+//  }
+//
+//  .bookInput {
+//    padding: 1% 4% 1%;
+//    border: none;
+//    outline: none;
+//  }
+//  .addBookButton {
+//    color: white;
+//    width: 15%;
+//    background-color: #a03037;
+//    border-radius: 2vw;
+//  }
+//
+//  ::placeholder {
+//    font-size: 90%;
+//  }
+//  .mainSellingSpan {
+//    font-weight: bold;
+//    font-size: 150%;
+//  }
+//  .subSellingSpan {
+//    font-weight: 500;
+//  }
+//  .mainContent {
+//    width: 100%;
+//    height: 40%;
+//  }
+//  .mainContainer-lt-md {
+//    width: 101.6%;
+//    height: 25%;
+//    margin-left: -1%;
+//    margin-top: 45px;
+//    background-color: #21bae9;
+//  }
+//  .mainContainer-lg {
+//    width: 101.6%;
+//    height: 25%;
+//    margin-left: -1%;
+//    margin-top: 45px;
+//    background-color: #21bae9;
+//  }
+//
+//  #signin{
+//    margin-left: 8%;
+//    font-weight: bold;
+//    font-size: 100%;
+//    opacity: 50%;
+//  }
+//  //************
+//  .imageSelect {
+// // align-items: center;
+// margin-right: 6%;
+//    background-color: whitesmoke;
+//  }
+//  #profile {
+//    overflow: hidden;
+//  }
+//  .icons{
+//    position: absolute;
+//    padding: 10px;
+//    //margin-right: 100%;
+//
+//    color: darkgrey;
+//    margin-top: -5px;
+//  }
+//  .menu-button {
+//     overflow: hidden;
+//   }
+//
+//  .profileEmail {
+//    padding: 10px;
+//    margin-left: 0.5%;
+//    opacity: 0.6;
+//  }
+//  .signout {
+//
+//    font-weight: bold;
+//    align-items: flex-end;
+//  margin-left: 70px;
+//    overflow: hidden;
+//    position: relative;
+//  }
+//  .mat-subheading-1{
+//    margin-top: 50%;
+//    text-align: center;
+//    padding: 0px;
+//    margin: 0px;
+//  }
+//  .login {
+//    align-items: flex-end;
+//   // margin-left: auto;
+//   // margin-right: auto;
+//    font-weight: bold;
+//   // margin-left: 50px;
+//    overflow: hidden;
+//  }
+//  .delete {
+//    align-items: flex-start;
+//    position: relative;
+//    font-weight: bold;
+//    overflow: hidden;
+//
+//  }
+//  #profileImage{
+//    background-color: green;
+//    text-align: center;
+//    color: blue;
+//    font-size: 100%;
+//    font-weight: bold;
+//   // background-size: cover
+//  }
+//  #profileInnerImage{
+//    background-color: green;
+//    text-align: center;
+//    color: blue;
+//    font-size: large;
+//    font-weight: bold;
+//    background-size: cover
+//  }
+//  .footer {
+//    //width: 1308px;
+//    height: 3px;
+//    //top: 34px;
+//    background: #2e1d1efa 0% 0% no-repeat padding-box;
+//    opacity: 90%;
+//    position: fixed;
+//    left: 0;
+//    bottom: 0;
+//    width: 98%;
+//  }
+//
+//  .footerText {
+//    font-size: x-small;
+//    text-align: center;
+//    color: white;
+//    margin-top: -3px;
+//    // margin-left: 12%;
+//    // margin-top: 2px;
+//  }
+
+  //////////////////////////////////////////////////////////////////////////////////////
 .toolBarDiv {
-    position: fixed;
-  }
-  mat-toolbar {
-    width: 100%;
-    background-color: #a03037;
-    top: 0;
-    right: 0;
-    position: fixed;
-    z-index: 100;
-  }
-  .search-mat-card {
-    margin-left: 16px;
-    width: 40%;
-    height: 52%;
-    padding: 0px;
-  }
-  .searchIcon {
-    opacity: 0.5;
-  }
-  .searchIcon:hover {
-    opacity: 1;
-  }
-  .searchInput {
-    height: 90%;
-    width: 90%;
-    border: none;
-    outline: none;
-  }
+  position: fixed;
+}
+.mat-toolbar {
+  background-color: #a03037;
+  top: 0;
+  left: 0;
+  height: 52px;
+  position: fixed;
+  z-index: 100;
+}
+.mat-subheading-1 {
+  margin-top: 50%;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+.search-mat-card {
+  margin-left: 100px;
+  width: 40%;
+  height: 60%;
+  padding: 0px;
+}
+.searchIcon {
+  opacity: 0.5;
+}
+.searchIcon:hover {
+  opacity: 1;
+}
+.searchInput {
+  height: 90%;
+  width: 90%;
+  border: none;
+  outline: none;
+}
+.titleText {
+  margin-left: 12%;
+  color: white;
+}
+@media only screen and (max-width: 720px) {
   .titleText {
-    margin-left: 11%;
+    font-size: medium;
+    margin-left: 2%;
     color: white;
   }
+}
+.bookText {
+  font-size: 90%;
+  color: white;
+}
+.accountIcon {
+  font-size: 200%;
+  opacity: 0.5;
+}
+.accountIcon:hover {
+  opacity: 1;
+}
+button {
+  outline: none;
+}
+.spanClass {
+  flex-grow: 0.5;
+}
+.bookInput {
+  padding: 1% 4% 1%;
+  border: none;
+  outline: none;
+}
+.addBookButton {
+  color: white;
+  margin-left: 0px;
+  width: 15%;
+  background-color: #a03037;
+  border-radius: 2vw;
+}
 
-  @media only screen and (max-width: 720px) {
-    .titleText {
-      font-size: medium;
-      margin-left: 2%;
-      color: white;
-    }
-  }
-  .bookText {
-    font-size: 90%;
-    color: white;
-  }
-  .accountIcon {
-    font-size: 200%;
-    opacity: 0.5;
-  }
-  .accountIcon:hover {
-    opacity: 1;
-  }
-  button {
-    outline: none;
-  }
-  .spanClass {
-    flex-grow: 0.5;
-  }
+::placeholder {
+  font-size: 90%;
+}
+.mainSellingSpan {
+  font-weight: bold;
+  font-size: 150%;
+  margin-left: 0px;
+  //  margin-top: 4%;
+  //  margin-bottom: 4%;
+}
+.subSellingSpan {
+  font-weight: 500;
+  margin-left: 0px;
+}
+.mainContent {
+  width: 100%;
+  height: 40%;
+}
+.mainContainer-lt-md {
+  width: 100%;
+  height: 35%;
+  margin-top: 50px;
+  background-color: #21bae9;
+}
+.mainContainer-lg {
+  width: 101%;
+  margin-left: -7px;
+  height: -3%;
+  margin-top: 51px;
+  background-color: #21bae9;
 
-  .bookInput {
-    padding: 1% 4% 1%;
-    border: none;
-    outline: none;
-  }
-  .addBookButton {
-    color: white;
-    width: 15%;
-    background-color: #a03037;
-    border-radius: 2vw;
-  }
+}
 
-  ::placeholder {
-    font-size: 90%;
-  }
-  .mainSellingSpan {
-    font-weight: bold;
-    font-size: 150%;
-  }
-  .subSellingSpan {
-    font-weight: 500;
-  }
-  .mainContent {
-    width: 100%;
-    height: 40%;
-  }
-  .mainContainer-lt-md {
-    width: 101.6%;
-    height: 25%;
-    margin-left: -1%;
-    margin-top: 45px;
-    background-color: #21bae9;
-  }
-  .mainContainer-lg {
-    width: 101.6%;
-    height: 25%;
-    margin-left: -1%;
-    margin-top: 45px;
-    background-color: #21bae9;
-  }
+#signin {
+  margin-left: 8%;
+  font-weight: bold;
+  font-size: 100%;
+  opacity: 50%;
+}
+//************
+.imageSelect {
+  margin-right: 8%;
+  background-color: dodgerblue;
+}
+.profile {
+  overflow: hidden;
+}
+.icons {
+  position: absolute;
+  padding: 10px;
+  //margin-right: 100%;
+  color: darkgrey;
+  margin-top: 15px;
+}
+.menu-button {
+  overflow: hidden;
+}
 
-  #signin{
-    margin-left: 8%;
-    font-weight: bold;
-    font-size: 100%;
-    opacity: 50%;
-  }
-  //************
-  .imageSelect {
- // align-items: center;
- margin-right: 6%;
-    background-color: whitesmoke;
-  }
-  #profile {
-    overflow: hidden;
-  }
-  .icons{
-    position: absolute;
-    padding: 10px;
-    //margin-right: 100%;
+.profileEmail {
+  padding: 10px;
+  margin-left: 0.5%;
+  opacity: 0.6;
+}
+.signout {
 
-    color: darkgrey;
-    margin-top: -5px;
-  }
-  .menu-button {
-     overflow: hidden;
-   }
-
-  .profileEmail {
-    padding: 10px;
-    margin-left: 0.5%;
-    opacity: 0.6;
-  }
-  .signout {
-
-    font-weight: bold;
-    align-items: flex-end;
+  font-weight: bold;
+  align-items: flex-end;
   margin-left: 70px;
-    overflow: hidden;
-    position: relative;
-  }
-  .mat-subheading-1{
-    margin-top: 50%;
-    text-align: center;
-    padding: 0px;
-    margin: 0px;
-  }
-  .login {
-    align-items: flex-end;
-   // margin-left: auto;
-   // margin-right: auto;
-    font-weight: bold;
-   // margin-left: 50px;
-    overflow: hidden;
-  }
-  .delete {
-    align-items: flex-start;
-    position: relative;
-    font-weight: bold;
-    overflow: hidden;
+  overflow: hidden;
+  position: relative;
+}
+.login {
+  align-items: flex-end;
+  // margin-left: auto;
+  // margin-right: auto;
+  font-weight: bold;
+  // margin-left: 50px;
+  overflow: hidden;
+}
+.delete {
+  margin-right: auto;
+  font-weight: bold;
+  margin-block-start: 1px;
+}
 
-  }
-  #profileImage{
-    background-color: green;
-    text-align: center;
-    color: blue;
-    font-size: 100%;
-    font-weight: bold;
-   // background-size: cover
-  }
-  #profileInnerImage{
-    background-color: green;
-    text-align: center;
-    color: blue;
-    font-size: large;
-    font-weight: bold;
-    background-size: cover
-  }
-  .footer {
-    //width: 1308px;
-    height: 3px;
-    //top: 34px;
-    background: #2e1d1efa 0% 0% no-repeat padding-box;
-    opacity: 90%;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 98%;
-  }
+.cartname {
+  position: absolute;
+  color: aliceblue;
+  margin-top: 1.5%;
+  margin-left: 64%;
+}
+.spanClass {
+  flex-grow: 0.5;
+}
+.carttext {
+  color: #ffffff;
+  opacity: 1;
+  font-size: 13px;
+  padding-right: 1%;
+  margin-bottom: 3%;
+  //margin-left: 100px;
+}
 
-  .footerText {
-    font-size: x-small;
-    text-align: center;
-    color: white;
-    margin-top: -3px;
-    // margin-left: 12%;
-    // margin-top: 2px;
-  }
+span {
+  margin-left: 0px;
+}
+.cart {
+  margin-left: 10%;
+  padding-right: 5%;
+  background-color: none;
+  outline: none;
+  color: aliceblue;
+}
+
+.span.small {
+  font-size: 5px;
+}
+.mat-badge-content {
+  background: white;
+  color: #a03037;
+}
+.footer {
+  height: 10px;
+  background: #2e1d1efa 0% 0% no-repeat padding-box;
+  opacity: 90%;
+  position: fixed;
+  left: -5px;
+  bottom: 0;
+  width: 100%;
+}
+
+.footerText {
+  font-size: x-small;
+  text-align: center;
+  color: white;
+  margin-top: -3px;
+  // margin-left: 12%;
+  // margin-top: 2px;
+}

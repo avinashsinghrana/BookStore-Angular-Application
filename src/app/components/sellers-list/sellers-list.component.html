@@ -55,7 +55,7 @@
   <div
     *ngFor="
       let seller of sellerList | sellerFilter:searchTerm
-        | paginate: { itemsPerPage: 5, currentPage: page, id: 'first' }
+        | paginate: { itemsPerPage: 4, currentPage: page, id: 'first' }
     "
   >
     <div>
@@ -97,8 +97,8 @@
                 >Email : </strong
               >{{ seller.emailId }}
             </div>
-            <div style="margin-left: -25px; word-wrap: break-word;">
-              <strong>Quantity : </strong>{{ seller.book.length }}
+            <div style="margin-left: -25px; word-wrap: break-word; margin-right: -46px;">
+              <strong>New Requests : </strong> {{newRequest(seller)}}
             </div>
           </div>
         </div>

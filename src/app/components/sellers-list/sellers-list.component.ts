@@ -1,9 +1,10 @@
-import { Router } from '@angular/router';
-import { UserService } from './../../services/user.service';
-import { AdminBooksComponent } from './../admin-books/admin-books.component';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import {Router} from '@angular/router';
+import {UserService} from './../../services/user.service';
+import {AdminBooksComponent} from './../admin-books/admin-books.component';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {MessageService} from '../../services/message.service';
+import {Seller} from '../../model/seller.model';
 
 @Component({
   selector: 'app-sellers-list',
@@ -13,21 +14,26 @@ import {MessageService} from '../../services/message.service';
 export class SellersListComponent implements OnInit {
 
   searchTerm: string;
+
   constructor(
     private dialog: MatDialog,
     private messageService: MessageService,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) {
+  }
+
   page: number = 1;
   sellerList: [];
   size: any;
+
   ngOnInit() {
     if (localStorage.getItem('token') != null && localStorage.getItem('roleType') === 'ADMIN') {
       this.getSeller();
     }
-    this.messageService.currentEvent$.subscribe(message =>
-    { this.searchTerm = message});
+    this.messageService.currentEvent$.subscribe(message => {
+      this.searchTerm = message;
+    });
   }
 
 
@@ -46,6 +52,7 @@ export class SellersListComponent implements OnInit {
     //   this.ngOnInit();
     // });
   }
+
 
   getSellerBooks(seller: any) {
     this.router.navigate(['adminDashboard/admin-books/' + seller.sellerId]);
@@ -68,4 +75,14 @@ export class SellersListComponent implements OnInit {
   //      this.ngOnInit();
   //   });
   // }
+
+  newRequest(seller: Seller) {
+    let newBook = 0;
+    for (let i = 0; i < seller.book.length; i++) {
+      if (!seller.book[i].isDisApproved && !seller.book[i].verfied && seller.book[i].isSendForApproval) {
+        newBook++;
+      }
+    }
+    return newBook;
+  }
 }

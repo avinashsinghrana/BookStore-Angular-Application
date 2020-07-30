@@ -8,6 +8,7 @@ import {CartServiceService} from 'src/app/services/cart-service/cart-service.ser
 import {CartserviceService} from 'src/app/services/cartservice.service';
 import {WishlistService} from '../../services/wishlist.service';
 import {filter} from 'rxjs/operators';
+import {LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-user-books',
@@ -27,9 +28,9 @@ export class UserBooksComponent implements OnInit {
   ) {
     for (let i = 0; i < sessionStorage.length; i++) {
       let key = sessionStorage.key(i);
-      if (key[0] === 'c') {
+      // if (key[0] === 'c') {
         this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
-      }
+      // }
     }
     for (let i = 0; i < sessionStorage.length; i++) {
       let key = sessionStorage.key(i);
@@ -100,8 +101,8 @@ export class UserBooksComponent implements OnInit {
           this.wishBooks = response.data;
           console.log('wish addition' + JSON.stringify(response));
         });
-      sessionStorage.setItem('w' + book.bookId, book.bookId);
-      this.wishvalue['w'+ book.bookId] = book.bookId;
+      localStorage.setItem('w' + book.bookId, book.bookId);
+      this.wishvalue[book.bookId] = book.bookId;
       // var wishBook = {
       //   bookId: book.bookId,
       //   bookName: book.bookName,
@@ -112,9 +113,15 @@ export class UserBooksComponent implements OnInit {
       // localStorage.setItem('w' + book.bookId, JSON.stringify(wishBook));
 
     }else {
-      this.snackBar.open('Please Login First', 'Ok', {duration: 2000});
+      this.signin();
       return;
     }
+  }
+  signin() {
+    this.dialog.open(LoginComponent, {
+      width: '28%',
+      height: 'auto'
+    });
   }
 
   onDisplayBooks(data) {
@@ -130,10 +137,10 @@ export class UserBooksComponent implements OnInit {
 
   onAddBook(book) {
     this.num++;
-    sessionStorage.setItem('size', JSON.stringify(this.num));
+    localStorage.setItem('size', JSON.stringify(this.num));
     this.messageService.changeItem(this.num);
-    sessionStorage.setItem('c'+book.bookId, book.bookId);
-    this.value['c'+ book.bookId] = book.bookId;
+    sessionStorage.setItem(book.bookId, book.bookId);
+    this.value[book.bookId] = book.bookId;
     var cartBook = {
       bookId: book.bookId,
       name: book.bookName,

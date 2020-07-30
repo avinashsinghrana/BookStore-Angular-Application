@@ -41,7 +41,7 @@
         <div fxlayout="row">
           <span class="input-price-span">Rs. {{ book.price }}</span>
         </div>
-        <div *ngIf="value['c' + book.bookId] != book.bookId && book.quantity > 0" fxLayout="row" fxLayoutAlign="space-between">
+        <div *ngIf="value[book.bookId] != book.bookId && book.quantity > 0" fxLayout="row" fxLayoutAlign="space-between">
           <button class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book)">
             Add to cart
           </button>
@@ -66,7 +66,7 @@
           </button>
 
         </div>
-        <div *ngIf="value['c'+ book.bookId] == book.bookId">
+        <div *ngIf="value[book.bookId] == book.bookId">
           <button   style="
           height: 32px;
           width: 100%;
@@ -76,7 +76,7 @@
           text-align: center;
         "
         mat-button
-       [disabled] = "value['c'+ book.bookId] == book.bookId" class="delete-button" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
+       [disabled] = "value[book.bookId] == book.bookId" class="delete-button" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
             Added to cart
           </button>
         </div>

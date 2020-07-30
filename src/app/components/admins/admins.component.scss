@@ -111,7 +111,7 @@ button {
 //************
 .imageSelect {
   margin-right: 4%;
-  background-color: whitesmoke;
+  background-color: dodgerblue;
 }
 .profile {
   overflow: hidden;
@@ -191,15 +191,13 @@ span {
   color: #a03037;
 }
 .footer {
-  //width: 1308px;
-  height: 3px;
-  //top: 34px;
+  height: 10px;
   background: #2e1d1efa 0% 0% no-repeat padding-box;
   opacity: 90%;
   position: fixed;
-  left: 0;
+  left: -5px;
   bottom: 0;
-  width: 98%;
+  width: 100%;
 }
 
 .footerText {

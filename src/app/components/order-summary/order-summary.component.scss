@@ -37,7 +37,6 @@
 .search-mat-card {
   display: flex;
   margin-right: 430px;
-  margin-left: 80px;
   width: 40%;
   height: 60%;
   padding: 0px;
@@ -103,6 +102,9 @@ span{
 .mat-content{
  margin-left: 98px;
 }
+.mat-content1{
+ margin-left: 7%;
+}
 
 .book-image1{
   margin-left: 14px;
@@ -110,14 +112,15 @@ span{
 }
 
 .book-names{
+  font-weight: bold;
  margin-left: 42px;
-  margin-top: -140px;
+  margin-top: -145px;
   font-size: large;
   color: black;
 }
 
 .book-names1{
- margin-top: -1%;
+ margin-top: -2%;
   font-size: small;
   margin-left: 42px;
   color: gray;
@@ -126,7 +129,28 @@ span{
   font-weight: bold;
  //  margin-left: 8%;
  margin-left: 42px;
-  margin-top: 3px;
+  margin-top: -9px;
+  padding: 0px;
+  font-size: small;
+}
+
+.book-names3{
+  font-weight: bold;
+ margin-left: 11%;
+  margin-top: -19%;
+  font-size: large;
+  color: black;
+}
+
+.book-names4{
+ margin-top: 1%;
+  font-size: small;
+  margin-left: 11%;
+  color: gray;
+}
+.book-names5{
+  font-weight: bold;
+ margin-left: 11%;
   padding: 0px;
   font-size: small;
 }
@@ -138,6 +162,7 @@ span{
   background-color: #3169ce;
   font-size: small;
 }
+
 .emptyCart{
 
  margin-left: 39%;
@@ -229,24 +254,24 @@ td {
   margin-left: 2%;
   margin-top: 6%;
 }
-.book-names3{
-  margin-left: 25%;
-  margin-top: -15%;
-  font-size: small;
-  color: black;
-}
-
-.book-names4{
-  font-size: x-small;
-  margin-left: 26%;
-}
-
-.book-names5{
-  font-weight: bold;
-  margin-left: 26%;
-  padding: 0px;
-  font-size: small;
-}
+//.book-names3{
+//  margin-left: 25%;
+//  margin-top: -15%;
+//  font-size: small;
+//  color: black;
+//}
+//
+//.book-names4{
+//  font-size: x-small;
+//  margin-left: 26%;
+//}
+//
+//.book-names5{
+//  font-weight: bold;
+//  margin-left: 26%;
+//  padding: 0px;
+//  font-size: small;
+//}
 
 .footer {
   //width: 1308px;
@@ -271,7 +296,7 @@ td {
   // margin-top: 2px;
 }
 .quantity{
- margin-top: -13px;
+ margin-top: -18px;
  margin-left: 30px;
 
 }
@@ -294,20 +319,39 @@ color:  rgb(232, 243, 242); */
 .remove-button{
  font-size: 12px;
 }
+//
+//.mat-content1{
+//  margin-left: -54px;
+//   margin-top: 0px;
+//}
 
-.mat-content1{
-  margin-left: -54px;
-   margin-top: 0px;
+.imageSelect {
+  //margin-left: -65px;
+  // align-items: center;
+  margin-right: 6%;
+  background-color:dodgerblue;
 }
 
-/*
-:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
-  padding: 0 .75em 0 .75em;
-  margin-top: -.25em;
-  padding-left: 5%;
-  margin-top: -5%;
-  position: relative;
-}  */
+.icons {
+  position: absolute;
+  padding: 10px;
+  //margin-right: 100%;
+  margin-top: 22px;
+  color: darkgrey;
+  //margin-top: -5px;
+}
+
+.menu-button {
+  margin-left: 60%;
+  overflow: hidden;
+}
+#detailStyle{
+  text-align: center;
+  font: Regular 12px/15px Lato;
+  letter-spacing: 0px;
+  color: #333232;
+  opacity: 1;
+}
 
 #signin {
   margin-left: 8%;
@@ -320,7 +364,7 @@ color:  rgb(232, 243, 242); */
   //margin-left: -65px;
   // align-items: center;
   margin-right: 6%;
-  background-color:whitesmoke;
+  background-color:dodgerblue;
 }
 
 .profile {
@@ -345,45 +389,27 @@ color:  rgb(232, 243, 242); */
   margin-left: 0.5%;
   opacity: 0.6;
 }
-.signout {
+
+/*
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0 .75em 0 .75em;
+  margin-top: -.25em;
+  padding-left: 5%;
+  margin-top: -5%;
+  position: relative;
+}  */
+.totalpay {
   font-weight: bold;
-    align-items: flex-end;
-  //  margin-left: 60px;
-  margin-left: 71px;
-    overflow: hidden;
-    position: relative;
+  margin-right: 78%;
+}
 
-}
-.login {
-  align-items: flex-end;
-  // margin-left: auto;
-  // margin-right: auto;
-   font-weight: bold;
-  // margin-left: 50px;
-   overflow: hidden;
-}
-.delete {
-  margin-right: auto;
+.book-stock {
   font-weight: bold;
-  margin-block-start: 1px;
- // margin-left: -70px;
-  display: table-row;
-
-}
-
-.cartname {
-  position: absolute;
-  color: aliceblue;
-  margin-top: 1.5%;
-  margin-left: 64%;
-}
-.mat-subheading-1 {
-  margin-top: 50%;
-  text-align: center;
+  //  margin-left: 8%;
+  margin-left: 42px;
+  margin-top: -12px;
   padding: 0px;
-  margin: 0px;
+  font-size: small;
+  font-family: Lato, sans-serif;
+  color: #6d0e0e;
 }
-.spanClass {
-  margin-left: 5%;
-}
-

@@ -18,62 +18,61 @@
     </button>
     <input class="searchInput" type="text" placeholder="Search..."/>
   </mat-card>
-
   <button mat-mini-fab class ="imageSelect"  [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'45px','height':'45px','marginLeft':'-230px'}"
-  [matMenuTriggerFor]="menu1" colour="basic" matTooltip="User Account"
-  [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
-  <div
-    style=" margin-right: 1px;
-        color: darkblue;
+          [matMenuTriggerFor]="menu1" colour="basic" matTooltip="User Account"
+          [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
+    <div
+      style=" margin-right: 1px;
+        color: white;
         margin-top: 22px;
         width: 43px;
         height: 43px;
         font-size: x-large;"
-    *ngIf="img == null"
-  >
-    {{ username | slice: 0:1 }}
-  </div>
-</button>
+      *ngIf="img == null"
+    >
+      {{ username | slice: 0:1 }}
+    </div>
+  </button>
 
-<!--button mat-mini-fab *ngIf="isProfile&&!isLogin" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'52px','height':'52px'}"
-  [matMenuTriggerFor]="menu1" matTooltip="Seller Account"
-  [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
-</button-->
-
-<mat-menu  #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
-  <div class="backgroundimage"  fxLayoutAlign="center center"  >
-    <button (click)="$event.stopPropagation()"
-      [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'80px','height':'80px'}"
-      (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
-      <div
-        style="margin-top: 16px;
-        color: darkblue;
+  <mat-menu  #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
+    <div class="backgroundimage"  fxLayoutAlign="center center"  >
+      <button (click)="$event.stopPropagation()"
+              [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'80px','height':'80px'}"
+              (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
+        <div
+          style="margin-top: 16px;
+        color: white;
         margin-right: -4px;
         font-size: -webkit-xxx-large;
         font-family: Lato, sans-serif, Bold"
-        *ngIf="img == null"
-      >
-        {{ username | slice: 0:1 }}
-      </div>
-      <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
-    </button>
-  </div>
-  <!--div>
-    <div class="mat-subheading-1" style="font-weight: bold;" >{{username}}</div>
-    <div class="mat-subheading-1">{{usermail}}</div>
- </div-->
-  <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p>
-        <p style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis; padding-left: 10px; padding-right: 10px"> {{usermail}} </p> </div>
-  <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
-  <mat-divider style="margin-top: auto;"></mat-divider>
-  <div fxLayoutAlign="center center" *ngIf="!isLogin">
-    <button class="login" mat-flat-button (click)="signin()">LogIn </button>
-  </div>
+          *ngIf="img == null"
+        >
+          {{ username | slice: 0:1 }}
+        </div>
+        <mat-icon class="icons" matSuffix>add_a_photo</mat-icon>
+      </button>
+    </div>
+    <!--div>
+      <div class="mat-subheading-1" style="font-weight: bold;" >{{username}}</div>
+      <div class="mat-subheading-1">{{usermail}}</div>
+   </div-->
+    <div> <br><p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p>
+      <br><p style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis; padding-left: 10px; padding-right: 10px"> {{usermail}} </p> </div>
+    <br><input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
+    <mat-divider style="margin-top: auto;"></mat-divider>
+    <div fxLayoutAlign="center center" *ngIf="!isLogin">
+      <button class="login" mat-flat-button (click)="signin()">LogIn </button>
+    </div>
     <div fxLayoutAlign="row" >
       <div><button class="delete" *ngIf="isLogin" mat-flat-button (click)="delete()">Delete </button></div>
-    <div><button class="signout" *ngIf="isLogin" mat-flat-button (click)="Logout()">Sign out </button></div>
-   </div>
-</mat-menu>
+      <div><button class="signout" *ngIf="isLogin" mat-flat-button (click)="Logout()">Sign out </button></div>
+    </div>
+  </mat-menu>
+  <!--  <div fxLayout="row" fxLayoutAlign="start end" style="margin-right: 10%;">-->
+<!--      <button class="cart" mat-icon-button matTooltip="Cart">-->
+<!--        Cart <mat-icon>shopping_cart</mat-icon></button>-->
+<!--    <br/>-->
+<!--  </div>-->
 </mat-toolbar>
 <!-- </div> -->
 <mat-card class="place-book">
@@ -98,6 +97,7 @@
           <p class="book-names">{{ book.name }}</p>
           <p class="book-names1">By {{ book.author }}</p>
           <p class="book-names2">Rs.{{ book.totalPrice }}</p>
+          <p class="book-stock">{{ book.maxQuantity - book.quantity }} Books left</p>
         </div>
         <div class="quantity">
           <button
@@ -133,7 +133,7 @@
     </mat-card>
   </div>
 
-  <!-- end -->
+<!--   end -->
   <div *ngIf="size==0 || size==null">
     <img src="../../../assets/image/cart.png" width="200" height="200" style="margin-left: 37%;" alt="EmptyCart" />
     <p style="text-align: center; font-weight: bold;">Add some Items in Cart</p>
@@ -165,13 +165,13 @@ Customer Details
 
 <mat-card flex *ngIf="popup" class="contact-details"
 >Customer Details
-<form [formGroup]="registerForm" [(ngModel)]="registerForm">
+<form [formGroup]="registerForm">
 <table class="example-full-width" cellspacing="0">
   <tr>
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="fullName" value="{{fullName}}" required />
+        <input matInput formControlName="fullName" [(ngModel)]="registerForm.value.fullName" required />
         <mat-error *ngIf="registerForm.get('fullName').hasError('required')">
           Field must not be Empty</mat-error>
           <mat-error *ngIf="registerForm.get('fullName').hasError('pattern')">
@@ -181,7 +181,7 @@ Customer Details
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>PhoneNumber</mat-label>
-        <input matInput formControlName="phoneNumber" maxlength="10" value="{{phoneNumber}}" required />
+        <input matInput formControlName="phoneNumber" maxlength="10" [(ngModel)]="registerForm.value.phoneNumber" required />
         <mat-error *ngIf="registerForm.get('phoneNumber').hasError('required')">
           Field must not be Empty</mat-error>
           <mat-error *ngIf="registerForm.get('phoneNumber').hasError('pattern')">
@@ -195,7 +195,7 @@ Customer Details
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Pincode</mat-label>
-        <input matInput formControlName="pinCode" value="{{pinCode}}" required />
+        <input matInput formControlName="pinCode" [(ngModel)]="registerForm.value.pinCode" required />
         <mat-error *ngIf="registerForm.get('pinCode').hasError('required')">
           Field must not be Empty</mat-error>
         <mat-error *ngIf="registerForm.get('pinCode').hasError('pattern')">
@@ -205,7 +205,7 @@ Customer Details
     <td>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Locality</mat-label>
-        <input matInput formControlName="locality" value="{{locality}}" required />
+        <input matInput formControlName="locality" [(ngModel)]="registerForm.value.locality" required />
         <mat-error *ngIf="registerForm.get('locality').hasError('required')">
           Field must not be Empty</mat-error>
           <mat-error *ngIf="registerForm.get('locality').hasError('pattern')">
@@ -222,7 +222,7 @@ Customer Details
       matInput
       placeholder="Ex. 100 Main St"
       formControlName="address"
-      value="{{address}}"
+      [(ngModel)]="registerForm.value.address"
       required
     ></textarea>
     <mat-error *ngIf="registerForm.get('address').hasError('required')">
@@ -240,7 +240,7 @@ Customer Details
           matInput
           placeholder="Ex. Bangalore"
           formControlName="city"
-          value="{{city}}"
+          [(ngModel)]="registerForm.value.city"
           required
         />
         <mat-error *ngIf="registerForm.get('city').hasError('required')">
@@ -256,7 +256,7 @@ Customer Details
           matInput
           placeholder="Ex. California"
           formControlName="landMark"
-          value="{{landMark}}"
+          [(ngModel)]="registerForm.value.landMark"
           required
         />
         <mat-error *ngIf="registerForm.get('landMark').hasError('required')">
@@ -312,10 +312,10 @@ Order Summary
     />
   </mat-card-title>
   <mat-card-content>
-    <div class="mat-content">
-      <p class="book-names">{{ book.name }}</p>
-      <p class="book-names1">by {{ book.author }}</p>
-      <p class="book-names2">Rs.{{ book.totalPrice }}</p>
+    <div class="mat-content1">
+      <p class="book-names3">{{ book.name }}</p>
+      <p class="book-names4">by {{ book.author }}</p>
+      <p class="book-names5">Rs.{{ book.totalPrice }}</p>
     </div>
   </mat-card-content>
 </div>
@@ -326,14 +326,18 @@ Order Summary
       <mat-label fxFlex.xs="40">{{size}}</mat-label>
 </div>
 <br>
-<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="70%">
-    <mat-label fxFlex="40" style="font-weight: bold;">Delivery Charges: </mat-label>
-    <mat-label fxFlex.xs="40" style="color: green;">FREE</mat-label>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="65%">
+    <mat-label fxFlex="40" style="font-weight: bold;">Total: </mat-label>
+    <mat-label fxFlex.xs="40" style="color: black;">Rs.{{totalPrice}}</mat-label>
+</div><br>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="77%">
+    <mat-label  style="font-weight: bold;">Delivery Charges: </mat-label>
+    <mat-label  style="color: black;">Rs.50</mat-label>
 </div>
-<br>
-<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="80%">
-  <mat-label fxFlex="40" style="font-weight: bold;">Total Payable:</mat-label>
-    <mat-label fxFlex.xs="40">Rs.{{totalPrice}}</mat-label>
+<br><hr>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="77%">
+  <mat-label  class="totalpay">Total Payable:</mat-label>
+    <mat-label  style="font-weight: bold;margin: auto">Rs.{{totalPrice + 50 }}</mat-label>
 </div>
   </mat-card>
 </div>
