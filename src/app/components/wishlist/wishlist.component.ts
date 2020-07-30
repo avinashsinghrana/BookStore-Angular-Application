@@ -39,10 +39,11 @@ export class WishlistComponent implements OnInit {
     // this.data.currentWishItem$.subscribe(data => {
     //   this.size = data;
     // });
-    this.size = +sessionStorage.getItem('fwsize');
+    this.size = +localStorage.getItem('fwsize');
     this.size--;
-    sessionStorage.setItem('fwsize', JSON.stringify(this.size));
+    localStorage.setItem('fwsize', JSON.stringify(this.size));
     this.data.changeWishItem(this.size);
+    localStorage.removeItem('x' + bookId);
     this.wishService.removeFromWL(bookId, localStorage.getItem('token')).subscribe((response: any) => {
         this.getAllBookOfWL();
     });
@@ -58,7 +59,6 @@ export class WishlistComponent implements OnInit {
   public getAllBookOfWL() {
     this.wishService.getBookOfWishList(localStorage.getItem('token')).subscribe(response => {
       this.books = response.data;
-      sessionStorage.setItem('bwsize', response.data.length);
       this.data.changeWishItem(response.data.length);
       this.data.changeWishObject(response.data);
       // response.data.forEach((bookData) => {

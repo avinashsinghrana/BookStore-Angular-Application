@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.messageService.currentWishItem$.subscribe(response => {
       // this.wishitem = response;
-      let num1: number = +sessionStorage.getItem('fwsize');
+      let num1: number = +localStorage.getItem('fwsize');
       // let num2: number = +sessionStorage.getItem('bwsize');
       // console.log('fs',num1);
       // console.log('bs',num2);

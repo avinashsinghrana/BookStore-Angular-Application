@@ -31,12 +31,12 @@ export class UserBooksComponent implements OnInit {
         this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
      // }
     }
-    for (let i = 0; i < sessionStorage.length; i++) {
-      let key = sessionStorage.key(i);
-      if (key[0] === 'w') {
-        this.wishvalue[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
+    /*for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if (key[0] === 'x') {
+        this.wishvalue[localStorage.getItem(key)] = localStorage.getItem(key);
       }
-    }
+    }*/
   }
   books = [];
   book: Book[];
@@ -59,6 +59,14 @@ export class UserBooksComponent implements OnInit {
 
 
   ngOnInit() {
+    this.messageService.currentWishItem$.subscribe(response => {
+      for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (key[0] === 'x') {
+          this.wishvalue[localStorage.getItem(key)] = localStorage.getItem(key);
+        }
+      }
+    })
     this.messageService.currentWishBooks$.subscribe( (reply) => {
       console.log('wish book to cart', reply);
       this.wishBooks = reply;
@@ -93,15 +101,15 @@ export class UserBooksComponent implements OnInit {
   onWish(book: any){
     if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'USER') {
       this.wishnum++;
-      sessionStorage.setItem('fwsize', JSON.stringify(this.wishnum));
+      localStorage.setItem('fwsize', JSON.stringify(this.wishnum));
       this.messageService.changeWishItem(this.wishnum);
       this.wishlistService.addToWishList(book.bookId, localStorage.getItem('token')).subscribe(
         response => {
           this.wishBooks = response.data;
           console.log('wish addition' + JSON.stringify(response));
         });
-      sessionStorage.setItem('w' + book.bookId, book.bookId);
-      this.wishvalue['w'+ book.bookId] = book.bookId;
+      localStorage.setItem('x' + book.bookId, book.bookId);
+      this.wishvalue['x'+ book.bookId] = book.bookId;
       // var wishBook = {
       //   bookId: book.bookId,
       //   bookName: book.bookName,
