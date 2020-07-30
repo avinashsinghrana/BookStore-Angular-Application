@@ -358,15 +358,18 @@ export class OrderSummaryComponent implements OnInit {
     let token = localStorage.getItem('token');
     let emailId = localStorage.getItem('email');
     let name = localStorage.getItem('name');
-    let image = localStorage.getItem(emailId);
+    let img = localStorage.getItem(localStorage.getItem('email'));
+    let roleType = localStorage.getItem('roleType');
     this.cartService.removeAll().subscribe((response: any) => {
       localStorage.clear();
       localStorage.setItem('token', token);
       localStorage.setItem('email', emailId);
       localStorage.setItem('name', name);
-      localStorage.setItem('image', image);
+      localStorage.setItem(emailId, img);
+      localStorage.setItem('roleType', roleType);
       this.router.navigate(['/order-confirmation']);
     });
+    
   }
   onChange(val: any) {
     this.sortTerm = val;

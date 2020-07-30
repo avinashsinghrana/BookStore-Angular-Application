@@ -129,6 +129,7 @@ export class OrderConfirmationComponent implements OnInit {
    // order_id: number
    let orderId = sessionStorage.getItem("orderId");
    sessionStorage.clear();
+   console.log(orderId);
     return '#'+orderId;
   }
   getOrderId(){
