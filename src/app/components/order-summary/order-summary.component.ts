@@ -223,7 +223,7 @@ export class OrderSummaryComponent implements OnInit {
 
   onPopup() {
     if (this.size >= 1) {
-      if (localStorage.getItem('token') == null && localStorage.getItem('roleType') !== 'USER') {
+      if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') !== 'USER') {
         this.dialog.open(LoginComponent, {
           width: '28%',
           height: 'auto'
