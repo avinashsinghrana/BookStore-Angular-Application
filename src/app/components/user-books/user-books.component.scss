@@ -86,9 +86,10 @@ img {
   outline: none;
 }
 .update-button {
+  outline-width: thin;
+  outline: auto lightslategray thin;
   height: 32px;
   width: 70px;
-  outline: black;
   font-size: x-small;
   font-weight: bold;
   color: #0A0102;
@@ -96,8 +97,6 @@ img {
   background-color: white;
   padding: 0px;
   margin-top: 3%;
-  border: none;
-  outline: none;
 }
 .delete-button {
   height: 32px;

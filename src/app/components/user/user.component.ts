@@ -55,6 +55,11 @@ export class UserComponent implements OnInit {
     } else {
       this.wishitem = '';
     }
+    if (+localStorage.getItem('mycartsize') > 0) {
+      this.item = +localStorage.getItem('mycartsize');
+    } else {
+      this.item = '';
+    }
     // this.messageService.changeWishItem(this.wishitem);
     this.messageService.currentWishItem$.subscribe(response => {
       const num1 = +localStorage.getItem('fwsize');

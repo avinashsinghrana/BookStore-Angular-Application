@@ -2,14 +2,15 @@
   <div class="title">
     Books
     <span style="font-size: 15px; font-family: Lato; color: rgb(139, 136, 136);"
-      >({{ size }} items)</span
+    >({{ size }} items)</span
     >
   </div>
-  <div style="font-family: Lato; font-weight: Regular; width: 15%; height: 30%; border: 3px; padding: 2px;margin-right: 10%;">
+  <div
+    style="font-family: Lato; font-weight: normal; width: 15%; height: 30%; border: 3px; padding: 2px;margin-right: 10%;">
     <select [(ngModel)]='sortTerm' (ngModelChange)='onSelect($event)'>
-      <option  value="none"> Sort by relevance</option>
+      <option value="none"> Sort by relevance</option>
       <option value="Price:High To Low">Price:High To Low</option>
-      <option  value="Price:Low To High">Price:Low To High</option>
+      <option value="Price:Low To High">Price:Low To High</option>
       <option value="By Book Name">By Book Name</option>
     </select>
   </div>
@@ -26,11 +27,13 @@
   fxLayout.lg="row wrap"
   fxLayoutAlign.lg="start start"
 >
-  <div *ngFor="let book of books  | bookFilter:searchTerm | sortbyprice:sortTerm | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }" style="margin: 0px; " fxLayout="row" >
+  <div
+    *ngFor="let book of books  | bookFilter:searchTerm | sortbyprice:sortTerm | paginate: { itemsPerPage: 8, currentPage: page, id: 'first' }"
+    style="margin: 0px; " fxLayout="row">
     <mat-card>
 
-     <div class="bookImageDiv" fxLayoutAlign="center">
-        <img src="{{ book.bookImgUrl }}" />
+      <div class="bookImageDiv" fxLayoutAlign="center">
+        <img src="{{ book.bookImgUrl }}"/>
       </div>
 
       <div class="bookInfoDiv" fxLayout="column">
@@ -41,9 +44,11 @@
         <div fxlayout="row">
           <span class="input-price-span">Rs. {{ book.price }}</span>
         </div>
-        <div *ngIf="cartCheck(book.bookId) != book.bookId && book.quantity > 0" fxLayout="row" fxLayoutAlign="space-between">
-          <button class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book)">
-            Add to cart
+        <div *ngIf="cartCheck(book.bookId) != book.bookId && book.quantity > 0" fxLayout="row"
+             fxLayoutAlign="space-between">
+          <button class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true"
+                  (click)="onAddBook(book)">
+            Add to Cart
           </button>
           <button
             *ngIf="wishCheck(book.bookId) != book.bookId"
@@ -67,7 +72,7 @@
 
         </div>
         <div *ngIf="cartCheck(book.bookId) == book.bookId">
-          <button   style="
+          <button style="
           height: 32px;
           width: 100%;
           background-color: #3371b5;
@@ -75,44 +80,47 @@
           color: whitesmoke;
           text-align: center;
         "
-        mat-button
-       [disabled] = "cartCheck(book.bookId) == book.bookId" class="delete-button" class="delete-button" mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
-            Added to cart
+                  mat-button
+                  [disabled]="cartCheck(book.bookId) == book.bookId" class="delete-button" class="delete-button"
+                  mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onAddBook(book.bookId)">
+            Added to Cart
           </button>
         </div>
         <div *ngIf="book.quantity <= 0">
-          <div   style="
+          <div style="
           height: 32px;
           width: 100%;
-          margin-top: -160px;
-          background-color: whitesmoke;
+          margin-top: -184px;
+          background-color: lightgrey;
           border-radius: 2px;
           color:black;
           text-align: center;
           opacity: 90%;
         "
           >
-           <p style="padding-top: 8px;">Out Of Stock</p>
-        </div>
+            <p style="padding-top: 6px; font-weight: bolder;">Out Of Stock</p>
+          </div>
         </div>
         <div *ngIf="book.quantity <= 0">
-          <button   style="
+          <button style="
           height: 32px;
-          outline-color: black;
+          outline-color: white;
           width: 100%;
           margin-top: 3%;
           border-radius: 2px;
           color: black;
+          outline: auto lightslategray thin;
+    outline-width: 0px;
           text-align: center;
           border-color: black;
         " *ngIf="wishCheck(book.bookId) != book.bookId && book.quantity <= 0"
-        mat-button mat-raised-button fxLayoutAlign="center" [disableRipple]="true"  (click)="onWish(book)">
+                  mat-button mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onWish(book)">
             Wishlist
           </button>
           <button style="
           height: 32px;
-          outline-width: 1px;
-          outline-color: black;
+          outline-width: 0px;
+          outline: auto lightslategray thin;
           width: 100%;
           margin-top: 3%;
           border-radius: 2px;
@@ -120,10 +128,10 @@
           text-align: center;
           border-color: black;
         "
-            *ngIf="wishCheck(book.bookId) == book.bookId && book.quantity <= 0"
-            mat-raised-button
-            fxLayoutAlign="center"
-            [disableRipple]="true"
+                  *ngIf="wishCheck(book.bookId) == book.bookId && book.quantity <= 0"
+                  mat-raised-button
+                  fxLayoutAlign="center"
+                  [disableRipple]="true"
           >
             Wishlisted
           </button>

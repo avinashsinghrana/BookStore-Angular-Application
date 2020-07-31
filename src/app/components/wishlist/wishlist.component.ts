@@ -76,7 +76,7 @@ export class WishlistComponent implements OnInit {
   check(char: any, book: any): any {
     let status: number = 400;
     // @ts-ignore
-    if (char == 'c') {
+    if (char === 'c') {
       for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
         if (key[0] === 'c' && key[1] === book.bookId) {
@@ -84,7 +84,7 @@ export class WishlistComponent implements OnInit {
         }
       }
     }
-    if (char == 'x') {
+    if (char === 'x') {
       for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
         if (key[0] === 'x' && key[1] === book.bookId) {
@@ -100,19 +100,7 @@ export class WishlistComponent implements OnInit {
       this.books = response.data;
       this.data.changeWishItem(response.data.length);
       this.data.changeWishObject(response.data);
-      // response.data.forEach((bookData) => {
-      //   localStorage.setItem('w' + bookData.bookId, JSON.stringify(bookData));
-      //   sessionStorage.setItem('w' + bookData.bookId, bookData.bookId);
-      // });
     });
   }
 
-  // printData() {
-  //   for (let i = 0; i < localStorage.length; i++) {
-  //     let key = localStorage.key(i);
-  //     if (key[0] == 'w') {
-  //       this.books.push((JSON.parse(localStorage.getItem(key))));
-  //     }
-  //   }
-  // }
 }

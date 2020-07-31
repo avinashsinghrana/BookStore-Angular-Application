@@ -72,6 +72,15 @@ export class UserBooksComponent implements OnInit {
         this.messageService.changeWishItem(this.wishnum);
       }
     });
+    this.messageService.currentItem$.subscribe(reply => {
+      if (+localStorage.getItem('mycartsize') > 0) {
+        this.num = +localStorage.getItem('mycartsize');
+        this.messageService.changeItem(this.num);
+      } else {
+        this.num = 0;
+        this.messageService.changeItem(this.num);
+      }
+    });
     this.messageService.currentWishToCart$.subscribe(response => {
       this.wishToCart = response;
       this.onAddBook(this.wishToCart);
