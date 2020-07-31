@@ -9,6 +9,7 @@ import {CartserviceService} from 'src/app/services/cartservice.service';
 import {WishlistService} from '../../services/wishlist.service';
 import {filter} from 'rxjs/operators';
 import {LoginComponent} from '../login/login.component';
+import {localizedString} from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-user-books',
@@ -27,18 +28,19 @@ export class UserBooksComponent implements OnInit {
     private wishlistService: WishlistService
   ) {
     for (let i = 0; i < sessionStorage.length; i++) {
-      let key = sessionStorage.key(i);
+      const key = sessionStorage.key(i);
       // if (key[0] === 'c') {
-        this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
+      this.value[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
       // }
     }
     for (let i = 0; i < sessionStorage.length; i++) {
-      let key = sessionStorage.key(i);
-      if (key[0] === 'w') {
+      const key = sessionStorage.key(i);
+      if (key[0] === 'x') {
         this.wishvalue[sessionStorage.getItem(key)] = sessionStorage.getItem(key);
       }
     }
   }
+
   books = [];
   book: Book[];
   wishBooks: any = [];
@@ -53,22 +55,32 @@ export class UserBooksComponent implements OnInit {
   toggle = true;
   wishvalue: any = [];
   // wishvalue: any;
-  page: number = 1;
-  num: number = 0;
+  page = 1;
+  num = 0;
   wishnum = 0;
-  wishToCart: any;
+  wishToCart: any =[];
 
 
   ngOnInit() {
-    this.messageService.currentWishBooks$.subscribe( (reply) => {
-      console.log('wish book to cart', reply);
+    this.messageService.currentWishBooks$.subscribe((reply) => {
       this.wishBooks = reply;
-      console.log('wish value in user book' , this.wishvalue);
-      //  this.onAddBook(reply);
+      if (+localStorage.getItem('fwsize') > 0) {
+        this.wishnum = +localStorage.getItem('fwsize');
+        this.messageService.changeWishItem(this.wishnum);
+      } else {
+        this.wishnum = 0;
+        this.messageService.changeWishItem(this.wishnum);
+      }
     });
+    this.messageService.currentWishToCart$.subscribe(response => {
+      this.wishToCart = response;
+      this.onAddBook(this.wishToCart);
+      this.wishToCart = [];
+      this.messageService.changeWishItem(this.wishToCart);
+    });
+
     this.sortTerm = 'none';
     this.messageService.changeItem(this.item);
-    this.messageService.changeWishItem(this.wishnum);
     this.messageService.currentMessages.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
@@ -78,6 +90,7 @@ export class UserBooksComponent implements OnInit {
 
     });
   }
+
   onBookDetail(event) {
     event.stopPropagation();
   }
@@ -91,18 +104,21 @@ export class UserBooksComponent implements OnInit {
     console.log('sorting term', this.sortTerm);
   }
 
-  onWish(book: any){
+  onWish(book: any) {
     if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'USER') {
       this.wishnum++;
+      console.log('wish size -- userbooks', this.wishnum);
       sessionStorage.setItem('fwsize', JSON.stringify(this.wishnum));
+      localStorage.setItem('fwsize', JSON.stringify(this.wishnum));
       this.messageService.changeWishItem(this.wishnum);
       this.wishlistService.addToWishList(book.bookId, localStorage.getItem('token')).subscribe(
         response => {
           this.wishBooks = response.data;
           console.log('wish addition' + JSON.stringify(response));
         });
-      localStorage.setItem('w' + book.bookId, book.bookId);
-      this.wishvalue[book.bookId] = book.bookId;
+      localStorage.setItem('x' + book.bookId, book.bookId);
+      this.wishvalue['x' + book.bookId] = book.bookId;
+      this.messageService.changeWishItem(this.size);
       // var wishBook = {
       //   bookId: book.bookId,
       //   bookName: book.bookName,
@@ -112,11 +128,12 @@ export class UserBooksComponent implements OnInit {
       // };
       // localStorage.setItem('w' + book.bookId, JSON.stringify(wishBook));
 
-    }else {
+    } else {
       this.signin();
       return;
     }
   }
+
   signin() {
     this.dialog.open(LoginComponent, {
       width: '28%',
@@ -141,7 +158,7 @@ export class UserBooksComponent implements OnInit {
     this.messageService.changeItem(this.num);
     sessionStorage.setItem(book.bookId, book.bookId);
     this.value[book.bookId] = book.bookId;
-    var cartBook = {
+    const cartBook = {
       bookId: book.bookId,
       name: book.bookName,
       author: book.authorName,
@@ -152,10 +169,22 @@ export class UserBooksComponent implements OnInit {
     };
     localStorage.setItem('c' + book.bookId, JSON.stringify(cartBook));
   }
-  wishCheck(bookId: any): any{
+
+  wishCheck(bookId: any): any {
     let id = -1;
-    for (let i = 0 ; i < this.wishBooks.length ; i++){
-      if (this.wishBooks[i] === bookId) {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key === 'x' + bookId) {
+        id = bookId;
+      }
+    }
+    return id;
+  }
+  cartCheck(bookId: any): any {
+    let id = -1;
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key === 'c' + bookId) {
         id = bookId;
       }
     }

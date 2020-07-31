@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {DisplayBooksComponent} from '../display-books/display-books.component';
 
-import { DisplayBooksComponent } from './display-book.component';
 
 describe('DisplayBooksComponent', () => {
   let component: DisplayBooksComponent;

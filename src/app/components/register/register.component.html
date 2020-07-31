@@ -102,14 +102,22 @@
       <div class="err" role="alert" *ngIf="errorMsg">{{errorMsg}}</div>
     </mat-card-actions>
     </body>
+    <div style="text-align: center; font-size: small;
+    margin: auto;"><p >or SignUp with</p></div>
+    <div fxLayout="row" style="place-content: center;" fxLayoutGap="3px">
+      <a><img  src="https://img.icons8.com/color/24/000000/facebook.png"/></a>
+      <a><img style="margin-left: 1%" src="https://img.icons8.com/color/24/000000/gmail.png"/></a>
+      <a><img style="margin-left: 1%" src="https://img.icons8.com/color/24/000000/linkedin.png"/></a>
+      <a><img style="margin-left: 1%" src="https://img.icons8.com/fluent/24/000000/twitter.png"/></a>
+    </div>
   </mat-card>
 </div>
   </form>
-  <ngx-spinner 
+  <ngx-spinner
     bdColor="rgba(51,51,51,0.8)"
     size="medium"
     color="#fff"
     type="square-jelly-box">
-  
+
     <p style="font-size: 20px; color: rgb(233, 221, 221) ">Loading...</ngx-spinner>
 </html>

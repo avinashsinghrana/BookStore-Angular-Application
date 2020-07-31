@@ -50,13 +50,14 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (+localStorage.getItem('fwsize') > 0) {
+      this.wishitem = +localStorage.getItem('fwsize');
+    } else {
+      this.wishitem = '';
+    }
+    // this.messageService.changeWishItem(this.wishitem);
     this.messageService.currentWishItem$.subscribe(response => {
-      // this.wishitem = response;
-      let num1: number = +localStorage.getItem('fwsize');
-      // let num2: number = +sessionStorage.getItem('bwsize');
-      // console.log('fs',num1);
-      // console.log('bs',num2);
-      // let totalSize: number = num1 + num2;
+      const num1 = +localStorage.getItem('fwsize');
       if (num1 > 0) {
         this.wishitem = num1;
       } else {
@@ -81,11 +82,11 @@ export class UserComponent implements OnInit {
       this.img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
     }
     this.messageService.currentItem$.subscribe(message => {
-      let num1: number = +localStorage.getItem('mycartsize');
-      let num2: number = +localStorage.getItem('size');
+      const num1: number = +localStorage.getItem('mycartsize');
+      const num2: number = +localStorage.getItem('size');
       console.log(num1);
       console.log(num2);
-      let totalSize: number = num1 + num2;
+      const totalSize: number = num1 + num2;
       if (totalSize > 0) {
         this.item = totalSize;
       } else {
@@ -122,9 +123,9 @@ export class UserComponent implements OnInit {
 
   Logout() {
     for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i);
-      if (key[0] == 'c') {
-        var obj = JSON.parse(localStorage.getItem(key));
+      const key = localStorage.key(i);
+      if (key[0] === 'c') {
+        const obj = JSON.parse(localStorage.getItem(key));
         this.cartServices.addToBag(obj, key[1]).subscribe((message) => {
         });
       }
@@ -155,7 +156,7 @@ export class UserComponent implements OnInit {
       return;
     }
     this.imgFile = $event.target.files[0];
-    var formData = new FormData();
+    const formData = new FormData();
     formData.append('file', this.imgFile);
     this.userService.profilePic(formData).subscribe(
       data => {

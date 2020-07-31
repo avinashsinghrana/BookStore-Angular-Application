@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SellerService } from "../../services/seller.service";
-import { MessageService } from "../../services/message.service";
+import { MessageService } from '../../services/message.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { CartServiceService } from 'src/app/services/cart-service/cart-service.service';
 import { Book } from 'src/app/models/book.model';
@@ -35,7 +35,7 @@ export class DisplayBookComponent implements OnInit {
   onBookDetail(event) {
     event.stopPropagation();
   }
- 
+
   onDisplayBooks(data) {
     console.log(data);
     if (data.status === 200) {
@@ -48,7 +48,7 @@ export class DisplayBookComponent implements OnInit {
     console.log(bookId);
     this.cartService.addBooks(bookId).subscribe(
       (data) => {
-          this.messageService.changeMessages();  
+          this.messageService.changeMessages();
       },
       (error: any) => {
         this.snackBar.open("Book Added to cart Failed", 'ok', { duration: 2000 });
