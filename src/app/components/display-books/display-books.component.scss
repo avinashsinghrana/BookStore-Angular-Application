@@ -193,8 +193,12 @@ mat-card {
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 2%;
-    overflow: hidden;
-    scroll-padding-top: 5%;
+   // overflow: hidden;
+   // overflow-y: hidden;
+  //  scroll-padding-top: 500px;
+
+    // scroll-padding-right: 20px;
+   
   }
   // @media only screen and (min-width: 600px) and (max-width: 1300) {
   //   .main-div {
@@ -285,7 +289,7 @@ mat-card {
     background-color: #2334cc;
     border-radius: 2vw
   }
-  .paginator{
+ .paginator{
     display: flex;
     font-size: 100%;
     bottom: 3%;
@@ -293,7 +297,19 @@ mat-card {
     margin-left: 25%;
     margin-top: 1%;
   }
-html,
-body {
+ /* .paginator{
+    display: flex;
+    // width: 2%;
+    align-content: center;
+    align-items: center;
+    font-size: 100%;
+    margin-left: 40%;
+    margin-bottom: 3%;
+    // margin-top: 20px;
+  }*/
+html{display: none; 
+overflow: hidden;}
 
- overflow: hidden; }
+ ::-webkit-scrollbar{
+  display: none;
+}

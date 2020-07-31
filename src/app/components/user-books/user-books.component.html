@@ -46,7 +46,7 @@
             Add to cart
           </button>
           <button
-            *ngIf="wishCheck(book.bookId) == -1 && book.quantity > 0"
+            *ngIf="wishvalue['x'+book.bookId] != book.bookId"
             class="update-button"
             mat-raised-button
             fxLayoutAlign="center"
@@ -56,7 +56,7 @@
             Wishlist
           </button>
           <button
-            *ngIf="wishCheck(book.bookId) == book.bookId && book.quantity > 0"
+            *ngIf="wishvalue['x'+book.bookId] == book.bookId"
             class="update-button"
             mat-raised-button
             fxLayoutAlign="center"
