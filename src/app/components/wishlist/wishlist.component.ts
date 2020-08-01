@@ -17,24 +17,35 @@ export class WishlistComponent implements OnInit {
 
   constructor(private wishService: WishlistService,
               private data: MessageService,
-              ) {
+  ) {
   }
 
   ngOnInit(): any {
-    this.num = +localStorage.getItem('mycartsize');
-    this.data.changeWishItem(this.size);
+    if (+localStorage.getItem('size') > 0) {
+      this.num = +localStorage.getItem('size');
+    } else {
+      this.num = 0;
+    }
+
+    if (+localStorage.getItem('fwsize') > 0) {
+      this.size = +localStorage.getItem('fwsize');
+    } else {
+      this.size = 0;
+    }
+
+    // this.data.changeWishItem(this.size);
     if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'USER') {
       this.getAllBookOfWL();
     }
     // this.printData();
-    const sqnc = new Observable(this.books);
+    // const sqnc = new Observable(this.books);
   }
 
   onAddBook(book) {
     this.num++;
     localStorage.setItem('size', JSON.stringify(this.num));
     this.data.changeItem(this.num);
-    sessionStorage.setItem(book.bookId, book.bookId);
+    // sessionStorage.setItem(book.bookId, book.bookId);
     // this.value[book.bookId] = book.bookId;
     const cartBook = {
       bookId: book.bookId,
@@ -49,7 +60,6 @@ export class WishlistComponent implements OnInit {
   }
 
   removeFromWishList(bookId: any) {
-    this.size = +localStorage.getItem('fwsize');
     this.size--;
     localStorage.setItem('fwsize', JSON.stringify(this.size));
     this.data.changeWishItem(this.size);
@@ -63,7 +73,7 @@ export class WishlistComponent implements OnInit {
     for (let i = 0; i < localStorage.length; i++) {
       let key = localStorage.key(i);
       if (key === 'x' + book.bookId) {
-        if (this.check('c', book) === 400){
+        if (this.check('c', book) === 400) {
           this.onAddBook(book);
         }
       }
@@ -75,19 +85,18 @@ export class WishlistComponent implements OnInit {
 
   check(char: any, book: any): any {
     let status: number = 400;
-    // @ts-ignore
     if (char === 'c') {
       for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
-        if (key[0] === 'c' && key[1] === book.bookId) {
-              status = 200;
+        if (key === 'c' + book.bookId) {
+          status = 200;
         }
       }
     }
     if (char === 'x') {
       for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
-        if (key[0] === 'x' && key[1] === book.bookId) {
+        if (key == 'x' + book.bookId) {
           status = 200;
         }
       }

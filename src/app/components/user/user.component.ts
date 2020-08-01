@@ -55,8 +55,8 @@ export class UserComponent implements OnInit {
     } else {
       this.wishitem = '';
     }
-    if (+localStorage.getItem('mycartsize') > 0) {
-      this.item = +localStorage.getItem('mycartsize');
+    if (+localStorage.getItem('size') > 0) {
+      this.item = +localStorage.getItem('size');
     } else {
       this.item = '';
     }
@@ -87,13 +87,13 @@ export class UserComponent implements OnInit {
       this.img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
     }
     this.messageService.currentItem$.subscribe(message => {
-      const num1: number = +localStorage.getItem('mycartsize');
+      // const num1: number = +localStorage.getItem('mycartsize');
       const num2: number = +localStorage.getItem('size');
-      console.log(num1);
-      console.log(num2);
-      const totalSize: number = num1 + num2;
-      if (totalSize > 0) {
-        this.item = totalSize;
+      // console.log(num1);
+      // console.log(num2);
+      // const totalSize: number = num1 + num2;
+      if (num2 > 0) {
+        this.item = num2;
       } else {
         this.item = '';
       }

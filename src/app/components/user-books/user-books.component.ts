@@ -58,7 +58,7 @@ export class UserBooksComponent implements OnInit {
   page = 1;
   num = 0;
   wishnum = 0;
-  wishToCart: any =[];
+  wishToCart: any = [];
 
 
   ngOnInit() {
@@ -73,8 +73,8 @@ export class UserBooksComponent implements OnInit {
       }
     });
     this.messageService.currentItem$.subscribe(reply => {
-      if (+localStorage.getItem('mycartsize') > 0) {
-        this.num = +localStorage.getItem('mycartsize');
+      if (+localStorage.getItem('size') > 0) {
+        this.num = +localStorage.getItem('size');
         this.messageService.changeItem(this.num);
       } else {
         this.num = 0;
@@ -115,19 +115,20 @@ export class UserBooksComponent implements OnInit {
 
   onWish(book: any) {
     if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'USER') {
-      this.wishnum++;
-      console.log('wish size -- userbooks', this.wishnum);
-      sessionStorage.setItem('fwsize', JSON.stringify(this.wishnum));
-      localStorage.setItem('fwsize', JSON.stringify(this.wishnum));
-      this.messageService.changeWishItem(this.wishnum);
-      this.wishlistService.addToWishList(book.bookId, localStorage.getItem('token')).subscribe(
-        response => {
-          this.wishBooks = response.data;
-          console.log('wish addition' + JSON.stringify(response));
-        });
-      localStorage.setItem('x' + book.bookId, book.bookId);
-      this.wishvalue['x' + book.bookId] = book.bookId;
-      this.messageService.changeWishItem(this.size);
+        this.wishnum++;
+        localStorage.setItem('fwsize', JSON.stringify(this.wishnum));
+        this.messageService.changeWishItem(this.wishnum);
+        this.wishlistService.addToWishList(book.bookId, localStorage.getItem('token')).subscribe(
+          response => {
+            this.wishBooks = response.data;
+            console.log('wish addition' + JSON.stringify(response));
+          });
+        localStorage.setItem('x' + book.bookId, book.bookId);
+        this.wishvalue['x' + book.bookId] = book.bookId;
+        this.messageService.changeWishItem(this.wishnum);
+        this.snackBar.open('Added to wishList', 'ok', {duration : 2000});
+      // this.snackBar.open('Already in cart', 'ok', {duration : 2000});
+
       // var wishBook = {
       //   bookId: book.bookId,
       //   bookName: book.bookName,
@@ -177,8 +178,18 @@ export class UserBooksComponent implements OnInit {
       totalPrice: book.price
     };
     localStorage.setItem('c' + book.bookId, JSON.stringify(cartBook));
+    if (this.wishCheck(book.bookId) === book.bookId){
+        this.removeFromWishList(book.bookId);
+    }
   }
-
+  removeFromWishList(bookId: any) {
+    this.wishnum--;
+    localStorage.setItem('fwsize', JSON.stringify(this.wishnum));
+    this.messageService.changeWishItem(this.wishnum);
+    localStorage.removeItem('x' + bookId);
+    this.wishlistService.removeFromWL(bookId, localStorage.getItem('token')).subscribe((response: any) => {
+    });
+  }
   wishCheck(bookId: any): any {
     let id = -1;
     for (let i = 0; i < localStorage.length; i++) {
