@@ -112,4 +112,5 @@ export class WishlistComponent implements OnInit {
     });
   }
 
+  falsecall() {}
 }

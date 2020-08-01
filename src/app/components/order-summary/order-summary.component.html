@@ -97,7 +97,8 @@
           <p class="book-names">{{ book.name }}</p>
           <p class="book-names1">By {{ book.author }}</p>
           <p class="book-names2">Rs.{{ book.totalPrice }}</p>
-          <p class="book-stock">{{ book.maxQuantity - book.quantity }} Books left</p>
+          <p class="book-stock">
+            {{ book.maxQuantity - book.quantity !== 0 ? book.maxQuantity - book.quantity + " Books left" :  "Out Of Stock"}} </p>
         </div>
         <div class="quantity">
           <button

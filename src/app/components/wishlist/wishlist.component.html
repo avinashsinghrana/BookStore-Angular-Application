@@ -22,8 +22,13 @@
             <p class="book-names4">{{ book.authorName }}</p>
             <p class="book-names5">Rs.{{ book.price }}</p>
           </div>
-          <div class="buttonArr">
+          <div *ngIf="book.quantity > 0" class="buttonArr">
             <button class="buttonstyle" mat-button (click)="addToCart(book)"><p class="p1">Add To Cart</p></button>
+            <button class="buttonstyle1" mat-button (click)="removeFromWishList(book.bookId)"><p class="p1">Remove</p>
+            </button>
+          </div>
+          <div *ngIf="book.quantity <= 0" class="buttonArr">
+            <button class="comingsoon" mat-button [disabled]="false" (click)="falsecall()"><p class="p1">Coming soon..</p></button>
             <button class="buttonstyle1" mat-button (click)="removeFromWishList(book.bookId)"><p class="p1">Remove</p>
             </button>
           </div>
