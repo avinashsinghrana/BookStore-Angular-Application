@@ -21,6 +21,9 @@ export class WishlistComponent implements OnInit {
   }
 
   ngOnInit(): any {
+    if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'USER') {
+      this.getAllBookOfWL();
+    }
     if (+localStorage.getItem('size') > 0) {
       this.num = +localStorage.getItem('size');
     } else {
@@ -32,13 +35,6 @@ export class WishlistComponent implements OnInit {
     } else {
       this.size = 0;
     }
-
-    // this.data.changeWishItem(this.size);
-    if (localStorage.getItem('token') !== null && localStorage.getItem('roleType') === 'USER') {
-      this.getAllBookOfWL();
-    }
-    // this.printData();
-    // const sqnc = new Observable(this.books);
   }
 
   onAddBook(book) {
@@ -109,6 +105,7 @@ export class WishlistComponent implements OnInit {
       this.books = response.data;
       this.data.changeWishItem(response.data.length);
       this.data.changeWishObject(response.data);
+      localStorage.setItem('fwsize', JSON.stringify(response.data.length));
     });
   }
 

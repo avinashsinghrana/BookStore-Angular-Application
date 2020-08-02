@@ -19,20 +19,16 @@ import {WishlistService} from '../../services/wishlist.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  isBookFormOpened = false;
   searchTerm: string;
   file: any;
   profile: string;
   isLogin = false;
-  popup = false;
-  popDown = false;
   imgFile: File;
   response: any;
   isImage = false;
   img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
   username: string;
   usermail: string;
-  sorting: Sortmethod[];
   item: any;
   wishitem: any;
 
@@ -50,32 +46,13 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (+localStorage.getItem('fwsize') > 0) {
-      this.wishitem = +localStorage.getItem('fwsize');
-    } else {
-      this.wishitem = '';
-    }
-    if (+localStorage.getItem('size') > 0) {
-      this.item = +localStorage.getItem('size');
-    } else {
-      this.item = '';
-    }
-    // this.messageService.changeWishItem(this.wishitem);
-    this.messageService.currentWishItem$.subscribe(response => {
-      const num1 = +localStorage.getItem('fwsize');
-      if (num1 > 0) {
-        this.wishitem = num1;
-      } else {
-        this.wishitem = '';
-      }
-    });
-    this.messageService.changeMessages();
     if (localStorage.getItem(localStorage.getItem('email')) == null) {
       this.isImage = false;
     } else {
       this.isImage = true;
     }
     if (localStorage.getItem('token') != null && localStorage.getItem('roleType') === 'USER') {
+      this.getAllBookOfWL();
       this.messageService.changeCartBook();
       this.data.changeItem(1);
       this.isLogin = true;
@@ -86,16 +63,44 @@ export class UserComponent implements OnInit {
       this.isLogin = false;
       this.img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
     }
+    if (+localStorage.getItem('fwsize') > 0) {
+      this.wishitem = +localStorage.getItem('fwsize');
+    } else {
+      this.wishitem = '';
+    }
+    if (+localStorage.getItem('size') > 0) {
+      this.item = +localStorage.getItem('size');
+    } else {
+      this.item = '';
+    }
+    this.messageService.currentWishItem$.subscribe(response => {
+      const num1 = +localStorage.getItem('fwsize');
+      if (num1 > 0) {
+        this.wishitem = num1;
+      } else {
+        this.wishitem = '';
+      }
+    });
+    this.messageService.changeMessages();
+
     this.messageService.currentItem$.subscribe(message => {
-      // const num1: number = +localStorage.getItem('mycartsize');
       const num2: number = +localStorage.getItem('size');
-      // console.log(num1);
-      // console.log(num2);
-      // const totalSize: number = num1 + num2;
       if (num2 > 0) {
         this.item = num2;
       } else {
         this.item = '';
+      }
+    });
+  }
+
+  public getAllBookOfWL() {
+    this.wishlistService.getBookOfWishList(localStorage.getItem('token')).subscribe(response => {
+      if (response.data.length > 0) {
+        this.wishitem = response.data.length;
+        localStorage.setItem('fwsize', JSON.stringify(response.data.length));
+        for (const wish of response.data){
+          localStorage.setItem('x' + wish.bookId, wish.bookId);
+        }
       }
     });
   }
@@ -135,14 +140,8 @@ export class UserComponent implements OnInit {
         });
       }
     }
-    // for (let i = 0; i < localStorage.length; i++) {
-    //   let key = localStorage.key(i);
-    //   if (key[0] == 'w') {
-    //     var obj = JSON.parse(localStorage.getItem(key));
-    //     this.wishlistService.addToWishList(key[1], localStorage.getItem('token')).subscribe((message) => {
-    //     });
-    //   }
-    // }
+
+
     this.img = localStorage.getItem(localStorage.getItem('email'));
     localStorage.clear();
     sessionStorage.clear();
