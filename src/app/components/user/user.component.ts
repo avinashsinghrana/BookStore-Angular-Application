@@ -98,7 +98,7 @@ export class UserComponent implements OnInit {
       if (response.data.length > 0) {
         this.wishitem = response.data.length;
         localStorage.setItem('fwsize', JSON.stringify(response.data.length));
-        for (const wish of response.data){
+        for (const wish of response.data) {
           localStorage.setItem('x' + wish.bookId, wish.bookId);
         }
       }

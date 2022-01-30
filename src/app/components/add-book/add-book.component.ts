@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, PatternValidator } from '@angular/forms';
-import { SellerService } from "../../services/seller.service";
-import { MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { MessageService } from "../../services/message.service";
-import { Book } from 'src/app/models/book.model';
-import { formatDate } from '@angular/common';
-import { UserService } from "../../services/user.service";
+import {Component, OnInit, Inject} from '@angular/core';
+import {FormGroup, FormControl, Validators, PatternValidator} from '@angular/forms';
+import {SellerService} from '../../services/seller.service';
+import {MatSnackBar, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MessageService} from '../../services/message.service';
+import {Book} from 'src/app/models/book.model';
+import {formatDate} from '@angular/common';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-add-book',
@@ -18,7 +18,7 @@ export class AddBookComponent implements OnInit {
   bookImageUrl: any;
   response: any;
   imgFile: File;
-  result:string;
+  result: string;
   book = {
     bookName: null,
     authorName: null,
@@ -27,6 +27,7 @@ export class AddBookComponent implements OnInit {
     bookDetails: null,
     bookImgUrl: null,
   };
+
   constructor(
     private vendorService: SellerService,
     public snackbar: MatSnackBar,
@@ -35,7 +36,8 @@ export class AddBookComponent implements OnInit {
     private messageService: MessageService,
     private dialogRef: MatDialogRef<AddBookComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Book
-  ) {}
+  ) {
+  }
 
   bookForm = new FormGroup({
     bookName: new FormControl('', [Validators.required,]),
@@ -45,24 +47,27 @@ export class AddBookComponent implements OnInit {
     description: new FormControl('', Validators.required),
     imageURL: new FormControl(this.bookImageUrl, Validators.required),
   });
-  ngOnInit() {}
+
+  ngOnInit() {
+  }
 
   onUploadBookImage(event) {
-    this.result = "Uploading..";
+    this.result = 'Uploading..';
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
       const formData = new FormData();
       formData.append('file', this.file);
       this.file.inProgress = true;
-      
+
       this.userService.bookPic(formData).subscribe((data: any) => {
-            this.bookImageUrl = data.data;
-            console.log(data);
-            console.log(this.bookImageUrl);
-            this.result = "Uploaded";
-        });
+        this.bookImageUrl = data.data;
+        console.log(data);
+        console.log(this.bookImageUrl);
+        this.result = 'Uploaded';
+      });
     }
   }
+
   onFormSubmit() {
     this.dialogRef.close();
     this.book.bookName = this.bookForm.value.bookName;
@@ -71,16 +76,16 @@ export class AddBookComponent implements OnInit {
     this.book.quantity = this.bookForm.value.quantity;
     this.book.bookDetails = this.bookForm.value.description;
     this.book.bookImgUrl = this.bookImageUrl;
-    console.log("book data ",this.book);
+    console.log('book data ', this.book);
     this.vendorService.addBook(this.book).subscribe(
       (data) => {
-        console.log("book data response ",data);
-       // if (data.status === 200) {
-          this.messageService.changeOnNewlyAdded();
+        console.log('book data response ', data);
+        // if (data.status === 200) {
+        this.messageService.changeOnNewlyAdded();
         /*  this.snackBar.open(data.message, 'ok', {
             duration: 2000,
           });*/
-       // }
+        // }
       },
       (error) => {
         this.snackBar.open(error.message, 'cancel', {
@@ -88,5 +93,5 @@ export class AddBookComponent implements OnInit {
         });
       }
     );
-}
+  }
 }

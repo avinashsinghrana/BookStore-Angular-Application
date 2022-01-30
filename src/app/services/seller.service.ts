@@ -11,18 +11,18 @@ import { environment } from 'src/environments/environment';
 export class SellerService {
 
   private addBookApi = 'sellers/addBook';
-  private updateBookApi = '/sellers/updateBook';
-  private deleteBookApi = '/sellers/deleteBook';
-  private disapprove = '/admin/bookUnVerification';
-  private displayBookApi = '/sellers/getUnverifiedBooks';
+  private updateBookApi = 'sellers/updateBook';
+  private deleteBookApi = 'sellers/deleteBook';
+  private disapprove = 'admin/bookUnVerification';
+  private displayBookApi = 'sellers/getUnverifiedBooks';
   private uploadBookProfileApi = 'users/uploadImage';
-  private approveBookApi = '/admin/bookVerification';
-  private displayAllBookApi = '/admin/getBooksForVerification';
-  private getBookApi = '/user/getAllVerifiedBooks';
-  private newlyAddedBookApi = '/sellers/getNewlyAddedBooks';
-  private disapprovedBookApi = '/sellers/getDisapprovedBooks';
-  private approvedBookApi = '/sellers/getApprovedBooks';
-  private sendApprovalApi = '/sellers//sendApprovalRequest'
+  private approveBookApi = 'admin/bookVerification';
+  private displayAllBookApi = 'admin/getBooksForVerification';
+  private getBookApi = 'user/getAllVerifiedBooks';
+  private newlyAddedBookApi = 'sellers/getNewlyAddedBooks';
+  private disapprovedBookApi = 'sellers/getDisapprovedBooks';
+  private approvedBookApi = 'sellers/getApprovedBooks';
+  private sendApprovalApi = 'sellers/sendApprovalRequest'
 
   constructor(private http: HttpClient, private service: HttpService) {}
   addBook(body: any): Observable<any> {

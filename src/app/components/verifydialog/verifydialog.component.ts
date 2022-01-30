@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import { Router } from '@angular/router';
-import { SellerService } from 'src/app/services/seller.service';
-import { MessageService } from 'src/app/services/message.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Component, OnInit, Inject} from '@angular/core';
+import {MatDialogRef, MatSnackBar, MAT_DIALOG_DATA} from '@angular/material';
+import {Router} from '@angular/router';
+import {SellerService} from 'src/app/services/seller.service';
+import {MessageService} from 'src/app/services/message.service';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-verifydialog',
@@ -16,16 +16,18 @@ export class VerifydialogComponent implements OnInit {
     private snackbar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private messageService: MessageService,
-
     private vendorService: SellerService,
     private router: Router
-  ) {}
+  ) {
+  }
+
   // reasonForm = new FormGroup({
   //   reason: new FormControl('', [Validators.required,]),
   // });
   book: any;
   status: any;
-  statuss: String = "DisApprove";
+  statuss: String = 'DisApprove';
+
   ngOnInit(): void {
     console.log(this.data['status']);
     this.status = this.data['status'];
@@ -69,6 +71,7 @@ export class VerifydialogComponent implements OnInit {
       );
     }
   }
+
   onCancel() {
     this.dialogRef.close();
   }

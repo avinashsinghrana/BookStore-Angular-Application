@@ -1,20 +1,24 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from "./../../environments/environment";
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from './../../environments/environment';
+import {Observable} from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  
+
 
   url: string;
-  constructor(public http: HttpClient) { }
+
+  constructor(public http: HttpClient) {
+  }
+
   apiBaseurl = environment.baseUrl;
 
   postUser(user, url) {
     var httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     // set header in your http request
     return this.http.post(this.apiBaseurl + url, user, httpOptions);
@@ -22,7 +26,7 @@ export class HttpService {
 
   postUrl(url) {
     var httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     return this.http.post(this.apiBaseurl + url, httpOptions);
   }
@@ -34,7 +38,7 @@ export class HttpService {
   post(url: any, body: any, options: any): Observable<any> {
     return this.http.post(url, body, options);
   }
-  
+
   addtoCart(url: any): Observable<any> {
     return this.http.post(url, Option);
   }
@@ -50,6 +54,7 @@ export class HttpService {
   put(url: any, body: any, options: any): Observable<any> {
     return this.http.put(url, body, options);
   }
+
   delete(url: any, options: any): Observable<any> {
     return this.http.delete(url, options);
   }
@@ -57,27 +62,28 @@ export class HttpService {
   postBook(newBook, url) {
     var httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token")
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token')
       })
     };
     // set header in your http request
     return this.http.post(this.apiBaseurl + url, newBook, httpOptions);
   }
+
   upload(url: string, body: any): any {
     url = this.apiBaseurl + url;
     const httpOptions = {
       headers: new HttpHeaders({
-        token: localStorage.getItem("token")
+        token: localStorage.getItem('token')
       })
     };
     return this.http.post(url, body, httpOptions);
   }
+
   uploadImg(url: string, body: any): any {
     url = this.apiBaseurl + url;
     const httpOptions = {
-      headers: new HttpHeaders({ 
-      })
+      headers: new HttpHeaders({})
     };
     return this.http.post(url, body, httpOptions);
   }
@@ -85,10 +91,10 @@ export class HttpService {
   public POST(url: any, data: any, token: any): any {
     return this.http.post(this.apiBaseurl + url, data, token);
   }
-  
+
   public foo(url: any) {
     var httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     return this.http.post(this.apiBaseurl + url, httpOptions);
   }
@@ -98,6 +104,7 @@ export class HttpService {
     return this.http.delete(this.apiBaseurl + url);
 
   }
+
   public removeAllItemsCart(url: any) {
 
     return this.http.delete(this.apiBaseurl + url, {
@@ -105,17 +112,18 @@ export class HttpService {
     });
 
   }
+
   public getBooksCart(url: any) {
     return this.http.get(url, {
       headers: new HttpHeaders().set('token', localStorage.getItem('token')),
     });
   }
 
-  public getOrderId(url :any){
+  public getOrderId(url: any) {
     return this.http.get(url);
   }
 
-  clearCart(url :any) {
+  clearCart(url: any) {
     return this.http.delete(url, {
       headers: new HttpHeaders().set('token', localStorage.getItem('token')),
     });
@@ -123,7 +131,7 @@ export class HttpService {
 
   addItem(url) {
     var httpOptions = {
-      headers: new HttpHeaders({ "Content-Type": "application/json" })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
     // set header in your http request
     return this.http.post(this.apiBaseurl + url, httpOptions);
@@ -157,10 +165,10 @@ export class HttpService {
 
   mailSend(url: string) {
     return this.http.post(url, '');
-}
+  }
 
-getDetails(url: string) {
-  return this.http.get(url);
-}
+  getDetails(url: string) {
+    return this.http.get(url);
+  }
 
 }

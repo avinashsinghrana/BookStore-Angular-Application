@@ -1,10 +1,10 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { CdkTableModule } from '@angular/cdk/table';
-import { CdkTreeModule } from '@angular/cdk/tree';
-import { A11yModule } from '@angular/cdk/a11y';
-import { NgModule } from '@angular/core';
-import { TextFieldModule } from '@angular/cdk/text-field';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
+import {A11yModule} from '@angular/cdk/a11y';
+import {NgModule} from '@angular/core';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 import {
   MatAutocompleteModule,
@@ -40,13 +40,12 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
-}
-  
-from '@angular/material';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout'
+} from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 @NgModule({
   imports: [
     MatInputModule,

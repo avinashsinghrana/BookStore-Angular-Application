@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import {OrderconfirmationService} from "../../services/orderConfirmation/orderconfirmation.service";
-import { LoginComponent } from '../login/login.component';
-import { RegisterComponent } from '../register/register.component';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from 'src/app/services/user.service';
-import { MessageService } from 'src/app/services/message.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Router } from '@angular/router';
-import { CartserviceService } from 'src/app/services/cartservice.service';
-import { WishlistService } from 'src/app/services/wishlist.service';
+import {Component, OnInit} from '@angular/core';
+import {OrderconfirmationService} from '../../services/orderConfirmation/orderconfirmation.service';
+import {LoginComponent} from '../login/login.component';
+import {RegisterComponent} from '../register/register.component';
+import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserService} from 'src/app/services/user.service';
+import {MessageService} from 'src/app/services/message.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {Router} from '@angular/router';
+import {CartserviceService} from 'src/app/services/cartservice.service';
+import {WishlistService} from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -32,8 +32,9 @@ export class OrderConfirmationComponent implements OnInit {
   usermail: string;
   item: any;
   wishitem: any;
+
   constructor(
-    private ordercinfirmation : OrderconfirmationService,
+    private ordercinfirmation: OrderconfirmationService,
     private dialog: MatDialog,
     public snackbar: MatSnackBar,
     private userService: UserService,
@@ -42,7 +43,8 @@ export class OrderConfirmationComponent implements OnInit {
     private router: Router,
     private cartServices: CartserviceService,
     private data: MessageService,
-    private wishlistService: WishlistService) { }
+    private wishlistService: WishlistService) {
+  }
 
   ngOnInit() {
     this.messageService.changeMessages();
@@ -125,18 +127,19 @@ export class OrderConfirmationComponent implements OnInit {
       });
   }
 
-  fetchOrderId(){
-   // order_id: number
-   let orderId = sessionStorage.getItem("orderId");
-   sessionStorage.clear();
-   console.log(orderId);
-    return '#'+orderId;
+  fetchOrderId() {
+    // order_id: number
+    let orderId = sessionStorage.getItem('orderId');
+    sessionStorage.clear();
+    console.log(orderId);
+    return '#' + orderId;
   }
-  getOrderId(){
+
+  getOrderId() {
     //   this.ordercinfirmation.fetchOrderId().subscribe((response:any) => {
     //     this.orderId = response;
     //     console.log("id", response)
     //  });
-    
+
   }
 }

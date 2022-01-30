@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
+import {Injectable} from '@angular/core';
+import {HttpService} from './http.service';
+import {BaseURLFile} from '../base_url_file';
 
 @Injectable({
   providedIn: 'root'
@@ -10,22 +11,22 @@ export class WishlistService {
   }
 
   addToWishList(bookId: any, token: string): any {
-    return this.httpService.addedToWishList('http://localhost:8081/user/addToWishlist?bookId=' + bookId + '&token=' + token);
+    return this.httpService.addedToWishList(BaseURLFile.ACTIVE_SERVER + 'user/addToWishlist?bookId=' + bookId + '&token=' + token);
   }
 
   getBookOfWishList(token: string): any {
-    return this.httpService.getWishlistBooks('http://localhost:8081/user/getWishListBooks?token=' + token);
+    return this.httpService.getWishlistBooks(BaseURLFile.ACTIVE_SERVER + 'user/getWishListBooks?token=' + token);
   }
 
   removeFromWL(bookId: any, token: string) {
-    return this.httpService.removeFromWishList('http://localhost:8081/user/deleteFromWishlist?bookId=' + bookId + '&token=' + token);
+    return this.httpService.removeFromWishList(BaseURLFile.ACTIVE_SERVER + 'user/deleteFromWishlist?bookId=' + bookId + '&token=' + token);
   }
 
   addtoCartFromWL(bookId: any, token: string) {
-    return this.httpService.addToCartFromWishList('http://localhost:8081/user/addFromWishlistToCart?bookId=' + bookId + '&token=' + token);
+    return this.httpService.addToCartFromWishList(BaseURLFile.ACTIVE_SERVER + 'user/addFromWishlistToCart?bookId=' + bookId + '&token=' + token);
   }
 
   getIdFromWishList() {
-    return this.httpService.getIdFromWL('http://localhost:8081/user/wishListStatus?token=' + localStorage.getItem('token'));
+    return this.httpService.getIdFromWL(BaseURLFile.ACTIVE_SERVER + 'user/wishListStatus?token=' + localStorage.getItem('token'));
   }
 }

@@ -1,17 +1,18 @@
-import { Seller } from 'src/app/model/seller.model';
-import { UserService } from './../../services/user.service';
-import { Component, OnInit, Inject, Input } from '@angular/core';
-import { SellerService } from '../../services/seller.service';
-import { MessageService } from '../../services/message.service';
+import {Seller} from 'src/app/model/seller.model';
+import {UserService} from './../../services/user.service';
+import {Component, OnInit, Inject, Input} from '@angular/core';
+import {SellerService} from '../../services/seller.service';
+import {MessageService} from '../../services/message.service';
 import {
   MatSnackBar,
   MatDialog,
   MatDialogConfig,
   MAT_DIALOG_DATA,
 } from '@angular/material';
-import { Book } from 'src/app/models/book.model';
-import { VerifydialogComponent } from '../verifydialog/verifydialog.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Book} from 'src/app/models/book.model';
+import {VerifydialogComponent} from '../verifydialog/verifydialog.component';
+import {Router, ActivatedRoute} from '@angular/router';
+
 @Component({
   selector: 'app-admin-books',
   templateUrl: './admin-books.component.html',
@@ -26,6 +27,7 @@ export class AdminBooksComponent implements OnInit {
   sortTerm: string;
   item: any;
   page: number = 1;
+
   constructor(
     private vendorService: SellerService,
     private messageService: MessageService,
@@ -35,18 +37,21 @@ export class AdminBooksComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute //    @Inject(MAT_DIALOG_DATA) public datadialog: any
-  ) {}
+  ) {
+  }
+
   // seller: [];
   sellerId: any;
+
   ngOnInit() {
     this.sellerId = this.route.snapshot.paramMap.get('sellerId');
     console.log(this.sellerId);
     this.getAllSellerBooks();
-   /* this.messageService.changeMessages();
-    this.messageService.currentBooks.subscribe((data) => {
-      this.books = [];
-      // this.onDisplayBooks(data);
-    });*/
+    /* this.messageService.changeMessages();
+     this.messageService.currentBooks.subscribe((data) => {
+       this.books = [];
+       // this.onDisplayBooks(data);
+     });*/
     this.messageService.currentEvent$.subscribe((message) => {
       this.searchTerm = message;
     });
@@ -55,9 +60,11 @@ export class AdminBooksComponent implements OnInit {
     //   //      this.size = this.seller.length;
     // }
   }
+
   onBookDetail(event) {
     event.stopPropagation();
   }
+
   /*
   onSelect(val: any){
    this.sortTerm = val;
@@ -70,6 +77,7 @@ export class AdminBooksComponent implements OnInit {
   }
 
   datas: any;
+
   getAllSellerBooks() {
     this.userService.getAllSellerBooks(this.sellerId).subscribe((response) => {
       this.datas = response;

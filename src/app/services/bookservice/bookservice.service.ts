@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
-import { HttpService } from '../http.service';
-import { Observable, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Book } from 'src/app/models/book.model';
-import { tap, map, catchError } from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {HttpHeaders, HttpClient, HttpEvent, HttpEventType} from '@angular/common/http';
+import {HttpService} from '../http.service';
+import {Observable, Subject} from 'rxjs';
+import {environment} from 'src/environments/environment';
+import {Book} from 'src/app/models/book.model';
+import {tap, map, catchError} from 'rxjs/operators';
+import {BaseURLFile} from '../../base_url_file';
 
 
 @Injectable({
@@ -14,36 +15,42 @@ export class BookserviceService {
   private _autoRefresh$ = new Subject();
   private searchBookData = new Subject<any>();
   private httpOtions = {
-    headers: new HttpHeaders({ "content-type": "application/json" }),
+    headers: new HttpHeaders({'content-type': 'application/json'}),
   };
 
   get autoRefresh$() {
     return this._autoRefresh$;
   }
-  constructor(private http: HttpClient, private httpservice: HttpService) {}
+
+  constructor(private http: HttpClient, private httpservice: HttpService) {
+  }
+
   getBookList(): Observable<any> {
     return this.httpservice.geet(
-      "http://localhost:8081/user/getallBooks"
+      BaseURLFile.ACTIVE_SERVER + 'user/getallBooks'
     );
   }
+
   getSellerBookList(): Observable<any> {
     return this.httpservice.get(
       `${environment.bookApiUrl}/${environment.getSellerBookList}`,
-      { headers: new HttpHeaders().set("token", sessionStorage.token) }
+      {headers: new HttpHeaders().set('token', sessionStorage.token)}
     );
   }
-token :string;
+
+  token: string;
+
   public getAllunverifiedBooks(url: any): any {
-    this.token = localStorage.getItem("token");
+    this.token = localStorage.getItem('token');
     return this.http.get(environment.baseUrl + url, {
-      headers: new HttpHeaders().set("token", localStorage.getItem("token")),
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
     });
   }
 
   addBook(book: Book): Observable<any> {
     return this.httpservice
       .post(`${environment.bookApiUrl}/${environment.addbook}`, book, {
-        headers: new HttpHeaders().set("token", sessionStorage.token),
+        headers: new HttpHeaders().set('token', sessionStorage.token),
       })
       .pipe(
         tap(() => {
@@ -58,9 +65,9 @@ token :string;
         `${environment.bookApiUrl}/${environment.addBookImage}?bookId=${bookId}`,
         formData,
         {
-          headers: new HttpHeaders().set("token", sessionStorage.token),
+          headers: new HttpHeaders().set('token', sessionStorage.token),
           reportProgress: true,
-          observe: "events",
+          observe: 'events',
         }
       )
       .pipe(
@@ -86,14 +93,14 @@ token :string;
 
   private fileUploadProgress(event) {
     const percentageDone = Math.round((100 * event.loaded) / event.total);
-    return { status: "progress", message: percentageDone };
+    return {status: 'progress', message: percentageDone};
   }
 
   deleteBook(bookId): Observable<any> {
     return this.httpservice
       .delete(
         `${environment.bookApiUrl}/${environment.deleteBook}?bookId=${bookId}`,
-        { headers: new HttpHeaders().set("token", sessionStorage.token) }
+        {headers: new HttpHeaders().set('token', sessionStorage.token)}
       )
       .pipe(
         tap(() => {
@@ -103,11 +110,12 @@ token :string;
   }
 
   setSearchBookData(message: any) {
-    console.log("set service", message);
-    return this.searchBookData.next({ books: message });
+    console.log('set service', message);
+    return this.searchBookData.next({books: message});
   }
+
   getSearchBookData(): Observable<any> {
-    console.log("get service");
+    console.log('get service');
     return this.searchBookData.asObservable();
   }
 }

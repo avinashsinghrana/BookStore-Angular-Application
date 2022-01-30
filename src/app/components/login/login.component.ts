@@ -1,16 +1,17 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Login } from 'src/app/models/login.model';
-import { MatDialog } from '@angular/material/dialog';
-import { RegisterComponent } from '../register/register.component';
-import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { MessageService } from 'src/app/services/message.service';
+import {Component, OnInit, Inject} from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/user.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialogRef} from '@angular/material/dialog';
+import {Login} from 'src/app/models/login.model';
+import {MatDialog} from '@angular/material/dialog';
+import {RegisterComponent} from '../register/register.component';
+import {ForgotpasswordComponent} from '../forgotpassword/forgotpassword.component';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {MessageService} from 'src/app/services/message.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +26,9 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Login
-  ) {}
+  ) {
+  }
+
   response: any;
   successMsg: string;
   failedMsg: string;
@@ -50,24 +53,27 @@ export class LoginComponent implements OnInit {
     ),
   ]);
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   // To display email error message
   getEmailErrorMessage() {
     return this.emailFormControl.hasError('required')
       ? 'Email id is required'
       : this.emailFormControl.hasError('email')
-      ? 'Please enter valid email id'
-      : ' ';
+        ? 'Please enter valid email id'
+        : ' ';
   }
+
   // To display password error message
   getPasswordErrorMessage() {
     return this.password.hasError('required')
       ? 'Password is required'
       : this.password.hasError('pattern')
-      ? 'Please enter valid password'
-      : ' ';
+        ? 'Please enter valid password'
+        : ' ';
   }
+
   validate() {
     if (this.emailFormControl.valid && this.password.valid) {
       this.toggle = false;
@@ -76,16 +82,17 @@ export class LoginComponent implements OnInit {
     this.toggle = true;
     return 'true';
   }
+
   login() {
     this.spinner.show();
     this.reqbody.emailId = this.emailFormControl.value;
     this.reqbody.password = this.password.value;
     const currentUrl = this.router.url;
     this.reqbody.roleType = 'USER';
-    if (currentUrl.localeCompare('http://localhost:4200/adminDashboard/seller-list')){
+    if (currentUrl.localeCompare('http://localhost:4200/adminDashboard/seller-list')) {
       this.reqbody.roleType = 'ADMIN';
     }
-    if (currentUrl.localeCompare('http://localhost:4200/sellerDashboard/display-books')){
+    if (currentUrl.localeCompare('http://localhost:4200/sellerDashboard/display-books')) {
       this.reqbody.roleType = 'SELLER';
     }
     console.log('reqbody', this.reqbody);
@@ -97,7 +104,7 @@ export class LoginComponent implements OnInit {
         this.response = data;
         localStorage.setItem('email', this.reqbody.emailId);
         localStorage.setItem('name', this.response.message);
-        if (this.response.roleType === 'SELLER'){
+        if (this.response.roleType === 'SELLER') {
           localStorage.setItem('token', this.response.data);
           localStorage.setItem('roleType', this.response.roleType);
           this.router.navigate(['sellerDashboard']);
@@ -116,21 +123,22 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('roleType', this.response.roleType);
         location.reload();
 
-      /*  if(this.response.loginResponse.roleType=="SELLER"){
-          localStorage.setItem('stoken', this.response.loginResponse.token);
-        }
-        if(this.response.loginResponse.roleType=="ADMIN"){
-          localStorage.setItem('atoken', this.response.loginResponse.token);
-        }-*/
-       // localStorage.setItem('token', this.response.data);
+        /*  if(this.response.loginResponse.roleType=="SELLER"){
+            localStorage.setItem('stoken', this.response.loginResponse.token);
+          }
+          if(this.response.loginResponse.roleType=="ADMIN"){
+            localStorage.setItem('atoken', this.response.loginResponse.token);
+          }-*/
+        // localStorage.setItem('token', this.response.data);
 
       },
       (err) => {
         this.spinner.hide();
-        this.snackbar.open('Invalid Credential', 'Ok', { duration: 5000 });
+        this.snackbar.open('Invalid Credential', 'Ok', {duration: 5000});
       }
     );
   }
+
   register() {
     this.dialogRef.close();
     this.dialog.open(RegisterComponent, {
@@ -138,6 +146,7 @@ export class LoginComponent implements OnInit {
       height: 'auto',
     });
   }
+
   forgotpassword() {
     this.dialogRef.close();
     this.dialog.open(ForgotpasswordComponent, {
