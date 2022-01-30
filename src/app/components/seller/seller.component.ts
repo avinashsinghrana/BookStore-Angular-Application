@@ -18,7 +18,7 @@ export class SellerComponent implements OnInit {
   isBookFormOpened = false;
   searchTerm: string;
   file: any;
-  baseUrl = BaseURLFile.ACTIVE_SERVER;
+  baseUrl = BaseURLFile.ACTIVE_ROUTER;
   profile: string;
   isLogin = false;
   imgFile: File;

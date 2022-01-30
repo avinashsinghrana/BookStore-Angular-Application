@@ -22,7 +22,7 @@ import { BaseURLFile } from 'src/app/base_url_file';
 export class UserComponent implements OnInit {
   searchTerm: string;
   file: any;
-  baseUrl = BaseURLFile.ACTIVE_SERVER;
+  baseUrl = BaseURLFile.ACTIVE_ROUTER;
   profile: string;
   isLogin = false;
   imgFile: File;

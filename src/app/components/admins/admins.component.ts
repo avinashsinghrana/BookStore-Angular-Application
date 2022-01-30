@@ -25,7 +25,7 @@ export class AdminsComponent implements OnInit {
   imgFile: File;
   response: any;
   isImage = false;
-  baseUrl = BaseURLFile.ACTIVE_SERVER;
+  baseUrl = BaseURLFile.ACTIVE_ROUTER;
   img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
   username: string;
   usermail: string;
