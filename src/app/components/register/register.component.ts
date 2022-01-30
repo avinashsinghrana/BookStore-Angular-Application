@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
   model = {};
   hide = true;
-  fullName = new FormControl('', [Validators.required, Validators.pattern('^[A-Z][a-z]+\\s?[A-Z][a-z]+$')]);
+  fullName = new FormControl('', [Validators.required, Validators.pattern('^[A-Z][a-z]+(\\s[A-Z][a-z]+)*$')]);
   mobileNumber = new FormControl('', [Validators.required, Validators.pattern('^[6-9][0-9]{9}$')]);
   emailId = new FormControl('', [Validators.required, Validators.email, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$')]);
   password = new FormControl('', [Validators.required, Validators.pattern('((?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})')]);

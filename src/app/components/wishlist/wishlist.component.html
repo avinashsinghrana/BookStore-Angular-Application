@@ -1,11 +1,11 @@
 <html>
-    <mat-card-title class="title">My Wishlist</mat-card-title>
-    <div *ngFor="let book of books ">
-      <mat-card class="card">
-        <mat-card-title matTooltip="Book Image"
-        ><img
-          src="{{ book.bookImgUrl }}"
-          style="
+<mat-card-title class="title">My Wishlist</mat-card-title>
+<div *ngFor="let book of books ">
+  <mat-card class="card">
+    <mat-card-title matTooltip="Book Image"
+    ><img
+      src="{{ book.bookImgUrl }}"
+      style="
                 height: 105px;
                 width: 89px;
                 margin-top: -31px;
@@ -14,26 +14,31 @@
                 padding-top: 20px;
                 padding-bottom: 21px;
               "
-        />
-        </mat-card-title>
-        <mat-card-content>
-          <div class="mat-content1">
-            <p class="book-names3">{{ book.bookName }}</p>
-            <p class="book-names4">{{ book.authorName }}</p>
-            <p class="book-names5">Rs.{{ book.price }}</p>
-          </div>
-          <div *ngIf="book.quantity > 0" class="buttonArr">
-            <button class="buttonstyle" mat-button (click)="addToCart(book)"><p class="p1">Add To Cart</p></button>
-            <button class="buttonstyle1" mat-button (click)="removeFromWishList(book.bookId)"><p class="p1">Remove</p>
-            </button>
-          </div>
-          <div *ngIf="book.quantity <= 0" class="buttonArr">
-            <button class="comingsoon" mat-button [disabled]="false" (click)="falsecall()"><p class="p1">Coming soon..</p></button>
-            <button class="buttonstyle1" mat-button (click)="removeFromWishList(book.bookId)"><p class="p1">Remove</p>
-            </button>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
+    />
+    </mat-card-title>
+    <mat-card-content>
+      <div class="mat-content1">
+        <p class="book-names3">{{ book.bookName }}</p>
+        <p class="book-names4">{{ book.authorName }}</p>
+        <p class="book-names5">Rs.{{ book.price }}</p>
+      </div>
+      <div *ngIf="book.quantity > 0" class="buttonArr">
+        <button class="buttonstyle" mat-button (click)="addToCart(book)"><p class="p1">Add To Cart</p></button>
+        <button class="buttonstyle1" mat-button (click)="removeFromWishList(book.bookId)"><p class="p1">Remove</p>
+        </button>
+      </div>
+      <!--          <div *ngIf="book.quantity > 0" class="buttonArr">-->
+      <!--            <button class="buttonstyle" mat-button (click)="addToCart(book)"><p class="p1">Add To Cart</p></button>-->
+      <!--            <button class="buttonstyle1" mat-button (click)="removeFromWishList(book.bookId)"><p class="p1">Remove</p>-->
+      <!--            </button>-->
+      <!--          </div>-->
+      <!--          <div *ngIf="book.quantity <= 0" class="buttonArr">-->
+      <!--            <button class="comingsoon" mat-button [disabled]="false" (click)="falsecall()"><p class="p1">Coming soon..</p></button>-->
+      <!--            <button class="buttonstyle1" mat-button (click)="removeFromWishList(book.bookId)"><p class="p1">Remove</p>-->
+      <!--            </button>-->
+      <!--          </div>-->
+    </mat-card-content>
+  </mat-card>
+</div>
 
 </html>
