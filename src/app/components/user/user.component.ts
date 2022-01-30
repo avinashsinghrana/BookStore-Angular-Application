@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import {WishlistComponent} from '../wishlist/wishlist.component';
 import {CartserviceService} from 'src/app/services/cartservice.service';
 import {WishlistService} from '../../services/wishlist.service';
+import { BaseURLFile } from 'src/app/base_url_file';
 
 @Component({
   selector: 'app-user',
@@ -21,6 +22,7 @@ import {WishlistService} from '../../services/wishlist.service';
 export class UserComponent implements OnInit {
   searchTerm: string;
   file: any;
+  baseUrl = BaseURLFile.ACTIVE_SERVER;
   profile: string;
   isLogin = false;
   imgFile: File;

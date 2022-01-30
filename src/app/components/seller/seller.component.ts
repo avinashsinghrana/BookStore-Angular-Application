@@ -7,6 +7,7 @@ import {LoginComponent} from '../login/login.component';
 import {MatSnackBar} from '@angular/material';
 import {RegisterComponent} from '../register/register.component';
 import {NgxSpinnerService} from 'ngx-spinner';
+import { BaseURLFile } from 'src/app/base_url_file';
 
 @Component({
   selector: 'app-seller',
@@ -17,6 +18,7 @@ export class SellerComponent implements OnInit {
   isBookFormOpened = false;
   searchTerm: string;
   file: any;
+  baseUrl = BaseURLFile.ACTIVE_SERVER;
   profile: string;
   isLogin = false;
   imgFile: File;

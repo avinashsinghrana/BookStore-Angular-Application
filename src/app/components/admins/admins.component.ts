@@ -9,6 +9,7 @@ import {RegisterComponent} from '../register/register.component';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Sortmethod} from 'src/app/model/sortmethod';
 import {Router} from '@angular/router';
+import {BaseURLFile} from 'src/app/base_url_file';
 
 @Component({
   selector: 'app-admins',
@@ -24,6 +25,7 @@ export class AdminsComponent implements OnInit {
   imgFile: File;
   response: any;
   isImage = false;
+  baseUrl = BaseURLFile.ACTIVE_SERVER;
   img = 'https://ravi023.s3.ap-south-1.amazonaws.com/1594052103459-profile.png';
   username: string;
   usermail: string;

@@ -1,46 +1,55 @@
 <div style="width: 100%; height: 10%;">
   <mat-toolbar style="width: 109.5%; height: 8%;" fxLayout="row" fxLayoutAlign="space-between center">
-    <div class="titleText" fxLayoutGap="3%" margin-top = "2%">
-      <img src="../../../assets/image/education.svg" />
+    <div class="titleText" fxLayoutGap="3%" margin-top="2%">
+      <img src="../../../assets/image/education.svg"/>
       <a
-        href="http://localhost:4200/userDashboard/user-books"
+        href="{{ baseUrl }}user-dashboard/user-books"
         style="color: white;text-decoration: none;"
-        >BookStore</a
+      >BookStore</a
       >
     </div>
     <mat-card
       class="search-mat-card"
       fxLayout="row"
       fxLayoutAlign="space-around center"
-    > <button mat-icon-button [disableRipple]="true" matTooltip="search" >
-      <mat-icon class="searchIcon">search</mat-icon>
-    </button>
-    <input
-    (input)="onKey($event)"
-    class="searchInput"
-    type="text"
-    placeholder="Search..."
-    [(ngModel)]="searchTerm"
-  />
+    >
+      <button mat-icon-button [disableRipple]="true" matTooltip="search">
+        <mat-icon class="searchIcon">search</mat-icon>
+      </button>
+      <input
+        (input)="onKey($event)"
+        class="searchInput"
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchTerm"
+      />
 
     </mat-card>
     <!-- WishList -->
     <div fxLayout="row" fxLayoutAlign="start end" style="margin-left: 10%;">
       <button class="fav" mat-icon-button>
-        <mat-icon  mat-button style="backface-visibility: hidden" (click)="openDialog()" color="white" MatBadgeSize="small" matBadge="{{wishitem}}" MatBadgeSize="small" matTooltip="WishList">favorite</mat-icon></button>
+        <mat-icon mat-button style="backface-visibility: hidden" (click)="openDialog()" color="white"
+                  MatBadgeSize="small" matBadge="{{wishitem}}" MatBadgeSize="small" matTooltip="WishList">favorite
+        </mat-icon>
+      </button>
 
-    <!-- shopping cart -->
+      <!-- shopping cart -->
 
-        <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart" flex
-        >
-          Cart <mat-icon matBadge="{{item}}" MatBadgeSize="small"
-             >shopping_cart</mat-icon></button><br />
-        </div>
-      <!-- user profile pic -->
+      <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart" flex
+      >
+        Cart
+        <mat-icon matBadge="{{item}}" MatBadgeSize="small"
+        >shopping_cart
+        </mat-icon>
+      </button>
+      <br/>
+    </div>
+    <!-- user profile pic -->
 
-    <button mat-mini-fab class ="imageSelect"  [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'45px','height':'45px','marginLeft':'-65px'}"
-      [matMenuTriggerFor]="menu1" colour="basic" matTooltip="User Account"
-      [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
+    <button mat-mini-fab class="imageSelect"
+            [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'45px','height':'45px','marginLeft':'-65px'}"
+            [matMenuTriggerFor]="menu1" colour="basic" matTooltip="User Account"
+            [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
       <div
         style="        margin-right: 1px;
     color: white;
@@ -59,11 +68,11 @@
       [matTooltipClass]="'my-tooltip'" fxLayout="row" fxLayoutAlign="end center">
     </button-->
 
-    <mat-menu  #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
-      <div class="backgroundimage"  fxLayoutAlign="center center"  >
+    <mat-menu #menu1="matMenu" class="menu-button" fxLayout="row" fxLayoutAlign="end start">
+      <div class="backgroundimage" fxLayoutAlign="center center">
         <button (click)="$event.stopPropagation()"
-          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'80px','height':'80px'}"
-          (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
+                [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover','width':'80px','height':'80px'}"
+                (click)="imageSelectFile.click()" matTooltip="{{username}}" mat-mini-fab class="imageSelect">
           <div
             style="margin-top: 16px;
     color: white;
@@ -81,27 +90,35 @@
         <div class="mat-subheading-1" style="font-weight: bold;" >{{username}}</div>
         <div class="mat-subheading-1">{{usermail}}</div>
      </div-->
-      <div> <p style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p>
-            <p style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis; padding-left: 10px; padding-right: 10px"> {{usermail}} </p> </div>
-      <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile enctype="multipart/form-data/" >
+      <div><p
+        style="text-align: center; font-weight: bold; overflow: hidden; text-overflow: ellipsis;"> {{username}} </p>
+        <p
+          style="text-align: center; margin-top: -13px;  overflow: hidden; text-overflow: ellipsis; padding-left: 10px; padding-right: 10px"> {{usermail}} </p>
+      </div>
+      <input fxHide class="image" type="file" (change)="fileUpload($event)" #imageSelectFile
+             enctype="multipart/form-data/">
       <mat-divider style="margin-top: auto;"></mat-divider>
       <div fxLayoutAlign="center center" *ngIf="!isLogin">
-        <button class="login" mat-flat-button (click)="signin()">LogIn </button>
+        <button class="login" mat-flat-button (click)="signin()">LogIn</button>
       </div>
-        <div fxLayoutAlign="row" >
-          <div><button class="delete" *ngIf="isLogin" mat-flat-button (click)="delete()">Delete </button></div>
-        <div><button class="signout" *ngIf="isLogin" mat-flat-button (click)="Logout()">Sign out </button></div>
-       </div>
+      <div fxLayoutAlign="row">
+        <div>
+          <button class="delete" *ngIf="isLogin" mat-flat-button (click)="delete()">Delete</button>
+        </div>
+        <div>
+          <button class="signout" *ngIf="isLogin" mat-flat-button (click)="Logout()">Sign out</button>
+        </div>
+      </div>
     </mat-menu>
-    </mat-toolbar>
+  </mat-toolbar>
 
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
-    <mat-card class="footer" flex>
-      <div>
-        <p class="footerText">
-          Copyright © 2020, Bookstore Private Limited. All Rights Reserved
-        </p>
-      </div>
-    </mat-card>
-  </div>
+  <mat-card class="footer" flex>
+    <div>
+      <p class="footerText">
+        Copyright © 2020, Bookstore Private Limited. All Rights Reserved
+      </p>
+    </div>
+  </mat-card>
+</div>
